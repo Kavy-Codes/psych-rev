@@ -60,7 +60,7 @@ export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
     <div className="h-full overflow-y-auto no-scrollbar px-4 pt-3 pb-6 space-y-4">
 
       {/* Primary: Countdown + Progress — ONE visual block */}
-      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 p-5 shadow-xl shadow-indigo-500/15">
+      <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-indigo-600 via-violet-600 to-indigo-700 p-5 shadow-xl shadow-indigo-500/15 animate-slide-up">
         <div className="absolute inset-0 opacity-[0.07]">
           <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-white" />
           <div className="absolute -bottom-8 -left-8 w-28 h-28 rounded-full bg-white" />
@@ -92,7 +92,7 @@ export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
       {/* Primary CTA — ONE clear next action */}
       <button
         onClick={() => onNavigate(nextAction.tab)}
-        className="w-full p-4 rounded-2xl bg-zinc-900/80 border border-zinc-700/40 text-left active:scale-[0.98] transition-all duration-150 group"
+        className="w-full p-4 rounded-2xl bg-zinc-900/80 border border-zinc-700/40 text-left active:scale-[0.98] transition-all duration-150 group animate-slide-up stagger-1"
       >
         <div className="flex items-center gap-3">
           <div className="w-11 h-11 rounded-xl bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center shrink-0 group-active:bg-indigo-500/25 transition-colors">
@@ -108,7 +108,7 @@ export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
       </button>
 
       {/* Quick Actions — 2x2 grid, max 4 choices (Hick's Law) */}
-      <div className="grid grid-cols-2 gap-2">
+      <div className="grid grid-cols-2 gap-2 animate-slide-up stagger-2">
         <QuickCard emoji="📝" label="Mock Quiz" sub="35 questions" color="rose" onClick={() => onNavigate('quiz')} />
         <QuickCard emoji="📖" label="Key Terms" sub="40+ definitions" color="emerald" onClick={() => onNavigate('glossary')} />
         <QuickCard emoji="📋" label="Chapter Notes" sub="Quick revision" color="violet" onClick={() => onNavigate('notes')} />
@@ -116,7 +116,7 @@ export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
       </div>
 
       {/* Chapter Weightage — collapsible (Progressive Disclosure) */}
-      <div>
+      <div className="animate-slide-up stagger-3">
         <button
           onClick={() => setShowBlueprint(!showBlueprint)}
           className="flex items-center justify-between w-full py-1 group"

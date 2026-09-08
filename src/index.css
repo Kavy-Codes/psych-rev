@@ -54,7 +54,7 @@
     background: var(--color-zinc-950);
     color: var(--color-zinc-100);
     -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    touch-action: manipulation;
   }
 
   #root {
@@ -114,7 +114,7 @@
   }
 
   .flip-card-inner {
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     transform-style: preserve-3d;
     position: relative;
     width: 100%;
@@ -132,6 +132,7 @@
     position: absolute;
     inset: 0;
     border-radius: 1rem;
+    overflow: hidden;
   }
 
   .flip-card-back {
@@ -156,6 +157,111 @@
     letter-spacing: 0.02em;
   }
 
+  /* ===== ANIMATIONS ===== */
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes slideDown {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes popIn {
+    0% { opacity: 0; transform: scale(0.8); }
+    70% { transform: scale(1.05); }
+    100% { opacity: 1; transform: scale(1); }
+  }
+
+  @keyframes progressPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+    50% { box-shadow: 0 0 0 4px rgba(99, 102, 241, 0); }
+  }
+
+  @keyframes confetti {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    100% { transform: scale(1) rotate(360deg); opacity: 1; }
+  }
+
+  @keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+
+  /* Card swipe — going next: old slides out left, new slides in from right */
+  @keyframes cardSlideLeft {
+    from { opacity: 0; transform: translateX(60px) scale(0.96); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+  }
+
+  /* Card swipe — going prev: old slides out right, new slides in from left */
+  @keyframes cardSlideRight {
+    from { opacity: 0; transform: translateX(-60px) scale(0.96); }
+    to { opacity: 1; transform: translateX(0) scale(1); }
+  }
+
+  .card-slide-left {
+    animation: cardSlideLeft 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .card-slide-right {
+    animation: cardSlideRight 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.35s ease-out;
+  }
+
+  .animate-slide-down {
+    animation: slideDown 0.25s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.2s ease-out;
+  }
+
+  .animate-pop-in {
+    animation: popIn 0.4s ease-out;
+  }
+
+  .animate-confetti {
+    animation: confetti 0.6s ease-out;
+  }
+
+  .animate-progress-pulse {
+    animation: progressPulse 1.5s ease-in-out infinite;
+  }
+
+  .animate-button-press {
+    animation: buttonPress 0.15s ease-out;
+  }
+
+  .stagger-1 { animation-delay: 0.05s; animation-fill-mode: both; }
+  .stagger-2 { animation-delay: 0.1s; animation-fill-mode: both; }
+  .stagger-3 { animation-delay: 0.15s; animation-fill-mode: both; }
+  .stagger-4 { animation-delay: 0.2s; animation-fill-mode: both; }
+  .stagger-5 { animation-delay: 0.25s; animation-fill-mode: both; }
+  .stagger-6 { animation-delay: 0.3s; animation-fill-mode: both; }
+  .stagger-7 { animation-delay: 0.35s; animation-fill-mode: both; }
+
   @keyframes scrollHint {
     0%, 100% { transform: translateX(0); }
     50% { transform: translateX(4px); }
@@ -172,5 +278,13 @@
 
   .scroll-hint-pill {
     animation: scrollGlow 1.5s ease-in-out infinite;
+  }
+}
+
+/* Mobile-specific overrides */
+@media (max-width: 380px) {
+  .flip-card-front,
+  .flip-card-back {
+    border-radius: 0.75rem;
   }
 }

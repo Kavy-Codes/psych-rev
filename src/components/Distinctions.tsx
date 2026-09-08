@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { distinctions } from '../data/distinctions';
 
 const CHAPTERS = [
@@ -17,8 +17,7 @@ export function Distinctions() {
 
   return (
     <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-2">
-      {/* Chapter tabs */}
-      <div className="flex gap-1.5 overflow-x-auto no-scrollbar shrink-0">
+      <div className="flex gap-1.5 overflow-x-auto no-scrollbar shrink-0 animate-slide-down">
         {CHAPTERS.map(ch => (
           <button
             key={ch.num}
@@ -36,44 +35,45 @@ export function Distinctions() {
 
       <p className="text-zinc-600 text-[10px] shrink-0">{filtered.length} comparisons — tap to expand</p>
 
-      {/* Scrollable list */}
-      <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar space-y-2">
-        {filtered.map(d => {
-          const isOpen = expandedId === d.id;
-          return (
-            <div key={d.id} className="rounded-xl border border-zinc-800/30 overflow-hidden bg-zinc-900/30">
-              <button
-                onClick={() => setExpandedId(isOpen ? null : d.id)}
-                className="w-full flex items-center gap-2 p-3 text-left active:bg-zinc-800/30 transition-colors"
-              >
-                <span className="text-white text-[13px] font-semibold flex-1 truncate">{d.title}</span>
-                <svg
-                  className={`w-3.5 h-3.5 text-zinc-600 shrink-0 transition-transform ${isOpen ? 'rotate-90' : ''}`}
-                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+      <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar space-y-2" key={selectedChapter}>
+        <div className="animate-fade-in">
+          {filtered.map(d => {
+            const isOpen = expandedId === d.id;
+            return (
+              <div key={d.id} className="rounded-xl border border-zinc-800/30 overflow-hidden bg-zinc-900/30">
+                <button
+                  onClick={() => setExpandedId(isOpen ? null : d.id)}
+                  className="w-full flex items-center gap-2 p-3 text-left active:bg-zinc-800/30 transition-colors"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
+                  <span className="text-white text-[13px] font-semibold flex-1 truncate">{d.title}</span>
+                  <svg
+                    className={`w-3.5 h-3.5 text-zinc-600 shrink-0 transition-transform ${isOpen ? 'rotate-90' : ''}`}
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
 
-              {isOpen && (
-                <div className="border-t border-zinc-800/30">
-                  <div className="grid grid-cols-[auto_1fr_1fr] text-[11px]">
-                    <div className="p-2" />
-                    <div className="p-2 font-semibold text-indigo-400 text-[10px] uppercase tracking-wide">Option A</div>
-                    <div className="p-2 font-semibold text-violet-400 text-[10px] uppercase tracking-wide">Option B</div>
-                    {d.rows.map((row, i) => (
-                      <React.Fragment key={i}>
-                        <div className={`p-2 text-zinc-500 font-medium border-t border-zinc-800/20 ${i % 2 === 0 ? 'bg-zinc-900/20' : ''}`}>{row.label}</div>
-                        <div className={`p-2 text-zinc-300 leading-relaxed border-t border-zinc-800/20 ${i % 2 === 0 ? 'bg-zinc-900/20' : ''}`}>{row.col1}</div>
-                        <div className={`p-2 text-zinc-300 leading-relaxed border-t border-zinc-800/20 ${i % 2 === 0 ? 'bg-zinc-900/20' : ''}`}>{row.col2}</div>
-                      </React.Fragment>
-                    ))}
+                {isOpen && (
+                  <div className="border-t border-zinc-800/30 animate-slide-up">
+                    <div className="grid grid-cols-[auto_1fr_1fr] text-[11px]">
+                      <div className="p-2" />
+                      <div className="p-2 font-semibold text-indigo-400 text-[10px] uppercase tracking-wide">Option A</div>
+                      <div className="p-2 font-semibold text-violet-400 text-[10px] uppercase tracking-wide">Option B</div>
+                      {d.rows.map((row, i) => (
+                        <div key={i} className="contents">
+                          <div className={`p-2 text-zinc-500 font-medium border-t border-zinc-800/20 ${i % 2 === 0 ? 'bg-zinc-900/20' : ''}`}>{row.label}</div>
+                          <div className={`p-2 text-zinc-300 leading-relaxed border-t border-zinc-800/20 ${i % 2 === 0 ? 'bg-zinc-900/20' : ''}`}>{row.col1}</div>
+                          <div className={`p-2 text-zinc-300 leading-relaxed border-t border-zinc-800/20 ${i % 2 === 0 ? 'bg-zinc-900/20' : ''}`}>{row.col2}</div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </div>
-          );
-        })}
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

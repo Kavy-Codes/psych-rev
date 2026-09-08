@@ -12,6 +12,15 @@ interface MatchResult {
   correct: boolean;
 }
 
+function shuffleArray<T>(arr: T[]): T[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
 export function Matcher({ chapterRange }: Props) {
   const [bestScore, setBestScore] = useLocalStorage<number>('psych-matcher-best', 0);
   const [selectedTheorist, setSelectedTheorist] = useState<string | null>(null);
@@ -27,15 +36,6 @@ export function Matcher({ chapterRange }: Props) {
     return start === 0 ? matcherPairs : matcherPairs.filter(p => p.chapter >= start && p.chapter <= end);
   }, [start, end]);
 
-  const shuffleArray = <T,>(arr: T[]): T[] => {
-    const shuffled = [...arr];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
-
   const shuffledTheorists = useMemo(() => shuffleArray(pairs.map(p => p.theorist)), [pairs]);
   const shuffledTheories = useMemo(() => shuffleArray(pairs.map(p => p.theory)), [pairs]);
 
@@ -45,7 +45,6 @@ export function Matcher({ chapterRange }: Props) {
     return map;
   }, [pairs]);
 
-  // Check match when both selected — via useEffect, not render body
   useEffect(() => {
     if (!selectedTheorist || !selectedTheory || processing || gameComplete) return;
 
@@ -73,7 +72,6 @@ export function Matcher({ chapterRange }: Props) {
     return () => clearTimeout(timer);
   }, [selectedTheorist, selectedTheory, processing, gameComplete, correctPairs]);
 
-  // Check game completion
   useEffect(() => {
     const matchedCount = Object.keys(matched).filter(k => k.startsWith('t_')).length;
     if (matchedCount >= pairs.length && pairs.length > 0 && !gameComplete) {
@@ -110,8 +108,7 @@ export function Matcher({ chapterRange }: Props) {
 
   return (
     <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-3">
-      {/* Header */}
-      <div className="flex items-center justify-between shrink-0">
+      <div className="flex items-center justify-between shrink-0 animate-slide-down">
         <div className="text-xs text-zinc-500">
           Matched: <span className="text-zinc-300 font-semibold">{matchedCount}/{pairs.length}</span>
           {bestScore > 0 && <span className="ml-2 text-amber-500/80">Best: {bestScore}</span>}
@@ -124,7 +121,6 @@ export function Matcher({ chapterRange }: Props) {
         </button>
       </div>
 
-      {/* Progress */}
       <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden shrink-0">
         <div
           className="h-full bg-gradient-to-r from-violet-500 to-indigo-500 rounded-full transition-all duration-500"
@@ -132,14 +128,13 @@ export function Matcher({ chapterRange }: Props) {
         />
       </div>
 
-      {/* Hint */}
       {matchedCount === 0 && !processing && (
-        <p className="text-zinc-600 text-[10px] text-center shrink-0">Tap a theorist, then tap their theory →</p>
+        <p className="text-zinc-600 text-[10px] text-center shrink-0 animate-fade-in">Tap a theorist, then tap their theory →</p>
       )}
 
       {gameComplete ? (
-        <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="text-5xl">{score === pairs.length ? '🏆' : '🧠'}</div>
+        <div className="flex-1 flex flex-col items-center justify-center gap-4 animate-pop-in">
+          <div className="text-5xl animate-confetti">{score === pairs.length ? '🏆' : '🧠'}</div>
           <p className="text-white font-bold text-xl">{score}/{pairs.length}</p>
           <p className="text-zinc-400 text-sm">
             {score === pairs.length ? 'Perfect match!' : 'Good effort — try again!'}
@@ -150,10 +145,9 @@ export function Matcher({ chapterRange }: Props) {
         </div>
       ) : (
         <div className="flex-1 flex gap-3 min-h-0">
-          {/* Theorists */}
           <div className="flex-1 flex flex-col gap-1.5 overflow-y-auto no-scrollbar">
             <p className="text-center text-[10px] font-bold text-indigo-400 uppercase tracking-wider mb-0.5">Theorist</p>
-            {shuffledTheorists.map(t => {
+            {shuffledTheorists.map((t, i) => {
               const isSelected = selectedTheorist === t;
               const isMatched = matched[`t_${t}`];
               const isWrong = wrongPair?.startsWith(t);
@@ -162,7 +156,7 @@ export function Matcher({ chapterRange }: Props) {
                   key={t}
                   onClick={() => handleSelect('theorist', t)}
                   disabled={isMatched}
-                  className={`p-2 rounded-xl text-[11px] font-semibold text-left transition-all duration-150 ${
+                  className={`p-2 rounded-xl text-[11px] font-semibold text-left transition-all duration-150 animate-slide-up stagger-${Math.min(i + 1, 7)} ${
                     isMatched
                       ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400/60'
                       : isSelected
@@ -178,10 +172,9 @@ export function Matcher({ chapterRange }: Props) {
             })}
           </div>
 
-          {/* Theories */}
           <div className="flex-1 flex flex-col gap-1.5 overflow-y-auto no-scrollbar">
             <p className="text-center text-[10px] font-bold text-violet-400 uppercase tracking-wider mb-0.5">Theory</p>
-            {shuffledTheories.map(t => {
+            {shuffledTheories.map((t, i) => {
               const isSelected = selectedTheory === t;
               const isMatched = matched[`th_${t}`];
               const isWrong = wrongPair?.includes(t);
@@ -190,7 +183,7 @@ export function Matcher({ chapterRange }: Props) {
                   key={t}
                   onClick={() => handleSelect('theory', t)}
                   disabled={isMatched}
-                  className={`p-2 rounded-xl text-[11px] font-semibold text-left transition-all duration-150 leading-snug ${
+                  className={`p-2 rounded-xl text-[11px] font-semibold text-left transition-all duration-150 leading-snug animate-slide-up stagger-${Math.min(i + 1, 7)} ${
                     isMatched
                       ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400/60'
                       : isSelected

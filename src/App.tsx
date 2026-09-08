@@ -35,6 +35,17 @@ const TIPS = [
   "Draw diagrams in long answers.",
 ];
 
+const NAV_ITEMS: { id: Tab; label: string; icon: ReactNode }[] = [
+  { id: 'home', label: 'Home', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
+  { id: 'cards', label: 'Cards', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25-9.75 5.25-9.75-5.25 4.179-2.25" /></svg> },
+  { id: 'notes', label: 'Notes', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
+  { id: 'quiz', label: 'Quiz', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg> },
+  { id: 'glossary', label: 'Terms', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
+  { id: 'matcher', label: 'Match', icon: <span className="text-lg leading-none">🧩</span> },
+  { id: 'maps', label: 'Maps', icon: <span className="text-lg leading-none">🗺️</span> },
+  { id: 'distinctions', label: 'Compare', icon: <span className="text-lg leading-none">⚖️</span> },
+];
+
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [chapterFilter, setChapterFilter] = useState(0);
@@ -42,6 +53,7 @@ export default function App() {
   const [showChapters, setShowChapters] = useState(false);
   const [pdfOpen, setPdfOpen] = useState(false);
   const [tipIndex, setTipIndex] = useState(0);
+  const [contentKey, setContentKey] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => setTipIndex(i => (i + 1) % TIPS.length), 8000);
@@ -65,32 +77,22 @@ export default function App() {
   const navigate = useCallback((tab: Tab) => {
     setActiveTab(tab);
     setShowChapters(false);
+    setContentKey(k => k + 1);
   }, []);
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'home': return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
+      case 'home': return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
       case 'cards': return <Flashcards chapterRange={[chapterFilter, chapterEnd]} />;
       case 'notes': return <ChapterNotes />;
       case 'glossary': return <Glossary chapterRange={[chapterFilter, chapterEnd]} />;
       case 'quiz': return <Quiz chapterRange={[chapterFilter, chapterEnd]} />;
       case 'matcher': return <Matcher chapterRange={[chapterFilter, chapterEnd]} />;
-      case 'maps': return <MindMaps chapterFilter={chapterFilter} />;
+      case 'maps': return <MindMaps />;
       case 'distinctions': return <Distinctions />;
-      default: return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
+      default: return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
     }
   };
-
-  const navItems: { id: Tab; label: string; icon: ReactNode }[] = [
-    { id: 'home', label: 'Home', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
-    { id: 'cards', label: 'Cards', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25-9.75 5.25-9.75-5.25 4.179-2.25" /></svg> },
-    { id: 'notes', label: 'Notes', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
-    { id: 'quiz', label: 'Quiz', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg> },
-    { id: 'glossary', label: 'Terms', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
-    { id: 'matcher', label: 'Match', icon: <span className="text-lg leading-none">🧩</span> },
-    { id: 'maps', label: 'Maps', icon: <span className="text-lg leading-none">🗺️</span> },
-    { id: 'distinctions', label: 'Compare', icon: <span className="text-lg leading-none">⚖️</span> },
-  ];
 
   return (
     <div className="h-[100dvh] flex flex-col bg-zinc-950 text-zinc-100 overflow-hidden select-none">
@@ -136,9 +138,8 @@ export default function App() {
         {/* Chapter Range Dropdown */}
         {showChapters && (
           <>
-            <div className="fixed inset-0 z-20 bg-black/30" onClick={() => setShowChapters(false)} />
-            <div className="absolute left-0 right-0 z-30 bg-zinc-900 border-b border-zinc-700/50 shadow-2xl shadow-black/60 p-3 space-y-3">
-              {/* All chapters button */}
+            <div className="fixed inset-0 z-20 bg-black/30 animate-fade-in" onClick={() => setShowChapters(false)} />
+            <div className="absolute left-0 right-0 z-30 bg-zinc-900 border-b border-zinc-700/50 shadow-2xl shadow-black/60 p-3 space-y-3 animate-slide-down">
               <button
                 onClick={() => { setChapterFilter(0); setChapterEnd(0); setShowChapters(false); }}
                 className={`w-full p-2.5 rounded-xl text-xs font-semibold text-left transition-all duration-150 ${
@@ -150,7 +151,6 @@ export default function App() {
                 All Chapters (1–7)
               </button>
 
-              {/* From / To selectors */}
               <div className="flex gap-2">
                 <div className="flex-1">
                   <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1">From</p>
@@ -196,7 +196,6 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Apply button */}
               <button
                 onClick={() => setShowChapters(false)}
                 className="w-full py-2 rounded-xl bg-zinc-800/60 text-zinc-300 text-xs font-semibold active:bg-zinc-700/60 active:scale-[0.97] transition-all"
@@ -217,18 +216,19 @@ export default function App() {
 
       {/* Content */}
       <main className="flex-1 min-h-0 overflow-hidden">
-        {renderContent()}
+        <div key={contentKey} className="h-full animate-fade-in">
+          {renderContent()}
+        </div>
       </main>
 
-      {/* Bottom Nav — all 8 tabs, scrollable */}
+      {/* Bottom Nav */}
       <nav className="shrink-0 safe-bottom bg-zinc-900/95 backdrop-blur-xl border-t border-zinc-800/40 relative">
-        {/* Strong fade edge */}
         {showScrollHint && (
           <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-zinc-900 via-zinc-900/90 to-transparent z-10 pointer-events-none" />
         )}
 
         <div ref={navScrollRef} onScroll={handleNavScroll} className="flex overflow-x-auto no-scrollbar relative">
-          {navItems.map(item => {
+          {NAV_ITEMS.map(item => {
             const isActive = activeTab === item.id;
             return (
               <button
@@ -240,12 +240,11 @@ export default function App() {
               >
                 {item.icon}
                 <span className="text-[9px] font-semibold leading-none mt-0.5">{item.label}</span>
-                {isActive && <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-indigo-400" />}
+                {isActive && <div className="absolute top-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-indigo-400 animate-scale-in" />}
               </button>
             );
           })}
 
-          {/* Scroll indicator pill */}
           {showScrollHint && (
             <div className="flex items-center shrink-0 pr-2 pl-1 pointer-events-none">
               <div className="flex items-center gap-1 bg-indigo-500/15 border border-indigo-500/30 rounded-full px-2 py-1 scroll-hint-pill">
@@ -259,7 +258,6 @@ export default function App() {
         </div>
       </nav>
 
-      {/* PDF Drawer */}
       <PdfDrawer isOpen={pdfOpen} onClose={() => setPdfOpen(false)} />
     </div>
   );

@@ -1,9 +1,5 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { mindMapsData } from '../data/mindMaps';
-
-interface Props {
-  chapterFilter: number;
-}
 
 interface TreeNode {
   label: string;
@@ -15,7 +11,6 @@ function parseMermaidToTree(mermaid: string): TreeNode {
   const nodeMap = new Map<string, string>();
   const childMap = new Map<string, string[]>();
 
-  // Extract node labels
   for (const line of lines) {
     const nodeMatch = line.match(/(\w+)\["(.+?)"\]/g);
     if (nodeMatch) {
@@ -26,7 +21,6 @@ function parseMermaidToTree(mermaid: string): TreeNode {
     }
   }
 
-  // Extract edges
   for (const line of lines) {
     const edgeMatch = line.match(/(\w+)\s*-->\s*(\w+)/);
     if (edgeMatch) {
@@ -43,7 +37,6 @@ function parseMermaidToTree(mermaid: string): TreeNode {
     };
   }
 
-  // Find root (first node in first edge, typically CHx)
   const firstEdge = lines[0]?.match(/(\w+)\s*-->/);
   const rootId = firstEdge?.[1] || nodeMap.keys().next().value || '';
   return buildNode(rootId);
@@ -56,7 +49,7 @@ function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
   const isBranch = depth === 1;
 
   return (
-    <div>
+    <div className={depth > 0 ? 'animate-fade-in' : ''}>
       <button
         onClick={() => hasChildren && setExpanded(!expanded)}
         className={`w-full flex items-center gap-2 py-1.5 px-2 rounded-lg text-left transition-all duration-150 ${
@@ -98,14 +91,12 @@ function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
   );
 }
 
-export function MindMaps({ chapterFilter }: Props) {
+export function MindMaps() {
   const [selectedChapter, setSelectedChapter] = useState(0);
-
-  const tree = parseMermaidToTree(mindMapsData[selectedChapter].mermaidCode);
+  const tree = useMemo(() => parseMermaidToTree(mindMapsData[selectedChapter].mermaidCode), [selectedChapter]);
 
   return (
     <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-3">
-      {/* Chapter Tabs */}
       <div className="flex gap-1.5 overflow-x-auto no-scrollbar shrink-0">
         {mindMapsData.map((ch, idx) => (
           <button
@@ -122,17 +113,17 @@ export function MindMaps({ chapterFilter }: Props) {
         ))}
       </div>
 
-      {/* Title */}
       <div className="text-center shrink-0">
         <h3 className="text-white font-bold text-sm">{mindMapsData[selectedChapter].title}</h3>
         <p className="text-zinc-600 text-[10px] mt-0.5">Tap + to expand topics</p>
       </div>
 
-      {/* Collapsible Tree */}
-      <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar rounded-xl bg-zinc-900/30 border border-zinc-800/30 p-2 space-y-0.5">
-        {tree.children?.map((child, i) => (
-          <TreeItem key={`${child.label}-${i}`} node={child} depth={0} />
-        ))}
+      <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar rounded-xl bg-zinc-900/30 border border-zinc-800/30 p-2 space-y-0.5" key={selectedChapter}>
+        <div className="animate-fade-in">
+          {tree.children?.map((child, i) => (
+            <TreeItem key={`${child.label}-${i}`} node={child} depth={0} />
+          ))}
+        </div>
       </div>
     </div>
   );
