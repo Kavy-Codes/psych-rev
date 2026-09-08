@@ -3,10 +3,10 @@ import { quizQuestions, type QuizQuestion } from '../data/quiz';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface Props {
-  chapterFilter: number;
+  chapterRange: [number, number];
 }
 
-export function Quiz({ chapterFilter }: Props) {
+export function Quiz({ chapterRange }: Props) {
   const [bestScore, setBestScore] = useLocalStorage<number>('psych-quiz-best', 0);
   const [started, setStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,10 +15,11 @@ export function Quiz({ chapterFilter }: Props) {
   const [score, setScore] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [history, setHistory] = useState<{ qId: string; correct: boolean }[]>([]);
+  const [startCh, endCh] = chapterRange;
 
-  const questions = chapterFilter === 0
+  const questions = startCh === 0
     ? quizQuestions
-    : quizQuestions.filter(q => q.chapter === chapterFilter);
+    : quizQuestions.filter(q => q.chapter >= startCh && q.chapter <= endCh);
 
   const q = questions[currentIndex];
 

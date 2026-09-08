@@ -3,7 +3,7 @@ import { matcherPairs } from '../data/matcher';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface Props {
-  chapterFilter: number;
+  chapterRange: [number, number];
 }
 
 interface MatchResult {
@@ -12,7 +12,7 @@ interface MatchResult {
   correct: boolean;
 }
 
-export function Matcher({ chapterFilter }: Props) {
+export function Matcher({ chapterRange }: Props) {
   const [bestScore, setBestScore] = useLocalStorage<number>('psych-matcher-best', 0);
   const [selectedTheorist, setSelectedTheorist] = useState<string | null>(null);
   const [selectedTheory, setSelectedTheory] = useState<string | null>(null);
@@ -21,10 +21,11 @@ export function Matcher({ chapterFilter }: Props) {
   const [results, setResults] = useState<MatchResult[]>([]);
   const [gameComplete, setGameComplete] = useState(false);
   const [processing, setProcessing] = useState(false);
+  const [start, end] = chapterRange;
 
   const pairs = useMemo(() => {
-    return chapterFilter === 0 ? matcherPairs : matcherPairs.filter(p => p.chapter === chapterFilter);
-  }, [chapterFilter]);
+    return start === 0 ? matcherPairs : matcherPairs.filter(p => p.chapter >= start && p.chapter <= end);
+  }, [start, end]);
 
   const shuffleArray = <T,>(arr: T[]): T[] => {
     const shuffled = [...arr];

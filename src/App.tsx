@@ -38,6 +38,7 @@ const TIPS = [
 export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [chapterFilter, setChapterFilter] = useState(0);
+  const [chapterEnd, setChapterEnd] = useState(0);
   const [showChapters, setShowChapters] = useState(false);
   const [pdfOpen, setPdfOpen] = useState(false);
   const [tipIndex, setTipIndex] = useState(0);
@@ -54,7 +55,11 @@ export default function App() {
     if (showScrollHint) setShowScrollHint(false);
   }, [showScrollHint]);
 
-  const chapterLabel = useMemo(() => CHAPTERS.find(c => c.num === chapterFilter)?.name || 'All', [chapterFilter]);
+  const chapterLabel = useMemo(() => {
+    if (chapterFilter === 0) return 'All Chapters';
+    if (chapterFilter === chapterEnd) return CHAPTERS.find(c => c.num === chapterFilter)?.name || 'All';
+    return `Ch ${chapterFilter}–${chapterEnd}`;
+  }, [chapterFilter, chapterEnd]);
   const showChapterFilter = activeTab !== 'home' && activeTab !== 'distinctions' && activeTab !== 'maps';
 
   const navigate = useCallback((tab: Tab) => {
@@ -65,11 +70,11 @@ export default function App() {
   const renderContent = () => {
     switch (activeTab) {
       case 'home': return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
-      case 'cards': return <Flashcards chapterFilter={chapterFilter} />;
-      case 'notes': return <ChapterNotes chapterFilter={chapterFilter} />;
-      case 'glossary': return <Glossary chapterFilter={chapterFilter} />;
-      case 'quiz': return <Quiz chapterFilter={chapterFilter} />;
-      case 'matcher': return <Matcher chapterFilter={chapterFilter} />;
+      case 'cards': return <Flashcards chapterRange={[chapterFilter, chapterEnd]} />;
+      case 'notes': return <ChapterNotes chapterRange={[chapterFilter, chapterEnd]} />;
+      case 'glossary': return <Glossary chapterRange={[chapterFilter, chapterEnd]} />;
+      case 'quiz': return <Quiz chapterRange={[chapterFilter, chapterEnd]} />;
+      case 'matcher': return <Matcher chapterRange={[chapterFilter, chapterEnd]} />;
       case 'maps': return <MindMaps chapterFilter={chapterFilter} />;
       case 'distinctions': return <Distinctions />;
       default: return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
@@ -118,7 +123,7 @@ export default function App() {
               className="flex items-center gap-1.5 text-white text-xs font-semibold active:opacity-70 transition-opacity"
             >
               <span className="pill bg-indigo-500/15 text-indigo-300 border border-indigo-500/25 text-[10px]">
-                {chapterFilter === 0 ? 'ALL' : `CH${chapterFilter}`}
+                {chapterFilter === 0 ? 'ALL' : chapterFilter === chapterEnd ? `CH${chapterFilter}` : `CH${chapterFilter}–${chapterEnd}`}
               </span>
               <span className="text-zinc-400 text-[11px]">{chapterLabel.replace(/^Ch\d+:\s*/, '')}</span>
               <svg className={`w-3 h-3 text-zinc-600 transition-transform duration-200 ${showChapters ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -128,26 +133,76 @@ export default function App() {
           </div>
         )}
 
-        {/* Chapter Dropdown */}
+        {/* Chapter Range Dropdown */}
         {showChapters && (
           <>
             <div className="fixed inset-0 z-20 bg-black/30" onClick={() => setShowChapters(false)} />
-            <div className="absolute left-0 right-0 z-30 bg-zinc-900 border-b border-zinc-700/50 shadow-2xl shadow-black/60">
-              <div className="grid grid-cols-2 gap-1.5 p-3">
-                {CHAPTERS.map(ch => (
-                  <button
-                    key={ch.num}
-                    onClick={() => { setChapterFilter(ch.num); setShowChapters(false); }}
-                    className={`p-2.5 rounded-xl text-xs font-semibold text-left transition-all duration-150 ${
-                      chapterFilter === ch.num
-                        ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
-                        : 'bg-zinc-800/60 text-zinc-400 active:bg-zinc-700/60 active:scale-[0.97]'
-                    }`}
-                  >
-                    {ch.name}
-                  </button>
-                ))}
+            <div className="absolute left-0 right-0 z-30 bg-zinc-900 border-b border-zinc-700/50 shadow-2xl shadow-black/60 p-3 space-y-3">
+              {/* All chapters button */}
+              <button
+                onClick={() => { setChapterFilter(0); setChapterEnd(0); setShowChapters(false); }}
+                className={`w-full p-2.5 rounded-xl text-xs font-semibold text-left transition-all duration-150 ${
+                  chapterFilter === 0
+                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/20'
+                    : 'bg-zinc-800/60 text-zinc-400 active:bg-zinc-700/60 active:scale-[0.97]'
+                }`}
+              >
+                All Chapters (1–7)
+              </button>
+
+              {/* From / To selectors */}
+              <div className="flex gap-2">
+                <div className="flex-1">
+                  <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1">From</p>
+                  <div className="grid grid-cols-4 gap-1">
+                    {[1,2,3,4,5,6,7].map(n => (
+                      <button
+                        key={n}
+                        onClick={() => {
+                          setChapterFilter(n);
+                          if (chapterEnd < n) setChapterEnd(n);
+                        }}
+                        className={`py-1.5 rounded-lg text-[11px] font-semibold transition-all ${
+                          chapterFilter === n && chapterFilter !== 0
+                            ? 'bg-indigo-600 text-white'
+                            : 'bg-zinc-800/50 text-zinc-400 active:bg-zinc-700/50'
+                        }`}
+                      >
+                        {n}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="flex-1">
+                  <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1">To</p>
+                  <div className="grid grid-cols-4 gap-1">
+                    {[1,2,3,4,5,6,7].map(n => (
+                      <button
+                        key={n}
+                        onClick={() => {
+                          setChapterEnd(n);
+                          if (chapterFilter > n) setChapterFilter(n);
+                        }}
+                        className={`py-1.5 rounded-lg text-[11px] font-semibold transition-all ${
+                          chapterEnd === n && chapterFilter !== 0
+                            ? 'bg-violet-600 text-white'
+                            : 'bg-zinc-800/50 text-zinc-400 active:bg-zinc-700/50'
+                        }`}
+                      >
+                        {n}
+                      </button>
+                    ))}
+                  </div>
+                </div>
               </div>
+
+              {/* Apply button */}
+              <button
+                onClick={() => setShowChapters(false)}
+                className="w-full py-2 rounded-xl bg-zinc-800/60 text-zinc-300 text-xs font-semibold active:bg-zinc-700/60 active:scale-[0.97] transition-all"
+              >
+                Done
+              </button>
             </div>
           </>
         )}

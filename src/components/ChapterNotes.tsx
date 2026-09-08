@@ -2,13 +2,14 @@ import { useState } from 'react';
 import { chapterNotes } from '../data/glossary';
 
 interface Props {
-  chapterFilter: number;
+  chapterRange: [number, number];
 }
 
-export function ChapterNotes({ chapterFilter }: Props) {
-  const [expanded, setExpanded] = useState<number | null>(chapterFilter > 0 ? chapterFilter : null);
+export function ChapterNotes({ chapterRange }: Props) {
+  const [start, end] = chapterRange;
+  const [expanded, setExpanded] = useState<number | null>(start > 0 ? start : null);
 
-  const notes = chapterFilter === 0 ? chapterNotes : chapterNotes.filter(n => n.chapter === chapterFilter);
+  const notes = start === 0 ? chapterNotes : chapterNotes.filter(n => n.chapter >= start && n.chapter <= end);
 
   const colorMap: Record<string, { pill: string; border: string }> = {
     indigo: { pill: 'bg-indigo-500/15 text-indigo-300 border-indigo-500/20', border: 'border-indigo-500/10' },

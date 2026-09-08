@@ -3,30 +3,31 @@ import { flashcards, type Flashcard } from '../data/flashcards';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 interface Props {
-  chapterFilter: number;
+  chapterRange: [number, number];
 }
 
-export function Flashcards({ chapterFilter }: Props) {
+export function Flashcards({ chapterRange }: Props) {
   const [mastered, setMastered] = useLocalStorage<Record<string, 'mastered' | 'shaky'>>('psych-flashcard-progress', {});
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showOnlyUnmastered, setShowOnlyUnmastered] = useState(false);
   const [direction, setDirection] = useState(0); // -1 left, 1 right
+  const [start, end] = chapterRange;
 
   const filteredCards = useMemo(() => {
-    let cards = chapterFilter === 0 ? flashcards : flashcards.filter(c => c.chapter === chapterFilter);
+    let cards = start === 0 ? flashcards : flashcards.filter(c => c.chapter >= start && c.chapter <= end);
     if (showOnlyUnmastered) {
       cards = cards.filter(c => !mastered[c.id] || mastered[c.id] === 'shaky');
     }
     return cards;
-  }, [chapterFilter, showOnlyUnmastered, mastered]);
+  }, [start, end, showOnlyUnmastered, mastered]);
 
   const card = filteredCards[currentIndex];
 
   useEffect(() => {
     setCurrentIndex(0);
     setIsFlipped(false);
-  }, [chapterFilter, showOnlyUnmastered]);
+  }, [start, end, showOnlyUnmastered]);
 
   const next = useCallback(() => {
     if (currentIndex < filteredCards.length - 1) {

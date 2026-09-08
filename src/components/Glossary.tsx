@@ -2,21 +2,22 @@ import { useState, useMemo } from 'react';
 import { glossary } from '../data/glossary';
 
 interface Props {
-  chapterFilter: number;
+  chapterRange: [number, number];
 }
 
-export function Glossary({ chapterFilter }: Props) {
+export function Glossary({ chapterRange }: Props) {
   const [search, setSearch] = useState('');
   const [expandedTerm, setExpandedTerm] = useState<string | null>(null);
+  const [start, end] = chapterRange;
 
   const filtered = useMemo(() => {
-    let terms = chapterFilter === 0 ? glossary : glossary.filter(t => t.chapter === chapterFilter);
+    let terms = start === 0 ? glossary : glossary.filter(t => t.chapter >= start && t.chapter <= end);
     if (search) {
       const q = search.toLowerCase();
       terms = terms.filter(t => t.term.toLowerCase().includes(q) || t.definition.toLowerCase().includes(q));
     }
     return terms;
-  }, [chapterFilter, search]);
+  }, [start, end, search]);
 
   const grouped = useMemo(() => {
     const map = new Map<number, typeof filtered>();
