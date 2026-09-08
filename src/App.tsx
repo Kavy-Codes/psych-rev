@@ -60,7 +60,7 @@ export default function App() {
     if (chapterFilter === chapterEnd) return CHAPTERS.find(c => c.num === chapterFilter)?.name || 'All';
     return `Ch ${chapterFilter}–${chapterEnd}`;
   }, [chapterFilter, chapterEnd]);
-  const showChapterFilter = activeTab !== 'home' && activeTab !== 'distinctions' && activeTab !== 'maps';
+  const showChapterFilter = activeTab !== 'home' && activeTab !== 'distinctions' && activeTab !== 'maps' && activeTab !== 'notes';
 
   const navigate = useCallback((tab: Tab) => {
     setActiveTab(tab);
@@ -71,7 +71,7 @@ export default function App() {
     switch (activeTab) {
       case 'home': return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
       case 'cards': return <Flashcards chapterRange={[chapterFilter, chapterEnd]} />;
-      case 'notes': return <ChapterNotes chapterRange={[chapterFilter, chapterEnd]} />;
+      case 'notes': return <ChapterNotes />;
       case 'glossary': return <Glossary chapterRange={[chapterFilter, chapterEnd]} />;
       case 'quiz': return <Quiz chapterRange={[chapterFilter, chapterEnd]} />;
       case 'matcher': return <Matcher chapterRange={[chapterFilter, chapterEnd]} />;
