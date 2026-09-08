@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@theme {
+  --color-zinc-950: #09090b;
+  --color-zinc-900: #18181b;
+  --color-zinc-850: #1c1c21;
+  --color-zinc-800: #27272a;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-600: #52525b;
+  --color-zinc-500: #71717a;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-200: #e4e4e7;
+  --color-indigo-500: #6366f1;
+  --color-indigo-600: #4f46e5;
+  --color-indigo-700: #4338ca;
+  --color-violet-500: #8b5cf6;
+  --color-violet-600: #7c3aed;
+  --color-emerald-500: #10b981;
+  --color-emerald-600: #059669;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-amber-500: #f59e0b;
+  --color-amber-600: #d97706;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+  --color-fuchsia-500: #d946ef;
+  --color-fuchsia-600: #c026d3;
+  --color-lime-500: #84cc16;
+  --color-lime-600: #65a30d;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * {
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+  }
+
+  html {
+    overflow: hidden;
+    height: 100%;
+    height: 100dvh;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    overscroll-behavior: none;
+    font-family: var(--font-sans);
+    background: var(--color-zinc-950);
+    color: var(--color-zinc-100);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #root {
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3f3f46;
+    border-radius: 9999px;
+  }
+
+  input, textarea {
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .glass {
+    background: rgba(24, 24, 27, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(63, 63, 70, 0.5);
+  }
+
+  .glass-card {
+    background: rgba(39, 39, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(63, 63, 70, 0.4);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, #818cf8, #a78bfa, #c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .safe-bottom {
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 8px);
+  }
+
+  .safe-top {
+    padding-top: max(env(safe-area-inset-top, 0px), 0px);
+  }
+
+  .flip-card {
+    perspective: 1200px;
+  }
+
+  .flip-card-inner {
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .flip-card-inner.flipped {
+    transform: rotateY(180deg);
+  }
+
+  .flip-card-front,
+  .flip-card-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    inset: 0;
+    border-radius: 1rem;
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  @keyframes scrollHint {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(4px); }
+  }
+
+  @keyframes scrollGlow {
+    0%, 100% { opacity: 0.6; box-shadow: 0 0 6px rgba(99, 102, 241, 0.2); }
+    50% { opacity: 1; box-shadow: 0 0 12px rgba(99, 102, 241, 0.4); }
+  }
+
+  .scroll-hint-arrow {
+    animation: scrollHint 1s ease-in-out infinite;
+  }
+
+  .scroll-hint-pill {
+    animation: scrollGlow 1.5s ease-in-out infinite;
+  }
+}
