@@ -23,17 +23,20 @@ const colorMap: Record<string, { pill: string; border: string }> = {
 
 export function ChapterNotes() {
   const [selectedChapter, setSelectedChapter] = useState(1);
-  const [expanded, setExpanded] = useState<number | null>(null);
 
-  const notes = chapterNotes.filter(n => n.chapter === selectedChapter);
+  const note = chapterNotes.find(n => n.chapter === selectedChapter);
+  if (!note) return null;
+
+  const c = colorMap[note.color];
 
   return (
-    <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-2">
+    <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-3">
+      {/* Chapter tabs */}
       <div className="flex gap-1.5 overflow-x-auto no-scrollbar shrink-0 animate-slide-down">
         {CHAPTERS.map(ch => (
           <button
             key={ch.num}
-            onClick={() => { setSelectedChapter(ch.num); setExpanded(null); }}
+            onClick={() => setSelectedChapter(ch.num)}
             className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
               selectedChapter === ch.num
                 ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-500/25'
@@ -45,46 +48,28 @@ export function ChapterNotes() {
         ))}
       </div>
 
-      <p className="text-zinc-600 text-[10px] shrink-0">Key points — tap to expand</p>
+      {/* Note content — always visible, no dropdown */}
+      <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar" key={selectedChapter}>
+        <div className="animate-fade-in space-y-3">
+          {/* Title */}
+          <div className="flex items-center gap-2">
+            <span className={`pill border text-[9px] shrink-0 ${c.pill}`}>
+              {note.marks}M
+            </span>
+            <h3 className="text-white font-bold text-sm">{note.title}</h3>
+          </div>
 
-      <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar space-y-2" key={selectedChapter}>
-        <div className="animate-fade-in">
-          {notes.map(n => {
-            const isOpen = expanded === n.chapter;
-            const c = colorMap[n.color];
-            return (
-              <div key={n.chapter} className={`rounded-xl border overflow-hidden transition-all ${c.border} ${isOpen ? 'bg-zinc-900/40' : 'bg-zinc-900/20'}`}>
-                <button
-                  onClick={() => setExpanded(isOpen ? null : n.chapter)}
-                  className="w-full flex items-center gap-2.5 p-3 text-left active:bg-zinc-800/20 transition-colors"
-                >
-                  <span className={`pill border text-[9px] shrink-0 ${c.pill}`}>
-                    {n.marks}M
-                  </span>
-                  <span className="text-white text-[13px] font-semibold flex-1 truncate">{n.title}</span>
-                  <svg
-                    className={`w-3.5 h-3.5 text-zinc-600 shrink-0 transition-transform ${isOpen ? 'rotate-90' : ''}`}
-                    fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                  </svg>
-                </button>
-
-                {isOpen && (
-                  <div className="px-3 pb-3 border-t border-zinc-800/20 animate-slide-up">
-                    <ul className="space-y-1.5 mt-2.5">
-                      {n.keyPoints.map((point, i) => (
-                        <li key={i} className="flex gap-2 text-[12px] text-zinc-400">
-                          <span className="text-zinc-600 mt-0.5 shrink-0">•</span>
-                          <span className="leading-relaxed">{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+          {/* Key points — always expanded */}
+          <div className={`rounded-xl border p-3 ${c.border} bg-zinc-900/30`}>
+            <ul className="space-y-2">
+              {note.keyPoints.map((point, i) => (
+                <li key={i} className="flex gap-2 text-[12px] text-zinc-400">
+                  <span className="text-zinc-600 mt-0.5 shrink-0">•</span>
+                  <span className="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
