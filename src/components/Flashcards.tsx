@@ -90,11 +90,6 @@ export function Flashcards({ chapterRange }: Props) {
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
   }, []);
 
-  const handleCardTap = useCallback(() => {
-    if (skipTapRef.current) { skipTapRef.current = false; return; }
-    toggleFlip();
-  }, [toggleFlip]);
-
   const handleCardTouchEnd = useCallback((e: React.TouchEvent) => {
     if (!touchStartRef.current) return;
     const touch = e.changedTouches[0];
@@ -110,6 +105,11 @@ export function Flashcards({ chapterRange }: Props) {
     if (skipTapRef.current) { skipTapRef.current = false; return; }
     toggleFlip();
   }, [goNext, goPrev, toggleFlip]);
+
+  const handleCardTap = useCallback(() => {
+    if (skipTapRef.current) { skipTapRef.current = false; return; }
+    toggleFlip();
+  }, [toggleFlip]);
 
   if (!card) {
     return (
@@ -149,7 +149,7 @@ export function Flashcards({ chapterRange }: Props) {
           className={`px-2.5 py-1 rounded-full text-[10px] font-semibold border transition-all active:scale-95 ${
             showOnlyUnmastered
               ? 'bg-rose-500/15 text-rose-300 border-rose-500/30'
-              : 'bg-zinc-800/50 text-zinc-500 border-zinc-700/50'
+              : 'bg-zinc-800/50 text-zinc-500 border border-zinc-700/50'
           }`}
         >
           {showOnlyUnmastered ? 'Shaky Only' : 'All Cards'}
@@ -164,108 +164,105 @@ export function Flashcards({ chapterRange }: Props) {
         />
       </div>
 
-      {/* Card + floating buttons */}
-      <div className="flex-1 min-h-0 relative" key={`wrap-${currentIndex}`}>
-        {/* The card with swipe animation */}
-        <div
-          className={`flip-card h-full ${slideClass}`}
-          key={`card-${currentIndex}`}
-          onTouchStart={handleTouchStart}
-          onTouchEnd={handleCardTouchEnd}
-          onClick={handleCardTap}
-        >
-          <div className={`flip-card-inner ${isFlipped ? 'flipped' : ''}`}>
-            {/* Front */}
-            <div className={`flip-card-front bg-gradient-to-br ${CHAPTER_COLORS[card.chapter]} p-4 sm:p-5 flex flex-col shadow-xl`}>
-              <div className="flex items-center gap-1.5 mb-2 flex-wrap shrink-0">
-                <span className={`pill border text-[10px] ${CHAPTER_BADGE_COLORS[card.chapter]}`}>
-                  Ch {card.chapter}
-                </span>
-                <span className="pill bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px]">
-                  {card.markWeight}
-                </span>
-              </div>
-
-              <h3 className="text-white text-lg sm:text-xl font-bold leading-snug mb-1.5 shrink-0">
-                {card.term}
-              </h3>
-
-              {card.theorist && (
-                <p className="text-white/50 text-[11px] mb-2 shrink-0">{card.theorist}</p>
-              )}
-
-              <p className="text-white/70 text-sm leading-relaxed line-clamp-4 sm:line-clamp-3 flex-1">
-                {card.definition}
-              </p>
-
-              <div className="flex items-center justify-center gap-1.5 text-white/40 text-[10px] mt-2 shrink-0">
-                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                </svg>
-                Tap to reveal · Swipe to navigate
-              </div>
+      {/* Card */}
+      <div
+        className={`flex-1 min-h-0 flip-card ${slideClass}`}
+        key={`card-${currentIndex}`}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleCardTouchEnd}
+        onClick={handleCardTap}
+      >
+        <div className={`flip-card-inner ${isFlipped ? 'flipped' : ''}`}>
+          {/* Front */}
+          <div className={`flip-card-front bg-gradient-to-br ${CHAPTER_COLORS[card.chapter]} p-4 sm:p-5 flex flex-col shadow-xl`}>
+            <div className="flex items-center gap-1.5 mb-2 flex-wrap shrink-0">
+              <span className={`pill border text-[10px] ${CHAPTER_BADGE_COLORS[card.chapter]}`}>
+                Ch {card.chapter}
+              </span>
+              <span className="pill bg-amber-500/20 text-amber-300 border border-amber-500/30 text-[10px]">
+                {card.markWeight}
+              </span>
             </div>
 
-            {/* Back */}
-            <div className="flip-card-back bg-zinc-900 border border-zinc-700/50 p-4 flex flex-col overflow-y-auto no-scrollbar">
-              <div className="flex items-center gap-1.5 mb-2 shrink-0">
-                <span className={`pill border text-[10px] ${CHAPTER_BADGE_COLORS[card.chapter]}`}>
-                  Ch {card.chapter}
-                </span>
-                <span className="text-zinc-500 text-[10px] font-semibold">KEY POINTS</span>
-              </div>
+            <h3 className="text-white text-lg sm:text-xl font-bold leading-snug mb-1.5 shrink-0">
+              {card.term}
+            </h3>
 
-              <h4 className="text-white font-bold text-base mb-2 shrink-0">{card.term}</h4>
+            {card.theorist && (
+              <p className="text-white/50 text-[11px] mb-2 shrink-0">{card.theorist}</p>
+            )}
 
-              <ul className="space-y-1.5 mb-3">
-                {card.keyPoints.map((point, i) => (
-                  <li key={i} className="flex gap-2 text-[13px] text-zinc-300">
-                    <span className="text-indigo-400 mt-0.5 shrink-0">•</span>
-                    <span className="leading-relaxed">{point}</span>
-                  </li>
-                ))}
-              </ul>
+            <p className="text-white/70 text-sm leading-relaxed line-clamp-4 sm:line-clamp-3 flex-1">
+              {card.definition}
+            </p>
 
-              {card.example && (
-                <div className="mt-auto p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 shrink-0">
-                  <p className="text-[10px] font-bold text-indigo-400 mb-1">EXAMPLE</p>
-                  <p className="text-[13px] text-zinc-300 leading-relaxed">{card.example}</p>
-                </div>
-              )}
+            <div className="flex items-center justify-center gap-1.5 text-white/40 text-[10px] mt-2 shrink-0">
+              <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+              Tap to reveal · Swipe to navigate
             </div>
           </div>
-        </div>
 
-        {/* Floating action buttons */}
-        <div
-          className="absolute bottom-0 left-0 right-0 flex gap-2 p-3 bg-gradient-to-t from-zinc-950 via-zinc-950/80 to-transparent"
-          onTouchStart={e => e.stopPropagation()}
-          onTouchEnd={e => e.stopPropagation()}
-          onClick={e => e.stopPropagation()}
-        >
-          <button
-            onClick={() => markCard('shaky')}
-            className="flex-1 py-3 rounded-xl bg-rose-500/15 border border-rose-500/30 text-rose-400 font-bold text-sm active:bg-rose-500/25 active:scale-95 transition-all duration-100"
-          >
-            Still Shaky
-          </button>
-          <button
-            onClick={goPrev}
-            disabled={currentIndex === 0}
-            className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-zinc-800/60 border border-zinc-700/40 text-zinc-300 font-semibold text-xs disabled:opacity-20 active:bg-zinc-700/60 active:scale-95 transition-all duration-100"
-          >
-            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-            Back
-          </button>
-          <button
-            onClick={() => markCard('mastered')}
-            className="flex-1 py-3 rounded-xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 font-bold text-sm active:bg-emerald-500/25 active:scale-95 transition-all duration-100"
-          >
-            Mastered ✓
-          </button>
+          {/* Back */}
+          <div className="flip-card-back bg-zinc-900 border border-zinc-700/50 p-4 flex flex-col overflow-y-auto no-scrollbar">
+            <div className="flex items-center gap-1.5 mb-2 shrink-0">
+              <span className={`pill border text-[10px] ${CHAPTER_BADGE_COLORS[card.chapter]}`}>
+                Ch {card.chapter}
+              </span>
+              <span className="text-zinc-500 text-[10px] font-semibold">KEY POINTS</span>
+            </div>
+
+            <h4 className="text-white font-bold text-base mb-2 shrink-0">{card.term}</h4>
+
+            <ul className="space-y-1.5 mb-3">
+              {card.keyPoints.map((point, i) => (
+                <li key={i} className="flex gap-2 text-[13px] text-zinc-300">
+                  <span className="text-indigo-400 mt-0.5 shrink-0">•</span>
+                  <span className="leading-relaxed">{point}</span>
+                </li>
+              ))}
+            </ul>
+
+            {card.example && (
+              <div className="mt-auto p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 shrink-0">
+                <p className="text-[10px] font-bold text-indigo-400 mb-1">EXAMPLE</p>
+                <p className="text-[13px] text-zinc-300 leading-relaxed">{card.example}</p>
+              </div>
+            )}
+          </div>
         </div>
+      </div>
+
+      {/* Buttons — below card, not overlapping */}
+      <div
+        className="flex gap-2 shrink-0"
+        onTouchStart={e => e.stopPropagation()}
+        onTouchEnd={e => e.stopPropagation()}
+        onClick={e => e.stopPropagation()}
+      >
+        <button
+          onClick={() => markCard('shaky')}
+          className="flex-1 py-3 rounded-xl bg-rose-500/10 border border-rose-500/25 text-rose-400 font-bold text-sm active:bg-rose-500/20 active:scale-95 transition-all duration-100"
+        >
+          Still Shaky
+        </button>
+        <button
+          onClick={goPrev}
+          disabled={currentIndex === 0}
+          className="flex items-center gap-1.5 px-3 py-3 rounded-xl bg-zinc-800/50 border border-zinc-700/40 text-zinc-300 font-semibold text-xs disabled:opacity-20 active:bg-zinc-700/50 active:scale-95 transition-all duration-100"
+        >
+          <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Back
+        </button>
+        <button
+          onClick={() => markCard('mastered')}
+          className="flex-1 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 font-bold text-sm active:bg-emerald-500/20 active:scale-95 transition-all duration-100"
+        >
+          Mastered ✓
+        </button>
       </div>
     </div>
   );
