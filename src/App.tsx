@@ -71,7 +71,7 @@ export default function App() {
       case 'quiz': return <Quiz chapterFilter={chapterFilter} />;
       case 'matcher': return <Matcher chapterFilter={chapterFilter} />;
       case 'maps': return <MindMaps chapterFilter={chapterFilter} />;
-      case 'distinctions': return <Distinctions chapterFilter={chapterFilter} />;
+      case 'distinctions': return <Distinctions />;
       default: return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
     }
   };
