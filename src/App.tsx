@@ -55,7 +55,7 @@ export default function App() {
   }, [showScrollHint]);
 
   const chapterLabel = useMemo(() => CHAPTERS.find(c => c.num === chapterFilter)?.name || 'All', [chapterFilter]);
-  const showChapterFilter = activeTab !== 'home';
+  const showChapterFilter = activeTab !== 'home' && activeTab !== 'distinctions';
 
   const navigate = useCallback((tab: Tab) => {
     setActiveTab(tab);
