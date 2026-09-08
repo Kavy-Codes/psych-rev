@@ -5,11 +5,13 @@ interface Props {
   onClose: () => void;
 }
 
+const BASE = import.meta.env.BASE_URL;
+
 const PDF_FILES = [
-  { name: "Revision Notes", file: "/revision-notes.pdf" },
-  { name: "Psychology Material", file: "/psychology-material.pdf" },
-  { name: "30 Sets Sample Papers", file: "/sample-papers-30-sets.pdf" },
-  { name: "Mind Maps", file: "/mind-maps.pdf" },
+  { name: "Revision Notes", file: `${BASE}revision-notes.pdf` },
+  { name: "Psychology Material", file: `${BASE}psychology-material.pdf` },
+  { name: "30 Sets Sample Papers", file: `${BASE}sample-papers-30-sets.pdf` },
+  { name: "Mind Maps", file: `${BASE}mind-maps.pdf` },
 ];
 
 export function PdfDrawer({ isOpen, onClose }: Props) {
