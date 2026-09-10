@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo } from 'react';
-import { quizQuestions, type QuizQuestion } from '../data/quiz';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { quizQuestions, type QuizQuestion } from '../../data/psych/quiz';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 interface Props {
   chapterRange: [number, number];

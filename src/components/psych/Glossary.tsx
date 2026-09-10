@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { glossary } from '../data/glossary';
+import { glossary } from '../../data/psych/glossary';
 
 interface Props {
   chapterRange: [number, number];

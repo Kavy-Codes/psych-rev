@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
-import { useLocalStorage } from '../hooks/useLocalStorage';
-import { flashcards } from '../data/flashcards';
-import { quizQuestions } from '../data/quiz';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { flashcards } from '../../data/psych/flashcards';
+import { quizQuestions } from '../../data/psych/quiz';
 
 interface Props {
   onNavigate: (tab: string) => void;

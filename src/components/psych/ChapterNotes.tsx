@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { chapterNotes } from '../data/glossary';
+import { chapterNotes } from '../../data/psych/glossary';
 
 const CHAPTERS = [
   { num: 1, label: 'Ch 1' },

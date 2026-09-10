@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { mindMapsData } from '../data/mindMaps';
+import { mindMapsData } from '../../data/psych/mindMaps';
 
 interface TreeNode {
   label: string;

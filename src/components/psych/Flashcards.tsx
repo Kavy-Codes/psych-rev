@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { flashcards } from '../data/flashcards';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { flashcards } from '../../data/psych/flashcards';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 interface Props {
   chapterRange: [number, number];

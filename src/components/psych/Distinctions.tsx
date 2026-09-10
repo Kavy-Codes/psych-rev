@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { distinctions } from '../data/distinctions';
+import { distinctions } from '../../data/psych/distinctions';
 
 const CHAPTERS = [
   { num: 1, label: 'Ch 1' },

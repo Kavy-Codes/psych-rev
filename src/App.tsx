@@ -1,15 +1,18 @@
-import { useState, useEffect, useMemo, useCallback, useRef, type ReactNode } from 'react';
-import { Dashboard } from './components/Dashboard';
-import { Flashcards } from './components/Flashcards';
-import { MindMaps } from './components/MindMaps';
-import { Distinctions } from './components/Distinctions';
-import { Matcher } from './components/Matcher';
-import { Quiz } from './components/Quiz';
+import { useState, useEffect, useCallback, useMemo, useRef, type ReactNode } from 'react';
+import { SubjectSelector } from './components/SubjectSelector';
+import { HindiComingSoon } from './components/HindiComingSoon';
+import { Dashboard } from './components/psych/Dashboard';
+import { Flashcards } from './components/psych/Flashcards';
+import { MindMaps } from './components/psych/MindMaps';
+import { Distinctions } from './components/psych/Distinctions';
+import { Matcher } from './components/psych/Matcher';
+import { Quiz } from './components/psych/Quiz';
 import { PdfDrawer } from './components/PdfDrawer';
-import { Glossary } from './components/Glossary';
-import { ChapterNotes } from './components/ChapterNotes';
+import { Glossary } from './components/psych/Glossary';
+import { ChapterNotes } from './components/psych/ChapterNotes';
 
-type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions';
+type Subject = 'psych' | 'hindi' | null;
+type PsychTab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions';
 
 const CHAPTERS = [
   { num: 0, name: 'All Chapters' },
@@ -35,7 +38,7 @@ const TIPS = [
   "Draw diagrams in long answers.",
 ];
 
-const NAV_ITEMS: { id: Tab; label: string; icon: ReactNode }[] = [
+const PSYCH_NAV: { id: PsychTab; label: string; icon: ReactNode }[] = [
   { id: 'home', label: 'Home', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
   { id: 'cards', label: 'Cards', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25-9.75 5.25-9.75-5.25 4.179-2.25" /></svg> },
   { id: 'notes', label: 'Notes', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
@@ -47,7 +50,11 @@ const NAV_ITEMS: { id: Tab; label: string; icon: ReactNode }[] = [
 ];
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState<Tab>('home');
+  const [subject, setSubject] = useState<Subject>(() => {
+    const saved = localStorage.getItem('studyrev-subject');
+    return (saved === 'psych' || saved === 'hindi') ? saved : null;
+  });
+  const [activeTab, setActiveTab] = useState<PsychTab>('home');
   const [chapterFilter, setChapterFilter] = useState(0);
   const [chapterEnd, setChapterEnd] = useState(0);
   const [showChapters, setShowChapters] = useState(false);
@@ -72,17 +79,22 @@ export default function App() {
     if (chapterFilter === chapterEnd) return CHAPTERS.find(c => c.num === chapterFilter)?.name || 'All';
     return `Ch ${chapterFilter}–${chapterEnd}`;
   }, [chapterFilter, chapterEnd]);
-  const showChapterFilter = activeTab !== 'home' && activeTab !== 'distinctions' && activeTab !== 'maps' && activeTab !== 'notes';
+  const showChapterFilter = subject === 'psych' && activeTab !== 'home' && activeTab !== 'distinctions' && activeTab !== 'maps' && activeTab !== 'notes';
 
-  const navigate = useCallback((tab: Tab) => {
+  const selectSubject = useCallback((s: Subject) => {
+    setSubject(s);
+    if (s) localStorage.setItem('studyrev-subject', s);
+  }, []);
+
+  const navigate = useCallback((tab: PsychTab) => {
     setActiveTab(tab);
     setShowChapters(false);
     setContentKey(k => k + 1);
   }, []);
 
-  const renderContent = () => {
+  const renderPsychContent = () => {
     switch (activeTab) {
-      case 'home': return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
+      case 'home': return <Dashboard onNavigate={(t) => navigate(t as PsychTab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
       case 'cards': return <Flashcards chapterRange={[chapterFilter, chapterEnd]} />;
       case 'notes': return <ChapterNotes />;
       case 'glossary': return <Glossary chapterRange={[chapterFilter, chapterEnd]} />;
@@ -90,18 +102,39 @@ export default function App() {
       case 'matcher': return <Matcher chapterRange={[chapterFilter, chapterEnd]} />;
       case 'maps': return <MindMaps />;
       case 'distinctions': return <Distinctions />;
-      default: return <Dashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
+      default: return <Dashboard onNavigate={(t) => navigate(t as PsychTab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
     }
   };
 
+  // Subject selector
+  if (!subject) {
+    return <SubjectSelector onSelect={selectSubject} />;
+  }
+
+  // Hindi coming soon
+  if (subject === 'hindi') {
+    return <HindiComingSoon onBack={() => { setSubject(null); localStorage.removeItem('studyrev-subject'); }} />;
+  }
+
+  // Psychology app (full)
   return (
     <div className="h-[100dvh] flex flex-col bg-zinc-950 text-zinc-100 overflow-hidden select-none">
       {/* Header */}
       <header className="shrink-0 safe-top">
         <div className="flex items-center justify-between px-4 py-2">
-          <div>
-            <h1 className="text-gradient font-black text-lg tracking-tight leading-none">PsychRev</h1>
-            <p className="text-zinc-600 text-[10px] mt-0.5">CBSE Class 12 Psychology</p>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={() => { setSubject(null); localStorage.removeItem('studyrev-subject'); }}
+              className="text-zinc-600 active:text-zinc-300 transition-colors"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            <div>
+              <h1 className="text-gradient font-black text-lg tracking-tight leading-none">मनोविज्ञान</h1>
+              <p className="text-zinc-600 text-[10px] mt-0.5">Psychology — 337</p>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             <p className="text-zinc-600 text-[10px] max-w-[140px] truncate hidden sm:block">{TIPS[tipIndex]}</p>
@@ -217,7 +250,7 @@ export default function App() {
       {/* Content */}
       <main className="flex-1 min-h-0 overflow-hidden">
         <div key={contentKey} className="h-full animate-fade-in">
-          {renderContent()}
+          {renderPsychContent()}
         </div>
       </main>
 
@@ -228,7 +261,7 @@ export default function App() {
         )}
 
         <div ref={navScrollRef} onScroll={handleNavScroll} className="flex overflow-x-auto no-scrollbar relative">
-          {NAV_ITEMS.map(item => {
+          {PSYCH_NAV.map(item => {
             const isActive = activeTab === item.id;
             return (
               <button

@@ -1,6 +1,6 @@
 import { useState, useCallback, useMemo, useEffect } from 'react';
-import { matcherPairs } from '../data/matcher';
-import { useLocalStorage } from '../hooks/useLocalStorage';
+import { matcherPairs } from '../../data/psych/matcher';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
 interface Props {
   chapterRange: [number, number];
