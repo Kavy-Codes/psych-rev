@@ -93,6 +93,22 @@ export const flashcards: Flashcard[] = [
     keyPoints: ["Perceiving emotions: Recognizing emotions in faces, music, stories", "Using emotions: Facilitating thinking and creativity", "Understanding emotions: Interpreting complex feelings", "Managing emotions: Regulating emotions in self and others"],
     example: "A teacher who reads students' frustration and adjusts teaching approach demonstrates high EI."
   },
+  {
+    id: "c1_11", chapter: 1, chapterName: "Variations in Psychological Attributes",
+    topic: "Aptitude", term: "Aptitude vs Intelligence",
+    theorist: "Various", markWeight: "2/3 Marks",
+    definition: "Aptitude refers to an individual's potential or capacity to learn and perform in a specific area, while intelligence is a broader cognitive ability.",
+    keyPoints: ["Aptitude is domain-specific; Intelligence is general", "Aptitude predicts future learning potential", "Measured by Differential Aptitude Tests (DAT)", "Used for vocational guidance and career planning", "Combines innate ability with potential for development"],
+    example: "A student scoring high on mechanical aptitude test is guided toward engineering careers."
+  },
+  {
+    id: "c1_12", chapter: 1, chapterName: "Variations in Psychological Attributes",
+    topic: "Culture and Intelligence", term: "Culture-Fair vs Culture-Biased Tests",
+    theorist: "Cattell / Wechsler", markWeight: "2 Marks",
+    definition: "Culture-fair tests minimize cultural and linguistic bias to measure intelligence equitably across diverse populations.",
+    keyPoints: ["Culture-fair tests use non-verbal, universal items (Raven's Matrices)", "Culture-biased tests favour dominant cultural groups", "Wechsler scales include cultural balance", "IQ scores may be inflated/deflated by cultural familiarity", "Cross-cultural testing reveals universal vs culture-specific abilities"],
+    example: "Raven's Progressive Matrices use abstract shapes, avoiding language/culture-specific content."
+  },
 
   // ===== CH 2: Self and Personality =====
   {
@@ -183,6 +199,22 @@ export const flashcards: Flashcard[] = [
     keyPoints: ["'I' is the active, experiencing self", "'Me' is the self as known — material, social, spiritual", "Material Self: Body, clothes, possessions", "Social Self: Recognition from others", "Spiritual Self: Inner subjective being"],
     example: "'I am dancing' = Self as subject. 'I am a good dancer' = Self as object."
   },
+  {
+    id: "c2_12", chapter: 2, chapterName: "Self and Personality",
+    topic: "Personality Assessment", term: "MMPI (Minnesota Multiphasic Personality Inventory)",
+    theorist: "Hathaway & McKinley", markWeight: "3/4 Marks",
+    definition: "A standardized objective personality test using true/false items to assess personality characteristics and psychopathology.",
+    keyPoints: ["567 true/false items covering 10 clinical scales", "Clinical scales include: Hypochondriasis, Depression, Hysteria, Psychopathic Deviate, Paranoia", "Validity scales detect malingering and inconsistent responding", "Used widely in clinical and forensic settings", "Empirically derived — items correlate with diagnosed conditions"],
+    example: "A forensic psychologist uses MMPI to assess whether a defendant is exaggerating symptoms of mental illness."
+  },
+  {
+    id: "c2_13", chapter: 2, chapterName: "Self and Personality",
+    topic: "Trait Theories", term: "Big Five Personality Traits — Detailed Assessment",
+    theorist: "Costa & McCrae / Goldberg", markWeight: "3/4 Marks",
+    definition: "The Big Five (OCEAN) model provides a comprehensive framework for measuring personality across cultures using standardized inventories.",
+    keyPoints: ["NEO-PI-R: 240-item inventory measuring 5 factors and 30 facets", "Openness: Fantasy, aesthetics, feelings, actions, ideas, values", "Conscientiousness: Competence, order, dutifulness, achievement, self-discipline", "Extraversion: Warmth, gregariousness, assertiveness, activity, excitement-seeking, positive emotions", "Cross-culturally validated across 50+ languages"],
+    example: "A psychologist uses the NEO-PI-R to create a detailed personality profile for career counselling."
+  },
 
   // ===== CH 3: Meeting Life Challenges =====
   {
@@ -240,6 +272,46 @@ export const flashcards: Flashcard[] = [
     definition: "Stress can be physical/environmental, psychological, or social in origin.",
     keyPoints: ["Physical: Noise, pollution, crowding, natural disasters", "Psychological: Frustration, conflict, internal pressures", "Social: Isolation, strained relationships, major life events", "Daily hassles vs Major life events"],
     example: "Exams = psychological stress; Moving to new city = social stress; Earthquake = physical stress."
+  },
+  {
+    id: "c3_08", chapter: 3, chapterName: "Meeting Life Challenges",
+    topic: "Burnout", term: "Occupational Burnout",
+    theorist: "Herbert Freudenberger / Christina Maslach", markWeight: "3 Marks",
+    definition: "A state of physical, emotional, and mental exhaustion caused by prolonged occupational stress, characterized by depersonalization and reduced personal accomplishment.",
+    keyPoints: ["Emotional exhaustion: Feeling drained and depleted", "Depersonalization: Cynical, detached attitude toward work", "Reduced personal accomplishment: Feeling incompetent", "Common in helping professions (teachers, nurses)", "Maslach Burnout Inventory (MBI) is the standard assessment tool"],
+    example: "A teacher who once loved teaching now feels dreads going to work and feels emotionally numb toward students."
+  },
+  {
+    id: "c3_09", chapter: 3, chapterName: "Meeting Life Challenges",
+    topic: "Coping Strategies", term: "Problem-Focused Coping",
+    theorist: "Lazarus & Folkman", markWeight: "2/3 Marks",
+    definition: "A coping strategy that involves directly addressing the source of stress through planning, information-seeking, and concrete action.",
+    keyPoints: ["Involves taking direct action to modify the stressor", "Includes time management, seeking advice, problem-solving", "More effective when situation is controllable", "Reduces stress by changing the actual circumstances", "Associated with better outcomes in work and academic stressors"],
+    example: "A student facing exam stress creates a structured study timetable and seeks help from teachers."
+  },
+  {
+    id: "c3_10", chapter: 3, chapterName: "Meeting Life Challenges",
+    topic: "Coping Strategies", term: "Emotion-Focused Coping",
+    theorist: "Lazarus & Folkman", markWeight: "2/3 Marks",
+    definition: "A coping strategy aimed at managing emotional distress rather than altering the stressful situation itself.",
+    keyPoints: ["Includes ventilation, positive reappraisal, wishful thinking", "Useful when situation is uncontrollable (e.g., bereavement)", "Meditation and prayer are forms of emotion-focused coping", "Avoidance-based emotion-focused coping can be maladaptive", "Helps maintain emotional equilibrium during stress"],
+    example: "A person grieving a loss practices deep breathing and reframes the experience as 'they lived a full life'."
+  },
+  {
+    id: "c3_11", chapter: 3, chapterName: "Meeting Life Challenges",
+    topic: "Stress Management", term: "Relaxation Techniques",
+    theorist: "Various (Jacobson, Benson)", markWeight: "2 Marks",
+    definition: "Systematic methods of reducing physiological arousal and psychological tension through controlled exercises.",
+    keyPoints: ["Progressive Muscle Relaxation (PMR): Tensing and releasing muscle groups", "Deep breathing exercises activate parasympathetic nervous system", "Mindfulness meditation: Non-judgmental awareness of present moment", "Autogenic training: Self-suggestion for relaxation", "Regular practice reduces baseline stress levels"],
+    example: "A student practices PMR before exams — tensing and releasing leg muscles to reduce anxiety."
+  },
+  {
+    id: "c3_12", chapter: 3, chapterName: "Meeting Life Challenges",
+    topic: "Social Support", term: "Social Support Systems",
+    theorist: "Cobb & Cassel", markWeight: "2 Marks",
+    definition: "Emotional, informational, and tangible assistance provided by family, friends, and community that buffers the effects of stress.",
+    keyPoints: ["Emotional support: Empathy, love, trust", "Informational support: Advice, suggestions, guidance", "Instrumental/Tangible support: Financial aid, material resources", "Appraisal support: Constructive feedback for self-evaluation", "Strong social support is linked to better physical and mental health"],
+    example: "A student coping with exam stress feels better after talking to friends who encourage and guide them."
   },
 
   // ===== CH 4: Psychological Disorders =====
@@ -299,6 +371,46 @@ export const flashcards: Flashcard[] = [
     keyPoints: ["Obsessions: Recurrent, persistent, unwanted thoughts", "Compulsions: Repetitive behaviors or mental acts to reduce anxiety", "Ego-dystonic: Person recognizes thoughts are irrational", "Causes significant distress and functional impairment"],
     example: "Repeatedly checking if door is locked (compulsion) due to fear of burglary (obsession)."
   },
+  {
+    id: "c4_08", chapter: 4, chapterName: "Psychological Disorders",
+    topic: "Mood Disorders", term: "Major Depressive Disorder (MDD)",
+    theorist: "DSM-5", markWeight: "3/4 Marks",
+    definition: "A mood disorder characterized by persistent depressed mood or loss of interest/pleasure (anhedonia) for at least two weeks, with significant functional impairment.",
+    keyPoints: ["Core symptoms: Depressed mood and/or anhedonia for ≥2 weeks", "Associated symptoms: Weight changes, insomnia/hypersomnia, fatigue, guilt", "Cognitive symptoms: Difficulty concentrating, suicidal ideation", "Diagnosis requires ≥5 symptoms present during same 2-week period", "Causes significant distress in social, occupational, or other areas"],
+    example: "A student who stops enjoying hobbies, sleeps excessively, and cannot concentrate for weeks may have MDD."
+  },
+  {
+    id: "c4_09", chapter: 4, chapterName: "Psychological Disorders",
+    topic: "Mood Disorders", term: "Bipolar Disorder — Detailed",
+    theorist: "DSM-5", markWeight: "3/4 Marks",
+    definition: "A disorder characterized by alternating episodes of mania (or hypomania) and depression, with periods of normal mood in between.",
+    keyPoints: ["Bipolar I: At least one manic episode lasting ≥7 days", "Bipolar II: Hypomanic episodes + major depressive episodes", "Mania symptoms: Grandiosity, decreased need for sleep, pressured speech", "Cyclothymia: Chronic fluctuating mood with hypomanic and depressive symptoms", "Often first appears in late adolescence or early adulthood"],
+    example: "A person spending recklessly, sleeping 2 hours, and giving grandiose speeches may be in a manic episode."
+  },
+  {
+    id: "c4_10", chapter: 4, chapterName: "Psychological Disorders",
+    topic: "Trauma Disorders", term: "Post-Traumatic Stress Disorder (PTSD)",
+    theorist: "DSM-5", markWeight: "3 Marks",
+    definition: "A disorder that develops following exposure to a traumatic event, involving persistent re-experiencing, avoidance, and hyperarousal.",
+    keyPoints: ["Triggered by actual or threatened death, serious injury, or sexual violence", "Re-experiencing: Flashbacks, nightmares, intrusive memories", "Avoidance: Avoiding reminders of the trauma", "Hyperarousal: Exaggerated startle, irritability, sleep disturbances", "Symptoms persist for more than one month after the event"],
+    example: "A disaster survivor who cannot enter buildings and has nightly nightmares may have PTSD."
+  },
+  {
+    id: "c4_11", chapter: 4, chapterName: "Psychological Disorders",
+    topic: "Somatoform Disorders", term: "Somatic Symptom Disorder",
+    theorist: "DSM-5", markWeight: "3 Marks",
+    definition: "A condition where excessive attention and concern about physical symptoms causes significant distress and functional impairment, even without medical explanation.",
+    keyPoints: ["Excessive thoughts, feelings, or behaviors related to somatic symptoms", "Disproportionate response to actual or perceived symptoms", "Persistent symptoms typically last ≥6 months", "Individuals may seek excessive medical tests and consultations", "Previously called 'somatization disorder' or 'hypochondriasis'"],
+    example: "A person with mild headaches who repeatedly visits doctors fearing a brain tumour may have Somatic Symptom Disorder."
+  },
+  {
+    id: "c4_12", chapter: 4, chapterName: "Psychological Disorders",
+    topic: "Feeding Disorders", term: "Eating Disorders",
+    theorist: "DSM-5", markWeight: "3/4 Marks",
+    definition: "Persistent disturbances in eating behavior and related thoughts that significantly impair physical health and psychosocial functioning.",
+    keyPoints: ["Anorexia Nervosa: Severe restriction of intake, intense fear of gaining weight, distorted body image", "Binge-Eating Disorder: Recurrent binge episodes without compensatory behaviors", "Purging: Self-induced vomiting, laxative misuse to control weight", "Strongly linked to body dissatisfaction and societal pressure", "Highest mortality rate of any psychological disorder (Anorexia)"],
+    example: "An adolescent girl skipping meals, exercising excessively, and seeing herself as 'fat' despite being underweight may have Anorexia Nervosa."
+  },
 
   // ===== CH 5: Therapeutic Approaches =====
   {
@@ -349,6 +461,54 @@ export const flashcards: Flashcard[] = [
     keyPoints: ["Voluntary relationship between client and therapist", "Based on trust, acceptance, and understanding", "Key elements: Empathy, Warmth, Genuineness", "Stronger alliance = better therapy outcomes"],
     example: "A client who feels understood and accepted by their therapist engages more deeply in therapy."
   },
+  {
+    id: "c5_07", chapter: 5, chapterName: "Therapeutic Approaches",
+    topic: "Behavior Therapy", term: "Systematic Desensitization — Detailed",
+    theorist: "Joseph Wolpe (1958)", markWeight: "3 Marks",
+    definition: "A behavior therapy technique based on reciprocal inhibition, gradually exposing clients to anxiety-provoking stimuli while they maintain a relaxed state.",
+    keyPoints: ["Step 1: Establish anxiety hierarchy (least to most feared)", "Step 2: Train client in progressive muscle relaxation", "Step 3: Pair each hierarchy step with relaxation", "Reciprocal inhibition: Relaxation and anxiety are incompatible", "Effective for specific phobias, test anxiety, public speaking fear"],
+    example: "A student afraid of public speaking practices relaxation while imagining giving a speech, then gradually progresses to actual speaking."
+  },
+  {
+    id: "c5_08", chapter: 5, chapterName: "Therapeutic Approaches",
+    topic: "Behavior Therapy", term: "Token Economy",
+    theorist: "Ayllon & Azrin / Skinnerian", markWeight: "3 Marks",
+    definition: "A behavior modification system using tokens (secondary reinforcers) as rewards for desired behaviors, exchangeable for privileges or items.",
+    keyPoints: ["Based on operant conditioning principles (Skinner)", "Target behaviors are clearly defined and observable", "Tokens serve as generalized secondary reinforcers", "Used in psychiatric hospitals, classrooms, rehabilitation centers", "Effective for shaping behavior in children with intellectual disabilities"],
+    example: "In a classroom, students earn tokens for completing homework on time, exchangeable for extra recess time."
+  },
+  {
+    id: "c5_09", chapter: 5, chapterName: "Therapeutic Approaches",
+    topic: "Cognitive Therapy", term: "Cognitive Behaviour Therapy (CBT)",
+    theorist: "Aaron Beck / Albert Ellis", markWeight: "3/4 Marks",
+    definition: "An integrative therapy combining cognitive restructuring (changing maladaptive thoughts) with behavioral techniques (exposure, homework assignments).",
+    keyPoints: ["Identifies and challenges automatic negative thoughts", "Uses thought records to track and reframe distortions", "Incorporates behavioral experiments and exposure tasks", "Structured, time-limited, and goal-oriented", "Most evidence-based therapy for depression and anxiety"],
+    example: "A person with social anxiety identifies 'Everyone judges me' and tests it through a behavioral experiment at a social gathering."
+  },
+  {
+    id: "c5_10", chapter: 5, chapterName: "Therapeutic Approaches",
+    topic: "Cognitive Therapy", term: "REBT — Detailed",
+    theorist: "Albert Ellis (1955)", markWeight: "3/4 Marks",
+    definition: "Rational Emotive Behavior Therapy holds that emotional disturbances are caused by irrational beliefs, which can be identified and disputed.",
+    keyPoints: ["Core irrational beliefs: Musts, Shoulds, Awfulizing", "DEBT technique: Disputing, Effective new philosophy, Behavioral homework", "Focuses on unconditional self-acceptance", "Distinguishes between healthy negative emotions (concern) and unhealthy (panic)", "Direct, confrontational, and humorous therapeutic style"],
+    example: "A client who believes 'I must always be perfect' learns to replace it with 'I prefer to do well, but imperfection is acceptable'."
+  },
+  {
+    id: "c5_11", chapter: 5, chapterName: "Therapeutic Approaches",
+    topic: "Nature of Therapy", term: "Eclectic Therapy",
+    theorist: "Various", markWeight: "2 Marks",
+    definition: "An approach that integrates techniques from multiple therapeutic orientations rather than adhering strictly to one school of thought.",
+    keyPoints: ["Draws from cognitive, behavioral, humanistic, and psychodynamic approaches", "Tailored to individual client needs and presenting problems", "Most commonly used approach in modern clinical practice", "Avoids limitations of rigid adherence to single school", "Requires therapist competence across multiple modalities"],
+    example: "A therapist uses CBT techniques for a client's anxiety while employing humanistic rapport-building skills."
+  },
+  {
+    id: "c5_12", chapter: 5, chapterName: "Therapeutic Approaches",
+    topic: "Rehabilitation", term: "Community-Based Rehabilitation",
+    theorist: "WHO / Various", markWeight: "2 Marks",
+    definition: "A strategy for the rehabilitation, equalization of opportunities, and social inclusion of persons with disabilities within their community.",
+    keyPoints: ["Focuses on integrating mentally ill into mainstream community", "Involves family, social workers, and community health workers", "Emphasizes dignity, autonomy, and participation", "Includes vocational training and skill development", "Aims to deinstitutionalize mental health care"],
+    example: "A patient recovering from schizophrenia participates in a community program learning vocational skills and social interaction."
+  },
 
   // ===== CH 6: Attitude and Social Cognition =====
   {
@@ -398,6 +558,54 @@ export const flashcards: Flashcard[] = [
     definition: "The process by which we form impressions about others based on limited information.",
     keyPoints: ["Primacy Effect: First impressions are strongest", "Recency Effect: Latest information has more weight", "Halo Effect: Positive trait → assumes all traits positive", "Central traits have more impact than peripheral traits"],
     example: "Meeting someone well-dressed and assuming they're also intelligent = Halo Effect."
+  },
+  {
+    id: "c6_07", chapter: 6, chapterName: "Attitude and Social Cognition",
+    topic: "Cognitive Processes", term: "Cognitive Dissonance — Detailed",
+    theorist: "Leon Festinger (1957)", markWeight: "3/4 Marks",
+    definition: "When an individual holds two or more contradictory cognitions (beliefs, attitudes, or behaviors), they experience psychological discomfort that motivates them to reduce the inconsistency.",
+    keyPoints: ["Dissonance is strongest when behavior contradicts deeply held beliefs", "Methods to reduce: Change behavior, change attitude, add new cognitions", "Forced compliance paradigm: Counter-attitudinal behavior under low justification", "Greater freedom of choice increases felt dissonance", "Classic study: Participants paid $1 to lie enjoyed boring task more than those paid $20"],
+    example: "A student who hates studying but does it anyway adds the cognition 'studying is necessary for my goals' to reduce dissonance."
+  },
+  {
+    id: "c6_08", chapter: 6, chapterName: "Attitude and Social Cognition",
+    topic: "Attitude-Behaviour", term: "Attitude-Behaviour Relationship",
+    theorist: "LaPiere / Fishbein & Ajzen", markWeight: "2/3 Marks",
+    definition: "The relationship between attitudes and actual behavior is moderated by situational factors, attitude strength, and specificity.",
+    keyPoints: ["LaPiere's study: Attitudes do not always predict behavior", "Theory of Reasoned Action (Fishbein & Ajzen): Intention predicts behavior", "Attitude specificity: General attitudes poorly predict specific behaviors", "Strong, accessible attitudes are better behavioral predictors", "Subjective norms and perceived control also influence behavior"],
+    example: "A person who values environment (attitude) but doesn't recycle (behavior) shows attitude-behaviour inconsistency."
+  },
+  {
+    id: "c6_09", chapter: 6, chapterName: "Attitude and Social Cognition",
+    topic: "Prejudice", term: "Prejudice — Formation and Reduction",
+    theorist: "Allport / Sherif", markWeight: "3 Marks",
+    definition: "Prejudice is a preconceived negative attitude toward members of a group, often based on stereotypes and leading to discriminatory behavior.",
+    keyPoints: ["Roots: Ethnocentrism, realistic conflict theory, social learning", "In-group bias: Favouring one's own group over out-groups", "Sherif's Robbers Cave: Superordinate goals reduce intergroup conflict", "Contact hypothesis: Intergroup contact under equal conditions reduces prejudice", "Individuation: Getting to know individuals breaks stereotypes"],
+    example: "Students from rival schools develop prejudice until forced to cooperate on a joint community project (superordinate goal)."
+  },
+  {
+    id: "c6_10", chapter: 6, chapterName: "Attitude and Social Cognition",
+    topic: "Social Cognition", term: "Scapegoating",
+    theorist: "Allport / Dollard", markWeight: "2 Marks",
+    definition: "The process of directing blame and aggression toward a less powerful out-group to displace frustration from the actual source.",
+    keyPoints: ["Displaced aggression toward a convenient, less powerful group", "Occurs during economic hardship, frustration, or threat", "Scapegoat group is typically visible and cannot retaliate", "Reinforces prejudice and intergroup hostility", "Historical examples: Jews in Nazi Germany, immigrants during recessions"],
+    example: "During an economic downturn, immigrants are blamed for job losses despite having no causal role."
+  },
+  {
+    id: "c6_11", chapter: 6, chapterName: "Attitude and Social Cognition",
+    topic: "Social Cognition", term: "Discrimination",
+    theorist: "Social Psychology", markWeight: "2 Marks",
+    definition: "Unjustified negative or harmful behavior directed toward members of a group based solely on their group membership.",
+    keyPoints: ["Behavioral component of prejudice — unequal treatment in practice", "Can be individual (personal) or institutional (systemic)", "Institutional discrimination: Policies that systematically disadvantage groups", "Types: Direct (overt), Indirect (structural), Microaggressions", "Legislation (e.g., Civil Rights Act) aims to reduce discrimination"],
+    example: "A qualified candidate is rejected because of their gender or ethnicity, not their qualifications."
+  },
+  {
+    id: "c6_12", chapter: 6, chapterName: "Attitude and Social Cognition",
+    topic: "Social Cognition", term: "Self-Fulfilling Prophecy",
+    theorist: "Robert Merton / Rosenthal & Jacobson", markWeight: "2/3 Marks",
+    definition: "A false belief or expectation that causes itself to become true through its influence on behavior.",
+    keyPoints: ["Initially false belief leads to behavior that makes it come true", "Rosenthal & Jacobson: Teacher expectations affect student performance (Pygmalion Effect)", "Self-defeating prophecy: Negative expectations lead to negative outcomes", "Operates through confirmation bias and selective attention", "Relevant in education, workplace, and healthcare settings"],
+    example: "A teacher told certain students are 'bloomers' unconsciously gives them more attention, and they actually improve (Pygmalion Effect)."
   },
 
   // ===== CH 7: Social Influence and Group Processes =====
@@ -456,5 +664,45 @@ export const flashcards: Flashcard[] = [
     definition: "Presence of others enhances (facilitation) or impairs (inhibition) performance depending on task complexity.",
     keyPoints: ["Triplett (1898): First social psychology experiment — bicycle racing", "Zajonc: Arousal theory — others' presence increases arousal", "Simple/well-learned tasks → Facilitation", "Complex/new tasks → Inhibition"],
     example: "A runner runs faster in a race (facilitation) but performs worse on a complex math problem with audience (inhibition)."
+  },
+  {
+    id: "c7_08", chapter: 7, chapterName: "Social Influence and Group Processes",
+    topic: "Group Behavior", term: "Social Facilitation — Detailed",
+    theorist: "Robert Zajonc (1965)", markWeight: "2/3 Marks",
+    definition: "The tendency for people to perform differently when in the presence of others than when alone, explained by the drive/arousal theory.",
+    keyPoints: ["Mere presence of others increases physiological arousal", "Arousal strengthens the dominant (most likely) response", "Well-learned dominant responses → improved performance (facilitation)", "Novel/complex dominant responses → worsened performance (inhibition)", "Evaluated apprehension: Fear of being judged increases the effect"],
+    example: "An experienced chef cooks better with an audience (facilitation) while a novice cook makes more mistakes (inhibition)."
+  },
+  {
+    id: "c7_09", chapter: 7, chapterName: "Social Influence and Group Processes",
+    topic: "Group Behavior", term: "Social Loafing — Detailed",
+    theorist: "Latané, Williams & Harkins (1979)", markWeight: "2/3 Marks",
+    definition: "The phenomenon where individuals reduce their effort when working collectively compared to when they work alone, due to diffusion of responsibility.",
+    keyPoints: ["Increases with group size — larger groups → more loafing", "Reduced when individual contributions are identifiable", "Cultural difference: More loafing in individualistic cultures", "Task involvement and meaningfulness reduce loafing", "Gender differences: Men tend to loaf more than women in mixed groups"],
+    example: "In a tug-of-war, each team member pulls with less force as the team gets larger."
+  },
+  {
+    id: "c7_10", chapter: 7, chapterName: "Social Influence and Group Processes",
+    topic: "Group Behavior", term: "Groupthink — Detailed",
+    theorist: "Irving Janis (1972)", markWeight: "3 Marks",
+    definition: "A mode of thinking in cohesive groups where the desire for harmony overrides realistic appraisal of alternatives, leading to poor decisions.",
+    keyPoints: ["Symptoms: Illusion of invulnerability, collective rationalization, belief in morality", "Self-censorship and pressure on dissenters", "Mindguards protect the group from contradictory information", "Highly cohesive groups with poor decision-making procedures are vulnerable", "Historical examples: Bay of Pigs, Watergate, Challenger disaster"],
+    example: "NASA engineers who raised concerns about O-rings were pressured to conform before the Challenger disaster."
+  },
+  {
+    id: "c7_11", chapter: 7, chapterName: "Social Influence and Group Processes",
+    topic: "Social Influence", term: "Obedience — Variations",
+    theorist: "Stanley Milgram", markWeight: "3/4 Marks",
+    definition: "Milgram's variations showed that obedience rates change based on proximity of authority, victim, and presence of dissenting models.",
+    keyPoints: ["Remote authority (phone instructions): Obedience dropped to 20.5%", "Proximity of learner (same room): Obedience dropped to 40%", "No physical contact ( learner in隔壁 room): 65% obeyed", "Two defiant confederates: Only 10% obeyed", "Female participants showed same obedience rates as males"],
+    example: "When the 'learner' was in the same room as the participant, fewer people continued shocking them."
+  },
+  {
+    id: "c7_12", chapter: 7, chapterName: "Social Influence and Group Processes",
+    topic: "Social Influence", term: "Conformity — Types and Determinants",
+    theorist: "Kelman / Deutsch & Gerard", markWeight: "3 Marks",
+    definition: "Conformity occurs through compliance (public agreement), identification (adopting behavior of liked group), or internalization (true acceptance of group norms).",
+    keyPoints: ["Compliance: Public conformity without private belief change", "Identification: Adopting behavior to maintain relationship with group", "Internalization: Genuine acceptance of group norms and values", "Larger group size increases conformity (up to ~7 people)", "Unanimity is more powerful than size in causing conformity", "Higher self-esteem reduces conformity tendency"],
+    example: "A student wears traditional clothes on a festival (compliance), joins a sports team they admire (identification), and adopts environmental values from family (internalization)."
   },
 ];
