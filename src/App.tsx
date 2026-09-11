@@ -207,8 +207,8 @@ export default function App() {
     return <SubjectSelector onSelect={selectSubject} />;
   }
 
-  const subjectName = isHindi ? 'Hindi Core' : 'Psychology';
-  const subjectCode = isHindi ? '302' : '337';
+  const subjectName = isHindi ? 'Hindi Elective' : 'Psychology';
+  const subjectCode = isHindi ? '322' : '337';
 
   return (
     <div className="h-[100dvh] flex flex-col bg-zinc-950 text-zinc-100 overflow-hidden select-none">
@@ -226,7 +226,7 @@ export default function App() {
             </button>
             <div>
               <h1 className={`font-black text-lg tracking-tight leading-none ${isHindi ? 'text-rose-400' : 'text-gradient'}`}>{subjectName}</h1>
-              <p className="text-zinc-600 text-[10px] mt-0.5">{isHindi ? 'Hindi Core' : 'Psychology'} — {subjectCode}</p>
+              <p className="text-zinc-600 text-[10px] mt-0.5">{isHindi ? 'Hindi Elective' : 'Psychology'} — {subjectCode}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">

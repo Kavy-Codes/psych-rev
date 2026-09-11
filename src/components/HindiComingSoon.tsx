@@ -8,7 +8,7 @@ export function HindiComingSoon({ onBack }: Props) {
       <div className="text-center animate-slide-up">
         <div className="text-6xl mb-6">📝</div>
         <h1 className="text-white font-black text-2xl mb-2">हिंदी (आधार)</h1>
-        <p className="text-zinc-500 text-sm mb-1">Hindi Core — Code 302</p>
+        <p className="text-zinc-500 text-sm mb-1">Hindi Elective — Code 322</p>
         <p className="text-zinc-400 text-xs mb-8 max-w-xs mx-auto leading-relaxed">
           आरोह भाग-2, वितान भाग-2, अभिव्यक्ति और माध्यम — फ्लैशकार्ड्स, क्विज़, नोट्स, माइंड मैप्स और बहुत कुछ जल्द आ रहा है।
         </p>

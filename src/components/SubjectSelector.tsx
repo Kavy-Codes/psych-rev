@@ -18,8 +18,8 @@ const subjects = [
   },
   {
     id: 'hindi' as const,
-    name: 'Hindi Core',
-    code: '302',
+    name: 'Hindi Elective',
+    code: '322',
     emoji: '📝',
     color: 'from-rose-600 via-pink-600 to-rose-700',
     border: 'border-rose-500/30',
