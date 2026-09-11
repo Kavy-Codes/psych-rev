@@ -35,14 +35,14 @@ const PSYCH_TIPS = [
 ];
 
 const HINDI_TIPS = [
-  'Aatmaparichay — Bachchan\'s autobiographical poem',
-  'Patang — Alok Dhanva\'s freedom poem',
-  'Kavitawali — Tulsidas, Ramcharitmanas',
-  'Kaimre Mein Band Apahij — Raghubir Sahay',
-  'Badal Raag — Nirala\'s nature poetry',
-  'Bhaktin — Mahadevi Verma\'s memoir',
-  'Bazaar Darshan — Jainendra Kumar\'s satire',
-  'Anuprast Alankar — repetition of sound',
+  'Devsena kā Gīt — Jaishankar Prasad, chāyāvād',
+  'Saroj Smṛti — Nirala\'s elegy for daughter',
+  'Yah Dīp Akelā — Agyeya\'s individualism',
+  'Banāras — Kedarnath Singh\'s imagery',
+  'Ek Kam, Satya — Vishnu Khare\'s satire',
+  'Vasant Āyā — Raghuvir Sahay\'s nature',
+  'Bharat-Rām — Tulsidas, brotherhood',
+  'Barahmāsā — Jayasi, folk tradition',
 ];
 
 const PSYCH_CHAPTERS = [
@@ -58,24 +58,34 @@ const PSYCH_CHAPTERS = [
 
 const HINDI_CHAPTERS = [
   { num: 0, name: 'All Chapters' },
-  { num: 1, name: 'Ch1: आत्मपरिचय' },
-  { num: 2, name: 'Ch2: पतंग' },
-  { num: 3, name: 'Ch3: कविता के बहाने' },
-  { num: 4, name: 'Ch4: कैमरे में बंद अपाहिज' },
-  { num: 5, name: 'Ch5: उषा' },
-  { num: 6, name: 'Ch6: बादल राग' },
-  { num: 7, name: 'Ch7: कवितावली' },
-  { num: 8, name: 'Ch8: रुबाइयाँ' },
-  { num: 9, name: 'Ch9: छोटा मेरा खेत' },
-  { num: 10, name: 'Ch10: भक्तिन' },
-  { num: 11, name: 'Ch11: बाज़ार दर्शन' },
-  { num: 12, name: 'Ch12: काले मेघा पानी दे' },
-  { num: 13, name: 'Ch13: पहलवान की ढोलक' },
-  { num: 14, name: 'Ch14: शिरीष के फूल' },
-  { num: 15, name: 'Ch15: श्रम विभाजन' },
-  { num: 16, name: 'V1: सिल्वर वैडिंग' },
-  { num: 17, name: 'V2: जूझ' },
-  { num: 18, name: 'V3: अतीत में दबे पाँव' },
+  // अंतरा काव्य खंड
+  { num: 1, name: 'Ch1: देवसेना का गीत' },
+  { num: 2, name: 'Ch2: गीत गाने दो मुझे' },
+  { num: 3, name: 'Ch3: यह दीप अकेला' },
+  { num: 4, name: 'Ch4: बनारस' },
+  { num: 5, name: 'Ch5: एक कम, सत्य' },
+  { num: 6, name: 'Ch6: वसंत आया' },
+  { num: 7, name: 'Ch7: भरत-राम का प्रेम' },
+  { num: 8, name: 'Ch8: बारहमासा' },
+  { num: 9, name: 'Ch9: पद' },
+  { num: 10, name: 'Ch10: रामचंद्रचंद्रिका' },
+  { num: 11, name: 'Ch11: कवित्त, सवैया' },
+  // अंतरा गद्य खंड
+  { num: 12, name: 'Ch12: प्रेमघन की छाया-स्मृति' },
+  { num: 13, name: 'Ch13: सुमिरिनी के मनके' },
+  { num: 14, name: 'Ch14: कच्चा चिट्ठा' },
+  { num: 15, name: 'Ch15: संवदिया' },
+  { num: 16, name: 'Ch16: गाँधी, नेहरू, अराफ़ात' },
+  { num: 17, name: 'Ch17: शेर, पहचान' },
+  { num: 18, name: 'Ch18: जहाँ कोई वापसी नहीं' },
+  { num: 19, name: 'Ch19: यथास्मै रोचते विश्वम्' },
+  { num: 20, name: 'Ch20: दूसरा देवदास' },
+  { num: 21, name: 'Ch21: कुटज' },
+  // अंतराल
+  { num: 22, name: 'A1: सूरदास की झोपड़ी' },
+  { num: 23, name: 'A2: आरोहण' },
+  { num: 24, name: 'A3: बिस्कोहर की माटी' },
+  { num: 25, name: 'A4: अपना मालवा' },
 ];
 
 const PSYCH_NAV: { id: Tab; label: string; icon: ReactNode }[] = [

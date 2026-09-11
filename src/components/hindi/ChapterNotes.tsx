@@ -4,7 +4,7 @@ import { hindiChapterNotes, type HindiChapterNote } from '../../data/hindi/gloss
 const TYPE_LABELS: Record<string, string> = {
   kavya: 'कविता',
   gadya: 'गद्य',
-  vitan: 'वितान',
+  antral: 'अंतराल',
 };
 
 export function HindiChapterNotes() {

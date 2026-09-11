@@ -1,4 +1,4 @@
-const CACHE_NAME = 'studyrev-v5';
+const CACHE_NAME = 'studyrev-v6';
 const SHELL = [
   '/psych-rev/',
   '/psych-rev/index.html',

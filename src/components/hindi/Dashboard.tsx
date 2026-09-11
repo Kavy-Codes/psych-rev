@@ -10,27 +10,34 @@ interface Props {
 }
 
 const CHAPTERS = [
-  // आरोह भाग-2 — काव्य खंड
-  { num: 1, name: 'आत्मपरिचय, एक गीत', type: 'kavya', marks: 4, emoji: '📖' },
-  { num: 2, name: 'पतंग', type: 'kavya', marks: 4, emoji: '🪁' },
-  { num: 3, name: 'कविता के बहाने, बात सीधी थी पर', type: 'kavya', marks: 4, emoji: '✍️' },
-  { num: 4, name: 'कैमरे में बंद अपाहिज', type: 'kavya', marks: 4, emoji: '📷' },
-  { num: 5, name: 'उषा', type: 'kavya', marks: 4, emoji: '🌅' },
-  { num: 6, name: 'बादल राग', type: 'kavya', marks: 4, emoji: '🌧️' },
-  { num: 7, name: 'कवितावली (उत्तर कांड)', type: 'kavya', marks: 4, emoji: '📜' },
-  { num: 8, name: 'रुबाइयाँ', type: 'kavya', marks: 4, emoji: '🌙' },
-  { num: 9, name: 'छोटा मेरा खेत, बगुलों के पंख', type: 'kavya', marks: 4, emoji: '🌾' },
-  // आरोह भाग-2 — गद्य खंड
-  { num: 10, name: 'भक्तिन', type: 'gadya', marks: 4, emoji: '🙏' },
-  { num: 11, name: 'बाज़ार दर्शन', type: 'gadya', marks: 4, emoji: '🏪' },
-  { num: 12, name: 'काले मेघा पानी दे', type: 'gadya', marks: 4, emoji: '⛈️' },
-  { num: 13, name: 'पहलवान की ढोलक', type: 'gadya', marks: 4, emoji: '🥁' },
-  { num: 14, name: 'शिरीष के फूल', type: 'gadya', marks: 4, emoji: '🌸' },
-  { num: 15, name: 'श्रम विभाजन और जाति-प्रथा', type: 'gadya', marks: 4, emoji: '⚖️' },
-  // वितान भाग-2
-  { num: 16, name: 'सिल्वर वैडिंग', type: 'vitan', marks: 10, emoji: '💒' },
-  { num: 17, name: 'जूझ', type: 'vitan', marks: 10, emoji: '⚔️' },
-  { num: 18, name: 'अतीत में दबे पाँव', type: 'vitan', marks: 10, emoji: '🏛️' },
+  // अंतरा भाग-2 — काव्य खंड
+  { num: 1, name: 'देवसेना का गीत, कार्नेलिया का गीत', type: 'kavya', marks: 4, emoji: '📖' },
+  { num: 2, name: 'गीत गाने दो मुझे, सरोज स्मृति', type: 'kavya', marks: 4, emoji: '🎶' },
+  { num: 3, name: 'यह दीप अकेला, मैंने देखा एक बूँद', type: 'kavya', marks: 4, emoji: '🪔' },
+  { num: 4, name: 'बनारस, दिशा', type: 'kavya', marks: 4, emoji: '🌆' },
+  { num: 5, name: 'एक कम, सत्य', type: 'kavya', marks: 4, emoji: '✍️' },
+  { num: 6, name: 'वसंत आया, तोड़ो', type: 'kavya', marks: 4, emoji: '🌸' },
+  { num: 7, name: 'भरत-राम का प्रेम, पद', type: 'kavya', marks: 4, emoji: '🙏' },
+  { num: 8, name: 'बारहमासा', type: 'kavya', marks: 4, emoji: '🌙' },
+  { num: 9, name: 'पद', type: 'kavya', marks: 4, emoji: '🎵' },
+  { num: 10, name: 'रामचंद्रचंद्रिका', type: 'kavya', marks: 4, emoji: '📜' },
+  { num: 11, name: 'कवित्त, सवैया', type: 'kavya', marks: 4, emoji: '🪶' },
+  // अंतरा भाग-2 — गद्य खंड
+  { num: 12, name: 'प्रेमघन की छाया-स्मृति', type: 'gadya', marks: 4, emoji: '🕯️' },
+  { num: 13, name: 'सुमिरिनी के मनके', type: 'gadya', marks: 4, emoji: '📿' },
+  { num: 14, name: 'कच्चा चिट्ठा', type: 'gadya', marks: 4, emoji: '✉️' },
+  { num: 15, name: 'संवदिया', type: 'gadya', marks: 4, emoji: '💬' },
+  { num: 16, name: 'गाँधी, नेहरू और यास्सेर अराफ़ात', type: 'gadya', marks: 4, emoji: '🤝' },
+  { num: 17, name: 'शेर, पहचान, चार हाथ, साझा', type: 'gadya', marks: 4, emoji: '🦁' },
+  { num: 18, name: 'जहाँ कोई वापसी नहीं', type: 'gadya', marks: 4, emoji: '🌍' },
+  { num: 19, name: 'यथास्मै रोचते विश्वम्', type: 'gadya', marks: 4, emoji: '📖' },
+  { num: 20, name: 'दूसरा देवदास', type: 'gadya', marks: 4, emoji: '💔' },
+  { num: 21, name: 'कुटज', type: 'gadya', marks: 4, emoji: '🌿' },
+  // अंतराल
+  { num: 22, name: 'सूरदास की झोपड़ी', type: 'antral', marks: 8, emoji: '🏚️' },
+  { num: 23, name: 'आरोहण', type: 'antral', marks: 8, emoji: '🧗' },
+  { num: 24, name: 'बिस्कोहर की माटी', type: 'antral', marks: 8, emoji: '🌾' },
+  { num: 25, name: 'अपना मालवा-खाऊ-उजाड़ू सभ्यता में', type: 'antral', marks: 8, emoji: '🏚️' },
 ];
 
 export function HindiDashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
@@ -62,8 +69,8 @@ export function HindiDashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props
         <div className="relative">
           <div className="flex items-end justify-between mb-3">
             <div>
-              <p className="text-white/50 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Hindi Core</p>
-              <p className="text-white text-2xl font-black">302</p>
+              <p className="text-white/50 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Hindi Elective</p>
+              <p className="text-white text-2xl font-black">322</p>
             </div>
             <div className="text-right">
               <p className="text-white/50 text-[10px] font-semibold uppercase tracking-widest mb-0.5">Progress</p>

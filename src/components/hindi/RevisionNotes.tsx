@@ -4,7 +4,7 @@ import { hindiRevisionNotes, type HindiRevisionNote } from '../../data/hindi/rev
 const TYPE_BADGE: Record<string, { label: string; cls: string }> = {
   kavya: { label: 'कविता', cls: 'bg-violet-500/15 text-violet-300 border-violet-500/20' },
   gadya: { label: 'गद्य', cls: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/20' },
-  vitan: { label: 'वितान', cls: 'bg-amber-500/15 text-amber-300 border-amber-500/20' },
+  antral: { label: 'अंतराल', cls: 'bg-amber-500/15 text-amber-300 border-amber-500/20' },
 };
 
 const SECTION_ICONS: Record<string, string> = {
