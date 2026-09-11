@@ -51,8 +51,8 @@ export function InstallBanner() {
             </svg>
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-white font-bold text-sm">StudyRev इंस्टॉल करें</p>
-            <p className="text-zinc-500 text-[11px] mt-0.5">होम स्क्रीन पर जोड़ें — ऑफलाइन भी पढ़ें</p>
+            <p className="text-white font-bold text-sm">Install StudyRev</p>
+            <p className="text-zinc-500 text-[11px] mt-0.5">Add to home screen — study offline</p>
           </div>
         </div>
         <div className="flex gap-2 mt-3">
@@ -60,13 +60,13 @@ export function InstallBanner() {
             onClick={handleInstall}
             className="flex-1 py-2 rounded-xl bg-rose-600 text-white text-xs font-bold active:bg-rose-700 transition-colors"
           >
-            इंस्टॉल करें
+            Install
           </button>
           <button
             onClick={handleDismiss}
             className="px-4 py-2 rounded-xl bg-zinc-800 text-zinc-400 text-xs font-bold active:bg-zinc-700 transition-colors"
           >
-            नहीं
+            No thanks
           </button>
         </div>
       </div>
