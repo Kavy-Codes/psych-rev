@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { hindiChapterNotes, type HindiChapterNote } from '../../data/hindi/glossary';
 
 const TYPE_LABELS: Record<string, string> = {
@@ -7,8 +7,14 @@ const TYPE_LABELS: Record<string, string> = {
   antral: 'अंतराल',
 };
 
-export function HindiChapterNotes() {
+export function HindiChapterNotes({ singleChapter }: { singleChapter?: number }) {
   const [selectedChapter, setSelectedChapter] = useState(1);
+
+  useEffect(() => {
+    if (singleChapter && singleChapter > 0) {
+      setSelectedChapter(singleChapter);
+    }
+  }, [singleChapter]);
 
   const note = hindiChapterNotes.find(n => n.chapter === selectedChapter);
   if (!note) return null;

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { hindiRevisionNotes, type HindiRevisionNote } from '../../data/hindi/revisionNotes';
 
 const TYPE_BADGE: Record<string, { label: string; cls: string }> = {
@@ -18,8 +18,15 @@ const SECTION_ICONS: Record<string, string> = {
   words: '📖',
 };
 
-export function HindiRevisionNotes() {
+export function HindiRevisionNotes({ singleChapter }: { singleChapter?: number }) {
   const [selectedChapter, setSelectedChapter] = useState(1);
+
+  useEffect(() => {
+    if (singleChapter && singleChapter > 0) {
+      setSelectedChapter(singleChapter);
+    }
+  }, [singleChapter]);
+
   const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
     summary: true,
     themes: true,

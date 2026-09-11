@@ -120,6 +120,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [chapterFilter, setChapterFilter] = useState(0);
   const [chapterEnd, setChapterEnd] = useState(0);
+  const [singleChapter, setSingleChapter] = useState(0);
   const [showChapters, setShowChapters] = useState(false);
   const [pdfOpen, setPdfOpen] = useState(false);
   const [tipIndex, setTipIndex] = useState(0);
@@ -149,11 +150,17 @@ export default function App() {
 
   const chapters = subject === 'hindi' ? HINDI_CHAPTERS : PSYCH_CHAPTERS;
 
+  const isRangeTab = activeTab === 'cards' || activeTab === 'quiz';
+
   const chapterLabel = useMemo(() => {
-    if (chapterFilter === 0) return chapters[0].name;
-    if (chapterFilter === chapterEnd) return chapters.find(c => c.num === chapterFilter)?.name || chapters[0].name;
-    return `${chapterFilter}–${chapterEnd}`;
-  }, [chapterFilter, chapterEnd, chapters]);
+    if (isRangeTab) {
+      if (chapterFilter === 0) return chapters[0].name;
+      if (chapterFilter === chapterEnd) return chapters.find(c => c.num === chapterFilter)?.name || chapters[0].name;
+      return chapters.filter(c => c.num >= chapterFilter && c.num <= chapterEnd).map(c => c.name).join(', ');
+    }
+    if (singleChapter === 0) return chapters[0].name;
+    return chapters.find(c => c.num === singleChapter)?.name || chapters[0].name;
+  }, [chapterFilter, chapterEnd, singleChapter, isRangeTab, chapters]);
 
   const isPsych = subject === 'psych';
   const isHindi = subject === 'hindi';
@@ -179,12 +186,12 @@ export default function App() {
       switch (activeTab) {
         case 'home': return <HindiDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
         case 'cards': return <HindiFlashcards chapterRange={[chapterFilter, chapterEnd]} />;
-        case 'notes': return <HindiChapterNotes />;
-        case 'glossary': return <HindiGlossary />;
+        case 'notes': return <HindiChapterNotes singleChapter={singleChapter} />;
+        case 'glossary': return <HindiGlossary singleChapter={singleChapter} />;
         case 'quiz': return <HindiQuiz chapterRange={[chapterFilter, chapterEnd]} />;
-        case 'maps': return <HindiMindMaps />;
+        case 'maps': return <HindiMindMaps singleChapter={singleChapter} />;
         case 'writing': return <HindiWriting />;
-        case 'revisions': return <HindiRevisionNotes />;
+        case 'revisions': return <HindiRevisionNotes singleChapter={singleChapter} />;
         case 'books': return <HindiBooks />;
         default: return <HindiDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
       }
@@ -243,7 +250,10 @@ export default function App() {
               className="flex items-center gap-1.5 text-white text-xs font-semibold active:opacity-70 transition-opacity"
             >
               <span className={`pill border text-[10px] ${isHindi ? 'bg-rose-500/15 text-rose-300 border-rose-500/25' : 'bg-indigo-500/15 text-indigo-300 border-indigo-500/25'}`}>
-                {chapterFilter === 0 ? 'ALL' : chapterFilter === chapterEnd ? `CH${chapterFilter}` : `CH${chapterFilter}–${chapterEnd}`}
+                {isRangeTab
+                  ? (chapterFilter === 0 ? 'ALL' : chapterFilter === chapterEnd ? `CH${chapterFilter}` : `CH${chapterFilter}–${chapterEnd}`)
+                  : (singleChapter === 0 ? 'ALL' : `CH${singleChapter}`)
+                }
               </span>
               <span className="text-zinc-400 text-[11px] max-w-[180px] truncate">{chapterLabel}</span>
               <svg className={`w-3 h-3 text-zinc-600 transition-transform duration-200 ${showChapters ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -259,12 +269,13 @@ export default function App() {
             <div className="fixed inset-0 z-20 bg-black/30 animate-fade-in" onClick={() => setShowChapters(false)} />
             <div className="absolute left-0 right-0 z-30 bg-zinc-900 border-b border-zinc-700/50 shadow-2xl shadow-black/60 p-3 space-y-3 animate-slide-down max-h-[60vh] overflow-y-auto no-scrollbar">
               <ChapterPicker
+                mode={isRangeTab ? 'range' : 'single'}
                 chapters={chapters}
-                from={chapterFilter}
-                to={chapterEnd}
-                onFromChange={setChapterFilter}
-                onToChange={setChapterEnd}
-                onAll={() => { setChapterFilter(0); setChapterEnd(0); }}
+                {...(isRangeTab
+                  ? { from: chapterFilter, to: chapterEnd, onFromChange: setChapterFilter, onToChange: setChapterEnd }
+                  : { selected: singleChapter, onSelect: (n: number) => { setSingleChapter(n); setShowChapters(false); } }
+                )}
+                onAll={() => { setChapterFilter(0); setChapterEnd(0); setSingleChapter(0); }}
                 isHindi={isHindi}
               />
 

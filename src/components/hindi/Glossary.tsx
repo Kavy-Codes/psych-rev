@@ -19,7 +19,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   muhavara: 'bg-fuchsia-500/15 text-fuchsia-300 border-fuchsia-500/30',
 };
 
-export function HindiGlossary() {
+export function HindiGlossary({ singleChapter }: { singleChapter?: number }) {
   const [search, setSearch] = useState('');
   const [expandedTerm, setExpandedTerm] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);

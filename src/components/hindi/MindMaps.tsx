@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { hindiMindMapsData } from '../../data/hindi/mindMaps';
 
 interface TreeNode {
@@ -55,8 +55,17 @@ function TreeItem({ node, depth = 0 }: { node: TreeNode; depth?: number }) {
   );
 }
 
-export function HindiMindMaps() {
+export function HindiMindMaps({ singleChapter }: { singleChapter?: number }) {
   const [selectedChapter, setSelectedChapter] = useState(0);
+
+  // Sync with header picker
+  useEffect(() => {
+    if (singleChapter && singleChapter > 0) {
+      const idx = hindiMindMapsData.findIndex(m => m.chapterId === singleChapter);
+      if (idx >= 0) setSelectedChapter(idx);
+    }
+  }, [singleChapter]);
+
   const currentMap = hindiMindMapsData[selectedChapter];
 
   return (
