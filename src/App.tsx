@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef, type ReactNode } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef, type ReactNode } from 'react';
 import { SubjectSelector } from './components/SubjectSelector';
 import { Dashboard as PsychDashboard } from './components/psych/Dashboard';
 import { Flashcards as PsychFlashcards } from './components/psych/Flashcards';
@@ -43,6 +43,39 @@ const HINDI_TIPS = [
   'Bhaktin — Mahadevi Verma\'s memoir',
   'Bazaar Darshan — Jainendra Kumar\'s satire',
   'Anuprast Alankar — repetition of sound',
+];
+
+const PSYCH_CHAPTERS = [
+  { num: 0, name: 'All Chapters' },
+  { num: 1, name: 'Ch1: Variations' },
+  { num: 2, name: 'Ch2: Self & Personality' },
+  { num: 3, name: 'Ch3: Life Challenges' },
+  { num: 4, name: 'Ch4: Disorders' },
+  { num: 5, name: 'Ch5: Therapy' },
+  { num: 6, name: 'Ch6: Attitudes' },
+  { num: 7, name: 'Ch7: Social Influence' },
+];
+
+const HINDI_CHAPTERS = [
+  { num: 0, name: 'All Chapters' },
+  { num: 1, name: 'Ch1: आत्मपरिचय' },
+  { num: 2, name: 'Ch2: पतंग' },
+  { num: 3, name: 'Ch3: कविता के बहाने' },
+  { num: 4, name: 'Ch4: कैमरे में बंद अपाहिज' },
+  { num: 5, name: 'Ch5: उषा' },
+  { num: 6, name: 'Ch6: बादल राग' },
+  { num: 7, name: 'Ch7: कवितावली' },
+  { num: 8, name: 'Ch8: रुबाइयाँ' },
+  { num: 9, name: 'Ch9: छोटा मेरा खेत' },
+  { num: 10, name: 'Ch10: भक्तिन' },
+  { num: 11, name: 'Ch11: बाज़ार दर्शन' },
+  { num: 12, name: 'Ch12: काले मेघा पानी दे' },
+  { num: 13, name: 'Ch13: पहलवान की ढोलक' },
+  { num: 14, name: 'Ch14: शिरीष के फूल' },
+  { num: 15, name: 'Ch15: श्रम विभाजन' },
+  { num: 16, name: 'V1: सिल्वर वैडिंग' },
+  { num: 17, name: 'V2: जूझ' },
+  { num: 18, name: 'V3: अतीत में दबे पाँव' },
 ];
 
 const PSYCH_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
