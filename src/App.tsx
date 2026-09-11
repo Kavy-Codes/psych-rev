@@ -268,16 +268,27 @@ export default function App() {
           <>
             <div className="fixed inset-0 z-20 bg-black/30 animate-fade-in" onClick={() => setShowChapters(false)} />
             <div className="absolute left-0 right-0 z-30 bg-zinc-900 border-b border-zinc-700/50 shadow-2xl shadow-black/60 p-3 space-y-3 animate-slide-down max-h-[60vh] overflow-y-auto no-scrollbar">
-              <ChapterPicker
-                mode={isRangeTab ? 'range' : 'single'}
-                chapters={chapters}
-                {...(isRangeTab
-                  ? { from: chapterFilter, to: chapterEnd, onFromChange: setChapterFilter, onToChange: setChapterEnd }
-                  : { selected: singleChapter, onSelect: (n: number) => { setSingleChapter(n); setShowChapters(false); } }
-                )}
-                onAll={() => { setChapterFilter(0); setChapterEnd(0); setSingleChapter(0); }}
-                isHindi={isHindi}
-              />
+              {isRangeTab ? (
+                <ChapterPicker
+                  mode="range"
+                  chapters={chapters}
+                  from={chapterFilter}
+                  to={chapterEnd}
+                  onFromChange={setChapterFilter}
+                  onToChange={setChapterEnd}
+                  onAll={() => { setChapterFilter(0); setChapterEnd(0); setSingleChapter(0); }}
+                  isHindi={isHindi}
+                />
+              ) : (
+                <ChapterPicker
+                  mode="single"
+                  chapters={chapters}
+                  selected={singleChapter}
+                  onSelect={(n) => { setSingleChapter(n); setShowChapters(false); }}
+                  onAll={() => { setChapterFilter(0); setChapterEnd(0); setSingleChapter(0); }}
+                  isHindi={isHindi}
+                />
+              )}
 
               <button
                 onClick={() => setShowChapters(false)}
