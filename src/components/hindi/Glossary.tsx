@@ -1,10 +1,6 @@
 import { useState, useMemo } from 'react';
 import { hindiGlossary, type HindiGlossaryTerm } from '../../data/hindi/glossary';
 
-interface Props {
-  chapterRange: [number, number];
-}
-
 const CATEGORY_LABELS: Record<string, string> = {
   alankar: 'अलंकार',
   chhand: 'छंद',
@@ -23,7 +19,7 @@ const CATEGORY_COLORS: Record<string, string> = {
   muhavara: 'bg-fuchsia-500/15 text-fuchsia-300 border-fuchsia-500/30',
 };
 
-export function HindiGlossary({ chapterRange }: Props) {
+export function HindiGlossary() {
   const [search, setSearch] = useState('');
   const [expandedTerm, setExpandedTerm] = useState<string | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);

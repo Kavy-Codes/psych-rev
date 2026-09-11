@@ -1,13 +1,20 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { hindiQuizQuestions, type HindiQuizQuestion } from '../../data/hindi/quiz';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
-interface Props {
-  chapterRange: [number, number];
-}
+const CHAPTERS = [
+  { num: 0, label: 'All' },
+  { num: 1, label: 'Ch1' }, { num: 2, label: 'Ch2' }, { num: 3, label: 'Ch3' },
+  { num: 4, label: 'Ch4' }, { num: 5, label: 'Ch5' }, { num: 6, label: 'Ch6' },
+  { num: 7, label: 'Ch7' }, { num: 8, label: 'Ch8' }, { num: 9, label: 'Ch9' },
+  { num: 10, label: 'Ch10' }, { num: 11, label: 'Ch11' }, { num: 12, label: 'Ch12' },
+  { num: 13, label: 'Ch13' }, { num: 14, label: 'Ch14' }, { num: 15, label: 'Ch15' },
+  { num: 16, label: 'V1' }, { num: 17, label: 'V2' }, { num: 18, label: 'V3' },
+];
 
-export function HindiQuiz({ chapterRange }: Props) {
+export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) {
   const [bestScore, setBestScore] = useLocalStorage<number>('hindi-quiz-best', 0);
+  const [selectedChapter, setSelectedChapter] = useState(chapterRange[0] || 0);
   const [started, setStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -15,20 +22,23 @@ export function HindiQuiz({ chapterRange }: Props) {
   const [score, setScore] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [history, setHistory] = useState<{ qId: string; correct: boolean }[]>([]);
-  const [startCh, endCh] = chapterRange;
+
+  // Sync with parent prop when it changes
+  useEffect(() => {
+    if (chapterRange[0] !== 0) setSelectedChapter(chapterRange[0]);
+  }, [chapterRange[0]]);
 
   const questions = useMemo(() =>
-    startCh === 0 ? hindiQuizQuestions : hindiQuizQuestions.filter(q => q.chapter >= startCh && q.chapter <= endCh),
-    [startCh, endCh]
+    selectedChapter === 0 ? hindiQuizQuestions : hindiQuizQuestions.filter(q => q.chapter === selectedChapter),
+    [selectedChapter]
   );
 
   const q = questions[currentIndex];
 
   const chapterLabel = useMemo(() => {
-    if (startCh === 0) return 'सभी पाठ';
-    if (startCh === endCh) return `पाठ ${startCh}`;
-    return `पाठ ${startCh}–${endCh}`;
-  }, [startCh, endCh]);
+    if (selectedChapter === 0) return 'All chapters';
+    return `Chapter ${selectedChapter}`;
+  }, [selectedChapter]);
 
   const start = () => { setStarted(true); setCompleted(false); setCurrentIndex(0); setScore(0); setHistory([]); setSelected(null); setAnswered(false); };
 
@@ -57,20 +67,43 @@ export function HindiQuiz({ chapterRange }: Props) {
       <div className="h-full flex flex-col items-center justify-center px-6 gap-5 animate-slide-up">
         <div className="text-5xl animate-pop-in">⚡</div>
         <div className="text-center">
-          <h2 className="text-white text-lg font-bold mb-1">हिंदी क्विज़</h2>
+          <h2 className="text-white text-lg font-bold mb-1">Hindi Quiz</h2>
           <p className="text-zinc-500 text-sm leading-relaxed">
-            {chapterLabel} से {questions.length} प्रश्न।
-            <br />MCQ, कथन-कारण और गद्य-आधारित प्रश्न शामिल हैं।
+            {chapterLabel} — {questions.length} questions.
+            <br />MCQ, assertion-reason, and passage-based.
           </p>
         </div>
+
+        {/* Chapter Picker */}
+        <div className="w-full max-w-xs">
+          <div className="flex gap-1 overflow-x-auto no-scrollbar justify-center">
+            {CHAPTERS.map(ch => {
+              const isActive = selectedChapter === ch.num;
+              return (
+                <button
+                  key={ch.num}
+                  onClick={() => { setSelectedChapter(ch.num); setStarted(false); }}
+                  className={`px-2.5 py-1.5 rounded-lg text-[10px] font-bold whitespace-nowrap transition-all shrink-0 ${
+                    isActive
+                      ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/25'
+                      : 'bg-zinc-800/50 text-zinc-500 border border-zinc-700/40 active:bg-zinc-700/50'
+                  }`}
+                >
+                  {ch.label}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         {bestScore > 0 && (
-          <p className="text-zinc-600 text-xs">सर्वश्रेष्ठ स्कोर: {bestScore}/{questions.length}</p>
+          <p className="text-zinc-600 text-xs">Best score: {bestScore}/{questions.length}</p>
         )}
         <button
           onClick={start}
           className="px-8 py-3 rounded-xl bg-rose-600 text-white font-bold text-sm active:scale-95 transition-all shadow-lg shadow-rose-500/20"
         >
-          क्विज़ शुरू करें
+          Start Quiz
         </button>
       </div>
     );
