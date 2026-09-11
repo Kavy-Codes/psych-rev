@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { hindiRevisionNotes, type HindiRevisionNote } from '../../data/hindi/revisionNotes';
-import { ChapterSectionMenu } from './ChapterSectionMenu';
 
 const TYPE_BADGE: Record<string, { label: string; cls: string }> = {
   kavya: { label: 'कविता', cls: 'bg-violet-500/15 text-violet-300 border-violet-500/20' },
@@ -46,11 +45,6 @@ export function HindiRevisionNotes({ singleChapter }: { singleChapter?: number }
 
   return (
     <div className="flex flex-col h-full pt-2 pb-4 gap-3">
-      {/* Chapter selector */}
-      <div className="px-4 overflow-y-auto no-scrollbar shrink-0 max-h-[40vh]">
-        <ChapterSectionMenu selected={selectedChapter} onSelect={setSelectedChapter} />
-      </div>
-
       {/* Scrollable content */}
       <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-4" key={selectedChapter}>
         <div className="animate-fade-in space-y-2.5 pb-4">

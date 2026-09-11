@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { hindiChapterNotes, type HindiChapterNote } from '../../data/hindi/glossary';
-import { ChapterSectionMenu } from './ChapterSectionMenu';
 
 const TYPE_LABELS: Record<string, string> = {
   kavya: 'कविता',
@@ -22,11 +21,6 @@ export function HindiChapterNotes({ singleChapter }: { singleChapter?: number })
 
   return (
     <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-3">
-      {/* Chapter selector */}
-      <div className="overflow-y-auto no-scrollbar shrink-0 max-h-[40vh]">
-        <ChapterSectionMenu selected={selectedChapter} onSelect={setSelectedChapter} />
-      </div>
-
       {/* Note content */}
       <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar" key={selectedChapter}>
         <div className="animate-fade-in space-y-3">
