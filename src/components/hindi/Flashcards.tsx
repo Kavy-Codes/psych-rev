@@ -1,16 +1,6 @@
-import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { useState, useCallback, useMemo, useRef } from 'react';
 import { hindiFlashcards, type HindiFlashcard } from '../../data/hindi/flashcards';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
-
-const CHAPTERS = [
-  { num: 0, label: 'All' },
-  { num: 1, label: 'Ch1' }, { num: 2, label: 'Ch2' }, { num: 3, label: 'Ch3' },
-  { num: 4, label: 'Ch4' }, { num: 5, label: 'Ch5' }, { num: 6, label: 'Ch6' },
-  { num: 7, label: 'Ch7' }, { num: 8, label: 'Ch8' }, { num: 9, label: 'Ch9' },
-  { num: 10, label: 'Ch10' }, { num: 11, label: 'Ch11' }, { num: 12, label: 'Ch12' },
-  { num: 13, label: 'Ch13' }, { num: 14, label: 'Ch14' }, { num: 15, label: 'Ch15' },
-  { num: 16, label: 'V1' }, { num: 17, label: 'V2' }, { num: 18, label: 'V3' },
-];
 
 const TYPE_COLORS: Record<string, string> = {
   kavya: 'from-rose-600 via-rose-500 to-pink-600',
@@ -35,7 +25,6 @@ const TYPE_LABEL: Record<string, string> = {
 
 export function HindiFlashcards({ chapterRange }: { chapterRange: [number, number] }) {
   const [mastered, setMastered] = useLocalStorage<Record<string, 'mastered' | 'shaky'>>('hindi-flashcard-progress', {});
-  const [selectedChapter, setSelectedChapter] = useState(chapterRange[0] || 0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showOnlyUnmastered, setShowOnlyUnmastered] = useState(false);
@@ -43,29 +32,27 @@ export function HindiFlashcards({ chapterRange }: { chapterRange: [number, numbe
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const skipTapRef = useRef(false);
 
-  useEffect(() => {
-    if (chapterRange[0] !== 0) setSelectedChapter(chapterRange[0]);
-  }, [chapterRange[0]]);
+  const [start, end] = chapterRange;
 
   const filteredCards = useMemo(() => {
     let cards: HindiFlashcard[];
-    if (selectedChapter === 0) {
+    if (start === 0) {
       cards = hindiFlashcards;
     } else {
-      cards = hindiFlashcards.filter(c => c.chapter === selectedChapter);
+      cards = hindiFlashcards.filter(c => c.chapter >= start && c.chapter <= end);
     }
     if (showOnlyUnmastered) {
       cards = cards.filter(c => !mastered[c.id] || mastered[c.id] === 'shaky');
     }
     return cards;
-  }, [selectedChapter, showOnlyUnmastered, mastered]);
+  }, [start, end, showOnlyUnmastered, mastered]);
 
   const card = filteredCards[currentIndex];
 
   useEffect(() => {
     setCurrentIndex(0);
     setIsFlipped(false);
-  }, [selectedChapter, showOnlyUnmastered]);
+  }, [start, end, showOnlyUnmastered]);
 
   const goNext = useCallback(() => {
     setAnimDir(1);
@@ -153,28 +140,6 @@ export function HindiFlashcards({ chapterRange }: { chapterRange: [number, numbe
 
   return (
     <div className="flex flex-col h-full px-4 pt-2 pb-2 gap-2">
-      {/* Chapter Picker */}
-      <div className="shrink-0 animate-slide-down">
-        <div className="flex gap-1 overflow-x-auto no-scrollbar">
-          {CHAPTERS.map(ch => {
-            const isActive = selectedChapter === ch.num;
-            return (
-              <button
-                key={ch.num}
-                onClick={() => setSelectedChapter(ch.num)}
-                className={`px-2.5 py-1.5 rounded-lg text-[10px] font-bold whitespace-nowrap transition-all shrink-0 ${
-                  isActive
-                    ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/25'
-                    : 'bg-zinc-800/50 text-zinc-500 border border-zinc-700/40 active:bg-zinc-700/50'
-                }`}
-              >
-                {ch.label}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
       {/* Header */}
       <div className="flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">

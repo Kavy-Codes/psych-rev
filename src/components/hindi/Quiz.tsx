@@ -1,20 +1,9 @@
-import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useState, useCallback, useMemo } from 'react';
 import { hindiQuizQuestions, type HindiQuizQuestion } from '../../data/hindi/quiz';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
-const CHAPTERS = [
-  { num: 0, label: 'All' },
-  { num: 1, label: 'Ch1' }, { num: 2, label: 'Ch2' }, { num: 3, label: 'Ch3' },
-  { num: 4, label: 'Ch4' }, { num: 5, label: 'Ch5' }, { num: 6, label: 'Ch6' },
-  { num: 7, label: 'Ch7' }, { num: 8, label: 'Ch8' }, { num: 9, label: 'Ch9' },
-  { num: 10, label: 'Ch10' }, { num: 11, label: 'Ch11' }, { num: 12, label: 'Ch12' },
-  { num: 13, label: 'Ch13' }, { num: 14, label: 'Ch14' }, { num: 15, label: 'Ch15' },
-  { num: 16, label: 'V1' }, { num: 17, label: 'V2' }, { num: 18, label: 'V3' },
-];
-
 export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) {
   const [bestScore, setBestScore] = useLocalStorage<number>('hindi-quiz-best', 0);
-  const [selectedChapter, setSelectedChapter] = useState(chapterRange[0] || 0);
   const [started, setStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -23,23 +12,22 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
   const [completed, setCompleted] = useState(false);
   const [history, setHistory] = useState<{ qId: string; correct: boolean }[]>([]);
 
-  useEffect(() => {
-    if (chapterRange[0] !== 0) setSelectedChapter(chapterRange[0]);
-  }, [chapterRange[0]]);
+  const [start, end] = chapterRange;
 
   const questions = useMemo(() =>
-    selectedChapter === 0 ? hindiQuizQuestions : hindiQuizQuestions.filter(q => q.chapter === selectedChapter),
-    [selectedChapter]
+    start === 0 ? hindiQuizQuestions : hindiQuizQuestions.filter(q => q.chapter >= start && q.chapter <= end),
+    [start, end]
   );
 
   const q = questions[currentIndex];
 
   const chapterLabel = useMemo(() => {
-    if (selectedChapter === 0) return 'All chapters';
-    return `Chapter ${selectedChapter}`;
-  }, [selectedChapter]);
+    if (start === 0) return 'All chapters';
+    if (start === end) return `Chapter ${start}`;
+    return `Chapters ${start}–${end}`;
+  }, [start, end]);
 
-  const start = () => { setStarted(true); setCompleted(false); setCurrentIndex(0); setScore(0); setHistory([]); setSelected(null); setAnswered(false); };
+  const startQuiz = () => { setStarted(true); setCompleted(false); setCurrentIndex(0); setScore(0); setHistory([]); setSelected(null); setAnswered(false); };
 
   const handleAnswer = useCallback((idx: number) => {
     if (answered) return;
@@ -73,33 +61,11 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
           </p>
         </div>
 
-        {/* Chapter Picker */}
-        <div className="w-full max-w-xs">
-          <div className="flex gap-1 overflow-x-auto no-scrollbar justify-center">
-            {CHAPTERS.map(ch => {
-              const isActive = selectedChapter === ch.num;
-              return (
-                <button
-                  key={ch.num}
-                  onClick={() => { setSelectedChapter(ch.num); setStarted(false); }}
-                  className={`px-2.5 py-1.5 rounded-lg text-[10px] font-bold whitespace-nowrap transition-all shrink-0 ${
-                    isActive
-                      ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/25'
-                      : 'bg-zinc-800/50 text-zinc-500 border border-zinc-700/40 active:bg-zinc-700/50'
-                  }`}
-                >
-                  {ch.label}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-
         {bestScore > 0 && (
           <p className="text-zinc-600 text-xs">Best score: {bestScore}/{questions.length}</p>
         )}
         <button
-          onClick={start}
+          onClick={startQuiz}
           className="px-8 py-3 rounded-xl bg-rose-600 text-white font-bold text-sm active:scale-95 transition-all shadow-lg shadow-rose-500/20"
         >
           Start Quiz
@@ -140,7 +106,7 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
 
         <div className="flex gap-3">
           <button
-            onClick={start}
+            onClick={startQuiz}
             className="px-6 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 font-semibold text-sm active:scale-95 transition-all"
           >
             फिर से कोशिश करें
