@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo, useRef } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { hindiFlashcards, type HindiFlashcard } from '../../data/hindi/flashcards';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
