@@ -16,9 +16,10 @@ import { HindiGlossary } from './components/hindi/Glossary';
 import { HindiMindMaps } from './components/hindi/MindMaps';
 import { HindiWriting } from './components/hindi/Writing';
 import { HindiChapterNotes } from './components/hindi/ChapterNotes';
+import { HindiRevisionNotes } from './components/hindi/RevisionNotes';
 
 type Subject = 'psych' | 'hindi' | null;
-type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing';
+type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing' | 'revisions';
 
 const PSYCH_CHAPTERS = [
   { num: 0, name: 'All Chapters' },
@@ -33,7 +34,24 @@ const PSYCH_CHAPTERS = [
 
 const HINDI_CHAPTERS = [
   { num: 0, name: 'सभी पाठ' },
-  ...Array.from({ length: 18 }, (_, i) => ({ num: i + 1, name: `पाठ ${i + 1}` })),
+  { num: 1, name: 'Ch1: आत्मपरिचय' },
+  { num: 2, name: 'Ch2: पतंग' },
+  { num: 3, name: 'Ch3: कविता के बहाने' },
+  { num: 4, name: 'Ch4: कैमरे में बंद अपाहिज' },
+  { num: 5, name: 'Ch5: उषा' },
+  { num: 6, name: 'Ch6: बादल राग' },
+  { num: 7, name: 'Ch7: कवितावली' },
+  { num: 8, name: 'Ch8: रुबाइयाँ' },
+  { num: 9, name: 'Ch9: छोटा मेरा खेत' },
+  { num: 10, name: 'Ch10: भक्तिन' },
+  { num: 11, name: 'Ch11: बाज़ार दर्शन' },
+  { num: 12, name: 'Ch12: काले मेघा पानी दे' },
+  { num: 13, name: 'Ch13: पहलवान की ढोलक' },
+  { num: 14, name: 'Ch14: शिरीष के फूल' },
+  { num: 15, name: 'Ch15: श्रम विभाजन' },
+  { num: 16, name: 'V1: सिल्वर वैडिंग' },
+  { num: 17, name: 'V2: जूझ' },
+  { num: 18, name: 'V3: अतीत में दबे पाँव' },
 ];
 
 const PSYCH_TIPS = [
@@ -49,13 +67,13 @@ const PSYCH_TIPS = [
 
 const HINDI_TIPS = [
   'आत्मपरिचय — बच्चन की आत्मकथात्मक कविता',
-  'पतंग — नागार्जुन की छायावादी कविता',
-  'सूरदास — कृष्ण भक्ति के कवि',
-  'तुलसीदास — रामचरितमानस कृति',
-  'महादेवी वर्मा — छायावाद की कवित्री',
-  'हरिशंकर परसाई — व्यंग्य लेखक',
+  'पतंग — आलोक धन्वा की स्वतंत्रता कविता',
+  'कवितावली — तुलसीदास, रामचरितमानस',
+  'कैमरे में बंद अपाहिज — रघुवीर सहाय',
+  'बादल राग — निराला की प्रकृति कविता',
+  'भक्तिन — महादेवी वर्मा का संस्मरण',
+  'बाज़ार दर्शन — जैनेन्द्र कुमार का व्यंग्य',
   'अनुप्रास अलंकार — ध्वनि की पुनरावृत्ति',
-  'तत्पुरुष समास — सम्बन्ध, अधिकरण, सम्प्रदान',
 ];
 
 const PSYCH_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
@@ -77,6 +95,7 @@ const HINDI_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
   { id: 'glossary', label: 'शब्द', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
   { id: 'maps', label: 'मैप्स', icon: <span className="text-lg leading-none">🗺️</span> },
   { id: 'writing', label: 'लेखन', icon: <span className="text-lg leading-none">✍️</span> },
+  { id: 'revisions', label: 'रिवीज़न', icon: <span className="text-lg leading-none">📚</span> },
 ];
 
 export default function App() {
@@ -117,7 +136,7 @@ export default function App() {
   const isPsych = subject === 'psych';
   const isHindi = subject === 'hindi';
   const noChapterFilterTabs: Tab[] = isHindi
-    ? ['home', 'maps', 'writing', 'notes']
+    ? ['home', 'maps', 'writing', 'notes', 'revisions']
     : ['home', 'distinctions', 'maps', 'notes'];
   const showChapterFilter = subject !== null && !noChapterFilterTabs.includes(activeTab);
   const nav = isHindi ? HINDI_NAV : PSYCH_NAV;
@@ -144,6 +163,7 @@ export default function App() {
         case 'quiz': return <HindiQuiz chapterRange={[chapterFilter, chapterEnd]} />;
         case 'maps': return <HindiMindMaps />;
         case 'writing': return <HindiWriting />;
+        case 'revisions': return <HindiRevisionNotes />;
         default: return <HindiDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
       }
     }

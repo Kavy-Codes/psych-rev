@@ -10,24 +10,27 @@ interface Props {
 }
 
 const CHAPTERS = [
-  { num: 1, name: 'आत्मपरिचय', type: 'kavya', marks: 4, emoji: '📖' },
+  // आरोह भाग-2 — काव्य खंड
+  { num: 1, name: 'आत्मपरिचय, एक गीत', type: 'kavya', marks: 4, emoji: '📖' },
   { num: 2, name: 'पतंग', type: 'kavya', marks: 4, emoji: '🪁' },
-  { num: 3, name: 'कैमरे में बंद अपाहिज', type: 'kavya', marks: 4, emoji: '📷' },
-  { num: 4, name: 'बादल राग', type: 'kavya', marks: 4, emoji: '🌧️' },
-  { num: 5, name: 'भक्तिन', type: 'kavya', marks: 4, emoji: '🙏' },
-  { num: 6, name: 'स्पर्श', type: 'kavya', marks: 4, emoji: '✋' },
-  { num: 7, name: 'कार्तिक-मास की रात', type: 'kavya', marks: 4, emoji: '🌙' },
-  { num: 8, name: 'कवितावली', type: 'kavya', marks: 4, emoji: '📜' },
-  { num: 9, name: 'बसेरे से दूर', type: 'kavya', marks: 4, emoji: '🚶' },
-  { num: 10, name: 'उत्तर कांड से', type: 'kavya', marks: 4, emoji: '🌸' },
-  { num: 11, name: 'सिल्वर वैडिंग', type: 'gadya', marks: 5, emoji: '💒' },
-  { num: 12, name: 'जूझ', type: 'gadya', marks: 5, emoji: '⚔️' },
-  { num: 13, name: 'अग्नि पथ', type: 'gadya', marks: 5, emoji: '🔥' },
-  { num: 14, name: 'बाजार दर्शन', type: 'gadya', marks: 5, emoji: '🏪' },
-  { num: 15, name: 'काले मेघा पानी दे', type: 'gadya', marks: 5, emoji: '⛈️' },
-  { num: 16, name: 'नमक का दरोगा', type: 'vitan', marks: 6, emoji: '🧂' },
-  { num: 17, name: 'जामुन का पेड़', type: 'vitan', marks: 6, emoji: '🌳' },
-  { num: 18, name: 'तीसरी कसम के शिलापट', type: 'vitan', marks: 6, emoji: '📖' },
+  { num: 3, name: 'कविता के बहाने, बात सीधी थी पर', type: 'kavya', marks: 4, emoji: '✍️' },
+  { num: 4, name: 'कैमरे में बंद अपाहिज', type: 'kavya', marks: 4, emoji: '📷' },
+  { num: 5, name: 'उषा', type: 'kavya', marks: 4, emoji: '🌅' },
+  { num: 6, name: 'बादल राग', type: 'kavya', marks: 4, emoji: '🌧️' },
+  { num: 7, name: 'कवितावली (उत्तर कांड)', type: 'kavya', marks: 4, emoji: '📜' },
+  { num: 8, name: 'रुबाइयाँ', type: 'kavya', marks: 4, emoji: '🌙' },
+  { num: 9, name: 'छोटा मेरा खेत, बगुलों के पंख', type: 'kavya', marks: 4, emoji: '🌾' },
+  // आरोह भाग-2 — गद्य खंड
+  { num: 10, name: 'भक्तिन', type: 'gadya', marks: 4, emoji: '🙏' },
+  { num: 11, name: 'बाज़ार दर्शन', type: 'gadya', marks: 4, emoji: '🏪' },
+  { num: 12, name: 'काले मेघा पानी दे', type: 'gadya', marks: 4, emoji: '⛈️' },
+  { num: 13, name: 'पहलवान की ढोलक', type: 'gadya', marks: 4, emoji: '🥁' },
+  { num: 14, name: 'शिरीष के फूल', type: 'gadya', marks: 4, emoji: '🌸' },
+  { num: 15, name: 'श्रम विभाजन और जाति-प्रथा', type: 'gadya', marks: 4, emoji: '⚖️' },
+  // वितान भाग-2
+  { num: 16, name: 'सिल्वर वैडिंग', type: 'vitan', marks: 10, emoji: '💒' },
+  { num: 17, name: 'जूझ', type: 'vitan', marks: 10, emoji: '⚔️' },
+  { num: 18, name: 'अतीत में दबे पाँव', type: 'vitan', marks: 10, emoji: '🏛️' },
 ];
 
 export function HindiDashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
@@ -93,11 +96,13 @@ export function HindiDashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props
       </button>
 
       {/* Quick Actions */}
-      <div className="grid grid-cols-2 gap-2 animate-slide-up stagger-2">
+      <div className="grid grid-cols-3 gap-2 animate-slide-up stagger-2">
         <QuickCard emoji="📝" label="क्विज़" sub="35 प्रश्न" color="rose" onClick={() => onNavigate('quiz')} />
         <QuickCard emoji="📖" label="शब्दावली" sub="42 शब्द" color="emerald" onClick={() => onNavigate('glossary')} />
-        <QuickCard emoji="🗺️" label="माइंड मैप" sub="8 पाठ" color="violet" onClick={() => onNavigate('maps')} />
+        <QuickCard emoji="🗺️" label="माइंड मैप" sub="18 पाठ" color="violet" onClick={() => onNavigate('maps')} />
+        <QuickCard emoji="📚" label="रिवीज़न" sub="18 पाठ" color="blue" onClick={() => onNavigate('revisions')} />
         <QuickCard emoji="✍️" label="लेखन" sub="8 प्रारूप" color="amber" onClick={() => onNavigate('writing')} />
+        <QuickCard emoji="📋" label="नोट्स" sub="सारांश" color="cyan" onClick={() => onNavigate('notes')} />
       </div>
 
       {/* Blueprint */}
