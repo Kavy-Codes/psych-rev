@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { hindiChapterNotes, type HindiChapterNote } from '../../data/hindi/glossary';
+import { ChapterSectionMenu } from './ChapterSectionMenu';
 
 const TYPE_LABELS: Record<string, string> = {
   kavya: 'कविता',
@@ -21,21 +22,9 @@ export function HindiChapterNotes({ singleChapter }: { singleChapter?: number })
 
   return (
     <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-3">
-      {/* Chapter tabs */}
-      <div className="flex gap-1.5 overflow-x-auto no-scrollbar shrink-0 animate-slide-down">
-        {hindiChapterNotes.map(n => (
-          <button
-            key={n.chapter}
-            onClick={() => setSelectedChapter(n.chapter)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
-              selectedChapter === n.chapter
-                ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/25'
-                : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50 active:bg-zinc-700/50'
-            }`}
-          >
-            {n.chapter}
-          </button>
-        ))}
+      {/* Chapter selector */}
+      <div className="overflow-y-auto no-scrollbar shrink-0 max-h-[40vh]">
+        <ChapterSectionMenu selected={selectedChapter} onSelect={setSelectedChapter} />
       </div>
 
       {/* Note content */}

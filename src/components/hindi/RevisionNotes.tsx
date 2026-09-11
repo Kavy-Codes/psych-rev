@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { hindiRevisionNotes, type HindiRevisionNote } from '../../data/hindi/revisionNotes';
+import { ChapterSectionMenu } from './ChapterSectionMenu';
 
 const TYPE_BADGE: Record<string, { label: string; cls: string }> = {
   kavya: { label: 'कविता', cls: 'bg-violet-500/15 text-violet-300 border-violet-500/20' },
@@ -45,26 +46,9 @@ export function HindiRevisionNotes({ singleChapter }: { singleChapter?: number }
 
   return (
     <div className="flex flex-col h-full pt-2 pb-4 gap-3">
-      {/* Chapter selector — grouped by type */}
-      <div className="px-4 shrink-0 animate-slide-down">
-        <div className="flex gap-1 overflow-x-auto no-scrollbar">
-          {hindiRevisionNotes.map(n => {
-            const isActive = n.chapter === selectedChapter;
-            return (
-              <button
-                key={n.chapter}
-                onClick={() => setSelectedChapter(n.chapter)}
-                className={`px-2.5 py-1.5 rounded-lg text-[10px] font-bold whitespace-nowrap transition-all shrink-0 ${
-                  isActive
-                    ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/25'
-                    : 'bg-zinc-800/50 text-zinc-500 border border-zinc-700/40 active:bg-zinc-700/50'
-                }`}
-              >
-                {n.chapter <= 15 ? `Ch${n.chapter}` : `V${n.chapter - 15}`}
-              </button>
-            );
-          })}
-        </div>
+      {/* Chapter selector */}
+      <div className="px-4 overflow-y-auto no-scrollbar shrink-0 max-h-[40vh]">
+        <ChapterSectionMenu selected={selectedChapter} onSelect={setSelectedChapter} />
       </div>
 
       {/* Scrollable content */}

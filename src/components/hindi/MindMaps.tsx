@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { hindiMindMapsData } from '../../data/hindi/mindMaps';
+import { ChapterSectionMenu } from './ChapterSectionMenu';
 
 interface TreeNode {
   label: string;
@@ -71,20 +72,11 @@ export function HindiMindMaps({ singleChapter }: { singleChapter?: number }) {
   return (
     <div className="flex flex-col h-full px-4 pt-2 pb-4 gap-3">
       {/* Chapter selector */}
-      <div className="flex gap-1.5 overflow-x-auto no-scrollbar shrink-0">
-        {hindiMindMapsData.map((ch, idx) => (
-          <button
-            key={ch.chapterId}
-            onClick={() => setSelectedChapter(idx)}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap transition-all shrink-0 ${
-              idx === selectedChapter
-                ? 'bg-rose-600 text-white shadow-lg shadow-rose-500/25'
-                : 'bg-zinc-800/50 text-zinc-400 border border-zinc-700/50 active:bg-zinc-700/50'
-            }`}
-          >
-            {ch.title}
-          </button>
-        ))}
+      <div className="overflow-y-auto no-scrollbar shrink-0 max-h-[40vh]">
+        <ChapterSectionMenu selected={currentMap.chapterId} onSelect={(num) => {
+          const idx = hindiMindMapsData.findIndex(m => m.chapterId === num);
+          if (idx >= 0) setSelectedChapter(idx);
+        }} />
       </div>
 
       {/* Title */}

@@ -165,7 +165,7 @@ export default function App() {
   const isPsych = subject === 'psych';
   const isHindi = subject === 'hindi';
   const noChapterFilterTabs: Tab[] = isHindi
-    ? ['home']
+    ? ['home', 'books', 'writing', 'glossary']
     : ['home', 'distinctions', 'maps', 'notes'];
   const showChapterFilter = subject !== null && !noChapterFilterTabs.includes(activeTab);
   const nav = isHindi ? HINDI_NAV : PSYCH_NAV;
