@@ -17,6 +17,7 @@ import { HindiMindMaps } from './components/hindi/MindMaps';
 import { HindiWriting } from './components/hindi/Writing';
 import { HindiChapterNotes } from './components/hindi/ChapterNotes';
 import { HindiRevisionNotes } from './components/hindi/RevisionNotes';
+import { InstallBanner } from './components/InstallBanner';
 
 type Subject = 'psych' | 'hindi' | null;
 type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing' | 'revisions';
@@ -355,6 +356,7 @@ export default function App() {
       </nav>
 
       <PdfDrawer isOpen={pdfOpen} onClose={() => setPdfOpen(false)} />
+      <InstallBanner />
     </div>
   );
 }
