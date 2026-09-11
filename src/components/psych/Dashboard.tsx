@@ -32,7 +32,7 @@ const colorClasses: Record<string, { bar: string; pill: string; bg: string }> = 
 export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
   const [mastered] = useLocalStorage<Record<string, string>>('psych-flashcard-progress', {});
   const [quizScore] = useLocalStorage<number>('psych-quiz-best', 0);
-  const [showBlueprint, setShowBlueprint] = useState(false);
+  const [showBlueprint, setShowBlueprint] = useState(true);
   const [dismissedTip, setDismissedTip] = useState(false);
 
   const totalCards = flashcards.length;

@@ -40,7 +40,7 @@ const CHAPTERS = [
 export function HindiDashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
   const [mastered] = useLocalStorage<Record<string, string>>('hindi-flashcard-progress', {});
   const [quizScore] = useLocalStorage<number>('hindi-quiz-best', 0);
-  const [showBlueprint, setShowBlueprint] = useState(false);
+  const [showBlueprint, setShowBlueprint] = useState(true);
 
   const totalCards = hindiFlashcards.length;
   const masteredCount = Object.values(mastered).filter(v => v === 'mastered').length;

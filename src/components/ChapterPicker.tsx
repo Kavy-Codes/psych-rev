@@ -146,7 +146,11 @@ export function ChapterPickerRange({ from, to, onFromChange, onToChange, onAll, 
             <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1">From</p>
             <div className="grid grid-cols-4 gap-1">
               {PSYCH_CHAPTERS.slice(1).map(c => (
-                <button key={c.num} onClick={() => { onFromChange(c.num); if (to < c.num) onToChange(c.num); }}
+                <button key={c.num} onClick={() => {
+                  if (from === 0) { onFromChange(c.num); onToChange(c.num); }
+                  else if (from === to) { onFromChange(c.num); if (c.num > to) onToChange(c.num); }
+                  else { onFromChange(c.num); if (c.num > to) onToChange(c.num); }
+                }}
                   className={`py-1.5 rounded-lg text-[10px] font-semibold transition-all ${
                     from === c.num && from !== 0 ? 'bg-indigo-600 text-white' : 'bg-zinc-800/50 text-zinc-400 active:bg-zinc-700/50'
                   }`}
@@ -158,7 +162,10 @@ export function ChapterPickerRange({ from, to, onFromChange, onToChange, onAll, 
             <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1">To</p>
             <div className="grid grid-cols-4 gap-1">
               {PSYCH_CHAPTERS.slice(1).map(c => (
-                <button key={c.num} onClick={() => { onToChange(c.num); if (from > c.num) onFromChange(c.num); }}
+                <button key={c.num} onClick={() => {
+                  if (from === 0) { onFromChange(c.num); onToChange(c.num); }
+                  else { onToChange(c.num); if (c.num < from) onFromChange(c.num); }
+                }}
                   className={`py-1.5 rounded-lg text-[10px] font-semibold transition-all ${
                     to === c.num && from !== 0 ? 'bg-violet-600 text-white' : 'bg-zinc-800/50 text-zinc-400 active:bg-zinc-700/50'
                   }`}
@@ -202,17 +209,17 @@ export function ChapterPickerRange({ from, to, onFromChange, onToChange, onAll, 
             <div className="space-y-0.5">
               {chs.map(c => {
                 const inRange = from !== 0 && c.num >= from && c.num <= to;
-                const isFrom = c.num === from;
-                const isTo = c.num === to;
+                const isFrom = c.num === from && from !== 0;
+                const isTo = c.num === to && from !== 0;
                 return (
                   <button key={c.num}
                     onClick={() => {
-                      if (from === 0 || from === to) { onFromChange(c.num); onToChange(c.num); }
+                      if (from === 0) { onFromChange(c.num); onToChange(c.num); }
                       else if (c.num < from) onFromChange(c.num);
                       else if (c.num > to) onToChange(c.num);
                       else if (c.num === from) { if (from < to) onFromChange(from + 1); else { onFromChange(0); onToChange(0); } }
                       else if (c.num === to) { if (from < to) onToChange(to - 1); else { onFromChange(0); onToChange(0); } }
-                      else { if (c.num > from) onToChange(c.num); else onFromChange(c.num); }
+                      else { onToChange(c.num); }
                     }}
                     className={`w-full flex items-center gap-2 px-2.5 py-1.5 rounded-lg text-left transition-all ${
                       isFrom ? 'bg-rose-600 text-white'
