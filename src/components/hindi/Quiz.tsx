@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { hindiQuizQuestions, type HindiQuizQuestion } from '../../data/hindi/quiz';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 
@@ -12,9 +12,9 @@ const CHAPTERS = [
   { num: 16, label: 'V1' }, { num: 17, label: 'V2' }, { num: 18, label: 'V3' },
 ];
 
-export function HindiQuiz() {
+export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) {
   const [bestScore, setBestScore] = useLocalStorage<number>('hindi-quiz-best', 0);
-  const [selectedChapter, setSelectedChapter] = useState(0);
+  const [selectedChapter, setSelectedChapter] = useState(chapterRange[0] || 0);
   const [started, setStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -22,6 +22,10 @@ export function HindiQuiz() {
   const [score, setScore] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [history, setHistory] = useState<{ qId: string; correct: boolean }[]>([]);
+
+  useEffect(() => {
+    if (chapterRange[0] !== 0) setSelectedChapter(chapterRange[0]);
+  }, [chapterRange[0]]);
 
   const questions = useMemo(() =>
     selectedChapter === 0 ? hindiQuizQuestions : hindiQuizQuestions.filter(q => q.chapter === selectedChapter),

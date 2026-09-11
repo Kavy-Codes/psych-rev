@@ -33,15 +33,19 @@ const TYPE_LABEL: Record<string, string> = {
   lekhan: 'लेखन',
 };
 
-export function HindiFlashcards() {
+export function HindiFlashcards({ chapterRange }: { chapterRange: [number, number] }) {
   const [mastered, setMastered] = useLocalStorage<Record<string, 'mastered' | 'shaky'>>('hindi-flashcard-progress', {});
-  const [selectedChapter, setSelectedChapter] = useState(0);
+  const [selectedChapter, setSelectedChapter] = useState(chapterRange[0] || 0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false);
   const [showOnlyUnmastered, setShowOnlyUnmastered] = useState(false);
   const [animDir, setAnimDir] = useState<1 | -1>(1);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const skipTapRef = useRef(false);
+
+  useEffect(() => {
+    if (chapterRange[0] !== 0) setSelectedChapter(chapterRange[0]);
+  }, [chapterRange[0]]);
 
   const filteredCards = useMemo(() => {
     let cards: HindiFlashcard[];

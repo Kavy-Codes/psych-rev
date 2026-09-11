@@ -120,10 +120,10 @@ export default function App() {
     if (isHindi) {
       switch (activeTab) {
         case 'home': return <HindiDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
-        case 'cards': return <HindiFlashcards />;
+        case 'cards': return <HindiFlashcards chapterRange={[chapterFilter, chapterEnd]} />;
         case 'notes': return <HindiChapterNotes />;
         case 'glossary': return <HindiGlossary />;
-        case 'quiz': return <HindiQuiz />;
+        case 'quiz': return <HindiQuiz chapterRange={[chapterFilter, chapterEnd]} />;
         case 'maps': return <HindiMindMaps />;
         case 'writing': return <HindiWriting />;
         case 'revisions': return <HindiRevisionNotes />;
