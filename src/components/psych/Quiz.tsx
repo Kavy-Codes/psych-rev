@@ -55,20 +55,23 @@ export function Quiz({ chapterRange }: Props) {
   if (!started) {
     return (
       <div className="h-full flex flex-col items-center justify-center px-6 gap-5 animate-slide-up">
-        <div className="text-5xl animate-pop-in">⚡</div>
+        <div className="text-6xl animate-pop-in">⚡</div>
         <div className="text-center">
           <h2 className="text-white text-lg font-bold mb-1">Mock Quiz</h2>
           <p className="text-zinc-500 text-sm leading-relaxed">
             {questions.length} questions from {chapterLabel}.
-            <br />Includes MCQs, Assertion-Reason, and Case Studies.
           </p>
+          <p className="text-zinc-600 text-[11px] mt-1">MCQs · Assertion-Reason · Case Studies</p>
         </div>
         {bestScore > 0 && (
-          <p className="text-zinc-600 text-xs">Best score: {bestScore}/{questions.length}</p>
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20">
+            <span className="text-sm">🏆</span>
+            <span className="text-amber-400 text-xs font-bold">Best: {bestScore}/{questions.length}</span>
+          </div>
         )}
         <button
           onClick={start}
-          className="px-8 py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm active:scale-95 transition-all shadow-lg shadow-indigo-500/20"
+          className="px-8 py-3 rounded-xl bg-indigo-600 text-white font-bold text-sm press-scale glow-indigo shadow-lg shadow-indigo-500/20"
         >
           Start Quiz
         </button>
@@ -89,13 +92,23 @@ export function Quiz({ chapterRange }: Props) {
   if (completed) {
     const pct = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
     const emoji = pct >= 80 ? '🎉' : pct >= 50 ? '👍' : '📚';
+    const message = pct >= 80 ? 'Outstanding! You really know your stuff!' : pct >= 50 ? 'Good effort! Review the weak areas.' : 'Keep studying — you\'ll get there!';
+    const isNewBest = score >= bestScore && score > 0;
     return (
       <div className="h-full flex flex-col items-center justify-center px-6 gap-4 animate-slide-up">
-        <div className="text-5xl animate-confetti">{emoji}</div>
+        <div className="text-6xl animate-celebrate">{emoji}</div>
         <div className="text-center">
-          <p className="text-white font-bold text-2xl">{score}/{questions.length}</p>
+          <p className="text-white font-black text-3xl">{score}/{questions.length}</p>
           <p className="text-zinc-500 text-sm mt-0.5">{pct}% correct</p>
+          {isNewBest && (
+            <div className="flex items-center justify-center gap-1 mt-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
+              <span className="text-xs">🏆</span>
+              <span className="text-amber-400 text-[11px] font-bold">New Best Score!</span>
+            </div>
+          )}
         </div>
+
+        <p className="text-zinc-400 text-xs text-center">{message}</p>
 
         <div className="w-full max-h-32 overflow-y-auto no-scrollbar space-y-1">
           {history.map((h, i) => (
@@ -109,13 +122,13 @@ export function Quiz({ chapterRange }: Props) {
         <div className="flex gap-3">
           <button
             onClick={start}
-            className="px-6 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 font-semibold text-sm active:scale-95 transition-all"
+            className="px-6 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 font-semibold text-sm press-scale"
           >
             Try Again
           </button>
           <button
             onClick={() => setStarted(false)}
-            className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm active:scale-95 transition-all"
+            className="px-6 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm press-scale glow-indigo"
           >
             Done
           </button>

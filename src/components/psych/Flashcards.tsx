@@ -32,6 +32,7 @@ export function Flashcards({ chapterRange }: Props) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [showOnlyUnmastered, setShowOnlyUnmastered] = useState(false);
   const [animDir, setAnimDir] = useState<1 | -1>(1);
+  const [celebration, setCelebration] = useState<string | null>(null);
   const [start, end] = chapterRange;
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const skipTapRef = useRef(false);
@@ -73,6 +74,11 @@ export function Flashcards({ chapterRange }: Props) {
     skipTapRef.current = true;
     setAnimDir(1);
     setCurrentIndex(i => Math.min(i + 1, filteredCards.length - 1));
+    if (status === 'mastered') {
+      const msgs = ['Nailed it! 🎯', 'Keep going! 🔥', 'You got this! 💪', 'Mastered! ✨', 'Smart move! 🧠'];
+      setCelebration(msgs[Math.floor(Math.random() * msgs.length)]);
+      setTimeout(() => setCelebration(null), 1200);
+    }
   }, [card, setMastered, filteredCards.length]);
 
   useEffect(() => {
@@ -114,14 +120,17 @@ export function Flashcards({ chapterRange }: Props) {
   if (!card) {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-4 px-6 animate-pop-in">
-        <div className="text-5xl">🎉</div>
-        <p className="text-zinc-400 text-center text-base font-medium">
+        <div className="text-6xl animate-celebrate">🎉</div>
+        <p className="text-white text-center text-lg font-bold">
           {showOnlyUnmastered ? 'All cards mastered!' : 'No cards for this chapter.'}
+        </p>
+        <p className="text-zinc-500 text-center text-xs">
+          {showOnlyUnmastered ? "You're on fire! Keep it up!" : 'Try selecting a different chapter range.'}
         </p>
         {showOnlyUnmastered && (
           <button
             onClick={() => setShowOnlyUnmastered(false)}
-            className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm active:scale-95 transition-all"
+            className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white font-semibold text-sm press-scale glow-indigo"
           >
             Show All Cards
           </button>
@@ -136,7 +145,7 @@ export function Flashcards({ chapterRange }: Props) {
   const slideClass = animDir === 1 ? 'card-slide-left' : 'card-slide-right';
 
   return (
-    <div className="flex flex-col h-full px-4 pt-2 pb-2 gap-2">
+    <div className="flex flex-col h-full px-4 pt-2 pb-2 gap-2 relative">
       {/* Header */}
       <div className="flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">
@@ -233,6 +242,15 @@ export function Flashcards({ chapterRange }: Props) {
           </div>
         </div>
       </div>
+
+      {/* Celebration Toast */}
+      {celebration && (
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 z-50 animate-celebrate">
+          <div className="px-4 py-2 rounded-2xl bg-emerald-500/20 border border-emerald-500/30 backdrop-blur-sm">
+            <p className="text-emerald-300 text-sm font-bold whitespace-nowrap">{celebration}</p>
+          </div>
+        </div>
+      )}
 
       {/* Buttons — below card, not overlapping */}
       <div

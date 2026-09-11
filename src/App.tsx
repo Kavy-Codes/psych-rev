@@ -20,6 +20,7 @@ import { HindiRevisionNotes } from './components/hindi/RevisionNotes';
 import { HindiBooks } from './components/hindi/Books';
 import { InstallBanner } from './components/InstallBanner';
 import { ChapterPickerSingle, ChapterPickerRange } from './components/ChapterPicker';
+import { MotivationalBanner } from './components/MotivationalBanner';
 
 type Subject = 'psych' | 'hindi' | null;
 type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing' | 'revisions' | 'books';
@@ -219,22 +220,22 @@ export default function App() {
   const subjectCode = isHindi ? '322' : '337';
 
   return (
-    <div className="h-[100dvh] flex flex-col bg-zinc-950 text-zinc-100 overflow-hidden select-none">
+    <div className="h-[100dvh] flex flex-col bg-warm-gradient text-zinc-100 overflow-hidden select-none">
       {/* Header */}
       <header className="shrink-0 safe-top">
-        <div className="flex items-center justify-between px-4 py-2">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between px-4 py-3">
+          <div className="flex items-center gap-2.5">
             <button
               onClick={() => { setSubject(null); localStorage.removeItem('studyrev-subject'); setActiveTab('home'); setChapterFilter(0); setChapterEnd(0); }}
-              className="text-zinc-600 active:text-zinc-300 transition-colors"
+              className="text-zinc-500 active:text-zinc-200 transition-colors press-scale"
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
               </svg>
             </button>
             <div>
-              <h1 className={`font-black text-lg tracking-tight leading-none ${isHindi ? 'text-rose-400' : 'text-gradient'}`}>{subjectName}</h1>
-              <p className="text-zinc-600 text-[10px] mt-0.5">{isHindi ? 'Hindi Elective' : 'Psychology'} — {subjectCode}</p>
+              <h1 className={`font-black text-lg tracking-tight leading-none ${isHindi ? 'text-gradient-rose' : 'text-gradient'}`}>{subjectName}</h1>
+              <p className="text-zinc-500 text-[10px] mt-0.5">{isHindi ? 'Hindi Elective' : 'Psychology'} — {subjectCode}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -300,11 +301,9 @@ export default function App() {
 
       </header>
 
-      {/* Tip Banner */}
-      <div className="sm:hidden px-4 py-1.5 border-b border-zinc-800/20 shrink-0 overflow-hidden">
-        <p className="text-zinc-600 text-[10px] text-center leading-tight truncate">
-          {tips[tipIndex]}
-        </p>
+      {/* Motivational Banner */}
+      <div className="shrink-0 border-b border-zinc-800/20">
+        <MotivationalBanner />
       </div>
 
       {/* Content */}
@@ -315,7 +314,7 @@ export default function App() {
       </main>
 
       {/* Bottom Nav */}
-      <nav className="shrink-0 safe-bottom bg-zinc-900/95 backdrop-blur-xl border-t border-zinc-800/40">
+      <nav className="shrink-0 safe-bottom glass border-t border-zinc-700/30">
         <div ref={navScrollRef} className="flex overflow-x-auto no-scrollbar">
           {nav.map(item => {
             const isActive = activeTab === item.id;
@@ -324,18 +323,18 @@ export default function App() {
                 key={item.id}
                 data-tab={item.id}
                 onClick={() => navigate(item.id)}
-                className={`flex flex-col items-center justify-center gap-0.5 py-2 px-4 min-w-[60px] shrink-0 transition-all duration-300 relative ${
+                className={`flex flex-col items-center justify-center gap-0.5 py-2.5 px-4 min-w-[60px] shrink-0 transition-all duration-200 relative ${
                   isActive
                     ? isHindi ? 'text-rose-400' : 'text-indigo-400'
-                    : 'text-zinc-500'
+                    : 'text-zinc-500 active:text-zinc-300'
                 }`}
               >
-                <div className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'scale-100'}`}>
+                <div className={`transition-all duration-300 ${isActive ? 'scale-110 animate-spring' : 'scale-100'}`}>
                   {item.icon}
                 </div>
-                <span className={`text-[9px] leading-none mt-0.5 transition-all duration-300 ${isActive ? 'font-bold' : 'font-medium'}`}>{item.label}</span>
+                <span className={`text-[9px] leading-none mt-0.5 transition-all duration-200 ${isActive ? 'font-bold' : 'font-medium'}`}>{item.label}</span>
                 {isActive && (
-                  <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-6 h-[2px] rounded-full transition-all duration-300 ${isHindi ? 'bg-rose-400' : 'bg-indigo-400'}`} />
+                  <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[2.5px] rounded-full transition-all duration-300 ${isHindi ? 'bg-rose-400 glow-rose' : 'bg-indigo-400 glow-indigo'}`} />
                 )}
               </button>
             );
