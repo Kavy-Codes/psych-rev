@@ -17,10 +17,11 @@ import { HindiMindMaps } from './components/hindi/MindMaps';
 import { HindiWriting } from './components/hindi/Writing';
 import { HindiChapterNotes } from './components/hindi/ChapterNotes';
 import { HindiRevisionNotes } from './components/hindi/RevisionNotes';
+import { HindiBooks } from './components/hindi/Books';
 import { InstallBanner } from './components/InstallBanner';
 
 type Subject = 'psych' | 'hindi' | null;
-type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing' | 'revisions';
+type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing' | 'revisions' | 'books';
 
 const PSYCH_CHAPTERS = [
   { num: 0, name: 'All Chapters' },
@@ -89,14 +90,15 @@ const PSYCH_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
 ];
 
 const HINDI_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
-  { id: 'home', label: 'होम', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
-  { id: 'cards', label: 'कार्ड्स', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25-9.75 5.25-9.75-5.25 4.179-2.25" /></svg> },
-  { id: 'notes', label: 'नोट्स', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
-  { id: 'quiz', label: 'क्विज़', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg> },
-  { id: 'glossary', label: 'शब्द', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
-  { id: 'maps', label: 'मैप्स', icon: <span className="text-lg leading-none">🗺️</span> },
-  { id: 'writing', label: 'लेखन', icon: <span className="text-lg leading-none">✍️</span> },
-  { id: 'revisions', label: 'रिवीज़न', icon: <span className="text-lg leading-none">📚</span> },
+  { id: 'revisions', label: 'Start', icon: <span className="text-lg leading-none">📚</span> },
+  { id: 'home', label: 'Home', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
+  { id: 'books', label: 'Books', icon: <span className="text-lg leading-none">📖</span> },
+  { id: 'cards', label: 'Cards', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25-9.75 5.25-9.75-5.25 4.179-2.25" /></svg> },
+  { id: 'notes', label: 'Notes', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
+  { id: 'quiz', label: 'Quiz', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg> },
+  { id: 'glossary', label: 'Terms', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
+  { id: 'maps', label: 'Maps', icon: <span className="text-lg leading-none">🗺️</span> },
+  { id: 'writing', label: 'Writing', icon: <span className="text-lg leading-none">✍️</span> },
 ];
 
 export default function App() {
@@ -119,12 +121,20 @@ export default function App() {
     return () => clearInterval(interval);
   }, [tips.length]);
 
-  const [showScrollHint, setShowScrollHint] = useState(true);
   const navScrollRef = useRef<HTMLDivElement>(null);
 
-  const handleNavScroll = useCallback(() => {
-    if (showScrollHint) setShowScrollHint(false);
-  }, [showScrollHint]);
+  // Auto-scroll nav to center active tab
+  useEffect(() => {
+    if (!navScrollRef.current) return;
+    const container = navScrollRef.current;
+    const activeEl = container.querySelector(`[data-tab="${activeTab}"]`);
+    if (activeEl) {
+      const containerRect = container.getBoundingClientRect();
+      const elRect = activeEl.getBoundingClientRect();
+      const scrollLeft = elRect.left - containerRect.left - (containerRect.width / 2) + (elRect.width / 2);
+      container.scrollTo({ left: Math.max(0, scrollLeft), behavior: 'smooth' });
+    }
+  }, [activeTab]);
 
   const chapters = subject === 'hindi' ? HINDI_CHAPTERS : PSYCH_CHAPTERS;
 
@@ -137,7 +147,7 @@ export default function App() {
   const isPsych = subject === 'psych';
   const isHindi = subject === 'hindi';
   const noChapterFilterTabs: Tab[] = isHindi
-    ? ['home', 'maps', 'writing', 'notes', 'revisions']
+    ? ['home', 'maps', 'writing', 'notes', 'revisions', 'books']
     : ['home', 'distinctions', 'maps', 'notes'];
   const showChapterFilter = subject !== null && !noChapterFilterTabs.includes(activeTab);
   const nav = isHindi ? HINDI_NAV : PSYCH_NAV;
@@ -165,6 +175,7 @@ export default function App() {
         case 'maps': return <HindiMindMaps />;
         case 'writing': return <HindiWriting />;
         case 'revisions': return <HindiRevisionNotes />;
+        case 'books': return <HindiBooks />;
         default: return <HindiDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
       }
     }
@@ -319,19 +330,16 @@ export default function App() {
       </main>
 
       {/* Bottom Nav */}
-      <nav className="shrink-0 safe-bottom bg-zinc-900/95 backdrop-blur-xl border-t border-zinc-800/40 relative">
-        {showScrollHint && (
-          <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-zinc-900 via-zinc-900/90 to-transparent z-10 pointer-events-none" />
-        )}
-
-        <div ref={navScrollRef} onScroll={handleNavScroll} className="flex overflow-x-auto no-scrollbar relative">
+      <nav className="shrink-0 safe-bottom bg-zinc-900/95 backdrop-blur-xl border-t border-zinc-800/40">
+        <div ref={navScrollRef} className="flex overflow-x-auto no-scrollbar">
           {nav.map(item => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
+                data-tab={item.id}
                 onClick={() => navigate(item.id)}
-                className={`flex flex-col items-center justify-center gap-0.5 py-2 px-3 min-w-[56px] shrink-0 transition-all duration-150 relative ${
+                className={`flex flex-col items-center justify-center gap-0.5 py-2.5 px-3 min-w-[56px] shrink-0 transition-colors duration-200 relative ${
                   isActive ? (isHindi ? 'text-rose-400' : 'text-indigo-400') : 'text-zinc-500 active:text-zinc-300'
                 }`}
               >
@@ -341,17 +349,6 @@ export default function App() {
               </button>
             );
           })}
-
-          {showScrollHint && (
-            <div className="flex items-center shrink-0 pr-2 pl-1 pointer-events-none">
-              <div className={`flex items-center gap-1 border rounded-full px-2 py-1 scroll-hint-pill ${isHindi ? 'bg-rose-500/15 border-rose-500/30' : 'bg-indigo-500/15 border-indigo-500/30'}`}>
-                <span className={`text-[10px] font-bold tracking-wide ${isHindi ? 'text-rose-300' : 'text-indigo-300'}`}>swipe</span>
-                <svg className={`w-3 h-3 scroll-hint-arrow ${isHindi ? 'text-rose-400' : 'text-indigo-400'}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
-            </div>
-          )}
         </div>
       </nav>
 

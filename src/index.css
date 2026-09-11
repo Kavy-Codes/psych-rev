@@ -264,23 +264,6 @@
   .stagger-6 { animation-delay: 0.3s; animation-fill-mode: both; }
   .stagger-7 { animation-delay: 0.35s; animation-fill-mode: both; }
 
-  @keyframes scrollHint {
-    0%, 100% { transform: translateX(0); }
-    50% { transform: translateX(4px); }
-  }
-
-  @keyframes scrollGlow {
-    0%, 100% { opacity: 0.6; box-shadow: 0 0 6px rgba(99, 102, 241, 0.2); }
-    50% { opacity: 1; box-shadow: 0 0 12px rgba(99, 102, 241, 0.4); }
-  }
-
-  .scroll-hint-arrow {
-    animation: scrollHint 1s ease-in-out infinite;
-  }
-
-  .scroll-hint-pill {
-    animation: scrollGlow 1.5s ease-in-out infinite;
-  }
 }
 
 /* Mobile-specific overrides */
