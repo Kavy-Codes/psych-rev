@@ -35,14 +35,14 @@ const PSYCH_TIPS = [
 ];
 
 const HINDI_TIPS = [
-  'आत्मपरिचय — बच्चन की आत्मकथात्मक कविता',
-  'पतंग — आलोक धन्वा की स्वतंत्रता कविता',
-  'कवितावली — तुलसीदास, रामचरितमानस',
-  'कैमरे में बंद अपाहिज — रघुवीर सहाय',
-  'बादल राग — निराला की प्रकृति कविता',
-  'भक्तिन — महादेवी वर्मा का संस्मरण',
-  'बाज़ार दर्शन — जैनेन्द्र कुमार का व्यंग्य',
-  'अनुप्रास अलंकार — ध्वनि की पुनरावृत्ति',
+  'Aatmaparichay — Bachchan\'s autobiographical poem',
+  'Patang — Alok Dhanva\'s freedom poem',
+  'Kavitawali — Tulsidas, Ramcharitmanas',
+  'Kaimre Mein Band Apahij — Raghubir Sahay',
+  'Badal Raag — Nirala\'s nature poetry',
+  'Bhaktin — Mahadevi Verma\'s memoir',
+  'Bazaar Darshan — Jainendra Kumar\'s satire',
+  'Anuprast Alankar — repetition of sound',
 ];
 
 const PSYCH_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
@@ -120,10 +120,10 @@ export default function App() {
     if (isHindi) {
       switch (activeTab) {
         case 'home': return <HindiDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
-        case 'cards': return <HindiFlashcards chapterRange={[chapterFilter, chapterEnd]} />;
+        case 'cards': return <HindiFlashcards />;
         case 'notes': return <HindiChapterNotes />;
         case 'glossary': return <HindiGlossary />;
-        case 'quiz': return <HindiQuiz chapterRange={[chapterFilter, chapterEnd]} />;
+        case 'quiz': return <HindiQuiz />;
         case 'maps': return <HindiMindMaps />;
         case 'writing': return <HindiWriting />;
         case 'revisions': return <HindiRevisionNotes />;
@@ -150,7 +150,7 @@ export default function App() {
     return <SubjectSelector onSelect={selectSubject} />;
   }
 
-  const subjectName = isHindi ? 'हिंदी आधार' : 'मनोविज्ञान';
+  const subjectName = isHindi ? 'Hindi Core' : 'Psychology';
   const subjectCode = isHindi ? '302' : '337';
 
   return (
@@ -203,13 +203,19 @@ export default function App() {
                 key={item.id}
                 data-tab={item.id}
                 onClick={() => navigate(item.id)}
-                className={`flex flex-col items-center justify-center gap-0.5 py-2.5 px-3 min-w-[56px] shrink-0 transition-colors duration-200 relative ${
-                  isActive ? (isHindi ? 'text-rose-400' : 'text-indigo-400') : 'text-zinc-500 active:text-zinc-300'
+                className={`flex flex-col items-center justify-center gap-0.5 py-2 px-4 min-w-[60px] shrink-0 transition-all duration-300 relative ${
+                  isActive
+                    ? isHindi ? 'text-rose-400' : 'text-indigo-400'
+                    : 'text-zinc-500'
                 }`}
               >
-                {item.icon}
-                <span className="text-[9px] font-semibold leading-none mt-0.5">{item.label}</span>
-                {isActive && <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full animate-scale-in ${isHindi ? 'bg-rose-400' : 'bg-indigo-400'}`} />}
+                <div className={`transition-transform duration-300 ${isActive ? 'scale-110' : 'scale-100'}`}>
+                  {item.icon}
+                </div>
+                <span className={`text-[9px] leading-none mt-0.5 transition-all duration-300 ${isActive ? 'font-bold' : 'font-medium'}`}>{item.label}</span>
+                {isActive && (
+                  <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-6 h-[2px] rounded-full transition-all duration-300 ${isHindi ? 'bg-rose-400' : 'bg-indigo-400'}`} />
+                )}
               </button>
             );
           })}
