@@ -78,13 +78,13 @@ export function HindiRevisionNotes() {
               {note.chapter >= 10 && note.chapter <= 15 && (
                 <span className="pill bg-emerald-500/10 text-emerald-300 border border-emerald-500/15 text-[9px]">गद्य खंड</span>
               )}
-              {note.chapter >= 16 && (
-                <span className="pill bg-amber-500/10 text-amber-300 border border-amber-500/15 text-[9px]">वितान</span>
+              {note.chapter >= 22 && (
+                <span className="pill bg-amber-500/10 text-amber-300 border border-amber-500/15 text-[9px]">अंतराल</span>
               )}
             </div>
             <h2 className="text-white font-black text-base leading-tight">{note.title}</h2>
             <p className="text-zinc-500 text-[10px] mt-1">
-              पाठ {note.chapter} · {note.chapter <= 15 ? 'आरोह भाग-2' : 'वितान भाग-2'}
+              पाठ {note.chapter} · {note.chapter <= 21 ? 'अंतरा भाग-2' : 'अंतराल'}
             </p>
           </div>
 

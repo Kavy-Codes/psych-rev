@@ -92,11 +92,11 @@ export function HindiBooks() {
           <InfoRow label="Form" value={selected.form} />
           <InfoRow label="Lines" value={selected.lines} />
           <InfoRow label="Section" value={
-            selected.num <= 9 ? 'Kaavya Khand (Poetry)' :
-            selected.num <= 15 ? 'Gadya Khand (Prose)' : 'Vitan'
+            selected.num <= 11 ? 'Kavya Khand (Poetry)' :
+            selected.num <= 21 ? 'Gadya Khand (Prose)' : 'Antral (Supplementary)'
           } />
           <InfoRow label="Book" value={
-            selected.num <= 15 ? 'Arooh Bhag-2' : 'Vitan Bhag-2'
+            selected.num <= 21 ? 'Antra Bhag-2' : 'Antral Bhag-2'
           } />
         </div>
 
@@ -115,11 +115,11 @@ export function HindiBooks() {
       {/* Header */}
       <div className="rounded-2xl bg-gradient-to-br from-rose-600/20 via-pink-600/10 to-rose-700/20 border border-rose-500/15 p-4 animate-slide-up">
         <h2 className="text-white font-black text-base mb-1">NCERT Books & Chapters</h2>
-        <p className="text-zinc-500 text-[11px]">Complete syllabus — all poems, prose, and novels</p>
+        <p className="text-zinc-500 text-[11px]">Complete syllabus — Antra (21 chapters) + Antral (4 chapters)</p>
         <div className="flex gap-2 mt-3">
-          <span className="pill bg-violet-500/15 text-violet-300 border border-violet-500/20 text-[9px] font-bold">9 Poems</span>
-          <span className="pill bg-emerald-500/15 text-emerald-300 border border-emerald-500/20 text-[9px] font-bold">6 Prose</span>
-          <span className="pill bg-amber-500/15 text-amber-300 border border-amber-500/20 text-[9px] font-bold">3 Novels</span>
+          <span className="pill bg-violet-500/15 text-violet-300 border border-violet-500/20 text-[9px] font-bold">11 Poems</span>
+          <span className="pill bg-emerald-500/15 text-emerald-300 border border-emerald-500/20 text-[9px] font-bold">10 Prose</span>
+          <span className="pill bg-amber-500/15 text-amber-300 border border-amber-500/20 text-[9px] font-bold">4 Antral</span>
         </div>
       </div>
 

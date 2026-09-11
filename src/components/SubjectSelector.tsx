@@ -23,9 +23,9 @@ const subjects = [
     emoji: '📝',
     color: 'from-rose-600 via-pink-600 to-rose-700',
     border: 'border-rose-500/30',
-    chapters: 18,
+    chapters: 25,
     marks: 80,
-    tagline: 'Rich tradition of Hindi literature and language',
+    tagline: 'Antra + Antral — Poetry, Prose & Supplementary Reader',
   },
 ];
 
