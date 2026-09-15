@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { hindiFlashcards } from '../../data/hindi/flashcards';
 import { ProgressRing } from '../ProgressRing';
+import { BookMarked, Library, Zap, BookOpen, Map, PenTool, ArrowRight, Sparkles } from 'lucide-react';
 
 interface Props {
   onNavigate: (tab: string) => void;
@@ -85,30 +86,28 @@ export function HindiDashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props
       {/* Primary CTA */}
       <button
         onClick={() => onNavigate(nextAction.tab)}
-        className="w-full p-4 rounded-2xl glass-card border border-zinc-700/30 text-left press-lift group animate-slide-up stagger-1"
+        className="w-full p-4 rounded-2xl card-primary text-left press-lift group animate-slide-up stagger-1"
       >
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-rose-500/15 border border-rose-500/25 flex items-center justify-center shrink-0 text-lg">
-            {nextAction.emoji}
+          <div className="w-11 h-11 rounded-xl bg-rose-500/12 border border-rose-500/20 flex items-center justify-center shrink-0 group-active:bg-rose-500/20 transition-colors">
+            <Sparkles className="w-5 h-5 text-rose-400" strokeWidth={1.75} />
           </div>
           <div className="flex-1">
             <p className="text-white font-bold text-sm">{nextAction.text}</p>
             <p className="text-zinc-500 text-[11px] mt-0.5">{nextAction.sub}</p>
           </div>
-          <svg className="w-5 h-5 text-zinc-600 group-hover:text-zinc-400 transition-all duration-300 group-hover:translate-x-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
+          <ArrowRight className="w-4 h-4 text-zinc-600 group-active:text-zinc-400 transition-colors shrink-0" strokeWidth={2} />
         </div>
       </button>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-3 gap-2.5 animate-slide-up stagger-2">
-        <QuickCard emoji="📚" label="रिवीज़न" sub="25 पाठ" color="rose" onClick={() => onNavigate('revisions')} />
-        <QuickCard emoji="📖" label="किताबें" sub="सभी पाठ" color="amber" onClick={() => onNavigate('books')} />
-        <QuickCard emoji="📝" label="क्विज़" sub="34 प्रश्न" color="violet" onClick={() => onNavigate('quiz')} />
-        <QuickCard emoji="🔤" label="शब्दावली" sub="42 शब्द" color="emerald" onClick={() => onNavigate('glossary')} />
-        <QuickCard emoji="🗺️" label="माइंड मैप" sub="25 पाठ" color="cyan" onClick={() => onNavigate('maps')} />
-        <QuickCard emoji="✍️" label="लेखन" sub="8 प्रारूप" color="fuchsia" onClick={() => onNavigate('writing')} />
+        <QuickCard icon={<BookMarked className="w-5 h-5 text-rose-400" strokeWidth={1.75} />} label="रिवीज़न" sub="25 पाठ" bg="bg-rose-500/[0.06] border-rose-500/12" onClick={() => onNavigate('revisions')} />
+        <QuickCard icon={<Library className="w-5 h-5 text-amber-400" strokeWidth={1.75} />} label="किताबें" sub="सभी पाठ" bg="bg-amber-500/[0.06] border-amber-500/12" onClick={() => onNavigate('books')} />
+        <QuickCard icon={<Zap className="w-5 h-5 text-violet-400" strokeWidth={1.75} />} label="क्विज़" sub="34 प्रश्न" bg="bg-violet-500/[0.06] border-violet-500/12" onClick={() => onNavigate('quiz')} />
+        <QuickCard icon={<BookOpen className="w-5 h-5 text-emerald-400" strokeWidth={1.75} />} label="शब्दावली" sub="42 शब्द" bg="bg-emerald-500/[0.06] border-emerald-500/12" onClick={() => onNavigate('glossary')} />
+        <QuickCard icon={<Map className="w-5 h-5 text-cyan-400" strokeWidth={1.75} />} label="माइंड मैप" sub="25 पाठ" bg="bg-cyan-500/[0.06] border-cyan-500/12" onClick={() => onNavigate('maps')} />
+        <QuickCard icon={<PenTool className="w-5 h-5 text-fuchsia-400" strokeWidth={1.75} />} label="लेखन" sub="8 प्रारूप" bg="bg-fuchsia-500/[0.06] border-fuchsia-500/12" onClick={() => onNavigate('writing')} />
       </div>
 
       {/* Blueprint */}
@@ -130,18 +129,31 @@ export function HindiDashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props
           <div className="space-y-1 mt-1 animate-slide-up">
             {CHAPTERS.map((ch, i) => {
               const cardCount = hindiFlashcards.filter(c => c.chapter === ch.num).length;
+              const chapterMastered = hindiFlashcards.filter(c => c.chapter === ch.num).filter(c => mastered[c.id] === 'mastered').length;
+              const isComplete = chapterMastered === cardCount && cardCount > 0;
               return (
                 <button
                   key={ch.num}
                   onClick={() => onSelectChapter(ch.num)}
-                  className="w-full flex items-center gap-2.5 p-2.5 rounded-xl bg-rose-500/5 border border-zinc-800/20 press-scale transition-all"
+                  className={`w-full flex items-center gap-2.5 p-2.5 rounded-xl border press-scale transition-all ${
+                    !isComplete && cardCount > 0
+                      ? 'bg-rose-500/[0.04] border-l-2 border-rose-500/20'
+                      : 'bg-zinc-800/[0.15] border border-zinc-800/15'
+                  }`}
                   style={{ animationDelay: `${i * 0.02}s` }}
                 >
-                  <span className="text-sm shrink-0">{ch.emoji}</span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <span className="text-zinc-300 text-[11px] font-semibold truncate">{ch.name}</span>
-                      <span className="pill text-[9px] bg-rose-500/15 text-rose-300 shrink-0 ml-1">{ch.marks}m</span>
+                      <span className={`text-[11px] font-semibold truncate ${!isComplete && cardCount > 0 ? 'text-zinc-200' : 'text-zinc-400'}`}>{ch.name}</span>
+                      <div className="flex items-center gap-1.5 shrink-0 ml-1">
+                        {!isComplete && cardCount > 0 && (
+                          <span className="text-[9px] text-zinc-500">{chapterMastered}/{cardCount}</span>
+                        )}
+                        {isComplete && (
+                          <span className="text-emerald-400 text-[10px]">✓</span>
+                        )}
+                        <span className="pill text-[9px] bg-rose-500/15 text-rose-300">{ch.marks}m</span>
+                      </div>
                     </div>
                     <span className="text-zinc-600 text-[9px]">{cardCount} cards</span>
                   </div>
@@ -155,32 +167,16 @@ export function HindiDashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props
   );
 }
 
-function QuickCard({ emoji, label, sub, color, onClick }: {
-  emoji: string; label: string; sub: string; color: string; onClick: () => void;
+function QuickCard({ icon, label, sub, bg, onClick }: {
+  icon: React.ReactNode; label: string; sub: string; bg: string; onClick: () => void;
 }) {
-  const bgMap: Record<string, string> = {
-    rose: 'bg-rose-500/8 border-rose-500/15 hover:bg-rose-500/12',
-    emerald: 'bg-emerald-500/8 border-emerald-500/15 hover:bg-emerald-500/12',
-    violet: 'bg-violet-500/8 border-violet-500/15 hover:bg-violet-500/12',
-    amber: 'bg-amber-500/8 border-amber-500/15 hover:bg-amber-500/12',
-    cyan: 'bg-cyan-500/8 border-cyan-500/15 hover:bg-cyan-500/12',
-    fuchsia: 'bg-fuchsia-500/8 border-fuchsia-500/15 hover:bg-fuchsia-500/12',
-  };
-  const textMap: Record<string, string> = {
-    rose: 'text-rose-400',
-    emerald: 'text-emerald-400',
-    violet: 'text-violet-400',
-    amber: 'text-amber-400',
-    cyan: 'text-cyan-400',
-    fuchsia: 'text-fuchsia-400',
-  };
   return (
     <button
       onClick={onClick}
-      className={`p-3.5 rounded-xl ${bgMap[color]} border text-left press-lift transition-all duration-200`}
+      className={`p-3.5 rounded-xl border text-left press-lift transition-all duration-200 ${bg}`}
     >
-      <span className="text-xl">{emoji}</span>
-      <p className={`text-xs font-bold mt-2 ${textMap[color]}`}>{label}</p>
+      <div className="mb-2">{icon}</div>
+      <p className="text-xs font-bold text-zinc-200">{label}</p>
       <p className="text-zinc-600 text-[10px] mt-0.5">{sub}</p>
     </button>
   );

@@ -1,10 +1,14 @@
 import { useState, useCallback, useMemo } from 'react';
-import { hindiQuizQuestions, type HindiQuizQuestion } from '../../data/hindi/quiz';
+import { socioQuizQuestions, type SocioQuizQuestion } from '../../data/socio/quiz';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { Zap, Trophy } from 'lucide-react';
 
-export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) {
-  const [bestScore, setBestScore] = useLocalStorage<number>('hindi-quiz-best', 0);
+interface Props {
+  chapterRange: [number, number];
+}
+
+export function SocioQuiz({ chapterRange }: Props) {
+  const [bestScore, setBestScore] = useLocalStorage<number>('socio-quiz-best', 0);
   const [started, setStarted] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
@@ -14,23 +18,22 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
   const [history, setHistory] = useState<{ qId: string; correct: boolean }[]>([]);
   const [streak, setStreak] = useState(0);
   const [feedbackFlash, setFeedbackFlash] = useState<'correct' | 'incorrect' | null>(null);
-
-  const [start, end] = chapterRange;
+  const [startCh, endCh] = chapterRange;
 
   const questions = useMemo(() =>
-    start === 0 ? hindiQuizQuestions : hindiQuizQuestions.filter(q => q.chapter >= start && q.chapter <= end),
-    [start, end]
+    startCh === 0 ? socioQuizQuestions : socioQuizQuestions.filter(q => q.chapter >= startCh && q.chapter <= endCh),
+    [startCh, endCh]
   );
 
   const q = questions[currentIndex];
 
   const chapterLabel = useMemo(() => {
-    if (start === 0) return 'All chapters';
-    if (start === end) return `Chapter ${start}`;
-    return `Chapters ${start}–${end}`;
-  }, [start, end]);
+    if (startCh === 0) return 'all chapters';
+    if (startCh === endCh) return `chapter ${startCh}`;
+    return `chapters ${startCh}–${endCh}`;
+  }, [startCh, endCh]);
 
-  const startQuiz = () => { setStarted(true); setCompleted(false); setCurrentIndex(0); setScore(0); setHistory([]); setSelected(null); setAnswered(false); setStreak(0); setFeedbackFlash(null); };
+  const start = () => { setStarted(true); setCompleted(false); setCurrentIndex(0); setScore(0); setHistory([]); setSelected(null); setAnswered(false); setStreak(0); setFeedbackFlash(null); };
 
   const handleAnswer = useCallback((idx: number) => {
     if (answered) return;
@@ -63,17 +66,16 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
   if (!started) {
     return (
       <div className="h-full flex flex-col items-center justify-center px-6 gap-5 animate-slide-up">
-        <div className="w-16 h-16 rounded-2xl bg-rose-500/12 border border-rose-500/20 flex items-center justify-center animate-pop-in">
-          <Zap className="w-8 h-8 text-rose-400" strokeWidth={1.75} />
+        <div className="w-16 h-16 rounded-2xl bg-teal-500/12 border border-teal-500/20 flex items-center justify-center animate-pop-in">
+          <Zap className="w-8 h-8 text-teal-400" strokeWidth={1.75} />
         </div>
         <div className="text-center">
-          <h2 className="text-white text-lg font-bold mb-1">Hindi Quiz</h2>
+          <h2 className="text-white text-lg font-bold mb-1">Mock Quiz</h2>
           <p className="text-zinc-500 text-sm leading-relaxed">
-            {chapterLabel} — {questions.length} प्रश्न
+            {questions.length} questions from {chapterLabel}.
           </p>
-          <p className="text-zinc-600 text-[11px] mt-1">MCQ · कथन-कारण · गद्य आधारित</p>
+          <p className="text-zinc-600 text-[11px] mt-1">MCQs · Assertion-Reason · Case Studies</p>
         </div>
-
         {bestScore > 0 && (
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20">
             <Trophy className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.75} />
@@ -81,8 +83,8 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
           </div>
         )}
         <button
-          onClick={startQuiz}
-          className="px-8 py-3 rounded-xl bg-rose-600 text-white font-bold text-sm press-scale glow-rose shadow-lg shadow-rose-500/20"
+          onClick={start}
+          className="px-8 py-3 rounded-xl bg-teal-600 text-white font-bold text-sm press-scale shadow-lg shadow-teal-500/20"
         >
           Start Quiz
         </button>
@@ -94,21 +96,21 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
     return (
       <div className="flex flex-col items-center justify-center h-full gap-4 px-6 animate-fade-in">
         <div className="text-4xl">📝</div>
-        <p className="text-zinc-400 text-center text-sm">इस पाठ के लिए अभी कोई प्रश्न नहीं।</p>
-        <button onClick={() => setStarted(false)} className="text-rose-400 text-sm font-semibold">वापस जाएँ</button>
+        <p className="text-zinc-400 text-center text-sm">No questions for this chapter yet.</p>
+        <button onClick={() => setStarted(false)} className="text-teal-400 text-sm font-semibold">Go back</button>
       </div>
     );
   }
 
   if (completed) {
     const pct = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
-    const message = pct >= 80 ? 'शानदार! आप बहुत अच्छा कर रहे हैं!' : pct >= 50 ? 'अच्छा प्रयास! कमज़ोर क्षेत्रों की समीक्षा करें।' : 'पढ़ते रहें — आप कर सकते हैं!';
+    const message = pct >= 80 ? 'Outstanding! You really know your stuff!' : pct >= 50 ? 'Good effort! Review the weak areas.' : 'Keep studying — you\'ll get there!';
     const isNewBest = score >= bestScore && score > 0;
     return (
       <div className="h-full flex flex-col items-center justify-center px-6 gap-4 animate-slide-up">
-        <div className="w-16 h-16 rounded-2xl bg-rose-500/12 border border-rose-500/20 flex items-center justify-center animate-celebrate">
+        <div className="w-16 h-16 rounded-2xl bg-teal-500/12 border border-teal-500/20 flex items-center justify-center animate-celebrate">
           {pct >= 80 ? (
-            <Trophy className="w-8 h-8 text-rose-400" strokeWidth={1.75} />
+            <Trophy className="w-8 h-8 text-teal-400" strokeWidth={1.75} />
           ) : pct >= 50 ? (
             <Zap className="w-8 h-8 text-amber-400" strokeWidth={1.75} />
           ) : (
@@ -117,11 +119,11 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
         </div>
         <div className="text-center animate-score-reveal">
           <p className="text-white font-black text-3xl">{score}/{questions.length}</p>
-          <p className="text-zinc-500 text-sm mt-0.5">{pct}% सही</p>
+          <p className="text-zinc-500 text-sm mt-0.5">{pct}% correct</p>
           {isNewBest && (
             <div className="flex items-center justify-center gap-1 mt-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
               <Trophy className="w-3 h-3 text-amber-400" strokeWidth={1.75} />
-              <span className="text-amber-400 text-[11px] font-bold">नया Best Score!</span>
+              <span className="text-amber-400 text-[11px] font-bold">New Best Score!</span>
             </div>
           )}
         </div>
@@ -130,7 +132,7 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
 
         <div className="w-full max-h-32 overflow-y-auto no-scrollbar space-y-1">
           {history.map((h, i) => (
-            <div key={i} className={`flex items-center gap-2 text-[11px] px-2 py-1 rounded-lg animate-fade-in stagger-${Math.min(i + 1, 7)} ${h.correct ? 'text-emerald-400' : 'text-rose-400'}`}>
+            <div key={i} className={`flex items-center gap-2 text-[11px] px-2 py-1 rounded-lg animate-fade-in stagger-${Math.min(i + 1, 7)} ${h.correct ? 'text-teal-400' : 'text-rose-400'}`}>
               <span className="w-4 text-center">{h.correct ? '✓' : '✗'}</span>
               <span className="text-zinc-500">Q{i + 1}</span>
             </div>
@@ -139,26 +141,26 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
 
         <div className="flex gap-3">
           <button
-            onClick={startQuiz}
+            onClick={start}
             className="px-6 py-2.5 rounded-xl bg-zinc-800 text-zinc-300 font-semibold text-sm press-scale"
           >
-            फिर से कोशिश करें
+            Try Again
           </button>
           <button
             onClick={() => setStarted(false)}
-            className="px-6 py-2.5 rounded-xl bg-rose-600 text-white font-semibold text-sm press-scale glow-rose"
+            className="px-6 py-2.5 rounded-xl bg-teal-600 text-white font-semibold text-sm press-scale"
           >
-            समाप्त
+            Done
           </button>
         </div>
       </div>
     );
   }
 
-  const typeLabel = q.type === 'assertion-reason' ? 'कथन-कारण' : q.type === 'passage' ? 'गद्य' : 'MCQ';
+  const typeLabel = q.type === 'assertion-reason' ? 'A-R' : q.type === 'case-study' ? 'Case' : 'MCQ';
   const typeColor = q.type === 'assertion-reason' ? 'bg-amber-500/15 text-amber-300 border-amber-500/20'
-    : q.type === 'passage' ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/20'
-    : 'bg-rose-500/15 text-rose-300 border-rose-500/20';
+    : q.type === 'case-study' ? 'bg-cyan-500/15 text-cyan-300 border-cyan-500/20'
+    : 'bg-teal-500/15 text-teal-300 border-teal-500/20';
 
   return (
     <div className={`flex flex-col h-full px-4 pt-2 pb-3 gap-2.5 ${feedbackFlash === 'correct' ? 'animate-correct-flash' : feedbackFlash === 'incorrect' ? 'animate-incorrect-flash' : ''}`}>
@@ -171,34 +173,34 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
           {streak >= 3 && (
             <span className="text-amber-400 text-[10px] font-bold animate-streak-pulse">🔥 {streak}</span>
           )}
-          <button onClick={() => setStarted(false)} className="text-zinc-600 text-[10px] font-semibold">बाहर</button>
+          <button onClick={() => setStarted(false)} className="text-zinc-600 text-[10px] font-semibold">Exit</button>
         </div>
       </div>
 
       <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden shrink-0">
         <div
-          className="h-full bg-gradient-to-r from-rose-500 to-pink-500 rounded-full transition-all duration-500"
+          className="h-full bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full transition-all duration-500"
           style={{ width: `${((currentIndex + 1) / questions.length) * 100}%` }}
         />
       </div>
 
       <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar" key={currentIndex}>
         <div className="animate-fade-in">
-          {q.passage && q.type === 'passage' && (
+          {q.passage && q.type === 'case-study' && (
             <div className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/30 mb-3">
-              <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wide mb-1">गद्य प्रश्न</p>
-              <p className="text-[13px] text-zinc-300 leading-relaxed whitespace-pre-line">{q.passage}</p>
+              <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wide mb-1">Case Study</p>
+              <p className="text-[13px] text-zinc-300 leading-relaxed">{q.passage}</p>
             </div>
           )}
 
-          {q.type === 'assertion-reason' && q.passage && (
+          {q.type === 'assertion-reason' && (
             <div className="p-3 rounded-xl bg-zinc-900/60 border border-zinc-800/30 mb-3">
-              <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wide mb-1">कथन और कारण</p>
-              <p className="text-[13px] text-zinc-300 leading-relaxed whitespace-pre-line">{q.passage}</p>
+              <p className="text-[10px] font-semibold text-zinc-500 uppercase tracking-wide mb-1">Assertion & Reason</p>
+              <p className="text-[13px] text-zinc-300 leading-relaxed whitespace-pre-line">{q.question}</p>
             </div>
           )}
 
-          {q.question && (
+          {q.type !== 'assertion-reason' && q.question && (
             <p className="text-white text-[15px] font-semibold leading-snug mb-3">{q.question}</p>
           )}
 
@@ -210,11 +212,11 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
 
               let style = 'bg-zinc-900/50 border border-zinc-800/30 text-zinc-300';
               if (showResult) {
-                if (isCorrect) style = 'bg-emerald-500/10 border border-emerald-500/25 text-emerald-300';
+                if (isCorrect) style = 'bg-teal-500/10 border border-teal-500/25 text-teal-300';
                 else if (isSelected) style = 'bg-rose-500/10 border border-rose-500/25 text-rose-300';
                 else style = 'bg-zinc-900/30 border border-zinc-800/20 text-zinc-600';
               } else if (isSelected) {
-                style = 'bg-rose-600 border border-rose-500 text-white';
+                style = 'bg-teal-600 border border-teal-500 text-white';
               }
 
               return (
@@ -226,7 +228,7 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
                 >
                   <span className="flex items-center gap-2.5">
                     <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 transition-colors ${
-                      showResult && isCorrect ? 'bg-emerald-500 text-white' :
+                      showResult && isCorrect ? 'bg-teal-500 text-white' :
                       showResult && isSelected ? 'bg-rose-500 text-white' :
                       'bg-zinc-800 text-zinc-500'
                     }`}>
@@ -240,8 +242,8 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
           </div>
 
           {answered && (
-            <div className="mt-3 p-3 rounded-xl bg-rose-500/5 border border-rose-500/15 animate-slide-up">
-              <p className="text-[10px] font-semibold text-rose-400 uppercase tracking-wide mb-1">व्याख्या</p>
+            <div className="mt-3 p-3 rounded-xl bg-teal-500/5 border border-teal-500/15 animate-slide-up">
+              <p className="text-[10px] font-semibold text-teal-400 uppercase tracking-wide mb-1">Explanation</p>
               <p className="text-[12px] text-zinc-400 leading-relaxed">{q.rationale}</p>
             </div>
           )}
@@ -251,9 +253,9 @@ export function HindiQuiz({ chapterRange }: { chapterRange: [number, number] }) 
       {answered && (
         <button
           onClick={next}
-          className="w-full py-3 rounded-xl bg-rose-600 text-white font-bold text-sm active:scale-95 transition-all shadow-lg shadow-rose-500/20 shrink-0 animate-slide-up"
+          className="w-full py-3 rounded-xl bg-teal-600 text-white font-bold text-sm active:scale-95 transition-all shadow-lg shadow-teal-500/20 shrink-0 animate-slide-up"
         >
-          {currentIndex < questions.length - 1 ? 'अगला →' : 'परिणाम देखें'}
+          {currentIndex < questions.length - 1 ? 'Next →' : 'See Results'}
         </button>
       )}
     </div>

@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { flashcards } from '../../data/psych/flashcards';
 import { ProgressRing } from '../ProgressRing';
+import { Zap, BookOpen, FileText, FileDown, ArrowRight, Sparkles } from 'lucide-react';
 
 interface Props {
   onNavigate: (tab: string) => void;
@@ -19,14 +20,14 @@ const CHAPTERS = [
   { num: 7, name: "Social Influence", marks: 6, emoji: "👥", color: "lime" },
 ];
 
-const colorClasses: Record<string, { bar: string; pill: string; bg: string }> = {
-  indigo: { bar: 'from-indigo-500 to-indigo-600', pill: 'bg-indigo-500/15 text-indigo-300', bg: 'bg-indigo-500/5' },
-  rose: { bar: 'from-rose-500 to-rose-600', pill: 'bg-rose-500/15 text-rose-300', bg: 'bg-rose-500/5' },
-  emerald: { bar: 'from-emerald-500 to-emerald-600', pill: 'bg-emerald-500/15 text-emerald-300', bg: 'bg-emerald-500/5' },
-  amber: { bar: 'from-amber-500 to-amber-600', pill: 'bg-amber-500/15 text-amber-300', bg: 'bg-amber-500/5' },
-  cyan: { bar: 'from-cyan-500 to-cyan-600', pill: 'bg-cyan-500/15 text-cyan-300', bg: 'bg-cyan-500/5' },
-  fuchsia: { bar: 'from-fuchsia-500 to-fuchsia-600', pill: 'bg-fuchsia-500/15 text-fuchsia-300', bg: 'bg-fuchsia-500/5' },
-  lime: { bar: 'from-lime-500 to-lime-600', pill: 'bg-lime-500/15 text-lime-300', bg: 'bg-lime-500/5' },
+const colorClasses: Record<string, { bar: string; pill: string; bg: string; border: string }> = {
+  indigo: { bar: 'from-indigo-500 to-indigo-600', pill: 'bg-indigo-500/15 text-indigo-300', bg: 'bg-indigo-500/5', border: 'border-indigo-500/20' },
+  rose: { bar: 'from-rose-500 to-rose-600', pill: 'bg-rose-500/15 text-rose-300', bg: 'bg-rose-500/5', border: 'border-rose-500/20' },
+  emerald: { bar: 'from-emerald-500 to-emerald-600', pill: 'bg-emerald-500/15 text-emerald-300', bg: 'bg-emerald-500/5', border: 'border-emerald-500/20' },
+  amber: { bar: 'from-amber-500 to-amber-600', pill: 'bg-amber-500/15 text-amber-300', bg: 'bg-amber-500/5', border: 'border-amber-500/20' },
+  cyan: { bar: 'from-cyan-500 to-cyan-600', pill: 'bg-cyan-500/15 text-cyan-300', bg: 'bg-cyan-500/5', border: 'border-cyan-500/20' },
+  fuchsia: { bar: 'from-fuchsia-500 to-fuchsia-600', pill: 'bg-fuchsia-500/15 text-fuchsia-300', bg: 'bg-fuchsia-500/5', border: 'border-fuchsia-500/20' },
+  lime: { bar: 'from-lime-500 to-lime-600', pill: 'bg-lime-500/15 text-lime-300', bg: 'bg-lime-500/5', border: 'border-lime-500/20' },
 };
 
 export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
@@ -79,28 +80,26 @@ export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
       {/* Primary CTA */}
       <button
         onClick={() => onNavigate(nextAction.tab)}
-        className="w-full p-4 rounded-2xl glass-card border border-zinc-700/30 text-left press-lift group animate-slide-up stagger-1"
+        className="w-full p-4 rounded-2xl card-primary text-left press-lift group animate-slide-up stagger-1"
       >
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center shrink-0 group-active:bg-indigo-500/25 transition-colors text-lg">
-            {nextAction.emoji}
+          <div className="w-11 h-11 rounded-xl bg-indigo-500/12 border border-indigo-500/20 flex items-center justify-center shrink-0 group-active:bg-indigo-500/20 transition-colors">
+            <Sparkles className="w-5 h-5 text-indigo-400" strokeWidth={1.75} />
           </div>
           <div className="flex-1">
             <p className="text-white font-bold text-sm">{nextAction.text}</p>
             <p className="text-zinc-500 text-[11px] mt-0.5">{nextAction.sub}</p>
           </div>
-          <svg className="w-5 h-5 text-zinc-600 group-hover:text-zinc-400 transition-all duration-300 group-hover:translate-x-1 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
+          <ArrowRight className="w-4 h-4 text-zinc-600 group-active:text-zinc-400 transition-colors shrink-0" strokeWidth={2} />
         </div>
       </button>
 
       {/* Quick Actions */}
       <div className="grid grid-cols-2 gap-2.5 animate-slide-up stagger-2">
-        <QuickCard emoji="📝" label="Mock Quiz" sub="35 questions" color="rose" onClick={() => onNavigate('quiz')} />
-        <QuickCard emoji="📖" label="Key Terms" sub="40+ definitions" color="emerald" onClick={() => onNavigate('glossary')} />
-        <QuickCard emoji="📋" label="Chapter Notes" sub="Quick revision" color="violet" onClick={() => onNavigate('notes')} />
-        <QuickCard emoji="📄" label="PDF Reference" sub="All 4 PDFs" color="amber" onClick={onOpenPdf} />
+        <QuickCard icon={<Zap className="w-5 h-5 text-rose-400" strokeWidth={1.75} />} label="Mock Quiz" sub="35 questions" bg="bg-rose-500/[0.06] border-rose-500/12" onClick={() => onNavigate('quiz')} />
+        <QuickCard icon={<BookOpen className="w-5 h-5 text-emerald-400" strokeWidth={1.75} />} label="Key Terms" sub="40+ definitions" bg="bg-emerald-500/[0.06] border-emerald-500/12" onClick={() => onNavigate('glossary')} />
+        <QuickCard icon={<FileText className="w-5 h-5 text-violet-400" strokeWidth={1.75} />} label="Chapter Notes" sub="Quick revision" bg="bg-violet-500/[0.06] border-violet-500/12" onClick={() => onNavigate('notes')} />
+        <QuickCard icon={<FileDown className="w-5 h-5 text-amber-400" strokeWidth={1.75} />} label="PDF Reference" sub="All 4 PDFs" bg="bg-amber-500/[0.06] border-amber-500/12" onClick={onOpenPdf} />
       </div>
 
       {/* Exam Blueprint */}
@@ -124,22 +123,40 @@ export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
               const pct = (ch.marks / 70) * 100;
               const cardCount = flashcards.filter(c => c.chapter === ch.num).length;
               const cc = colorClasses[ch.color];
+              const chapterMastered = flashcards.filter(c => c.chapter === ch.num).filter(c => mastered[c.id] === 'mastered').length;
+              const chapterTotal = cardCount;
+              const isComplete = chapterMastered === chapterTotal && chapterTotal > 0;
+              const incompletePct = chapterTotal > 0 ? Math.round((chapterMastered / chapterTotal) * 100) : 0;
               return (
                 <button
                   key={ch.num}
                   onClick={() => onSelectChapter(ch.num)}
-                  className={`w-full flex items-center gap-2.5 p-2.5 rounded-xl ${cc.bg} border border-zinc-800/20 press-scale transition-all`}
+                  className={`w-full flex items-center gap-2.5 p-2.5 rounded-xl border press-scale transition-all ${
+                    !isComplete && chapterTotal > 0
+                      ? `${cc.bg} border-l-2 ${cc.border || 'border-zinc-800/20'}`
+                      : `bg-zinc-800/[0.15] border border-zinc-800/15`
+                  }`}
                   style={{ animationDelay: `${i * 0.04}s` }}
                 >
-                  <span className="text-sm shrink-0">{ch.emoji}</span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <span className="text-zinc-300 text-[11px] font-semibold truncate">{ch.name}</span>
-                      <span className={`pill text-[9px] ${cc.pill} shrink-0 ml-1`}>{ch.marks}M</span>
+                      <span className={`text-[11px] font-semibold truncate ${!isComplete && chapterTotal > 0 ? 'text-zinc-200' : 'text-zinc-400'}`}>{ch.name}</span>
+                      <div className="flex items-center gap-1.5 shrink-0 ml-1">
+                        {!isComplete && chapterTotal > 0 && (
+                          <span className="text-[9px] text-zinc-500">{chapterMastered}/{chapterTotal}</span>
+                        )}
+                        {isComplete && (
+                          <span className="text-emerald-400 text-[10px]">✓</span>
+                        )}
+                        <span className={`pill text-[9px] ${cc.pill}`}>{ch.marks}M</span>
+                      </div>
                     </div>
                     <div className="flex items-center gap-2 mt-1">
-                      <div className="flex-1 h-1 bg-zinc-800/50 rounded-full overflow-hidden">
-                        <div className={`h-full bg-gradient-to-r ${cc.bar} rounded-full transition-all duration-700`} style={{ width: `${pct}%` }} />
+                      <div className="flex-1 h-1 bg-zinc-800/40 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full rounded-full transition-all duration-700 ${isComplete ? 'bg-emerald-500' : `bg-gradient-to-r ${cc.bar}`}`}
+                          style={{ width: isComplete ? '100%' : `${incompletePct}%` }}
+                        />
                       </div>
                       <span className="text-zinc-600 text-[9px] shrink-0">{cardCount} cards</span>
                     </div>
@@ -167,28 +184,16 @@ export function Dashboard({ onNavigate, onSelectChapter, onOpenPdf }: Props) {
   );
 }
 
-function QuickCard({ emoji, label, sub, color, onClick }: {
-  emoji: string; label: string; sub: string; color: string; onClick: () => void;
+function QuickCard({ icon, label, sub, bg, onClick }: {
+  icon: React.ReactNode; label: string; sub: string; bg: string; onClick: () => void;
 }) {
-  const bgMap: Record<string, string> = {
-    rose: 'bg-rose-500/8 border-rose-500/15 hover:bg-rose-500/12',
-    emerald: 'bg-emerald-500/8 border-emerald-500/15 hover:bg-emerald-500/12',
-    violet: 'bg-violet-500/8 border-violet-500/15 hover:bg-violet-500/12',
-    amber: 'bg-amber-500/8 border-amber-500/15 hover:bg-amber-500/12',
-  };
-  const textMap: Record<string, string> = {
-    rose: 'text-rose-400',
-    emerald: 'text-emerald-400',
-    violet: 'text-violet-400',
-    amber: 'text-amber-400',
-  };
   return (
     <button
       onClick={onClick}
-      className={`p-3.5 rounded-xl ${bgMap[color]} border text-left press-lift transition-all duration-200`}
+      className={`p-3.5 rounded-xl border text-left press-lift transition-all duration-200 ${bg}`}
     >
-      <span className="text-xl">{emoji}</span>
-      <p className={`text-xs font-bold mt-2 ${textMap[color]}`}>{label}</p>
+      <div className="mb-2">{icon}</div>
+      <p className="text-xs font-bold text-zinc-200">{label}</p>
       <p className="text-zinc-600 text-[10px] mt-0.5">{sub}</p>
     </button>
   );

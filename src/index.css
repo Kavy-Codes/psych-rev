@@ -1,53 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* ─── Warm Dark Base ─── */
-  --color-zinc-950: #0f0f14;
-  --color-zinc-900: #1a1a22;
-  --color-zinc-850: #21212b;
-  --color-zinc-800: #2a2a36;
-  --color-zinc-700: #3d3d4e;
-  --color-zinc-600: #55556a;
-  --color-zinc-500: #75758f;
-  --color-zinc-400: #9e9eb8;
-  --color-zinc-300: #c8c8d8;
-  --color-zinc-200: #e2e2ec;
+  /* ─── 60% Canvas: Deep OLED Carbon ─── */
+  --color-zinc-950: #0D0F14;
+  --color-zinc-900: #12141C;
+  --color-zinc-850: #171A24;
+  --color-zinc-800: #1E2230;
+  --color-zinc-700: #2A2F3E;
+  --color-zinc-600: #3D4455;
+  --color-zinc-500: #5A6178;
+  --color-zinc-400: #8890A4;
+  --color-zinc-300: #B8BEC8;
+  --color-zinc-200: #E0E2E8;
 
-  /* ─── Subject: Psychology (Indigo→Violet, warmed) ─── */
-  --color-indigo-500: #7c7ff5;
-  --color-indigo-600: #6366f1;
-  --color-indigo-700: #4f46e5;
-  --color-violet-500: #9d7af7;
-  --color-violet-600: #8b5cf6;
+  /* ─── 10% Accent: Subject Identity (reserved for active states) ─── */
+  --color-indigo-500: #7C7FF5;
+  --color-indigo-600: #6366F1;
+  --color-indigo-700: #4F46E5;
+  --color-violet-500: #9D7AF7;
+  --color-violet-600: #8B5CF6;
+  --color-rose-500: #F76E8A;
+  --color-rose-600: #F43F5E;
+  --color-teal-500: #2DD4BF;
+  --color-teal-600: #0D9488;
+  --color-cyan-500: #22D3EE;
+  --color-cyan-600: #06B6D4;
 
-  /* ─── Subject: Hindi (Rose→Pink, warmed) ─── */
-  --color-rose-500: #f76e8a;
-  --color-rose-600: #f43f5e;
+  /* ─── Semantic: Feedback ─── */
+  --color-correct: #10B981;
+  --color-correct-bg: rgba(16, 185, 129, 0.12);
+  --color-incorrect: #EF4444;
+  --color-incorrect-bg: rgba(239, 68, 68, 0.12);
+  --color-streak: #F59E0B;
 
-  /* ─── Motivation / Energy (Warm Amber) ─── */
-  --color-amber-500: #fbbf24;
-  --color-amber-600: #f59e0b;
+  /* ─── Warm Utility ─── */
+  --color-amber-500: #FBBF24;
+  --color-amber-600: #F59E0B;
+  --color-emerald-500: #34D399;
+  --color-emerald-600: #10B981;
+  --color-fuchsia-500: #E879F9;
+  --color-fuchsia-600: #D946EF;
+  --color-lime-500: #A3E635;
+  --color-lime-600: #84CC16;
 
-  /* ─── Success / Progress (Emerald) ─── */
-  --color-emerald-500: #34d399;
-  --color-emerald-600: #10b981;
+  /* ─── Typography ─── */
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
-  /* ─── Accents ─── */
-  --color-cyan-500: #22d3ee;
-  --color-cyan-600: #06b6d4;
-  --color-fuchsia-500: #e879f9;
-  --color-fuchsia-600: #d946ef;
-  --color-lime-500: #a3e635;
-  --color-lime-600: #84cc16;
-
-  /* ─── Fonts ─── */
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-
-  /* ─── Semantic Tokens ─── */
-  --color-surface: rgba(26, 26, 34, 0.85);
-  --color-surface-hover: rgba(33, 33, 43, 0.9);
-  --color-surface-border: rgba(61, 61, 78, 0.35);
-  --color-warm-glow: rgba(251, 191, 36, 0.12);
+  /* ─── Semantic: Surfaces ─── */
+  --color-surface: rgba(18, 20, 28, 0.88);
+  --color-surface-hover: rgba(23, 26, 36, 0.92);
+  --color-surface-border: rgba(42, 47, 62, 0.5);
+  --color-warm-glow: rgba(251, 191, 36, 0.10);
 }
 
 @layer base {
@@ -71,9 +75,10 @@
     overscroll-behavior: none;
     font-family: var(--font-sans);
     background: var(--color-zinc-950);
-    color: var(--color-zinc-100);
+    color: var(--color-zinc-200);
     -webkit-font-smoothing: antialiased;
     touch-action: manipulation;
+    font-feature-settings: 'liga' 1, 'calt' 1;
   }
 
   #root {
@@ -90,26 +95,47 @@
 }
 
 @layer utilities {
-  /* ─── Glass Effects ─── */
+  /* ─── Glass Effects (structural layers only) ─── */
   .glass {
-    background: rgba(26, 26, 34, 0.82);
+    background: rgba(18, 20, 28, 0.85);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(61, 61, 78, 0.4);
+    border: 1px solid rgba(42, 47, 62, 0.5);
   }
 
   .glass-card {
-    background: rgba(33, 33, 43, 0.6);
+    background: rgba(23, 26, 36, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(61, 61, 78, 0.3);
+    border: 1px solid rgba(42, 47, 62, 0.35);
   }
 
   .glass-warm {
-    background: rgba(30, 26, 20, 0.7);
+    background: rgba(26, 22, 16, 0.65);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(251, 191, 36, 0.12);
+    border: 1px solid rgba(251, 191, 36, 0.10);
+  }
+
+  /* ─── Card Surfaces (content cards — no glassmorphism) ─── */
+  .card-primary {
+    background: rgba(23, 26, 36, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+  }
+
+  .card-primary:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 12px -2px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .card-secondary {
+    background: rgba(18, 20, 28, 0.55);
+    border: 1px solid rgba(42, 47, 62, 0.3);
+    border-radius: 16px;
   }
 
   /* ─── Gradients ─── */
@@ -134,9 +160,16 @@
     background-clip: text;
   }
 
+  .text-gradient-teal {
+    background: linear-gradient(135deg, #2dd4bf, #0d9488, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .bg-warm-gradient {
-    background: radial-gradient(ellipse at 50% 0%, rgba(251, 191, 36, 0.06) 0%, transparent 60%),
-                radial-gradient(ellipse at 80% 100%, rgba(99, 102, 241, 0.04) 0%, transparent 50%),
+    background: radial-gradient(ellipse at 50% 0%, rgba(251, 191, 36, 0.04) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 100%, rgba(99, 102, 241, 0.03) 0%, transparent 50%),
                 var(--color-zinc-950);
   }
 
@@ -148,7 +181,7 @@
   .flip-card { perspective: 1200px; }
 
   .flip-card-inner {
-    transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
     transform-style: preserve-3d;
     position: relative;
     width: 100%;
@@ -163,11 +196,31 @@
     -webkit-backface-visibility: hidden;
     position: absolute;
     inset: 0;
-    border-radius: 1rem;
+    border-radius: 1.25rem;
     overflow: hidden;
   }
 
-  .flip-card-back { transform: rotateY(180deg); }
+  .flip-card-front {
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .flip-card-back {
+    transform: rotateY(180deg);
+    box-shadow: 0 8px 32px -8px rgba(0, 0, 0, 0.5),
+                0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  /* ─── Devanagari Typography ─── */
+  .hindi-text {
+    line-height: 1.65;
+    font-feature-settings: 'liga' 1, 'calt' 1, 'kern' 1;
+  }
+
+  .hindi-text p,
+  .hindi-text span {
+    overflow: visible;
+  }
 
   /* ─── Scrollbar Hide ─── */
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -209,10 +262,13 @@
   }
 
   /* ─── Glow Effects ─── */
-  .glow-amber { box-shadow: 0 0 20px rgba(251, 191, 36, 0.15), 0 0 40px rgba(251, 191, 36, 0.05); }
-  .glow-indigo { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15), 0 0 40px rgba(99, 102, 241, 0.05); }
-  .glow-rose { box-shadow: 0 0 20px rgba(244, 63, 94, 0.15), 0 0 40px rgba(244, 63, 94, 0.05); }
-  .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15), 0 0 40px rgba(16, 185, 129, 0.05); }
+  .glow-amber { box-shadow: 0 0 20px rgba(251, 191, 36, 0.12), 0 0 40px rgba(251, 191, 36, 0.04); }
+  .glow-indigo { box-shadow: 0 0 20px rgba(99, 102, 241, 0.12), 0 0 40px rgba(99, 102, 241, 0.04); }
+  .glow-rose { box-shadow: 0 0 20px rgba(244, 63, 94, 0.12), 0 0 40px rgba(244, 63, 94, 0.04); }
+  .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.12), 0 0 40px rgba(16, 185, 129, 0.04); }
+  .glow-teal { box-shadow: 0 0 20px rgba(13, 148, 136, 0.12), 0 0 40px rgba(13, 148, 136, 0.04); }
+  .glow-correct { box-shadow: 0 0 24px rgba(16, 185, 129, 0.2), 0 0 48px rgba(16, 185, 129, 0.06); }
+  .glow-incorrect { box-shadow: 0 0 24px rgba(239, 68, 68, 0.2), 0 0 48px rgba(239, 68, 68, 0.06); }
 
   /* ═══════════════════════════════════════════════════════════════════════
      ANIMATIONS
@@ -317,6 +373,29 @@
     50% { opacity: 0.7; transform: scale(1.05); }
   }
 
+  @keyframes correctFlash {
+    0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  @keyframes incorrectFlash {
+    0% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(239, 68, 68, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+  }
+
+  @keyframes streakPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.08); opacity: 0.9; }
+  }
+
+  @keyframes scoreReveal {
+    0% { opacity: 0; transform: scale(0.8) translateY(8px); }
+    60% { transform: scale(1.05) translateY(-2px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
   @keyframes slideInFromBottom {
     from { opacity: 0; transform: translateY(100%); }
     to { opacity: 1; transform: translateY(0); }
@@ -352,6 +431,10 @@
   .animate-streak-fire { animation: streakFire 1.5s ease-in-out infinite; }
   .animate-breathe { animation: breathe 3s ease-in-out infinite; }
   .animate-slide-up-bottom { animation: slideInFromBottom 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .animate-correct-flash { animation: correctFlash 0.5s ease-out; }
+  .animate-incorrect-flash { animation: incorrectFlash 0.5s ease-out; }
+  .animate-streak-pulse { animation: streakPulse 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+  .animate-score-reveal { animation: scoreReveal 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
 
   .card-slide-left { animation: cardSlideLeft 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
   .card-slide-right { animation: cardSlideRight 0.4s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -371,13 +454,24 @@
   .stagger-5 { animation-delay: 0.20s; animation-fill-mode: both; }
   .stagger-6 { animation-delay: 0.24s; animation-fill-mode: both; }
   .stagger-7 { animation-delay: 0.28s; animation-fill-mode: both; }
+  .stagger-8 { animation-delay: 0.32s; animation-fill-mode: both; }
+  .stagger-9 { animation-delay: 0.36s; animation-fill-mode: both; }
+  .stagger-10 { animation-delay: 0.40s; animation-fill-mode: both; }
 }
 
 /* ─── Mobile Overrides ─── */
 @media (max-width: 380px) {
   .flip-card-front,
   .flip-card-back {
-    border-radius: 0.75rem;
+    border-radius: 0.875rem;
+  }
+}
+
+/* ─── Devanagari Mobile ─── */
+@media (max-width: 480px) {
+  .hindi-text {
+    line-height: 1.7;
+    font-size: 15px;
   }
 }
 

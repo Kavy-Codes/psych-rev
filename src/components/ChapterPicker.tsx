@@ -9,6 +9,22 @@ const PSYCH_CHAPTERS = [
   { num: 7, name: 'Ch7: Social Influence and Group Processes' },
 ];
 
+const SOCIO_CHAPTERS = [
+  { num: 0, name: 'All Chapters' },
+  { num: 1, name: 'Ch1: Introducing Indian Society' },
+  { num: 2, name: 'Ch2: Demographic Structure' },
+  { num: 3, name: 'Ch3: Social Institutions' },
+  { num: 4, name: 'Ch4: Market as Social Institution' },
+  { num: 5, name: 'Ch5: Structural Change' },
+  { num: 6, name: 'Ch6: Cultural Change' },
+  { num: 7, name: 'Ch7: Constitution & Social Change' },
+  { num: 8, name: 'Ch8: Rural Society' },
+  { num: 9, name: 'Ch9: Industrial Society' },
+  { num: 10, name: 'Ch10: Globalisation' },
+  { num: 11, name: 'Ch11: Mass Media' },
+  { num: 12, name: 'Ch12: Social Movements' },
+];
+
 const HINDI_SECTIONS = [
   { label: 'अंतरा — काव्य खंड', emoji: '📝', from: 1, to: 11 },
   { label: 'अंतरा — गद्य खंड', emoji: '📄', from: 12, to: 21 },
@@ -50,9 +66,36 @@ interface SingleProps {
   onSelect: (n: number) => void;
   onAll: () => void;
   isHindi: boolean;
+  isSocio?: boolean;
 }
 
-export function ChapterPickerSingle({ selected, onSelect, onAll, isHindi }: SingleProps) {
+export function ChapterPickerSingle({ selected, onSelect, onAll, isHindi, isSocio }: SingleProps) {
+  if (isSocio) {
+    return (
+      <div className="space-y-3">
+        <button
+          onClick={onAll}
+          className={`w-full p-2.5 rounded-xl text-xs font-semibold text-left transition-all duration-150 ${
+            selected === 0 ? 'bg-teal-600 text-white shadow-lg' : 'bg-zinc-800/60 text-zinc-400 active:bg-zinc-700/60'
+          }`}
+        >
+          {SOCIO_CHAPTERS[0].name}
+        </button>
+        <div className="grid grid-cols-4 gap-1">
+          {SOCIO_CHAPTERS.slice(1).map(c => (
+            <button key={c.num} onClick={() => onSelect(c.num)}
+              className={`py-1.5 rounded-lg text-[10px] font-semibold transition-all ${
+                selected === c.num ? 'bg-teal-600 text-white' : 'bg-zinc-800/50 text-zinc-400 active:bg-zinc-700/50'
+              }`}
+            >
+              {c.num}
+            </button>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   if (!isHindi) {
     return (
       <div className="space-y-3">
@@ -128,9 +171,57 @@ interface RangeProps {
   onToChange: (n: number) => void;
   onAll: () => void;
   isHindi: boolean;
+  isSocio?: boolean;
 }
 
-export function ChapterPickerRange({ from, to, onFromChange, onToChange, onAll, isHindi }: RangeProps) {
+export function ChapterPickerRange({ from, to, onFromChange, onToChange, onAll, isHindi, isSocio }: RangeProps) {
+  if (isSocio) {
+    return (
+      <div className="space-y-3">
+        <button onClick={onAll}
+          className={`w-full p-2.5 rounded-xl text-xs font-semibold text-left transition-all duration-150 ${
+            from === 0 ? 'bg-teal-600 text-white shadow-lg' : 'bg-zinc-800/60 text-zinc-400 active:bg-zinc-700/60'
+          }`}
+        >
+          {SOCIO_CHAPTERS[0].name}
+        </button>
+        <div className="flex gap-2">
+          <div className="flex-1">
+            <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1">From</p>
+            <div className="grid grid-cols-4 gap-1">
+              {SOCIO_CHAPTERS.slice(1).map(c => (
+                <button key={c.num} onClick={() => {
+                  if (from === 0) { onFromChange(c.num); onToChange(c.num); }
+                  else if (from === to) { onFromChange(c.num); if (c.num > to) onToChange(c.num); }
+                  else { onFromChange(c.num); if (c.num > to) onToChange(c.num); }
+                }}
+                  className={`py-1.5 rounded-lg text-[10px] font-semibold transition-all ${
+                    from === c.num && from !== 0 ? 'bg-teal-600 text-white' : 'bg-zinc-800/50 text-zinc-400 active:bg-zinc-700/50'
+                  }`}
+                >{c.num}</button>
+              ))}
+            </div>
+          </div>
+          <div className="flex-1">
+            <p className="text-zinc-500 text-[10px] font-semibold uppercase tracking-wider mb-1">To</p>
+            <div className="grid grid-cols-4 gap-1">
+              {SOCIO_CHAPTERS.slice(1).map(c => (
+                <button key={c.num} onClick={() => {
+                  if (from === 0) { onFromChange(c.num); onToChange(c.num); }
+                  else { onToChange(c.num); if (c.num < from) onFromChange(c.num); }
+                }}
+                  className={`py-1.5 rounded-lg text-[10px] font-semibold transition-all ${
+                    to === c.num && from !== 0 ? 'bg-cyan-600 text-white' : 'bg-zinc-800/50 text-zinc-400 active:bg-zinc-700/50'
+                  }`}
+                >{c.num}</button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   if (!isHindi) {
     return (
       <div className="space-y-3">

@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { quizQuestions, type QuizQuestion } from '../../data/psych/quiz';
 import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { Zap, Trophy, ArrowRight, RotateCcw } from 'lucide-react';
 
 interface Props {
   chapterRange: [number, number];
@@ -15,6 +16,8 @@ export function Quiz({ chapterRange }: Props) {
   const [score, setScore] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [history, setHistory] = useState<{ qId: string; correct: boolean }[]>([]);
+  const [streak, setStreak] = useState(0);
+  const [feedbackFlash, setFeedbackFlash] = useState<'correct' | 'incorrect' | null>(null);
   const [startCh, endCh] = chapterRange;
 
   const questions = useMemo(() =>
@@ -30,15 +33,23 @@ export function Quiz({ chapterRange }: Props) {
     return `chapters ${startCh}–${endCh}`;
   }, [startCh, endCh]);
 
-  const start = () => { setStarted(true); setCompleted(false); setCurrentIndex(0); setScore(0); setHistory([]); setSelected(null); setAnswered(false); };
+  const start = () => { setStarted(true); setCompleted(false); setCurrentIndex(0); setScore(0); setHistory([]); setSelected(null); setAnswered(false); setStreak(0); setFeedbackFlash(null); };
 
   const handleAnswer = useCallback((idx: number) => {
     if (answered) return;
     setSelected(idx);
     setAnswered(true);
     const correct = idx === q.correct;
-    if (correct) setScore(s => s + 1);
+    if (correct) {
+      setScore(s => s + 1);
+      setStreak(s => s + 1);
+      setFeedbackFlash('correct');
+    } else {
+      setStreak(0);
+      setFeedbackFlash('incorrect');
+    }
     setHistory(h => [...h, { qId: q.id, correct }]);
+    setTimeout(() => setFeedbackFlash(null), 500);
   }, [answered, q]);
 
   const next = useCallback(() => {
@@ -55,7 +66,9 @@ export function Quiz({ chapterRange }: Props) {
   if (!started) {
     return (
       <div className="h-full flex flex-col items-center justify-center px-6 gap-5 animate-slide-up">
-        <div className="text-6xl animate-pop-in">⚡</div>
+        <div className="w-16 h-16 rounded-2xl bg-indigo-500/12 border border-indigo-500/20 flex items-center justify-center animate-pop-in">
+          <Zap className="w-8 h-8 text-indigo-400" strokeWidth={1.75} />
+        </div>
         <div className="text-center">
           <h2 className="text-white text-lg font-bold mb-1">Mock Quiz</h2>
           <p className="text-zinc-500 text-sm leading-relaxed">
@@ -65,7 +78,7 @@ export function Quiz({ chapterRange }: Props) {
         </div>
         {bestScore > 0 && (
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20">
-            <span className="text-sm">🏆</span>
+            <Trophy className="w-3.5 h-3.5 text-amber-400" strokeWidth={1.75} />
             <span className="text-amber-400 text-xs font-bold">Best: {bestScore}/{questions.length}</span>
           </div>
         )}
@@ -91,18 +104,25 @@ export function Quiz({ chapterRange }: Props) {
 
   if (completed) {
     const pct = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0;
-    const emoji = pct >= 80 ? '🎉' : pct >= 50 ? '👍' : '📚';
     const message = pct >= 80 ? 'Outstanding! You really know your stuff!' : pct >= 50 ? 'Good effort! Review the weak areas.' : 'Keep studying — you\'ll get there!';
     const isNewBest = score >= bestScore && score > 0;
     return (
       <div className="h-full flex flex-col items-center justify-center px-6 gap-4 animate-slide-up">
-        <div className="text-6xl animate-celebrate">{emoji}</div>
-        <div className="text-center">
+        <div className="w-16 h-16 rounded-2xl bg-emerald-500/12 border border-emerald-500/20 flex items-center justify-center animate-celebrate">
+          {pct >= 80 ? (
+            <Trophy className="w-8 h-8 text-emerald-400" strokeWidth={1.75} />
+          ) : pct >= 50 ? (
+            <Zap className="w-8 h-8 text-amber-400" strokeWidth={1.75} />
+          ) : (
+            <RotateCcw className="w-8 h-8 text-zinc-400" strokeWidth={1.75} />
+          )}
+        </div>
+        <div className="text-center animate-score-reveal">
           <p className="text-white font-black text-3xl">{score}/{questions.length}</p>
           <p className="text-zinc-500 text-sm mt-0.5">{pct}% correct</p>
           {isNewBest && (
             <div className="flex items-center justify-center gap-1 mt-2 px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20">
-              <span className="text-xs">🏆</span>
+              <Trophy className="w-3 h-3 text-amber-400" strokeWidth={1.75} />
               <span className="text-amber-400 text-[11px] font-bold">New Best Score!</span>
             </div>
           )}
@@ -143,13 +163,18 @@ export function Quiz({ chapterRange }: Props) {
     : 'bg-indigo-500/15 text-indigo-300 border-indigo-500/20';
 
   return (
-    <div className="flex flex-col h-full px-4 pt-2 pb-3 gap-2.5">
+    <div className={`flex flex-col h-full px-4 pt-2 pb-3 gap-2.5 ${feedbackFlash === 'correct' ? 'animate-correct-flash' : feedbackFlash === 'incorrect' ? 'animate-incorrect-flash' : ''}`}>
       <div className="flex items-center justify-between shrink-0">
         <div className="flex items-center gap-2">
           <span className="text-zinc-500 text-xs font-mono">{currentIndex + 1}/{questions.length}</span>
           <span className={`pill border text-[9px] ${typeColor}`}>{typeLabel}</span>
         </div>
-        <button onClick={() => setStarted(false)} className="text-zinc-600 text-[10px] font-semibold">Exit</button>
+        <div className="flex items-center gap-2">
+          {streak >= 3 && (
+            <span className="text-amber-400 text-[10px] font-bold animate-streak-pulse">🔥 {streak}</span>
+          )}
+          <button onClick={() => setStarted(false)} className="text-zinc-600 text-[10px] font-semibold">Exit</button>
+        </div>
       </div>
 
       <div className="w-full h-1 bg-zinc-800 rounded-full overflow-hidden shrink-0">

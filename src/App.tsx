@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useRef, type ReactNode } from 'react';
+import { Home, Layers, FileText, Zap, BookOpen, Puzzle, Map, GitCompare, PenTool, BookMarked, ArrowLeft, ChevronDown, Library } from 'lucide-react';
 import { SubjectSelector } from './components/SubjectSelector';
 import { Dashboard as PsychDashboard } from './components/psych/Dashboard';
 import { Flashcards as PsychFlashcards } from './components/psych/Flashcards';
@@ -18,11 +19,18 @@ import { HindiWriting } from './components/hindi/Writing';
 import { HindiChapterNotes } from './components/hindi/ChapterNotes';
 import { HindiRevisionNotes } from './components/hindi/RevisionNotes';
 import { HindiBooks } from './components/hindi/Books';
+import { SocioDashboard } from './components/socio/Dashboard';
+import { SocioFlashcards } from './components/socio/Flashcards';
+import { SocioQuiz } from './components/socio/Quiz';
+import { SocioGlossary } from './components/socio/Glossary';
+import { SocioMindMaps } from './components/socio/MindMaps';
+import { SocioRevisionNotes } from './components/socio/RevisionNotes';
 import { InstallBanner } from './components/InstallBanner';
+import { OfflineBanner } from './components/OfflineBanner';
 import { ChapterPickerSingle, ChapterPickerRange } from './components/ChapterPicker';
 import { MotivationalBanner } from './components/MotivationalBanner';
 
-type Subject = 'psych' | 'hindi' | null;
+type Subject = 'psych' | 'hindi' | 'socio' | null;
 type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing' | 'revisions' | 'books';
 
 const PSYCH_TIPS = [
@@ -45,6 +53,17 @@ const HINDI_TIPS = [
   'Vasant Āyā — Raghuvir Sahay\'s nature',
   'Bharat-Rām — Tulsidas, brotherhood',
   'Barahmāsā — Jayasi, folk tradition',
+];
+
+const SOCIO_TIPS = [
+  'Sanskritisation = positional, NOT structural change',
+  'Malthus: geometric population vs arithmetic food',
+  'Invisible hand — Adam Smith',
+  'Article 17: untouchability abolished',
+  'Green Revolution → differentiation',
+  'Bombay Mill Strike 1982 — Datta Samant',
+  'Resource Mobilisation — McCarthy & Zald',
+  'Demographic dividend = temp benefit',
 ];
 
 const PSYCH_CHAPTERS = [
@@ -90,33 +109,58 @@ const HINDI_CHAPTERS = [
   { num: 25, name: 'A4: अपना मालवा' },
 ];
 
+const SOCIO_CHAPTERS = [
+  { num: 0, name: 'All Chapters' },
+  { num: 1, name: 'Ch1: Introducing Indian Society' },
+  { num: 2, name: 'Ch2: Demographic Structure' },
+  { num: 3, name: 'Ch3: Social Institutions' },
+  { num: 4, name: 'Ch4: Market as Social Institution' },
+  { num: 5, name: 'Ch5: Structural Change' },
+  { num: 6, name: 'Ch6: Cultural Change' },
+  { num: 7, name: 'Ch7: Constitution & Social Change' },
+  { num: 8, name: 'Ch8: Rural Society' },
+  { num: 9, name: 'Ch9: Industrial Society' },
+  { num: 10, name: 'Ch10: Globalisation' },
+  { num: 11, name: 'Ch11: Mass Media' },
+  { num: 12, name: 'Ch12: Social Movements' },
+];
+
 const PSYCH_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
-  { id: 'home', label: 'Home', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
-  { id: 'cards', label: 'Cards', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25-9.75 5.25-9.75-5.25 4.179-2.25" /></svg> },
-  { id: 'notes', label: 'Notes', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
-  { id: 'quiz', label: 'Quiz', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg> },
-  { id: 'glossary', label: 'Terms', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
-  { id: 'matcher', label: 'Match', icon: <span className="text-lg leading-none">🧩</span> },
-  { id: 'maps', label: 'Maps', icon: <span className="text-lg leading-none">🗺️</span> },
-  { id: 'distinctions', label: 'Compare', icon: <span className="text-lg leading-none">⚖️</span> },
+  { id: 'home', label: 'Home', icon: <Home className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'cards', label: 'Cards', icon: <Layers className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'notes', label: 'Notes', icon: <FileText className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'quiz', label: 'Quiz', icon: <Zap className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'glossary', label: 'Terms', icon: <BookOpen className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'matcher', label: 'Match', icon: <Puzzle className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'maps', label: 'Maps', icon: <Map className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'distinctions', label: 'Compare', icon: <GitCompare className="w-5 h-5" strokeWidth={1.75} /> },
 ];
 
 const HINDI_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
-  { id: 'revisions', label: 'Start', icon: <span className="text-lg leading-none">📚</span> },
-  { id: 'home', label: 'Home', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" /></svg> },
-  { id: 'books', label: 'Books', icon: <span className="text-lg leading-none">📖</span> },
-  { id: 'cards', label: 'Cards', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M6.429 9.75L2.25 12l4.179 2.25m0-4.5l5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L12 12.75 6.429 9.75m11.142 0l4.179 2.25-9.75 5.25-9.75-5.25 4.179-2.25" /></svg> },
-  { id: 'notes', label: 'Notes', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
-  { id: 'quiz', label: 'Quiz', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" /></svg> },
-  { id: 'glossary', label: 'Terms', icon: <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25v14.25m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25" /></svg> },
-  { id: 'maps', label: 'Maps', icon: <span className="text-lg leading-none">🗺️</span> },
-  { id: 'writing', label: 'Writing', icon: <span className="text-lg leading-none">✍️</span> },
+  { id: 'revisions', label: 'Start', icon: <BookMarked className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'home', label: 'Home', icon: <Home className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'books', label: 'Books', icon: <Library className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'cards', label: 'Cards', icon: <Layers className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'notes', label: 'Notes', icon: <FileText className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'quiz', label: 'Quiz', icon: <Zap className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'glossary', label: 'Terms', icon: <BookOpen className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'maps', label: 'Maps', icon: <Map className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'writing', label: 'Writing', icon: <PenTool className="w-5 h-5" strokeWidth={1.75} /> },
+];
+
+const SOCIO_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
+  { id: 'revisions', label: 'Start', icon: <BookMarked className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'home', label: 'Home', icon: <Home className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'cards', label: 'Cards', icon: <Layers className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'quiz', label: 'Quiz', icon: <Zap className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'glossary', label: 'Terms', icon: <BookOpen className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'maps', label: 'Maps', icon: <Map className="w-5 h-5" strokeWidth={1.75} /> },
 ];
 
 export default function App() {
   const [subject, setSubject] = useState<Subject>(() => {
     const saved = localStorage.getItem('studyrev-subject');
-    return (saved === 'psych' || saved === 'hindi') ? saved : null;
+    return (saved === 'psych' || saved === 'hindi' || saved === 'socio') ? saved : null;
   });
   const [activeTab, setActiveTab] = useState<Tab>('home');
   const [chapterFilter, setChapterFilter] = useState(0);
@@ -127,7 +171,7 @@ export default function App() {
   const [tipIndex, setTipIndex] = useState(0);
   const [contentKey, setContentKey] = useState(0);
 
-  const tips = subject === 'hindi' ? HINDI_TIPS : PSYCH_TIPS;
+  const tips = subject === 'hindi' ? HINDI_TIPS : subject === 'socio' ? SOCIO_TIPS : PSYCH_TIPS;
 
   useEffect(() => {
     const interval = setInterval(() => setTipIndex(i => (i + 1) % tips.length), 8000);
@@ -149,7 +193,7 @@ export default function App() {
     }
   }, [activeTab]);
 
-  const chapters = subject === 'hindi' ? HINDI_CHAPTERS : PSYCH_CHAPTERS;
+  const chapters = subject === 'hindi' ? HINDI_CHAPTERS : subject === 'socio' ? SOCIO_CHAPTERS : PSYCH_CHAPTERS;
 
   const isRangeTab = activeTab === 'cards' || activeTab === 'quiz';
 
@@ -165,11 +209,14 @@ export default function App() {
 
   const isPsych = subject === 'psych';
   const isHindi = subject === 'hindi';
+  const isSocio = subject === 'socio';
   const noChapterFilterTabs: Tab[] = isHindi
     ? ['home', 'books', 'writing', 'glossary']
+    : isSocio
+    ? ['home', 'glossary']
     : ['home', 'distinctions', 'maps', 'notes'];
   const showChapterFilter = subject !== null && !noChapterFilterTabs.includes(activeTab);
-  const nav = isHindi ? HINDI_NAV : PSYCH_NAV;
+  const nav = isHindi ? HINDI_NAV : isSocio ? SOCIO_NAV : PSYCH_NAV;
 
   const selectSubject = useCallback((s: Subject) => {
     setSubject(s);
@@ -197,6 +244,17 @@ export default function App() {
         default: return <HindiDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
       }
     }
+    if (isSocio) {
+      switch (activeTab) {
+        case 'home': return <SocioDashboard onNavigate={(t) => navigate(t as Tab)} chapters={SOCIO_CHAPTERS} />;
+        case 'cards': return <SocioFlashcards chapterRange={[chapterFilter, chapterEnd]} />;
+        case 'quiz': return <SocioQuiz chapterRange={[chapterFilter, chapterEnd]} />;
+        case 'glossary': return <SocioGlossary chapterRange={[chapterFilter, chapterEnd]} />;
+        case 'maps': return <SocioMindMaps singleChapter={singleChapter} />;
+        case 'revisions': return <SocioRevisionNotes singleChapter={singleChapter} />;
+        default: return <SocioDashboard onNavigate={(t) => navigate(t as Tab)} chapters={SOCIO_CHAPTERS} />;
+      }
+    }
     // Psychology
     switch (activeTab) {
       case 'home': return <PsychDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
@@ -216,8 +274,8 @@ export default function App() {
     return <SubjectSelector onSelect={selectSubject} />;
   }
 
-  const subjectName = isHindi ? 'Hindi Elective' : 'Psychology';
-  const subjectCode = isHindi ? '322' : '337';
+  const subjectName = isHindi ? 'Hindi Elective' : isSocio ? 'Sociology' : 'Psychology';
+  const subjectCode = isHindi ? '322' : isSocio ? '039' : '337';
 
   return (
     <div className="h-[100dvh] flex flex-col bg-warm-gradient text-zinc-100 overflow-hidden select-none">
@@ -229,13 +287,11 @@ export default function App() {
               onClick={() => { setSubject(null); localStorage.removeItem('studyrev-subject'); setActiveTab('home'); setChapterFilter(0); setChapterEnd(0); }}
               className="text-zinc-500 active:text-zinc-200 transition-colors press-scale"
             >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-              </svg>
+              <ArrowLeft className="w-4 h-4" strokeWidth={2} />
             </button>
             <div>
-              <h1 className={`font-black text-lg tracking-tight leading-none ${isHindi ? 'text-gradient-rose' : 'text-gradient'}`}>{subjectName}</h1>
-              <p className="text-zinc-500 text-[10px] mt-0.5">{isHindi ? 'Hindi Elective' : 'Psychology'} — {subjectCode}</p>
+              <h1 className={`font-black text-lg tracking-tight leading-none ${isHindi ? 'text-gradient-rose' : isSocio ? 'text-gradient-teal' : 'text-gradient'}`}>{subjectName}</h1>
+              <p className="text-zinc-500 text-[10px] mt-0.5">{isHindi ? 'Hindi Elective' : isSocio ? 'Sociology' : 'Psychology'} — {subjectCode}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -250,16 +306,14 @@ export default function App() {
               onClick={() => setShowChapters(!showChapters)}
               className="flex items-center gap-1.5 text-white text-xs font-semibold active:opacity-70 transition-opacity"
             >
-              <span className={`pill border text-[10px] ${isHindi ? 'bg-rose-500/15 text-rose-300 border-rose-500/25' : 'bg-indigo-500/15 text-indigo-300 border-indigo-500/25'}`}>
+              <span className={`pill border text-[10px] ${isHindi ? 'bg-rose-500/15 text-rose-300 border-rose-500/25' : isSocio ? 'bg-teal-500/15 text-teal-300 border-teal-500/25' : 'bg-indigo-500/15 text-indigo-300 border-indigo-500/25'}`}>
                 {isRangeTab
                   ? (chapterFilter === 0 ? 'ALL' : chapterFilter === chapterEnd ? `CH${chapterFilter}` : `CH${chapterFilter}–${chapterEnd}`)
                   : (singleChapter === 0 ? 'ALL' : `CH${singleChapter}`)
                 }
               </span>
               <span className="text-zinc-400 text-[11px] max-w-[180px] truncate">{chapterLabel}</span>
-              <svg className={`w-3 h-3 text-zinc-600 transition-transform duration-200 ${showChapters ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
+              <ChevronDown className={`w-3 h-3 text-zinc-600 transition-transform duration-200 ${showChapters ? 'rotate-180' : ''}`} strokeWidth={2.5} />
             </button>
           </div>
         )}
@@ -277,6 +331,7 @@ export default function App() {
                   onToChange={setChapterEnd}
                   onAll={() => { setChapterFilter(0); setChapterEnd(0); }}
                   isHindi={isHindi}
+                  isSocio={isSocio}
                 />
               ) : (
                 <ChapterPickerSingle
@@ -284,13 +339,14 @@ export default function App() {
                   onSelect={(n) => { setSingleChapter(n); setShowChapters(false); }}
                   onAll={() => { setSingleChapter(0); }}
                   isHindi={isHindi}
+                  isSocio={isSocio}
                 />
               )}
 
               <button
                 onClick={() => setShowChapters(false)}
                 className={`w-full py-2 rounded-xl text-xs font-bold transition-all ${
-                  isHindi ? 'bg-rose-600 active:bg-rose-700' : 'bg-indigo-600 active:bg-indigo-700'
+                  isHindi ? 'bg-rose-600 active:bg-rose-700' : isSocio ? 'bg-teal-600 active:bg-teal-700' : 'bg-indigo-600 active:bg-indigo-700'
                 } text-white`}
               >
                 Done
@@ -323,19 +379,25 @@ export default function App() {
                 key={item.id}
                 data-tab={item.id}
                 onClick={() => navigate(item.id)}
-                className={`flex flex-col items-center justify-center gap-0.5 py-2.5 px-4 min-w-[60px] shrink-0 transition-all duration-200 relative ${
+                className={`flex flex-col items-center justify-center gap-1 py-2 px-3 min-w-[56px] shrink-0 transition-all duration-200 relative ${
                   isActive
-                    ? isHindi ? 'text-rose-400' : 'text-indigo-400'
+                    ? isHindi ? 'text-rose-400' : isSocio ? 'text-teal-400' : 'text-indigo-400'
                     : 'text-zinc-500 active:text-zinc-300'
                 }`}
               >
-                <div className={`transition-all duration-300 ${isActive ? 'scale-110 animate-spring' : 'scale-100'}`}>
-                  {item.icon}
-                </div>
-                <span className={`text-[9px] leading-none mt-0.5 transition-all duration-200 ${isActive ? 'font-bold' : 'font-medium'}`}>{item.label}</span>
                 {isActive && (
-                  <div className={`absolute top-0 left-1/2 -translate-x-1/2 w-8 h-[2.5px] rounded-full transition-all duration-300 ${isHindi ? 'bg-rose-400 glow-rose' : 'bg-indigo-400 glow-indigo'}`} />
+                  <div className={`absolute inset-x-2 -top-px h-[2.5px] rounded-full ${isHindi ? 'bg-rose-400' : isSocio ? 'bg-teal-400' : 'bg-indigo-400'}`} />
                 )}
+                <div className={`relative flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-200 ${
+                  isActive
+                    ? isHindi ? 'bg-rose-500/12' : isSocio ? 'bg-teal-500/12' : 'bg-indigo-500/12'
+                    : 'bg-transparent'
+                }`}>
+                  <div className={`transition-transform duration-200 ${isActive ? 'scale-105' : 'scale-100'}`}>
+                    {item.icon}
+                  </div>
+                </div>
+                <span className={`text-[9px] leading-none transition-all duration-200 ${isActive ? 'font-bold' : 'font-medium'}`}>{item.label}</span>
               </button>
             );
           })}
@@ -344,6 +406,7 @@ export default function App() {
 
       <PdfDrawer isOpen={pdfOpen} onClose={() => setPdfOpen(false)} />
       <InstallBanner />
+      <OfflineBanner />
     </div>
   );
 }
