@@ -14,15 +14,8 @@ const SOCIO_CHAPTERS = [
   { num: 1, name: 'Ch1: Introducing Indian Society' },
   { num: 2, name: 'Ch2: Demographic Structure' },
   { num: 3, name: 'Ch3: Social Institutions' },
-  { num: 4, name: 'Ch4: Market as Social Institution' },
   { num: 5, name: 'Ch5: Structural Change' },
   { num: 6, name: 'Ch6: Cultural Change' },
-  { num: 7, name: 'Ch7: Constitution & Social Change' },
-  { num: 8, name: 'Ch8: Rural Society' },
-  { num: 9, name: 'Ch9: Industrial Society' },
-  { num: 10, name: 'Ch10: Globalisation' },
-  { num: 11, name: 'Ch11: Mass Media' },
-  { num: 12, name: 'Ch12: Social Movements' },
 ];
 
 const HINDI_SECTIONS = [

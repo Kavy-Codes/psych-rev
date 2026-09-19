@@ -15,48 +15,47 @@ export const socioMindMapsData: SocioMindMap[] = [
     chapterId: 1,
     title: 'Introducing Indian Society',
     tree: {
-      label: 'Indian Society',
+      label: 'Introducing Indian Society',
       children: [
         {
-          label: 'Salient Features',
+          label: 'Sociology as a Discipline',
           children: [
-            { label: 'Unity in Diversity' },
-            { label: 'Complexity & Plurality' },
-            { label: 'Multi-religious & Multi-lingual' },
+            { label: 'Systematic study of society (not common sense)' },
+            { label: 'Self-reflexivity — questioning own assumptions' },
+            { label: 'Linking personal troubles to public issues' },
           ],
         },
         {
-          label: 'Social Structure',
+          label: 'Colonial Impact on India',
           children: [
-            { label: 'Caste System' },
-            { label: 'Class System' },
-            { label: 'Gender Hierarchy' },
-            { label: 'Tribe-based Stratification' },
+            { label: 'Land revenue: Zamindari, Ryotwari, Mahalwari' },
+            { label: 'Census operations rigidified caste categories' },
+            { label: 'Railways unified markets across regions' },
+            { label: 'Administrative unification under British rule' },
           ],
         },
         {
-          label: 'Major Social Institutions',
+          label: 'Community vs Individual Identity',
           children: [
-            { label: 'Family & Kinship' },
-            { label: 'Religion' },
-            { label: 'Education' },
-            { label: 'Economy & Polity' },
+            { label: 'Community: ascriptive (birth-based, inherited)' },
+            { label: 'Individual: achieved (education, career, choice)' },
+            { label: 'Multiple coexisting identities in Indian society' },
           ],
         },
         {
-          label: 'Social Diversity',
+          label: 'Key Thinkers',
           children: [
-            { label: 'Regional Variation' },
-            { label: 'Linguistic Pluralism' },
-            { label: 'Cultural Practices' },
+            { label: 'C. Wright Mills — Sociological Imagination' },
+            { label: 'Edward Said — Orientalism' },
+            { label: 'Max Weber — Social Action theory' },
           ],
         },
         {
-          label: 'Study of Society',
+          label: 'Features of Indian Society',
           children: [
-            { label: 'Sociology vs Common Sense' },
-            { label: 'Sociological Imagination' },
-            { label: 'C. Wright Mills' },
+            { label: 'Unity in diversity' },
+            { label: 'Pluralism, multi-religious, multi-lingual' },
+            { label: 'Social stratification (caste, class, gender)' },
           ],
         },
       ],
@@ -66,50 +65,52 @@ export const socioMindMapsData: SocioMindMap[] = [
   // ── Chapter 2: Demographic Structure ─────────────────────
   {
     chapterId: 2,
-    title: 'Demographic Structure of Indian Society',
+    title: 'Demographic Structure',
     tree: {
-      label: 'Demography',
+      label: 'Demographic Structure',
       children: [
+        {
+          label: 'Population Theories',
+          children: [
+            { label: 'Malthus: geometric pop. vs arithmetic food' },
+            { label: 'Demographic Transition: 3 stages' },
+            { label: 'Epidemiological Transition: infectious to degenerative' },
+          ],
+        },
         {
           label: 'Key Indicators',
           children: [
-            { label: 'Birth Rate & Death Rate' },
-            { label: 'Fertility Rate (TFR)' },
-            { label: 'IMR & MMR' },
-            { label: 'Sex Ratio' },
-          ],
-        },
-        {
-          label: 'Population Growth',
-          children: [
-            { label: 'Growth Trends since 1951' },
-            { label: 'Stages of Demographic Transition' },
-            { label: 'Regional Variations' },
-          ],
-        },
-        {
-          label: 'Population Policies',
-          children: [
-            { label: 'Family Planning Programme' },
-            { label: 'National Population Policy 2000' },
-            { label: 'Reproductive & Child Health' },
+            { label: 'Birth Rate — live births per 1,000' },
+            { label: 'Death Rate — deaths per 1,000' },
+            { label: 'TFR — 2.1 replacement level' },
+            { label: 'IMR, MMR, Sex Ratio, Life Expectancy' },
           ],
         },
         {
           label: 'Population Structure',
           children: [
-            { label: 'Age Composition' },
+            { label: 'Age: 0-15 youth, 15-64 working, 65+ dependent' },
             { label: 'Dependency Ratio' },
-            { label: 'Demographic Dividend' },
-            { label: 'Population Pyramid' },
+            { label: 'Demographic Dividend: working > dependent' },
           ],
         },
         {
-          label: 'Social Impact',
+          label: 'Population Policy',
           children: [
-            { label: 'Migration Patterns' },
-            { label: 'Urbanisation' },
-            { label: 'Poverty & Inequality' },
+            { label: 'NFPP 1952 — first family planning programme' },
+            { label: 'Emergency sterilization camps (1975-76)' },
+            { label: 'NFWP — voluntary sterilization with consent' },
+            { label: 'PNDT Act 1996/2003 — sex determination ban' },
+            { label: 'NREGA — employment safety net' },
+          ],
+        },
+        {
+          label: 'Social Patterns',
+          children: [
+            { label: 'Literacy: Kerala highest, gender gap exists' },
+            { label: 'Rural-Urban migration: push-pull factors' },
+            { label: 'Sex ratio decline: son preference, female foeticide' },
+            { label: 'Kerala: low fertility; UP: high fertility' },
           ],
         },
       ],
@@ -119,109 +120,59 @@ export const socioMindMapsData: SocioMindMap[] = [
   // ── Chapter 3: Social Institutions ───────────────────────
   {
     chapterId: 3,
-    title: 'Social Institutions: Continuity and Change',
+    title: 'Social Institutions',
     tree: {
       label: 'Social Institutions',
       children: [
         {
           label: 'Caste System',
           children: [
-            { label: 'Varna & Jati' },
-            { label: 'Untouchability' },
-            { label: 'Caste Panchayats' },
-            { label: 'Mobility & Change' },
+            { label: 'Varna — 4-fold: Brahmins, Kshatriyas, Vaishyas, Shudras' },
+            { label: 'Jati — thousands of endogamous groups' },
+            { label: 'Brahmanical ideology + untouchability' },
+            { label: 'Sanskritisation (M.N. Srinivas)' },
           ],
         },
         {
-          label: 'Family & Kinship',
+          label: 'Tribe',
           children: [
-            { label: 'Joint vs Nuclear Family' },
-            { label: 'Patrilineal vs Matrilineal' },
-            { label: 'Patriarchy in Family' },
-            { label: 'Changing Family Roles' },
+            { label: 'Scheduled Tribes — 8.6% of population' },
+            { label: 'Isolation, forest-dwelling, self-sufficient' },
+            { label: 'Reservation and protective provisions' },
+            { label: 'Particularly Vulnerable Tribal Groups (PVTGs)' },
           ],
         },
         {
-          label: 'Marriage',
+          label: 'Family',
           children: [
-            { label: 'Endogamy & Exogamy' },
-            { label: 'Gotra System' },
-            { label: 'Inter-caste Marriage' },
+            { label: 'Nuclear vs Joint family' },
+            { label: 'Matrilineal: Khasi, Nayar' },
+            { label: 'Patrilineal — dominant in most regions' },
+            { label: 'Functions: economic, social, emotional, reproductive' },
           ],
         },
         {
-          label: 'Tribal Society',
+          label: 'Kinship',
           children: [
-            { label: 'Cultural Diversity' },
-            { label: 'Tribal Economy' },
-            { label: 'Impact of Colonialism' },
-            { label: 'Post-Independence Policy' },
+            { label: 'Consanguineal — blood relations' },
+            { label: 'Affinal — marriage relations' },
+            { label: 'Exogamy vs Endogamy' },
           ],
         },
         {
-          label: 'Change in Institutions',
+          label: 'Panchayati Raj',
           children: [
-            { label: 'Constitutional Reforms' },
-            { label: 'Legislation against Discrimination' },
-            { label: 'Education & Modernisation' },
+            { label: '73rd Constitutional Amendment' },
+            { label: '3-tier: Gram Panchayat, Zila Parishad, Block Samiti' },
+            { label: '1/3 reservation for women' },
+            { label: 'SC/ST reservation in local bodies' },
           ],
         },
       ],
     },
   },
 
-  // ── Chapter 4: Market as Social Institution ──────────────
-  {
-    chapterId: 4,
-    title: 'Market as Social Institution',
-    tree: {
-      label: 'Market as Social Institution',
-      children: [
-        {
-          label: 'Market Concept',
-          children: [
-            { label: 'What is a Market?' },
-            { label: 'Types of Markets' },
-            { label: 'Virtual Markets' },
-          ],
-        },
-        {
-          label: 'Market & Society',
-          children: [
-            { label: 'Social Embeddedness (Polanyi)' },
-            { label: 'Invisible Hand (Smith)' },
-            { label: 'Commoditisation' },
-          ],
-        },
-        {
-          label: 'Consumer & Producer',
-          children: [
-            { label: 'Consumer Identity' },
-            { label: 'Producer Class & Interests' },
-            { label: 'Labour & Market' },
-          ],
-        },
-        {
-          label: 'Regulation & Ethics',
-          children: [
-            { label: 'Consumer Protection Act' },
-            { label: 'Role of Cooperatives' },
-            { label: 'Fair Trade' },
-          ],
-        },
-        {
-          label: 'Impact on Society',
-          children: [
-            { label: 'Globalisation of Markets' },
-            { label: 'Impact on Farmers' },
-            { label: 'Informal Markets' },
-          ],
-        },
-      ],
-    },
-  },
-
-  // ── Chapter 5: Structural Change ────────────────────────
+  // ── Chapter 5: Structural Change ─────────────────────────
   {
     chapterId: 5,
     title: 'Structural Change',
@@ -229,52 +180,51 @@ export const socioMindMapsData: SocioMindMap[] = [
       label: 'Structural Change',
       children: [
         {
-          label: 'Colonial Impact',
+          label: 'Colonial Economy',
           children: [
-            { label: 'British Administration' },
-            { label: 'Land Revenue Systems' },
-            { label: 'Impact on Caste' },
-            { label: 'Urbanisation under Colonialism' },
+            { label: 'Railway network — connected markets' },
+            { label: 'Factory system — replaced cottage industry' },
+            { label: 'Commercial agriculture — cash crops' },
+            { label: 'Decline of artisan crafts' },
           ],
         },
         {
-          label: 'Industrialisation',
+          label: 'Land Revenue Systems',
           children: [
-            { label: 'Growth of Factories' },
-            { label: 'Working Class Formation' },
-            { label: 'Migration to Cities' },
+            { label: 'Zamindari — intermediary landlords' },
+            { label: 'Ryotwari — direct with peasants' },
+            { label: 'Mahalwari — village-level assessment' },
           ],
         },
         {
-          label: 'Urbanisation',
+          label: 'Administrative Changes',
           children: [
-            { label: 'Growth of Cities' },
-            { label: 'Rural-Urban Divide' },
-            { label: 'Slums & Informal Settlements' },
+            { label: 'Census operations — classified population' },
+            { label: 'Legal codes — uniform law across regions' },
+            { label: 'Provincial reorganization under British' },
           ],
         },
         {
-          label: 'Changes in Rural Society',
+          label: 'Social Reform Movements',
           children: [
-            { label: 'Decline of Zamindari' },
-            { label: 'Land Reforms' },
-            { label: 'Green Revolution' },
-            { label: 'Agrarian Unrest' },
+            { label: 'Brahmo Samaj — Raja Ram Mohan Roy' },
+            { label: 'Prarthana Samaj — Atmaram Pandurang' },
+            { label: 'Arya Samaj — Dayanand Saraswati' },
           ],
         },
         {
-          label: 'Post-Independence Changes',
+          label: 'Ideas and Technology',
           children: [
-            { label: 'Five Year Plans' },
-            { label: 'Public Sector Growth' },
-            { label: 'New Economic Policy 1991' },
+            { label: 'Print technology — newspapers, pamphlets' },
+            { label: 'Spread of literacy — educated middle class' },
+            { label: 'Nationalism — anti-colonial consciousness' },
           ],
         },
       ],
     },
   },
 
-  // ── Chapter 6: Cultural Change ──────────────────────────
+  // ── Chapter 6: Cultural Change ───────────────────────────
   {
     chapterId: 6,
     title: 'Cultural Change',
@@ -282,376 +232,44 @@ export const socioMindMapsData: SocioMindMap[] = [
       label: 'Cultural Change',
       children: [
         {
+          label: 'Modernization',
+          children: [
+            { label: 'Westernisation — English education, technology' },
+            { label: 'Secularisation — declining religious authority' },
+            { label: 'Rationalisation — scientific temper' },
+          ],
+        },
+        {
           label: 'Sanskritisation',
           children: [
-            { label: 'M.N. Srinivas\'s Theory' },
-            { label: 'Adoption of Upper-caste Practices' },
-            { label: 'Examples: Yadavs, Jats' },
-            { label: 'Critique of Theory' },
+            { label: 'Lower castes adopt upper caste rituals' },
+            { label: 'Claim higher status in caste hierarchy' },
+            { label: 'Example: Nadars of Tamil Nadu, Ezhavas of Kerala' },
           ],
         },
         {
-          label: 'Westernisation',
+          label: 'Social Reformers',
           children: [
-            { label: 'Spread of English Education' },
-            { label: 'Western Dress & Lifestyle' },
-            { label: 'Rise of Middle Class' },
+            { label: 'Raja Ram Mohan Roy — abolition of Sati' },
+            { label: 'Jyotirao Phule — caste emancipation, education' },
+            { label: 'Pandita Ramabai — women and widows' },
+            { label: 'Periyar — Self-Respect Movement, rationalism' },
           ],
         },
         {
-          label: 'Secularisation',
+          label: 'Left Movement',
           children: [
-            { label: 'Decline of Religious Authority' },
-            { label: 'Rationalism & Science' },
-            { label: 'Secularism in India' },
+            { label: 'Naxalite movement — armed revolution' },
+            { label: 'Trade unions — workers rights' },
+            { label: 'Peasant movements — land reform' },
           ],
         },
         {
-          label: 'Social Reform Movements',
+          label: 'Other Movements',
           children: [
-            { label: 'Anti-Sati Movement' },
-            { label: 'Widow Remarriage' },
-            { label: 'Dravidian Movement' },
-            { label: 'Ambedkarite Movement' },
-          ],
-        },
-        {
-          label: 'De-sanskritisation',
-          children: [
-            { label: 'Reclaiming Folk Identity' },
-            { label: 'Dalit Cultural Assertion' },
-          ],
-        },
-      ],
-    },
-  },
-
-  // ── Chapter 7: Constitution and Social Change ────────────
-  {
-    chapterId: 7,
-    title: 'Constitution and Social Change',
-    tree: {
-      label: 'Constitution & Social Change',
-      children: [
-        {
-          label: 'Constitutional Values',
-          children: [
-            { label: 'Liberty, Equality, Fraternity' },
-            { label: 'Justice (Social, Economic, Political)' },
-            { label: 'Secularism' },
-            { label: 'Federalism' },
-          ],
-        },
-        {
-          label: 'Fundamental Rights',
-          children: [
-            { label: 'Right to Equality' },
-            { label: 'Abolition of Untouchability' },
-            { label: 'Freedom of Religion' },
-            { label: 'Right against Exploitation' },
-          ],
-        },
-        {
-          label: 'Reservation Policy',
-          children: [
-            { label: 'SC & ST Reservations' },
-            { label: 'OBC Reservations (Mandal)' },
-            { label: 'EWS Reservations' },
-            { label: 'Debate on Reservation' },
-          ],
-        },
-        {
-          label: 'Directive Principles',
-          children: [
-            { label: 'Welfare State Goals' },
-            { label: 'Uniform Civil Code Debate' },
-            { label: 'Right to Education' },
-          ],
-        },
-        {
-          label: 'Amendments & Laws',
-          children: [
-            { label: 'Amendment Process' },
-            { label: 'Land Reform Legislation' },
-            { label: 'Protection of Civil Rights Act' },
-          ],
-        },
-      ],
-    },
-  },
-
-  // ── Chapter 8: Change and Development in Rural Society ───
-  {
-    chapterId: 8,
-    title: 'Change and Development in Rural Society',
-    tree: {
-      label: 'Rural Society',
-      children: [
-        {
-          label: 'Colonial Land Systems',
-          children: [
-            { label: 'Zamindari System' },
-            { label: 'Ryotwari System' },
-            { label: 'Mahalwari System' },
-          ],
-        },
-        {
-          label: 'Land Reforms',
-          children: [
-            { label: 'Zamindari Abolition' },
-            { label: 'Tenancy Reform' },
-            { label: 'Ceiling on Land Holdings' },
-            { label: 'Land Redistribution' },
-          ],
-        },
-        {
-          label: 'Green Revolution',
-          children: [
-            { label: 'High Yielding Seeds' },
-            { label: 'Irrigation & Fertilisers' },
-            { label: 'Regional Disparities' },
-            { label: 'Impact on Inequality' },
-          ],
-        },
-        {
-          label: 'Agrarian Unrest',
-          children: [
-            { label: 'Farmer Protests' },
-            { label: 'Naxalite Movement' },
-            { label: 'Debt & Suicides' },
-            { label: 'Demand for Land Rights' },
-          ],
-        },
-        {
-          label: 'Rural Transformation',
-          children: [
-            { label: 'Migration to Cities' },
-            { label: 'Panchayati Raj' },
-            { label: 'Rural Employment Programmes' },
-          ],
-        },
-      ],
-    },
-  },
-
-  // ── Chapter 9: Change and Development in Industrial Society
-  {
-    chapterId: 9,
-    title: 'Change and Development in Industrial Society',
-    tree: {
-      label: 'Industrial Society',
-      children: [
-        {
-          label: 'Industrialisation',
-          children: [
-            { label: 'Historical Background' },
-            { label: 'Growth of Manufacturing' },
-            { label: 'Role of Public Sector' },
-          ],
-        },
-        {
-          label: 'Industrial Labour',
-          children: [
-            { label: 'Organised Sector' },
-            { label: 'Unorganised Sector' },
-            { label: 'Working Conditions' },
-            { label: 'Child Labour' },
-          ],
-        },
-        {
-          label: 'Trade Unions',
-          children: [
-            { label: 'History of Trade Unionism' },
-            { label: 'Major Trade Unions' },
-            { label: 'Strikes & Collective Bargaining' },
-          ],
-        },
-        {
-          label: 'Industrialisation & Society',
-          children: [
-            { label: 'Urbanisation' },
-            { label: 'Migration & Informal Sector' },
-            { label: 'Impact on Family & Gender' },
-          ],
-        },
-        {
-          label: 'Liberalisation Impact',
-          children: [
-            { label: '1991 Reforms' },
-            { label: 'Deindustrialisation' },
-            { label: 'Jobless Growth Debate' },
-          ],
-        },
-      ],
-    },
-  },
-
-  // ── Chapter 10: Globalisation and Social Change ──────────
-  {
-    chapterId: 10,
-    title: 'Globalisation and Social Change',
-    tree: {
-      label: 'Globalisation',
-      children: [
-        {
-          label: 'What is Globalisation?',
-          children: [
-            { label: 'Economic Integration' },
-            { label: 'Cultural Exchange' },
-            { label: 'Technological Change' },
-          ],
-        },
-        {
-          label: 'Economic Globalisation',
-          children: [
-            { label: 'Liberalisation 1991' },
-            { label: 'Privatisation' },
-            { label: 'MNCs & FDI' },
-            { label: 'Outsourcing & IT Boom' },
-          ],
-        },
-        {
-          label: 'Social Impact',
-          children: [
-            { label: 'Growing Inequality' },
-            { label: 'Impact on Labour' },
-            { label: 'Consumer Culture' },
-            { label: 'Loss of Livelihoods' },
-          ],
-        },
-        {
-          label: 'Cultural Dimensions',
-          children: [
-            { label: 'Homogenisation Debate' },
-            { label: 'Hybridisation' },
-            { label: 'Resistance Movements' },
-          ],
-        },
-        {
-          label: 'Resistance & Alternatives',
-          children: [
-            { label: 'Anti-globalisation Movements' },
-            { label: 'World Social Forum' },
-            { label: 'People\'s Movements' },
-            { label: 'Alternative Globalisation' },
-          ],
-        },
-      ],
-    },
-  },
-
-  // ── Chapter 11: Mass Media and Communications ────────────
-  {
-    chapterId: 11,
-    title: 'Mass Media and Communications',
-    tree: {
-      label: 'Mass Media',
-      children: [
-        {
-          label: 'Types of Media',
-          children: [
-            { label: 'Print Media' },
-            { label: 'Electronic Media' },
-            { label: 'Digital & Social Media' },
-            { label: 'Radio & Podcasts' },
-          ],
-        },
-        {
-          label: 'Role of Mass Media',
-          children: [
-            { label: 'Information & Awareness' },
-            { label: 'Watchdog Function' },
-            { label: 'Shaping Public Opinion' },
-            { label: 'Entertainment & Infotainment' },
-          ],
-        },
-        {
-          label: 'Media & Society',
-          children: [
-            { label: 'Dialectical Relationship' },
-            { label: 'Media & Consumerism' },
-            { label: 'Impact on Culture' },
-          ],
-        },
-        {
-          label: 'Ownership & Control',
-          children: [
-            { label: 'Media Ownership Patterns' },
-            { label: 'Government & Censorship' },
-            { label: 'Corporate Influence' },
-            { label: 'Media & Democracy' },
-          ],
-        },
-        {
-          label: 'New Media',
-          children: [
-            { label: 'Internet Revolution' },
-            { label: 'Social Media activism' },
-            { label: 'Digital Divide' },
-            { label: 'Fake News Challenge' },
-          ],
-        },
-      ],
-    },
-  },
-
-  // ── Chapter 12: Social Movements ────────────────────────
-  {
-    chapterId: 12,
-    title: 'Social Movements',
-    tree: {
-      label: 'Social Movements',
-      children: [
-        {
-          label: 'What is a Social Movement?',
-          children: [
-            { label: 'Definition & Features' },
-            { label: 'Types: Reform, Revolutionary, Redemptive' },
-            { label: 'Collective Action' },
-          ],
-        },
-        {
-          label: 'Theories of Social Movements',
-          children: [
-            { label: 'Relative Deprivation' },
-            { label: 'Resource Mobilisation' },
-            { label: 'New Social Movements Theory' },
-          ],
-        },
-        {
-          label: 'Indian Social Movements',
-          children: [
-            { label: 'Independence Movement' },
-            { label: 'Dalit Panthers Movement' },
-            { label: 'Anti-caste Movements' },
-            { label: 'Environmental Movements' },
-          ],
-        },
-        {
-          label: 'Peasant & Worker Movements',
-          children: [
-            { label: 'Indigo Revolt' },
-            { label: 'Telangana Rebellion' },
-            { label: 'Trade Union Movement' },
-            { label: 'Farmers\' Movements' },
-          ],
-        },
-        {
-          label: 'Women\'s Movement',
-          children: [
-            { label: 'Anti-Sati & Widow Remarriage' },
-            { label: 'Feminist Movement' },
-            { label: 'Post-1970s Women\'s Organisations' },
-            { label: 'Gender Violence Protests' },
-          ],
-        },
-        {
-          label: 'Contemporary Movements',
-          children: [
-            { label: 'Right to Information' },
-            { label: 'Anti-Corruption Movement' },
-            { label: 'Environmental Activism' },
-            { label: 'LGBTQ+ Rights' },
+            { label: 'Kudumbam — women self-help, Kerala' },
+            { label: 'Syncretism — blending of cultures' },
+            { label: 'Partial reconstruction of tradition (T.N. Madan)' },
           ],
         },
       ],

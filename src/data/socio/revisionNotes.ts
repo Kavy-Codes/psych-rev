@@ -11,1142 +11,494 @@ export interface SocioRevisionNote {
 }
 
 export const socioRevisionNotes: SocioRevisionNote[] = [
-  // ================================================================
-  // Ch1: Introducing Indian Society
-  // ================================================================
   {
     id: 1,
     chapter: 1,
-    title: 'Introducing Indian Society',
+    title: "Introducing Indian Society",
     summary:
-      'Sociology is the scientific study of society and social relationships. Indian Society is unique because colonialism unified it politically for the first time. Community identity in India is ascriptive (based on birth). C. Wright Mills linked personal troubles to social issues. Self-reflexivity is key to sociological thinking, requiring us to question our own assumptions about the world.',
+      "Indian society is a complex mosaic shaped by centuries of colonial intervention that restructured its land systems, census categories, and administrative frameworks. Colonialism did not merely govern; it reorganised social life, rigidifying fluid identities into fixed bureaucratic classifications. The sociological imagination, as articulated by C. Wright Mills, allows us to see how personal troubles connect to broader public issues within this transformed landscape. Understanding Indian society requires navigating its celebrated unity in diversity while acknowledging the deep pluralism—of languages, religions, castes, and regions—that defines its character.",
     keyConcepts: [
       {
-        term: 'Society',
+        term: "Sociological Imagination",
         definition:
-          'A group of people who share a common culture, territory, and social relationships, living together in an organized way.',
+          "C. Wright Mills' concept of connecting personal biography to larger social and historical structures, enabling individuals to understand their lives within broader social contexts rather than as isolated experiences.",
       },
       {
-        term: 'Social Structure',
+        term: "Orientalism",
         definition:
-          'The relatively stable pattern of social relationships that forms the framework of a society, including institutions and social positions.',
+          "Edward Said's concept describing how the West constructed a distorted, essentialised image of the East as exotic, backward, and inferior, often to justify colonial domination and cultural superiority.",
       },
       {
-        term: 'Community Identity',
+        term: "Colonialism",
         definition:
-          'An identity derived from membership in a group based on birth, kinship, religion, language, caste, or shared history.',
+          "A system of political and economic control where one nation dominates another, reshaping its institutions, economy, and social structures to serve the coloniser's interests, as the British did in India through land revenue systems, census operations, and railways.",
       },
       {
-        term: 'Colonialism',
+        term: "Community Identity",
         definition:
-          'A practice of acquiring control over another country and exploiting it politically and economically, practiced by European powers in India from the 18th century.',
+          "Ascribed identity based on birth, family, and social group membership (such as caste, religion, or ethnicity) that an individual inherits rather than chooses, forming a primary layer of social belonging.",
       },
       {
-        term: 'Nationalism',
+        term: "Individual Identity",
         definition:
-          'A sense of belonging to a nation, combined with loyalty and devotion to its interests and culture.',
+          "Achieved identity through personal accomplishments, education, occupation, and merit-based choices that reflect agency and self-determination rather than inherited status.",
       },
       {
-        term: 'Orientalism',
+        term: "Self-Reflexivity",
         definition:
-          'A way of thinking that constructs and represents "the East" (especially Asia) as inferior and inferior, justifying Western dominance.',
+          "The sociological practice of critically examining one's own assumptions, biases, and positionality within social structures, enabling more objective analysis of society and one's place within it.",
       },
       {
-        term: 'Occidentalism',
+        term: "Pluralism",
         definition:
-          'The representation of the West (Occident) in terms that are simplified and stereotypical, often as a mirror image of Orientalism.',
-      },
-      {
-        term: 'Self-reflexivity',
-        definition:
-          'The ability to reflect upon one\'s own assumptions, biases, and social position, crucial for sociological analysis.',
+          "The coexistence of diverse social groups—defined by language, religion, caste, ethnicity, and culture—within a single society, maintained through mutual accommodation and shared civic space rather than forced homogeneity.",
       },
     ],
     keyThinkers: [
       {
-        name: 'C. Wright Mills',
+        name: "C. Wright Mills",
         contribution:
-          'Coined the term "sociological imagination" — the ability to connect personal troubles (biography) with public issues (history and social structure).',
+          "Developed the concept of sociological imagination—the ability to see connections between personal experience and wider social forces. His framework enables individuals to understand how biography, history, and society intersect, moving beyond individual troubles to identify structural causes.",
       },
       {
-        name: 'Edward Said',
+        name: "Edward Said",
         contribution:
-          'Analyzed "Orientalism" — how the West constructed and misrepresented the East to justify colonial domination and cultural superiority.',
+          "Coined and theorised Orientalism as a discursive system through which the West represented and dominated the East. His work exposed how knowledge production about non-Western societies served imperial power, challenging scholars to interrogate the politics of representation.",
+      },
+      {
+        name: "Max Weber",
+        contribution:
+          "Defined sociology as the interpretive understanding of social action, where individuals attach meaning to their behaviour. His concept of Verstehen (interpretive understanding) remains foundational for studying how individuals navigate social structures like caste, class, and status.",
       },
     ],
     importantFacts: [
-      'Urban middle classes were the prime carriers of nationalism in India.',
-      'Colonialism unified India politically for the first time through British administrative control.',
-      'Society performs 4 key functions: recruitment of members, socialization, production/distribution of goods, and maintaining social order.',
-      'Indian Society is characterized by unity in diversity with multiple coexisting identities.',
+      "Colonial land revenue systems like the Permanent Settlement (1793), Ryotwari, and Mahalwari fundamentally restructured rural social relations and class structures.",
+      "The British census, conducted decennially from 1871, rigidified caste identities that were previously fluid and regionally variable, turning them into fixed administrative categories.",
+      "The introduction of railways in 1853 unified the Indian market but also facilitated colonial extraction, troop movement, and the creation of new urban centres.",
+      "Nationalism in India was primarily carried by urban middle classes—lawyers, teachers, and professionals—who drew upon both Western liberal ideas and indigenous traditions to mobilise mass movements.",
+      "Indian society is characterised by unity in diversity: despite extraordinary linguistic, religious, and cultural pluralism, a shared civilisational heritage and constitutional framework hold the nation together.",
+      "Sociology arrived in India through colonial scholarship but was later appropriated by Indian intellectuals to study their own society, leading to the development of a distinctively Indian sociological tradition.",
     ],
     examQuestions: [
       {
         question:
-          'How does colonialism help us understand the structure of Indian Society?',
+          "How did colonialism reshape Indian society? Discuss with reference to land revenue, census, and railways.",
         answer:
-          'Colonialism unified India politically for the first time, bringing diverse regions under one administration. It introduced new social categories, changed land revenue systems, rigidified caste through census, and created new classes. The colonial experience also gave rise to nationalism, bringing people together against foreign rule.',
+          "Colonialism transformed Indian society through three major interventions. The land revenue systems—Permanent Settlement in Bengal, Ryotwari in Madras and Bombay, and Mahalwari in the North-West—created new class structures of zamindars, peasants, and intermediaries, altering traditional agrarian relations. The census, introduced in 1871, made caste identities rigid and administratively visible, converting fluid social categories into fixed demographic data. The railways, begun in 1853, unified the national market, facilitated raw material extraction and troop movement, but also enabled the circulation of nationalist ideas. Together, these interventions did not merely govern India but reorganised its social, economic, and administrative fabric in ways that continue to shape contemporary society.",
       },
       {
         question:
-          'Explain the concept of "sociological imagination" given by C. Wright Mills.',
+          "Explain the concept of sociological imagination and its relevance for understanding Indian society.",
         answer:
-          'C. Wright Mills described sociological imagination as the ability to see the connection between personal troubles and public issues. For example, unemployment of an individual is a personal trouble, but when millions are unemployed it becomes a public issue requiring structural analysis. It helps link biography with history and social structure.',
+          "C. Wright Mills' sociological imagination is the capacity to connect personal biography with larger social and historical structures. It enables individuals to see how their private troubles—unemployment, poverty, discrimination—are rooted in public issues rooted in institutional arrangements, power structures, and historical transformations. In the Indian context, the sociological imagination helps us understand how individual experiences of caste discrimination are connected to millennia-old social hierarchies and their modern administrative rigidification through colonial census practices. It bridges the gap between personal lived experience and the structural forces that shape them, making it an indispensable tool for studying a society as complex and diverse as India.",
       },
       {
         question:
-          'What is the difference between community identity and individual identity?',
+          "What is Orientalism and why is it important for studying Indian society?",
         answer:
-          'Community identity is ascriptive — based on birth, kinship, religion, caste, or shared history that one inherits. Individual identity is achieved through personal choices, education, career, and life experiences. Community identities are collective (shared with others), while individual identity is unique to a person.',
+          "Orientalism, as theorised by Edward Said, is a system of representation through which the West constructed the East as fundamentally different, exotic, backward, and in need of civilising intervention. In the Indian context, Orientalist scholarship by figures like Max Mueller romanticised ancient Indian culture while simultaneously characterising contemporary Indian society as stagnant and inferior. This knowledge served colonial power by justifying British rule as a modernising mission. For students of Indian society, understanding Orientalism is crucial because it reveals how academic knowledge is never politically neutral, and how representations of Indian society by colonial scholars have shaped—and distorted—both Western perceptions and Indian self-understanding for centuries.",
       },
     ],
     examTips: [
-      'Understand the difference between ascribed and achieved identities with examples.',
-      'Be ready to define Orientalism with Edward Said\'s perspective.',
-      'Practice connecting personal experiences to larger social structures using sociological imagination.',
-      'Focus on how colonialism reshaped Indian society politically, economically, and socially.',
+      "Always connect micro-level personal experiences to macro-level structural forces when using the sociological imagination—this shows analytical depth.",
+      "When discussing Orientalism, distinguish between the academic tradition, the political system, and the cultural habit; Said uses all three meanings.",
+      "For questions on Indian society's unity in diversity, provide concrete examples from language, religion, and regional culture rather than abstract statements.",
+      "Link colonial interventions to their contemporary consequences—this demonstrates an understanding of historical continuity and change.",
     ],
   },
-
-  // ================================================================
-  // Ch2: Demographic Structure
-  // ================================================================
   {
     id: 2,
     chapter: 2,
-    title: 'Demographic Structure of Indian Society',
+    title: "Demographic Structure",
     summary:
-      'Demography is the scientific study of population characteristics. India\'s population grew slowly before independence, rapidly between 1961-1981, and has been declining since 1991. Key indicators include birth rate, death rate, total fertility rate, infant mortality rate, and sex ratio. Demographic transition theory links population change to economic development. Malthus predicted population outstripping food supply. India currently has a demographic dividend opportunity with an average age of 29 years.',
+      "Demography studies population dynamics through both formal statistical analysis and social contextual interpretation. Thomas Malthus famously warned that geometric population growth would outstrip arithmetic food production, leading to catastrophic checks—though history has largely disproved his fatalism. The demographic transition model tracks societies moving from high birth and death rates through falling death rates with sustained high births to eventual low birth rates. India's demographic journey has been uneven, with southern states like Kerala achieving replacement-level fertility while northern states like Uttar Pradesh lag behind, reflecting differential development, education, and healthcare access.",
     keyConcepts: [
       {
-        term: 'Demography',
+        term: "Demography",
         definition:
-          'The scientific study of population — its size, composition, distribution, and changes over time through births, deaths, and migration.',
+          "The formal study of population size, structure, and distribution through quantitative methods (birth rates, death rates, migration data) combined with social demography's qualitative analysis of how cultural, economic, and institutional factors shape population trends.",
       },
       {
-        term: 'Birth Rate',
+        term: "Malthusian Theory",
         definition:
-          'Number of live births per 1,000 people in a year. Indicates population growth pressure.',
+          "Thomas Malthus argued that human population grows geometrically (2, 4, 8, 16) while food production grows only arithmetically (1, 2, 3, 4), inevitably leading to famine, disease, and war as natural checks. Later modified to account for technological advances in food production.",
       },
       {
-        term: 'Death Rate',
+        term: "Demographic Transition",
         definition:
-          'Number of deaths per 1,000 people in a year. Declining death rates with stable birth rates lead to population growth.',
+          "A three-stage model describing population change: Stage 1—high birth and death rates with stable population; Stage 2—falling death rates with sustained high birth rates leading to population explosion; Stage 3—falling birth rates approaching low death rates, stabilising population.",
       },
       {
-        term: 'Total Fertility Rate (TFR)',
+        term: "Total Fertility Rate (TFR)",
         definition:
-          'Average number of children a woman would have during her reproductive years. Replacement level is 2.1.',
+          "The average number of children a woman would bear during her reproductive lifetime if she experienced current age-specific fertility rates. India's replacement-level TFR is 2.1, meaning each generation exactly replaces itself.",
       },
       {
-        term: 'Infant Mortality Rate (IMR)',
+        term: "Infant Mortality Rate (IMR)",
         definition:
-          'Number of deaths of infants (below 1 year) per 1,000 live births. Key indicator of healthcare quality.',
+          "The number of deaths of infants under one year of age per 1,000 live births in a given year. A key indicator of healthcare quality, nutrition, and socio-economic development. India's IMR has declined significantly but varies widely across states.",
       },
       {
-        term: 'Sex Ratio',
+        term: "Demographic Dividend",
         definition:
-          'Number of females per 1,000 males in the population. India\'s sex ratio has been declining historically.',
+          "The economic growth potential that arises when the working-age population (15–64) is significantly larger than the dependent population (children and elderly), creating a window of opportunity for rapid economic development if properly harnessed through education and employment.",
       },
       {
-        term: 'Demographic Transition',
+        term: "Sex Ratio",
         definition:
-          'Theory that population changes in stages as a country develops — from high birth/death rates to low birth/death rates through economic modernization.',
+          "The number of females per 1,000 males in a population. India's sex ratio has been historically unfavourable to women, declining from 972 in 1901 to 940 in 2011, reflecting son preference, female foeticide, and gender discrimination.",
       },
       {
-        term: 'Demographic Dividend',
+        term: "Epidemiological Transition",
         definition:
-          'Economic growth potential from a young working-age population when dependency ratio is low. India\'s average age is 29 years.',
+          "The shift in disease patterns from infectious and communicable diseases (prevalent in early stages) to non-communicable and lifestyle diseases (diabetes, heart disease) as societies modernise, urbanise, and improve healthcare.",
       },
     ],
     keyThinkers: [
       {
-        name: 'Thomas Malthus',
+        name: "Thomas Malthus",
         contribution:
-          'Predicted that population grows geometrically (2, 4, 8, 16) while food supply grows arithmetically (1, 2, 3, 4), leading to famine and misery. Advocated "moral restraint."',
+          "Proposed the population theory that population grows geometrically while food supply grows arithmetically, predicting inevitable catastrophe. His work influenced British poor laws and birth control advocacy, though technological advances and declining fertility rates have challenged his pessimistic predictions.",
       },
       {
-        name: 'Herbert Risley',
+        name: "Dr. Amartya Sen",
         contribution:
-          'Conducted the 1901 census and used anthropometric measurements to rank castes in a hierarchy based on racial characteristics.',
+          "Developed the entitlement theory of famine, arguing that famines result not from food scarcity but from failures in access and distribution. His capability approach shifted focus from income to substantive freedoms, including health, education, and demographic well-being.",
       },
       {
-        name: 'Amartya Sen',
+        name: "Kingsley Davis",
         contribution:
-          'Argued that famine is not caused by food shortage but by "entitlement failure" — people lack the means to buy available food due to poverty and inequality.',
+          "Studied demographic transition in India and argued that population control required addressing social structures, particularly the low status of women and lack of education, rather than relying solely on contraception.",
       },
     ],
     importantFacts: [
-      'India experienced negative population growth only once during 1911-1921 due to epidemics, famines, and World War I.',
-      'The proportion of children (under 15) declined from 42% (1971) to 29% (2011), showing falling fertility.',
-      'Replacement level fertility is 2.1 — the TFR at which population stabilizes over time.',
-      'National Family Planning Programme was launched in 1952, the first in the world.',
-      'India\'s sex ratio has been declining, with 943 females per 1,000 males in 2001.',
-      'India has a demographic dividend opportunity with average age of 29 years, potentially boosting economic growth.',
+      "India's population surpassed 1.4 billion in 2023, making it the world's most populous nation, surpassing China.",
+      "The National Family Planning Programme (NFPP), launched in 1952, was one of the first in the world, but its coercive measures during the Emergency (1975–77) severely damaged public trust.",
+      "Kerala achieved replacement-level fertility (TFR 1.8) through investments in female education, healthcare, and women's empowerment, while Uttar Pradesh (TFR 3.0) lags behind due to lower development indices.",
+      "The Pre-Conception and Pre-Natal Diagnostic Techniques (PNDT) Act, 1994, prohibits sex determination of foetuses to combat female foeticide, though enforcement remains a challenge.",
+      "Rural-to-urban migration in India is driven by push factors (poverty, lack of opportunities, agricultural distress) and pull factors (employment, education, healthcare), contributing to rapid and often unplanned urbanisation.",
+      "The demographic dividend window for India is estimated to last until 2055, after which the proportion of elderly will rise significantly, creating new social policy challenges.",
     ],
     examQuestions: [
       {
         question:
-          'Explain the concept of demographic transition and its relevance to India.',
+          "Explain the demographic transition model and its relevance for India.",
         answer:
-          'Demographic transition theory shows how population changes in stages as a country develops. Stage 1: high birth and death rates (stable population). Stage 2: death rates fall due to healthcare/food, but birth rates remain high (rapid growth). Stage 3: birth rates begin to fall (growth slows). Stage 4: low birth and death rates (stable). India is in Stage 3 with declining fertility rates. This explains India\'s population growth pattern — slow before independence, rapid 1961-81, declining since 1991.',
+          "The demographic transition model describes three stages of population change. In Stage 1, both birth rates and death rates are high, resulting in a stable but small population. In Stage 2, death rates fall due to improved healthcare, sanitation, and nutrition, while birth rates remain high, causing rapid population growth. In Stage 3, birth rates eventually fall to match low death rates, stabilising population. India is currently transitioning between Stages 2 and 3. States like Kerala and Tamil Nadu have reached Stage 3 with low fertility rates, while Bihar, Uttar Pradesh, and Madhya Pradesh remain in late Stage 2 with continued high growth. This uneven transition reflects differential development, female literacy, healthcare access, and cultural attitudes towards family size. Understanding this model helps policymakers design targeted interventions for states at different stages.",
       },
       {
         question:
-          'What are the key demographic indicators used to study population? Explain any three.',
+          "What is demographic dividend? What are the conditions necessary to realise it in India?",
         answer:
-          'Key indicators include: (1) Birth Rate — live births per 1,000 population per year, indicating growth pressure. (2) Death Rate — deaths per 1,000 population per year, reflecting healthcare quality. (3) Total Fertility Rate — average children per woman, with replacement level at 2.1. Other indicators: IMR, MMR, sex ratio, literacy rate, and dependency ratio.',
+          "Demographic dividend refers to the economic growth potential that arises when the working-age population (15–64 years) constitutes a significantly larger share of the total population than dependents (children and elderly). To realise this dividend, India needs: (1) investment in education and skill development to make the workforce productive, (2) creation of employment opportunities in both organised and unorganised sectors, (3) improvement in healthcare to ensure a healthy workforce, (4) women's empowerment and gender equality to maximise workforce participation, and (5) governance reforms to ensure equitable access to opportunities. Without these investments, the demographic dividend can become a demographic disaster, with large numbers of unemployed and frustrated youth becoming a source of social instability.",
       },
       {
         question:
-          'How did Malthus\'s population theory influence demographic thinking?',
+          "Discuss the factors responsible for the declining sex ratio in India. What measures have been taken to address this?",
         answer:
-          'Malthus argued population grows geometrically while food grows arithmetically, leading to inevitable crisis. Though his predictions were largely wrong due to technological advances, his theory stimulated demographic studies, led to family planning movements, and highlighted the relationship between population and resources. Amartya Sen later challenged this by showing famine results from entitlement failure, not just food shortage.',
-      },
-      {
-        question:
-          'What is demographic dividend and how can India benefit from it?',
-        answer:
-          'Demographic dividend is the economic growth potential when a country has a large working-age population relative to dependents (children and elderly). India with average age 29 has this advantage. To benefit, India needs: quality education, skill development, job creation, and healthcare. If properly harnessed, this young population can drive economic growth for decades, as happened in East Asian economies.',
+          "India's declining sex ratio reflects deep-rooted son preference driven by patriarchal social structures. Key factors include: (1) the cultural practice of dowry making daughters an economic liability, (2) patrilineal inheritance and old-age security tied to sons, (3) access to sex-selective technologies like ultrasound enabling female foeticide, (4) lower social value placed on women's lives and contributions, and (5) weak enforcement of existing laws. The sex ratio declined from 972 females per 1,000 males in 1901 to 940 in 2011. Government measures include the PNDT Act (1994) prohibiting sex determination, the Beti Bachao Beti Padhao campaign promoting girl child education, and constitutional provisions ensuring equal rights. However, changing deep-seated cultural attitudes requires sustained efforts in female education, economic empowerment, and challenging patriarchal norms.",
       },
     ],
     examTips: [
-      'Memorize key indicators with their formulas: BR, DR, TFR, IMR, MMR, sex ratio.',
-      'Know India\'s population growth phases: slow (pre-1961), rapid (1961-81), declining (post-1991).',
-      'Be ready to compare Malthus\'s pessimistic view with Amartya Sen\'s entitlement approach.',
-      'Understand demographic dividend requires investment in education and health to be realized.',
+      "Always quote specific data (TFR, IMR, sex ratio figures) when discussing demographics—abstract statements without data weaken answers.",
+      "Compare Kerala and UP as contrasting demographic models to illustrate how development, education, and healthcare drive population change.",
+      "When discussing Malthus, acknowledge both the relevance of his warning and the ways technology and social change have modified his predictions.",
+      "Link demographic trends to their social causes—dowry, son preference, female education—rather than treating population as a purely statistical phenomenon.",
     ],
   },
-
-  // ================================================================
-  // Ch3: Social Institutions
-  // ================================================================
   {
     id: 3,
     chapter: 3,
-    title: 'Social Institutions — Family, Kinship, and Caste',
+    title: "Social Institutions",
     summary:
-      'Family, kinship, and caste are key social institutions that shape Indian society. The caste system operates on two principles: separation and hierarchy, based on concepts of purity and pollution. Colonial census rigidified caste identities by classifying and ranking them. Tribal communities (8.2% of population) face unique challenges of isolation and exploitation. Matriliny is found in Meghalaya and Kerala, but matriarchy is only a theoretical concept.',
+      "Social institutions are enduring patterns of social relationships that organise collective life and serve fundamental societal functions. Caste in India operates through the dual system of Varna—the four-fold theoretical hierarchy of Brahmins, Kshatriyas, Vaishyas, and Shudras—and Jati, the thousands of endogamous occupational groups that structure daily social interaction. M.N. Srinivas' concept of Sanskritisation describes how lower castes adopt upper-caste practices to claim higher status, while Westernisation captures the adoption of modern, often British-influenced, lifestyles. Beyond caste, Indian social life is organised through family structures—ranging from nuclear to joint, patrilineal to matrilineal—and kinship networks that define obligations, inheritance, and social belonging.",
     keyConcepts: [
       {
-        term: 'Endogamy',
+        term: "Varna",
         definition:
-          'The practice of marrying within one\'s own caste, community, or group. Caste is strictly endogamous.',
+          "The theoretical four-fold division of Hindu society into Brahmins (priests and scholars), Kshatriyas (warriors and rulers), Vaishyas (merchants and farmers), and Shudras (labourers and service providers), based on the Purusha Sukta hymn of the Rigveda.",
       },
       {
-        term: 'Exogamy',
+        term: "Jati",
         definition:
-          'The practice of marrying outside one\'s gotra (clan) to prevent inbreeding and expand kinship networks.',
+          "The thousands of endogamous, occupational sub-castes that form the functional unit of the caste system in daily life. Unlike the idealised Varna model, Jati is fluid, regionally variable, and organised around principles of purity, pollution, and occupational specialization.",
       },
       {
-        term: 'Gotra',
+        term: "Sanskritisation",
         definition:
-          'A clan or lineage system, usually tracing descent from a common ancestor. Members of the same gotra cannot marry each other.',
+          "M.N. Srinivas' concept describing how lower castes or dominant castes adopt upper-caste rituals, customs, and practices—such as vegetarianism, wearing sacred threads, or claiming Kshatriya status—to claim higher ritual status in the caste hierarchy.",
       },
       {
-        term: 'Matriliny',
+        term: "Westernisation",
         definition:
-          'A system where descent and inheritance are traced through the mother\'s line. Found in Meghalaya (Khasi, Garo) and parts of Kerala (Nair).',
+          "The process of adopting modern, often Western-influenced, values, lifestyles, and technologies—such as English education, formal legal systems, scientific rationality, and democratic ideals—that transforms traditional social practices and institutions.",
       },
       {
-        term: 'Patrilineal',
+        term: "Kinship",
         definition:
-          'A system where descent and inheritance are traced through the father\'s line. Most common in India.',
+          "The system of social relationships based on blood ties (consanguineal) or marriage (affinal) that defines roles, obligations, inheritance, and social identity within a society.",
       },
       {
-        term: 'Purity and Pollution',
+        term: "Panchayati Raj",
         definition:
-          'The ideological basis of caste hierarchy — upper castes claim ritual purity while lower castes are considered polluted. This justifies social segregation.',
+          "The system of local self-governance in rural India, constitutionally mandated by the 73rd Amendment (1992), establishing a three-tier structure of Gram Panchayat, Panchayat Samiti, and Zila Parishad with elected representatives and reserved seats for women and Scheduled Castes and Tribes.",
       },
       {
-        term: 'Nuclear Family',
+        term: "Dominant Caste",
         definition:
-          'A family unit consisting of parents and their children only, living independently.',
+          "M.N. Srinivas' concept for castes that are numerically large, economically prosperous, ritually high-ranking, and politically influential within a local area, wielding power disproportionate to their position in the formal Varna hierarchy.",
       },
       {
-        term: 'Joint Family',
+        term: "Scheduled Tribes",
         definition:
-          'An extended family system where multiple generations live together, sharing resources, property, and decisions under the authority of the eldest male member.',
+          "Constitutionally recognised tribal communities listed in the Fifth and Sixth Schedules of the Indian Constitution, constituting approximately 8.6% of the population, entitled to reservations, land protections, and self-governance through autonomous councils.",
       },
     ],
     keyThinkers: [
       {
-        name: 'Herbert Risley',
+        name: "M.N. Srinivas",
         contribution:
-          'Used the 1901 census to rank castes in a hierarchical order based on anthropometric measurements, rigidifying caste identities through colonial administration.',
+          "Developed the concepts of Sanskritisation (how lower castes emulate upper-caste practices to claim higher status), dominant caste (locally powerful castes that defy formal Varna hierarchy), and social change through cultural borrowing. His field studies of Coorg and Rampura villages remain foundational texts in Indian sociology.",
+      },
+      {
+        name: "Irawati Karve",
+        contribution:
+          "Pioneered the study of kinship in India through her work 'Kinship Organisation in India' (1953), demonstrating how kinship structures vary across regions—Dravidian, Indo-Aryan, and Tribal—and how these variations shape marriage, inheritance, and social organisation.",
+      },
+      {
+        name: "Louis Dumont",
+        explanation:
+          "In 'Homo Hierarchicus' (1966), Dumont argued that caste is fundamentally about the opposition between purity and pollution, with Brahmins at the apex of the ritual hierarchy. His structuralist approach has been both influential and widely critiqued for its essentialism.",
       },
     ],
     importantFacts: [
-      'Tribals constitute 8.2% of India\'s population (approximately 85 million in 2001 Census).',
-      'Gonds and Bhils are the largest tribal groups in India.',
-      'Colonial census made caste identity rigid by classifying, counting, and ranking castes in a hierarchy.',
-      'Land revenue systems under colonialism recognized and strengthened upper-caste rights over land.',
-      'Caste rules include: birth-based membership, endogamy, hereditary occupation, and hierarchy.',
-      'Matriliny exists in Meghalaya (Khasi, Garo tribes) and Kerala (Nair community), but matriarchy is theoretical only.',
+      "The Varna system theoretically divides society into four categories, but the actual functioning of caste operates through Jati—thousands of endogamous groups with their own customs, occupations, and hierarchical positions that vary significantly across regions.",
+      "The 73rd Constitutional Amendment (1992) mandated reservation of one-third of Panchayat seats for women, leading to over 1.4 million women representatives in local governance, though questions of proxy leadership persist.",
+      "Scheduled Tribes constitute approximately 8.6% of India's population (over 104 million people), with the highest concentrations in Madhya Pradesh, Odisha, Maharashtra, and Chhattisgarh.",
+      "The matrilineal Khasi and Garo tribes of Meghalaya and the Nair community of Kerala demonstrate that patrilineal descent is not universal in Indian society, challenging homogenised narratives about gender and kinship.",
+      "Joint family systems, traditionally characterised by common residence, shared property, and collective decision-making, are declining in urban India due to industrialisation, migration, and individualistic values, though they remain common in rural areas.",
+      "Sanskritisation has been critiqued for ignoring the fact that emulation of upper-caste practices often reinforces rather than challenges the caste hierarchy, validating the very system it ostensibly contests.",
     ],
     examQuestions: [
       {
         question:
-          'How did colonialism affect the caste system in India?',
+          "Distinguish between Varna and Jati. How do they function differently in Indian society?",
         answer:
-          'Colonialism affected caste in several ways: (1) Census classification rigidified caste identities by counting and ranking them. (2) Land revenue systems recognized upper-caste land rights. (3) Legal codes codified caste customs. (4) Colonial administration created new categories and hierarchies. (5) Western education and urbanization challenged traditional caste occupations but also created new forms of caste consciousness.',
+          "Varna is the theoretical four-fold division of Hindu society into Brahmins, Kshatriyas, Vaishyas, and Shudras, based on ancient textual sources like the Rigveda. It is an idealised, pan-Indian classification that provides a broad ritual hierarchy. Jati, by contrast, is the actual operational unit of the caste system—thousands of endogamous, occupational sub-castes that structure daily social interaction. While Varna provides the ideological framework, Jati determines marriage partners, dietary practices, occupational specialisations, and social status in everyday life. The relationship between the two is complex: multiple Jatis may be classified under a single Varna, and the same Varna label may carry different ritual statuses in different regions. For example, a dominant peasant caste classified as Shudra in Varna terms may locally outrank Brahmins in power and influence.",
       },
       {
         question:
-          'Distinguish between matriliny and matriarchy with examples.',
+          "What is Sanskritisation? Discuss its significance and limitations as a theory of social change.",
         answer:
-          'Matriliny is a system of descent through the mother\'s line — property and lineage are traced through women. Example: Khasi tribe in Meghalaya, Nair community in Kerala. Matriarchy is a system where women hold primary power and authority — this is largely theoretical and has never existed in practice. Matriliny does not mean women rule; it means descent is traced through them, but men may still hold authority.',
+          "Sanskritisation, developed by M.N. Srinivas, describes how lower or dominant castes adopt upper-caste rituals, customs, and practices—such as vegetarianism, wearing sacred threads, claiming Kshatriya status, or eschewing alcohol—to claim higher ritual position within the caste hierarchy. Its significance lies in recognising that caste is not static but dynamic, and that social mobility occurs through cultural emulation. However, Sanskritisation has significant limitations: (1) it reinforces the legitimacy of the Varna hierarchy by validating upper-caste practices as aspirational, (2) it overlooks cases where lower castes challenge caste norms entirely rather than emulating upper castes, (3) it cannot account for Dr. B.R. Ambedkar's assertion of Dalit identity which rejected Sanskritisation in favour of dignity and constitutional rights, and (4) it may lead to the loss of distinct cultural practices of lower castes without actually achieving equal status.",
       },
       {
         question:
-          'What are the characteristics of the caste system? Explain with examples.',
+          "Explain the role of Panchayati Raj in Indian democracy. What are its strengths and weaknesses?",
         answer:
-          'Caste system characteristics: (1) Birth-based membership — one is born into a caste. (2) Endogamy — marriage within one\'s caste. (3) Hereditary occupation — occupation determined by caste (e.g., Brahmins as priests, Shudras as laborers). (4) Hierarchy — castes ranked from pure to impure. (5) Separation — physical and social segregation of castes. (6) Purity-pollution ideology — justifies hierarchy through ritual concepts.',
+          "Panchayati Raj, constitutionally established by the 73rd Amendment (1992), is the system of local self-governance in rural India, structured in three tiers: Gram Panchayat (village level), Panchayat Samiti (block level), and Zila Parishad (district level). Its strengths include: (1) democratising governance by bringing it closer to citizens, (2) ensuring political representation through mandatory reservation for women, Scheduled Castes, and Scheduled Tribes, (3) enabling participatory development planning, and (4) empowering over 1.4 million women representatives. However, weaknesses persist: (1) inadequate fiscal decentralisation leaves Panchayats dependent on state governments, (2) proxy leadership where elected women representatives are controlled by male family members, (3) dominance of local elites and dominant castes in capturing Panchayat positions, and (4) limited administrative capacity and technical expertise at the grassroots level.",
       },
     ],
     examTips: [
-      'Know the difference between matriliny (descent through mother) and matriarchy (rule by women).',
-      'Understand how colonial census transformed caste from fluid to rigid identity.',
-      'Be ready to discuss both positive functions (social order) and negative aspects (discrimination) of social institutions.',
-      'Memorize facts about tribal population (8.2%, 85 million, Gonds/Bhils largest).',
+      "When discussing caste, always distinguish between the ideal Varna model and the empirical Jati system—this shows analytical sophistication.",
+      "Use Srinivas' concepts of Sanskritisation and dominant caste together to explain how caste dynamics operate at the local level.",
+      "For questions on Panchayati Raj, balance constitutional provisions with ground-level realities of implementation and power dynamics.",
+      "Reference Irawati Karve's regional variation in kinship to show that Indian social institutions are not monolithic but diverse.",
     ],
   },
-
-  // ================================================================
-  // Ch4: Market as Social Institution
-  // ================================================================
-  {
-    id: 4,
-    chapter: 4,
-    title: 'Market as a Social Institution',
-    summary:
-      'Markets are not just economic spaces but social institutions shaped by caste, class, and kinship networks. Adam Smith\'s "invisible hand" theory suggests markets self-regulate. Marx analyzed surplus value exploitation under capitalism. Weber linked market position to status symbols. Weekly haats serve both social and economic functions in rural India. Chettiars used caste networks for banking across Southeast Asia. Liberalisation minimized state control over markets.',
-    keyConcepts: [
-      {
-        term: 'Invisible Hand',
-        definition:
-          'Adam Smith\'s concept that individuals pursuing self-interest in a free market unintentionally promote the good of society as a whole.',
-      },
-      {
-        term: 'Social Embeddedness',
-        definition:
-          'The idea that economic activities are embedded within social relationships, cultural norms, and institutions — markets are not separate from society.',
-      },
-      {
-        term: 'Commoditisation',
-        definition:
-          'The process of treating goods, services, or even people as commodities that can be bought and sold in the market.',
-      },
-      {
-        term: 'Liberalisation',
-        definition:
-          'Economic reforms that reduce government control, open markets to competition, and allow private enterprise greater freedom.',
-      },
-      {
-        term: 'Globalisation',
-        definition:
-          'The increasing interconnectedness of economies, cultures, and societies through trade, technology, and migration across national boundaries.',
-      },
-      {
-        term: 'Surplus Value',
-        definition:
-          'Marx\'s concept of the difference between the value workers produce and the wages they receive — the surplus appropriated by capitalists as profit.',
-      },
-      {
-        term: 'Weekly Haat',
-        definition:
-          'Periodic rural markets where villagers buy and sell goods, exchange information, and socialize — combining economic and social functions.',
-      },
-    ],
-    keyThinkers: [
-      {
-        name: 'Adam Smith',
-        contribution:
-          'Proposed the "invisible hand" theory — free markets self-regulate through competition, and individual self-interest benefits society. Advocated minimal government intervention.',
-      },
-      {
-        name: 'Karl Marx',
-        contribution:
-          'Analyzed capitalism as a system of exploitation based on surplus value — capitalists extract profit from workers\' unpaid labor. Predicted capitalism\'s eventual overthrow.',
-      },
-      {
-        name: 'Max Weber',
-        contribution:
-          'Linked market position to status — economic class, social status, and political power are interrelated but distinct dimensions of social stratification.',
-      },
-    ],
-    importantFacts: [
-      'Chettiars (Nadars) from Tamil Nadu controlled banking and trade across Southeast Asia using caste networks.',
-      'Marwaris (from Rajasthan) became the most widespread trading community in India.',
-      'India was a major supplier of goods (textiles, spices) to the world before colonialism disrupted trade.',
-      'Weekly haats serve dual functions — economic exchange and social interaction in rural areas.',
-      'Markets in India are shaped by caste (trading communities), kinship (family businesses), and class (corporate sectors).',
-    ],
-    examQuestions: [
-      {
-        question:
-          'How are markets socially embedded? Explain with Indian examples.',
-        answer:
-          'Markets in India are not purely economic spaces but shaped by social relationships. Examples: (1) Caste networks — Chettiars used caste ties for banking across SE Asia; Marwaris dominate specific trades. (2) Kinship — family businesses run on trust and relationships. (3) Weekly haats combine economic exchange with social interaction. (4) Trust based on community ties rather than legal contracts. Markets reflect social hierarchies and cultural norms.',
-      },
-      {
-        question:
-          'Compare Adam Smith\'s and Karl Marx\'s views on markets and capitalism.',
-        answer:
-          'Smith: Free markets self-regulate through the "invisible hand." Competition benefits consumers. Individual self-interest leads to collective good. Government should minimize intervention. Marx: Markets are arenas of exploitation. Capitalists extract surplus value from workers\' labor. Competition leads to concentration of wealth. Capitalism will eventually be overthrown by workers. Smith sees markets as beneficial; Marx sees them as exploitative.',
-      },
-      {
-        question:
-          'What role do caste and kinship play in Indian markets?',
-        answer:
-          'Caste and kinship shape Indian markets in multiple ways: (1) Trading castes (Chettiars, Marwaris, Baniyas) dominate specific market sectors. (2) Kinship networks provide trust and credit for business. (3) Caste panchayats resolve commercial disputes. (4) Endogamous marriage alliances strengthen business partnerships. (5) Weekly haats organized by caste/community. Even in modern corporate sector, caste networks influence business formation and growth.',
-      },
-    ],
-    examTips: [
-      'Understand the key differences between Smith (free market), Marx (exploitation), and Weber (status).',
-      'Be ready to give examples of how caste influences modern markets and business.',
-      'Know the functions of weekly haats — both economic and social.',
-      'Discuss how liberalisation changed India\'s market structure post-1991.',
-    ],
-  },
-
-  // ================================================================
-  // Ch5: Structural Change
-  // ================================================================
   {
     id: 5,
     chapter: 5,
-    title: 'Structural Change',
+    title: "Structural Change",
     summary:
-      'Colonialism fundamentally altered India\'s political, economic, and social structure. British capitalism drove every policy decision. Deindustrialisation destroyed Indian manufacturing industries as raw materials were exported and finished goods imported. New colonial cities like Bombay, Madras, and Kolkata emerged as administrative and commercial centres, while old indigenous centres like Surat and Masulipatnam declined. Kolkata grew from three villages in 1690 to become a major colonial metropolis.',
+      "Structural change refers to fundamental transformations in the organisation of society—its economy, polity, social institutions, and cultural practices. In India, colonialism was the primary engine of structural change, dismantling pre-colonial economic arrangements and imposing new ones oriented toward extraction and export. The introduction of railways, print technology, and the factory system did not merely add new elements to Indian society but reorganised its entire fabric, creating new classes, new forms of consciousness, and new sites of social conflict. Colonial census operations rigidified caste into fixed administrative categories, while social reform movements challenged entrenched orthodoxies and opened space for more egalitarian social visions.",
     keyConcepts: [
       {
-        term: 'Deindustrialisation',
+        term: "Structural Change",
         definition:
-          'The process where India\'s traditional manufacturing industries (especially textiles) were destroyed as they could not compete with machine-made British goods, reducing India to a supplier of raw materials.',
+          "Fundamental transformation in the social, economic, political, or cultural organisation of a society, involving not just surface-level modifications but deep reorganisation of institutions, relationships, and power structures.",
       },
       {
-        term: 'Structural Change',
+        term: "Colonial Economy",
         definition:
-          'Fundamental transformation in the organization of society — its economy, polity, social relations, and culture — driven by colonial capitalism.',
+          "An economic system oriented toward the extraction of raw materials and wealth from the colonised territory to serve the industrial and commercial interests of the colonising power, resulting in deindustrialisation, commercial agriculture, and integration into global capitalist markets on unequal terms.",
       },
       {
-        term: 'Colonial City',
+        term: "Deindustrialisation",
         definition:
-          'New urban centres built by colonial administration (Bombay, Madras, Kolkata) serving as nodes connecting the economic centre (Britain) to the periphery (India).',
+          "The systematic destruction of indigenous industries—particularly textiles and handicrafts—through colonial policies that imposed tariffs favouring British manufactured goods while extracting raw materials from India, transforming a manufacturing economy into a supplier of primary commodities.",
       },
       {
-        term: 'Bourgeoisie',
+        term: "Commercial Agriculture",
         definition:
-          'Marx\'s term for the capitalist class that owns the means of production — in colonial India, this included both British traders and Indian merchants.',
+          "The shift from subsistence farming to cultivation of cash crops (indigo, cotton, jute, tea) for market sale and export, driven by colonial revenue demands and global market forces, often at the cost of food security and peasant welfare.",
       },
       {
-        term: 'Proletariat',
+        term: "Social Reform Movements",
         definition:
-          'Marx\'s term for the working class that sells its labor to survive — in colonial India, this included factory workers, plantation laborers, and artisans.',
+          "Collective efforts by Indian intellectuals and activists to challenge harmful social practices—such as sati, child marriage, caste discrimination, and widow remarriage—through education, legislation, and cultural transformation, drawing on both indigenous traditions and modern ideas.",
+      },
+      {
+        term: "Brahmo Samaj",
+        definition:
+          "Founded by Ram Mohan Roy in 1828, the Brahmo Samaj was a reformist Hindu movement that opposed idol worship, child marriage, and sati, promoted women's education and widow remarriage, and sought to synthesise Hinduism with modern rational thought and Christian ethics.",
+      },
+      {
+        term: "Arya Samaj",
+        definition:
+          "Founded by Swami Dayananda Saraswati in 1875, the Arya Samaj advocated a return to Vedic ideals, opposed caste by birth, promoted education for all, and launched the Shuddhi movement to reconvert those who had converted to other religions, blending reform with Hindu nationalism.",
       },
     ],
     keyThinkers: [
       {
-        name: 'Karl Marx',
+        name: "R.C. Dutt",
         contribution:
-          'Analyzed how capitalism transforms social structures. His concepts of bourgeoisie, proletariat, and surplus value explain how colonial capitalism restructured Indian economy and society.',
+          'In "The Economic History of India" (1901–1903), R.C. Dutt provided a systematic economic critique of British colonialism, documenting how colonial policies deindustrialised India, impoverished peasants, and extracted wealth. His work laid the foundation for the nationalist economic critique of colonialism.',
       },
       {
-        name: 'Max Weber',
+        name: "B.R. Ambedkar",
         contribution:
-          'Studied bureaucracy as a key feature of modern rational-legal authority. Colonial administration introduced bureaucratic structures that transformed Indian governance.',
+          "Ambedkar combined structural analysis of caste with active political mobilisation for Dalit rights. His critique of caste as a system of graded inequality and his advocacy for constitutional remedies—including reservations—provided a transformative framework for addressing structural oppression.",
+      },
+      {
+        name: "D.D. Kosambi",
+        contribution:
+          "Applied Marxist methodology to Indian history, analysing how changes in modes of production—from pastoral to agricultural to feudal to colonial—drove structural transformations in Indian society. His work bridged history and sociology in studying long-term social change.",
       },
     ],
     importantFacts: [
-      'Kolkata was founded by Job Charnock in 1690, growing from three villages to a major colonial city.',
-      'Fort William was built in 1698 as the British administrative headquarters in Bengal.',
-      'Deindustrialisation occurred because Indian handloom weavers could not compete with Manchester\'s machine-made textiles.',
-      'Colonial cities served as administrative nodes connecting the economic centre (Britain) to the periphery (India).',
-      'Old trading centres like Surat and Masulipatnam declined as colonial cities like Bombay and Madras rose.',
-      'British capitalism drove every colonial policy — from land revenue to trade regulations.',
+      "The Permanent Settlement of 1793 created the zamindari system in Bengal, converting revenue collectors into landed proprietors and peasants into tenants, fundamentally altering agrarian class relations.",
+      "The destruction of India's textile industry is starkly illustrated by the shift from being a major exporter of finished textiles in the pre-colonial period to an exporter of raw cotton and importer of British cloth by the mid-19th century.",
+      "Railways, introduced in 1853, served dual purposes: facilitating colonial extraction of raw materials and troop movement, but also enabling the circulation of nationalist ideas and the integration of diverse regions into a national market.",
+      "The Census of 1871 rigidified caste identities that had been fluid and regionally variable, converting them into fixed administrative categories that shaped access to resources and political representation.",
+      "B.R. Ambedkar's Mahad Satyagraha (1927) and temple entry movements challenged the structural exclusion of Dalits from public spaces, asserting their constitutional right to equality.",
+      "The shift from zamindari to Ryotwari and Mahalwari systems represented different colonial strategies of revenue extraction, each creating distinct class structures and peasant-Crown relationships.",
     ],
     examQuestions: [
       {
         question:
-          'How did colonialism lead to deindustrialisation in India?',
+          "How did colonialism bring about structural change in Indian society? Discuss with reference to economic, administrative, and social dimensions.",
         answer:
-          'Deindustrialisation occurred through several mechanisms: (1) British policy flooded India with cheap machine-made textiles from Manchester, destroying handloom industries. (2) Raw materials like cotton were exported to Britain instead of being used in India. (3) Tariff policies protected British goods while Indian exports faced barriers. (4) Traditional artisans lost livelihoods and became agricultural laborers. (5) India was reduced from exporter of finished goods to supplier of raw materials.',
+          "Colonialism brought about comprehensive structural change in Indian society across multiple dimensions. Economically, it deindustrialised India through tariff policies that destroyed indigenous manufactures while integrating India into global markets as a supplier of raw materials. Commercial agriculture replaced subsistence farming, creating new class structures of rich peasants, sharecroppers, and landless labourers. Administratively, the census rigidified caste into fixed categories, while new legal codes replaced customary law. The railways, though serving colonial extraction, created a national market and facilitated the circulation of nationalist ideas. Socially, colonial education created a new English-speaking middle class that became carriers of both reform and nationalism. The factory system created an industrial proletariat. These changes were not merely additive but reorganised the fundamental fabric of Indian society, creating new classes, new forms of consciousness, and new sites of conflict.",
       },
       {
         question:
-          'Explain the emergence of colonial cities and their impact on Indian society.',
+          "Discuss the role of social reform movements in addressing structural inequalities in colonial India.",
         answer:
-          'Colonial cities (Bombay, Madras, Kolkata) emerged as: (1) Administrative centres for British governance. (2) Ports for raw material export and finished goods import. (3) Hubs of new employment — clerks, overseers, laborers. (4) Sites of social reform and modern education. (5) Centers of nationalist politics. They displaced old trading centres (Surat, Masulipatnam), created new urban working classes, and introduced Western institutions and ideas.',
+          "Social reform movements played a crucial role in challenging structural inequalities during colonial India. The Brahmo Samaj, founded by Ram Mohan Roy, campaigned against sati, child marriage, and for women's education, using both rationalist arguments and selective interpretation of Hindu scriptures. The Arya Samaj, founded by Swami Dayananda, challenged caste rigidity through its 'Back to the Vedic' movement and promoted education for all castes. The Prarthana Samaj in Maharashtra worked for caste reform and widow remarriage. These movements operated within a colonial context where British reforms—like abolishing sati in 1829—were often imposed from above, while Indian reformers sought to transform society from within. However, these movements had limitations: they were largely upper-caste led, and their reform agendas often excluded the most marginalised. Dr. B.R. Ambedkar later critiqued these reform efforts for being insufficiently radical in addressing the structural foundations of caste oppression.",
       },
       {
         question:
-          'What were the major structural changes brought about by colonialism?',
+          "Analyse the impact of railways and print technology on Indian society during the colonial period.",
         answer:
-          'Major structural changes: (1) Economic — deindustrialisation, new cash crops, commercialization of agriculture. (2) Political — centralized colonial administration, new legal systems. (3) Social — new middle classes, urbanization, new forms of labor. (4) Cultural — Western education, new social reform movements. (5) Administrative — bureaucracy, census, land revenue systems. These fundamentally transformed Indian society from its pre-colonial form.',
+          "Railways and print technology were transformative structural interventions in colonial India with far-reaching consequences. Railways, introduced in 1853, unified the Indian national market by reducing transportation costs and time, enabling the movement of goods, people, and ideas across vast distances. They facilitated the extraction of raw materials from the interior to port cities for export, while also enabling the distribution of British manufactured goods. However, railways also inadvertently facilitated the nationalist movement by enabling political workers to travel across regions and by creating a shared national space. Print technology and the press created new public spheres where political ideas circulated, fostering a sense of national consciousness among diverse linguistic and regional communities. Newspapers, pamphlets, and books enabled mass political education and mobilisation. Together, these technologies structural transformed India from a collection of isolated regional economies and cultures into an integrated national entity, even as they served colonial extraction.",
       },
     ],
     examTips: [
-      'Understand the chain: colonialism → capitalism → deindustrialisation → structural change.',
-      'Know the difference between old indigenous centres (Surat, Masulipatnam) and new colonial cities.',
-      'Be ready to explain how Kolkata grew from three villages to a colonial metropolis.',
-      'Connect structural changes to both economic and social transformations.',
+      "Frame colonial structural change in terms of how it reorganised existing institutions rather than merely adding new ones—this shows deeper analysis.",
+      "When discussing social reform, acknowledge both their progressive contributions and their class/caste limitations to demonstrate balanced evaluation.",
+      "Link railways and print technology to both colonial interests and nationalist mobilisation—their dual role is a key analytical point.",
+      "Use specific examples (Permanent Settlement, Deindustrialisation of textiles, Census categories) to ground structural analysis in historical evidence.",
     ],
   },
-
-  // ================================================================
-  // Ch6: Cultural Change
-  // ================================================================
   {
     id: 6,
     chapter: 6,
-    title: 'Cultural Change',
+    title: "Cultural Change",
     summary:
-      'M.N. Srinivas coined the concepts of sanskritisation, westernisation, and dominant caste. Sanskritisation involves lower castes adopting upper-caste customs to improve their status — it is positional change, not structural. Westernisation reflects 150+ years of British impact on Indian culture. Modernisation prioritizes universal over local. Secularisation of caste means caste groups function as political pressure groups. Social reform movements of the 19th-20th century challenged traditional practices.',
+      "Cultural change encompasses the transformation of values, beliefs, norms, and practices that constitute the shared meaning-systems of a society. In India, modernisation has been a multidimensional process involving westernisation, secularisation, and rationalisation, though not all modernisation is westernisation. M.N. Srinivas' framework of Sanskritisation versus westernisation captures two distinct pathways of cultural transformation—one through emulation of upper-caste Hindu norms, the other through adoption of modern, often Western-derived, ideas and institutions. Social reformers from Ram Mohan Roy to Periyar have challenged entrenched cultural orthodoxies, while the Left movement and grassroots organisations like Kudumbam have articulated alternative visions of cultural transformation rooted in equality and social justice.",
     keyConcepts: [
       {
-        term: 'Sanskritisation',
+        term: "Modernisation",
         definition:
-          'M.N. Srinivas\'s concept where lower castes adopt upper-caste (Brahminical) customs like vegetarianism, teetotalism, and rituals to improve their social position. It leads to positional change, not structural change.',
+          "A multidimensional process of social transformation involving urbanisation, industrialisation, secularisation, rationalisation, and the spread of education and technology, leading to the replacement of traditional social forms with modern institutions, values, and ways of thinking.",
       },
       {
-        term: 'Westernisation',
+        term: "Westernisation",
         definition:
-          'The process of adopting Western cultural traits — technology, institutions, ideology, and lifestyle — resulting from 150+ years of British colonial impact on Indian society.',
+          "The adoption of Western cultural practices, values, institutions, and lifestyles—including English education, formal legal systems, democratic governance, and individualistic ethos—often associated with the colonial encounter but continuing in post-colonial contexts.",
       },
       {
-        term: 'Dominant Caste',
+        term: "Secularisation",
         definition:
-          'M.N. Srinivas\'s concept of a caste that is numerically large, economically powerful, and politically influential in a local area, enjoying a superior ritual position.',
+          "The process by which religion loses its dominance over social institutions and individual consciousness, as scientific rationality, legal-rational authority, and differentiated institutions assume functions previously performed by religious authority.",
       },
       {
-        term: 'Modernisation',
+        term: "Rationalisation",
         definition:
-          'A process of social change where universalistic values (based on merit and achievement) replace particularistic values (based on birth and ascription).',
+          "Max Weber's concept describing the replacement of traditional, custom-based, and affectual action with calculable, rule-governed, and efficiency-oriented behaviour, pervading bureaucracy, law, economy, and science in modern societies.",
       },
       {
-        term: 'Secularisation of Caste',
+        term: "Partial Reconstruction",
         definition:
-          'Rajni Kothari\'s concept where caste loses its ritual significance and functions as a political pressure group for electoral mobilization and resource allocation.',
+          "T.N. Madan's concept describing how Indian society selectively adopts modern elements while retaining traditional ones, resulting in a hybrid cultural formation rather than wholesale transformation or simple preservation of tradition.",
       },
       {
-        term: 'Social Reform Movements',
+        term: "Tradition and Modernity",
         definition:
-          '19th-20th century movements that challenged caste oppression, gender inequality, and irrational practices — Brahmo Samaj, Arya Samaj, Satyashodhak Samaj.',
+          "D.P. Mukerji argued that Indian modernity is not a wholesale rejection of tradition but a creative synthesis where traditional values are reinterpreted and integrated with modern institutions, creating a distinctively Indian form of modernity rather than a replica of Western modernity.",
+      },
+      {
+        term: "Social Reform",
+        definition:
+          "Organised efforts to change harmful social practices and cultural norms through education, legislation, and cultural transformation, drawing on both indigenous traditions and modern ideas to promote more egalitarian and humane social arrangements.",
+      },
+      {
+        term: "Left Movement",
+        definition:
+          "A political and intellectual tradition rooted in Marxism that challenges class exploitation, caste oppression, and cultural conservatism, advocating for workers' rights, land reform, and radical social transformation through collective action.",
       },
     ],
     keyThinkers: [
       {
-        name: 'M.N. Srinivas',
+        name: "M.N. Srinivas",
         contribution:
-          'Coined three key concepts: (1) Sanskritisation — lower castes adopting upper-caste customs for status improvement. (2) Westernisation — impact of Western culture. (3) Dominant Caste — locally powerful caste with numerical, economic, and political strength.',
+          "Provided the foundational framework for understanding cultural change in India through Sanskritisation (adoption of upper-caste practices by lower castes to claim higher status) and Westernisation (adoption of modern Western-derived values and institutions). His work demonstrated that cultural change in India operates through multiple pathways simultaneously.",
       },
       {
-        name: 'Rajni Kothari',
+        name: "T.N. Madan",
         contribution:
-          'Coined "secularisation of caste" — in modern India, caste has lost its ritual purity-pollution basis and now functions as a political identity for mobilization and bargaining.',
+          "Developed the concept of partial reconstruction to explain how Indian society selectively adopts modern elements while retaining traditional ones. He critiqued both modernisation theory's assumption of linear progress and traditionalist resistance to change, arguing for a nuanced understanding of how tradition and modernity interact.",
       },
       {
-        name: 'Satish Saberwal',
+        name: "D.P. Mukerji",
         contribution:
-          'Analyzed three aspects of modern change: (1) Movement from ascriptive to achievement-based status. (2) Movement from particularistic to universalistic values. (3) Movement from sacred to secular authority.',
+          "Argued for understanding tradition and modernity not as opposites but as complementary forces in Indian society. His concept of 'living traditions' emphasises that traditions evolve and adapt rather than remaining static, and that modern Indian culture emerges from creative synthesis rather than wholesale replacement.",
       },
     ],
     importantFacts: [
-      'Brahmo Samaj was founded in Bengal by Raja Ram Mohan Roy — challenged Sati, child marriage, idol worship.',
-      'Arya Samaj was founded in Punjab by Swami Dayanand Saraswati — promoted Vedic learning, opposed caste discrimination.',
-      'Jyotirao Phule started the first school for girls in Pune in 1848 with his wife Savitribai Phule.',
-      'Sanskritisation leads to positional change (status improvement) NOT structural change (no change in social hierarchy).',
-      'De-sanskritisation occurs in areas where non-Sanskritic dominant castes reject Brahminical customs.',
-      'Social reform movements of 19th-20th century were crucial in challenging caste oppression and gender inequality.',
+      "Ram Mohan Roy's campaign against sati (widow immolation) led to its abolition through Regulation XVII in 1829, marking one of the earliest successes of social reform combining moral argument with legislative action.",
+      "Jyotirao Phule's 'Gulamgiri' (1871) drew parallels between the oppression of Indian lower castes and African American slavery, establishing an early framework for anti-caste activism that influenced Dr. Ambedkar.",
+      "Pandita Ramabai challenged both colonial stereotypes of Indian women and patriarchal norms within Indian society, establishing institutions for widows and destitute women while converting to Christianity.",
+      "Periyar's Self-Respect Movement in Tamil Nadu challenged Brahminical hegemony and caste discrimination, advocating for rationalism, gender equality, and a Dravidian identity distinct from North Indian cultural dominance.",
+      "The Kudumbam movement in Kerala, inspired by Gandhian principles, organised women and marginalized communities for collective economic and social empowerment through grassroots mobilization.",
+      "T.N. Madan critiqued both modernisation theory's assumption that all societies follow a linear path to Western-style modernity and the traditionalist position that tradition is inherently valuable and resistant to change.",
     ],
     examQuestions: [
       {
         question:
-          'What is sanskritisation? Explain with examples and its limitations.',
+          "Distinguish between modernisation and westernisation in the Indian context. Are they the same?",
         answer:
-          'Sanskritisation (M.N. Srinivas) is when lower castes adopt upper-caste customs to improve status. Examples: (1) Lower castes becoming vegetarian, giving up alcohol. (2) Adopting Brahminical rituals and ceremonies. (3) Claiming Kshatriya status. Limitations: (1) It is positional change, not structural — hierarchy remains. (2) Upper castes may resist or react negatively. (3) Not all groups can sanskritise. (4) It reinforces the idea that upper-caste culture is superior. (5) In some areas, de-sanskritisation occurs where non-Sanskritic castes reject these customs.',
+          "Modernisation and westernisation are related but distinct concepts in the Indian context. Modernisation is a multidimensional process of social transformation involving urbanisation, industrialisation, secularisation, rationalisation, and the spread of education and science. It is not inherently tied to any particular cultural tradition. Westernisation, by contrast, specifically refers to the adoption of Western cultural practices, values, and institutions—English education, formal legal systems, democratic governance, and individualistic ethos. While modernisation in India has often occurred through Western influences, they are not identical. India has pursued modernisation while selectively retaining and reinterpreting its own traditions, as D.P. Mukerji argued. For example, democratic governance in India is modern but incorporates traditional forms of consensus-building. Similarly, scientific education is modern but does not require adopting Western cultural practices. T.N. Madan's concept of partial reconstruction captures this selective adoption of modern elements while retaining traditional ones, demonstrating that modernisation need not mean wholesale westernisation.",
       },
       {
         question:
-          'Explain the concept of "secularisation of caste" with examples.',
+          "Discuss the contributions of social reformers to cultural change in India.",
         answer:
-          'Secularisation of caste (Rajni Kothari) means caste has moved from ritual domain to political domain. Caste now functions as: (1) Political pressure group — castes mobilize for electoral gains. (2) Identity for resource allocation — reservation politics. (3) Voting bloc — caste-based party support. (4) Social network — matrimonial, business, professional networks. Example: Mandal Commission politics where OBC identity became a powerful political tool.',
+          "Social reformers have been pivotal agents of cultural change in India. Ram Mohan Roy, the 'Father of the Indian Renaissance,' challenged sati, child marriage, and idol worship through the Brahmo Samaj, combining rationalist critique with selective interpretation of Hindu scriptures. Jyotirao Phule and Savitribai Phule pioneered lower-caste and women's education, challenging both caste and gender hierarchies in Maharashtra. Pandita Ramabai addressed the plight of widows and destitute women, establishing educational institutions while critiquing both colonial stereotypes and patriarchal norms. In South India, Periyar's Self-Respect Movement challenged Brahminical hegemony through rationalism, gender equality, and Dravidian identity. Dr. B.R. Ambedkar combined cultural reform with structural transformation, arguing that caste could not be reformed from within but required constitutional guarantees and political rights. These reformers demonstrated that cultural change requires both intellectual critique and grassroots mobilisation, and that addressing caste, gender, and class oppression is inseparable from broader cultural transformation.",
       },
       {
         question:
-          'Compare sanskritisation and westernisation as processes of cultural change.',
+          "Explain the concept of partial reconstruction. How does it explain cultural change in India?",
         answer:
-          'Sanskritisation: (1) Adoption of upper-caste Hindu customs. (2) Internal change within Indian society. (3) Positively valued by most. (4) Reinforces traditional hierarchy. Westernisation: (1) Adoption of Western culture and values. (2) External influence from colonialism. (3) Mixed reception — some embrace, some resist. (4) Challenges traditional hierarchy through modern values. Both processes coexist and sometimes conflict in Indian society.',
+          "T.N. Madan's concept of partial reconstruction explains that Indian society does not undergo wholesale modernisation or wholesale preservation of tradition, but selectively adopts modern elements while retaining traditional ones, creating a hybrid cultural formation. This concept captures how Indian society simultaneously modernises in some domains—adopting technology, democratic governance, and scientific education—while retaining traditional practices in others—family structures, religious rituals, and caste endogamy. For example, Indian families may adopt modern education and careers while maintaining arranged marriages and joint family residences. The concept explains why cultural change in India appears uneven and contradictory: different social groups, regions, and institutions adopt modernity at different rates and in different domains. It also explains why Indian modernity does not replicate Western modernity but develops its own distinct form. Madan's framework moves beyond both the modernisation theory assumption that all societies will converge on Western models and the traditionalist resistance to change, recognising that cultural transformation involves creative synthesis rather than simple replacement.",
       },
     ],
     examTips: [
-      'Understand that sanskritisation is positional, NOT structural change.',
-      'Be ready to give examples of social reform movements and their founders.',
-      'Know the difference between ascriptive and achievement-based status.',
-      'Understand how caste has become a political tool (secularisation of caste).',
-    ],
-  },
-
-  // ================================================================
-  // Ch7: Constitution and Social Change
-  // ================================================================
-  {
-    id: 7,
-    chapter: 7,
-    title: 'The Constitution and Social Change',
-    summary:
-      'The Indian Constitution is an instrument of social change. Fundamental Rights are justiciable (enforceable by courts) while Directive Principles of State Policy are non-justiciable (guidelines for governance). Article 17 abolishes untouchability as a punishable offence. Reservation for SCs, STs, OBCs, and EWS aims at social justice. Dr. Ambedkar feared local elite domination in self-governance. The Basic Structure Doctrine (Kesavananda Bharati, 1973) protects the Constitution\'s core features.',
-    keyConcepts: [
-      {
-        term: 'Fundamental Rights',
-        definition:
-          'Justiciable rights guaranteed by the Constitution (Part III) — enforceable by courts. Include Right to Equality, Freedom, Against Exploitation, Freedom of Religion, Cultural/Educational, and Constitutional Remedies.',
-      },
-      {
-        term: 'Directive Principles of State Policy',
-        definition:
-          'Non-justiciable guidelines (Part IV) for the state to follow in governance — welfare state objectives like social justice, adequate livelihood, equal pay, and free education.',
-      },
-      {
-        term: 'Reservation',
-        definition:
-          'Constitutional provision for affirmative action — reserving seats in education, government jobs, and legislatures for historically oppressed groups (SCs, STs, OBCs, EWS).',
-      },
-      {
-        term: 'Untouchability',
-        definition:
-          'Social practice of excluding and discriminating against certain castes considered "impure." Article 17 of the Constitution abolishes it as a punishable offence.',
-      },
-      {
-        term: 'Basic Structure Doctrine',
-        definition:
-          'Legal principle from Kesavananda Bharati case (1973) — Parliament cannot amend the basic structure of the Constitution, protecting its core features like democracy, secularism, and federalism.',
-      },
-    ],
-    keyThinkers: [
-      {
-        name: 'Dr. B.R. Ambedkar',
-        contribution:
-          'Chairman of the Drafting Committee of the Constitution. Champion of Dalit rights. Initially opposed local self-government fearing local elite domination. Fought for reservation and social justice.',
-      },
-      {
-        name: 'Mahatma Gandhi',
-        contribution:
-          'Advocated "gram-swarajya" (village self-rule) — his vision of decentralized democracy was incorporated in Part IX of the Constitution through Panchayati Raj.',
-      },
-    ],
-    importantFacts: [
-      'The Constitution of India was adopted on 26 January 1950 (Republic Day).',
-      'The 103rd Amendment (2019) introduced 10% reservation for Economically Weaker Sections (EWS).',
-      'Article 17 abolishes untouchability — its practice is a punishable offence under the Protection of Civil Rights Act.',
-      'Panchayati Raj institutions were NOT in the original Constitution — added later through 73rd Amendment (1992).',
-      'Fundamental Rights are enforceable by courts through Article 32 (Supreme Court) and Article 226 (High Courts).',
-      'Reservation covers: SCs (15%), STs (7.5%), OBCs (27%), EWS (10%) in central government.',
-    ],
-    examQuestions: [
-      {
-        question:
-          'How does the Constitution serve as an instrument of social change?',
-        answer:
-          'The Constitution facilitates social change through: (1) Fundamental Rights guaranteeing equality and prohibiting discrimination. (2) Article 17 abolishing untouchability. (3) Reservation for oppressed groups in education and employment. (4) Directive Principles directing state toward welfare measures. (5) Constitutional amendments enabling progressive reforms. (6) Independent judiciary protecting rights. Dr. Ambedkar envisioned the Constitution as a tool to transform hierarchical society into an egalitarian one.',
-      },
-      {
-        question:
-          'Distinguish between Fundamental Rights and Directive Principles.',
-        answer:
-          'Fundamental Rights (Part III): Justiciable, enforceable by courts, negative rights (state cannot violate), include equality, freedom, against exploitation. Directive Principles (Part IV): Non-justiciable, not enforceable by courts, positive obligations (state should implement), include social welfare goals. FR protect individuals from state overreach; DP guide state policy toward social justice. They are complementary — FR ensure liberty, DP ensure equality and welfare.',
-      },
-      {
-        question:
-          'Explain the significance of Article 17 and reservation policy.',
-        answer:
-          'Article 17 abolishes untouchability — a revolutionary provision against centuries of caste oppression. Its practice is a punishable offence. Reservation policy (Articles 15(4), 16(4)) compensates historically oppressed groups: SCs (15%), STs (7.5%), OBCs (27%), EWS (10%). Together, they aim to create a level playing field. However, debates continue about creamy layer, sub-categorization, and whether reservation should be time-bound.',
-      },
-      {
-        question:
-          'What was Dr. Ambedkar\'s concern about local self-government?',
-        answer:
-          'Dr. Ambedkar feared that in a caste-ridden society, local self-government would be dominated by local elites (upper castes), perpetuating oppression at the grassroots level. He preferred centralized institutions with constitutional safeguards for oppressed groups. This tension between democratic decentralization and social justice remains relevant in Panchayati Raj implementation.',
-      },
-    ],
-    examTips: [
-      'Know the difference between justiciable (FR) and non-justiciable (DP) rights.',
-      'Memorize Article 17 (untouchability) and reservation percentages.',
-      'Understand the Basic Structure Doctrine from Kesavananda Bharati case (1973).',
-      'Be ready to discuss both achievements and limitations of constitutional social change.',
-    ],
-  },
-
-  // ================================================================
-  // Ch8: Rural Society
-  // ================================================================
-  {
-    id: 8,
-    chapter: 8,
-    title: 'Rural Society in India',
-    summary:
-      'Approximately 67% of India\'s population lives in rural areas (2001 Census). The Green Revolution introduced High Yielding Variety (HYV) seeds, pesticides, and fertilizers, transforming agriculture but also creating inequalities. Land reforms had limited success: zamindari abolition was most effective, tenancy reforms were poorly implemented except in West Bengal and Kerala, and land ceiling laws were toothless with widespread benami transactions. Bonded labor persists in various forms. Class differentiation continues with the rich getting richer.',
-    keyConcepts: [
-      {
-        term: 'Green Revolution',
-        definition:
-          'Introduction of High Yielding Variety (HYV) seeds, chemical fertilizers, pesticides, and modern irrigation techniques that dramatically increased agricultural production, especially wheat and rice.',
-      },
-      {
-        term: 'Zamindari Abolition',
-        definition:
-          'Land reform policy that abolished the zamindari (landlord) system, transferring ownership rights from intermediaries to actual cultivators. Most effective of all land reforms.',
-      },
-      {
-        term: 'Tenancy Reform',
-        definition:
-          'Laws regulating the relationship between landlords and tenants — fixing rent, providing security of tenure, and giving tenants ownership rights. Poorly implemented except in West Bengal and Kerala.',
-      },
-      {
-        term: 'Land Ceiling',
-        definition:
-          'Legislation fixing maximum land holding per individual/family to redistribute surplus land to landless farmers. Largely ineffective due to benami (proxy) transactions and loopholes.',
-      },
-      {
-        term: 'Bonded Labour',
-        definition:
-          'A system where workers are forced to work for a employer to repay a debt, with little or no wages. Legally abolished but persists in various forms in agriculture, brick kilns, and quarrying.',
-      },
-      {
-        term: 'Bhoodan Yojana',
-        definition:
-          'Voluntary land donation movement started by Acharya Vinoba Bhave in 1951 — persuading landowners to gift surplus land to landless laborers.',
-      },
-    ],
-    keyThinkers: [
-      {
-        name: 'Daniel Thorner',
-        contribution:
-          'Categorized rural class structure into three groups: (1) Landlord — owns large land, lives off rent. (2) Middle Peasant — medium holdings, works land with family. (3) Small Peasant — marginal holdings, supplements with wage labor.',
-      },
-      {
-        name: 'Acharya Vinoba Bhave',
-        contribution:
-          'Started the Bhoodan (land donation) movement in 1951 at Pochampally, Andhra Pradesh. Walked across India persuading landowners to voluntarily donate surplus land to the landless.',
-      },
-    ],
-    importantFacts: [
-      '67% of India\'s population was rural (2001 Census), showing continued rural dominance.',
-      'Zamindari abolition was the most successful land reform — ended intermediary rights.',
-      'Tenancy reforms were never effectively implemented except in West Bengal and Kerala.',
-      'Green Revolution targeted wheat and rice growing regions (Punjab, Haryana, Western UP).',
-      'Bonded labor takes various forms: Bandhua Mazdoor, Halpati, Jeeta — abolished by law but persists.',
-      'Benami transactions (proxy ownership) undermined land ceiling laws.',
-    ],
-    examQuestions: [
-      {
-        question:
-          'What was the Green Revolution? Discuss its positive and negative impacts.',
-        answer:
-          'Green Revolution introduced HYV seeds, fertilizers, pesticides, and modern irrigation. Positive: (1) India became self-sufficient in food grains. (2) Increased productivity and farmer income. (3) Reduced dependence on food imports. Negative: (1) Increased inequality — benefits went mainly to large farmers. (2) Environmental degradation — chemical pollution, water table depletion. (3) Regional disparity — concentrated in wheat/rice areas. (4) Increased debt for small farmers buying expensive inputs.',
-      },
-      {
-        question:
-          'Why have land reforms been largely unsuccessful in India?',
-        answer:
-          'Land reforms failed due to: (1) Political will — landlords dominated legislatures. (2) Benami transactions — proxy ownership to evade ceiling laws. (3) Legal loopholes — exemptions for orchards, plantations. (4) Poor implementation — lack of land records, bureaucratic delays. (5) Tenancy reforms — landlords evicted tenants to avoid regulations. Exception: West Bengal and Kerala implemented tenancy reforms effectively through political commitment.',
-      },
-      {
-        question:
-          'Explain the concept of bonded labour and its persistence despite legal abolition.',
-        answer:
-          'Bonded labour forces workers to work for debt repayment with exploitative conditions. Forms: Bandhua Mazdoor (construction), Halpati (agriculture), Jeeta (animal sacrifice). Legal abolition: Bonded Labour System (Abolition) Act, 1976. Persistence reasons: (1) Extreme poverty forces debt. (2) Weak enforcement of laws. (3) Rural power structures protect employers. (4) Lack of alternative employment. (5) Social barriers prevent mobility.',
-      },
-    ],
-    examTips: [
-      'Know the three types of land reforms: zamindari, tenancy, ceiling — and their implementation success.',
-      'Understand both benefits and costs of Green Revolution.',
-      'Be ready to explain why West Bengal and Kerala succeeded in tenancy reform.',
-      'Know the forms of bonded labour and why it persists despite legal abolition.',
-    ],
-  },
-
-  // ================================================================
-  // Ch9: Industrial Society
-  // ================================================================
-  {
-    id: 9,
-    chapter: 9,
-    title: 'Industrial Society',
-    summary:
-      'India\'s industrial workforce is divided between organized sector (10+ employees, PF, bonus, job security) and unorganized sector (70% of workforce, no social security). The Bombay Textile Mill Strike of 1982 led by Dr. Datta Samant failed, showing worker vulnerability. Fordism (assembly line production) and Taylorism (task specialization) transformed industrial production. Outsourcing reduces costs but risks quality. Home-based work involves mainly women and children in vulnerable conditions.',
-    keyConcepts: [
-      {
-        term: 'Organized Sector',
-        definition:
-          'Industrial enterprises with 10 or more employees, providing job security, provident fund, bonuses, and benefits. Subject to labor laws and regulations.',
-      },
-      {
-        term: 'Unorganized Sector',
-        definition:
-          'Enterprises with less than 10 employees or informal work arrangements — no job security, no social security, low wages. Constitutes 70% of India\'s workforce.',
-      },
-      {
-        term: 'Fordism',
-        definition:
-          'Henry Ford\'s assembly line production system — repetitive, standardized tasks on a moving conveyor belt. Increased productivity but created monotonous, deskilled work.',
-      },
-      {
-        term: 'Taylorism',
-        definition:
-          'Frederick Taylor\'s scientific management — breaking work into smallest possible tasks, timing each movement, and optimizing for maximum efficiency. Known as "time and motion study."',
-      },
-      {
-        term: 'Outsourcing',
-        definition:
-          'Contracting out work to external agencies or other companies, often to reduce costs. Can be domestic (within country) or international (BPO, KPO).',
-      },
-      {
-        term: 'Home-based Work',
-        definition:
-          'Work done in workers\' homes rather than factories — common in garment, agarbatti, food processing industries. Mainly women and children, with poor wages and no protections.',
-      },
-    ],
-    keyThinkers: [
-      {
-        name: 'Henry Ford',
-        contribution:
-          'Pioneered assembly line production (Fordism) — standardized, repetitive tasks on moving conveyor belts. Revolutionized manufacturing by making mass production possible.',
-      },
-      {
-        name: 'Dr. Datta Samant',
-        contribution:
-          'Led the Bombay Textile Mill Strike of 1982 — approximately 250,000 workers went on strike demanding better wages and conditions. The strike failed, leading to permanent closure of many mills.',
-      },
-      {
-        name: 'Mahatma Gandhi',
-        contribution:
-          'Advocated "Trusteeship" — capitalists should consider themselves trustees of workers\' wealth, sharing profits fairly. Also promoted village-level small-scale industries.',
-      },
-    ],
-    importantFacts: [
-      'Unorganized sector employs 70% of India\'s workforce — the vast majority without any social security.',
-      'Mines Act, 1952 regulated working conditions in mines after tragic accidents.',
-      'Bombay Textile Mill Strike of 1982 involved quarter million workers and lasted 18 months, ending in failure.',
-      'Alam Ara (1931) was India\'s first talkie, marking the beginning of the Indian film industry.',
-      'Post-liberalisation, new industrial cities emerged: Bengaluru (IT), Hyderabad (pharma), Gurgaon (corporate).',
-      'Home-based work mainly involves women and children in garment, agarbatti, and food processing industries.',
-    ],
-    examQuestions: [
-      {
-        question:
-          'Compare organized and unorganized sectors in India.',
-        answer:
-          'Organized: 10+ employees, PF, bonus, job security, labor laws apply, regular wages, social security. Examples: factories, banks, government. Unorganized: <10 employees or informal, no social security, low irregular wages, no job security, exploitative conditions. Examples: construction workers, street vendors, home-based workers. Key difference: 70% workforce is in unorganized sector with minimal protections. This dualism creates inequality and vulnerability.',
-      },
-      {
-        question:
-          'What was the Bombay Textile Mill Strike? Why did it fail?',
-        answer:
-          'The 1982 strike led by Dr. Datta Samant involved 250,000 workers demanding better wages, job security, and union recognition. It lasted 18 months. Failure reasons: (1) Workers had no savings to sustain long strike. (2) Mill owners locked out workers permanently. (3) Government was unsympathetic. (4) No national support or solidarity. (5) Alternative workers were available. (6) Mills closed permanently, workers lost jobs permanently.',
-      },
-      {
-        question:
-          'Explain the concepts of Fordism and Taylorism.',
-        answer:
-          'Fordism: Assembly line production — standardized tasks, moving conveyor belts, mass production. Increased efficiency but created monotonous, deskilled work. Taylorism: Scientific management — breaking work into smallest tasks, timing movements, optimizing for efficiency. "Time and motion study." Both increased productivity but dehumanized work. Workers became cogs in machines. In India, both coexist — modern factories use Fordism while management consultants promote Taylorism.',
-      },
-    ],
-    examTips: [
-      'Know the key difference: organized (10+ employees, regulated) vs unorganized (70% workforce, unregulated).',
-      'Understand why Bombay Mill Strike failed — economic, political, and organizational factors.',
-      'Be ready to explain how Fordism and Taylorism transformed work and its impact on workers.',
-      'Discuss how outsourcing and home-based work create new forms of exploitation.',
-    ],
-  },
-
-  // ================================================================
-  // Ch10: Globalisation
-  // ================================================================
-  {
-    id: 10,
-    chapter: 10,
-    title: 'Globalisation',
-    summary:
-      'The 1991 economic reforms liberalised the Indian economy, opening it to global markets. Globalisation created an electronic economy with instant transactions and a weightless economy based on IT and knowledge. MNCs and TNCs spread globally, bringing both investment and cultural homogenisation. Corporate culture promotes productivity but can be exploitative. A culture of consumption emerged through malls and multiplexes. The Chipko movement showed grassroots resistance to environmental destruction. Globalisation creates both winners and losers.',
-    keyConcepts: [
-      {
-        term: 'Liberalisation',
-        definition:
-          'The 1991 economic reforms that reduced government control, opened markets to foreign investment, deregulated industries, and privatized public enterprises.',
-      },
-      {
-        term: 'Electronic Economy',
-        definition:
-          'An economy based on digital transactions, online banking, e-commerce, and instant electronic transfers — reducing physical currency and enabling global financial flows.',
-      },
-      {
-        term: 'Weightless Economy',
-        definition:
-          'An economy based on IT, knowledge, and services rather than physical goods — software, consulting, finance, entertainment. Products have no physical weight.',
-      },
-      {
-        term: 'MNCs/TNCs',
-        definition:
-          'Multinational/T transnational corporations — companies operating in multiple countries, spreading production, marketing, and management globally.',
-      },
-      {
-        term: 'Corporate Culture',
-        definition:
-          'Workplace values and practices emphasizing productivity, efficiency, profit-maximization, and competitiveness — sometimes at the cost of worker welfare.',
-      },
-      {
-        term: 'Culture of Consumption',
-        definition:
-          'Lifestyle centered around buying and displaying consumer goods — malls, multiplexes, branded products — as symbols of status and identity.',
-      },
-      {
-        term: 'Chipko Movement',
-        definition:
-          'Grassroots environmental movement (1973) where villagers, especially women, hugged trees to prevent deforestation — symbolizing resistance to exploitative development.',
-      },
-    ],
-    keyThinkers: [
-      {
-        name: 'Chipko Activists',
-        contribution:
-          'Gaura Devi, Sunderlal Bahuguna, and others led the movement to protect forests. Their "tree-hugging" tactics became a global symbol of environmental resistance.',
-      },
-    ],
-    importantFacts: [
-      'The 1991 economic reforms were triggered by a balance of payments crisis and opened India to global markets.',
-      'The Spice Route connected South India to Southeast Asia, Middle East, and Europe through trade.',
-      'The Silk Route connected India to China, Persia, and Rome — ancient globalisation.',
-      'MNCs tried to patent Indian traditional products: tulsi (basil), haldi (turmeric), basmati rice.',
-      'The Chipko movement (1973) involved women hugging trees to prevent logging in Uttarakhand.',
-      'Globalisation has created a dual economy — a small globally competitive sector alongside a large traditional sector.',
-    ],
-    examQuestions: [
-      {
-        question:
-          'What is globalisation? Discuss its impact on Indian society.',
-        answer:
-          'Globalisation is increasing interconnectedness of economies and cultures. Impact: Positive — (1) Economic growth and investment. (2) Technology transfer. (3) Consumer choice. (4) Employment in IT/services. Negative — (1) Job losses in traditional sectors. (2) Cultural homogenization. (3) Environmental degradation. (4) Rising inequality. (5) MNC dominance. Winners: urban educated, IT workers, consumers. Losers: farmers, traditional artisans, informal workers.',
-      },
-      {
-        question:
-          'What was the Chipko movement? Why is it significant?',
-        answer:
-          'Chipko (1973) was a grassroots environmental movement in Uttarakhand where villagers, especially women, hugged trees to prevent commercial logging. Significance: (1) Showed that development should not destroy environment. (2) Women as environmental activists. (3) Local communities protecting common resources. (4) Challenged state-corporate nexus. (5) Became global symbol of eco-resistance. "Chipko" means "to hug" — physical protection of trees.',
-      },
-      {
-        question:
-          'How does globalisation affect Indian culture and identity?',
-        answer:
-          'Globalisation affects culture through: (1) Western consumer culture via malls, multiplexes, branded goods. (2) English language dominance threatening local languages. (3) Homogenization of food, fashion, entertainment. (4) New identities based on consumption rather than tradition. (5) Resistance through revival of local culture, handicrafts, and movements like Chipko. Tension between universal modernity and local tradition.',
-      },
-    ],
-    examTips: [
-      'Know the key features of 1991 liberalisation and its economic impact.',
-      'Understand the concept of both winners and losers of globalisation.',
-      'Be ready to explain Chipko movement with specific details (1973, Uttarakhand, women).',
-      'Discuss how traditional knowledge (tulsi, haldi, basmati) was threatened by MNC patenting.',
-    ],
-  },
-
-  // ================================================================
-  // Ch11: Mass Media
-  // ================================================================
-  {
-    id: 11,
-    chapter: 11,
-    title: 'Mass Media and Communication',
-    summary:
-      'Mass media includes newspapers, television, radio, and internet that reach large audiences. Mass media has a dialectical relationship with society — it both reflects and shapes social reality. Nehru called it the "watchdog of democracy." Print media began with Bombay Samachar (1822). Radio was introduced in 1920. Talkies began with Alam Ara (1931). Post-1991, TV channels expanded from 1 to 70+. Censorship during colonial rule controlled information flow. Mass media is crucial for democracy, education, and social awareness.',
-    keyConcepts: [
-      {
-        term: 'Mass Media',
-        definition:
-          'Communication channels designed to reach large audiences simultaneously — newspapers, magazines, TV, radio, internet, and social media.',
-      },
-      {
-        term: 'Dialectical Relationship',
-        definition:
-          'The reciprocal relationship between media and society — media influences society while society also shapes media content and practices.',
-      },
-      {
-        term: 'Censorship',
-        definition:
-          'Government control and suppression of information, publications, or media content deemed objectionable — practiced during colonial rule and sometimes in independent India.',
-      },
-      {
-        term: 'Watchdog of Democracy',
-        definition:
-          'Nehru\'s phrase for media\'s role in monitoring government actions, exposing corruption, and informing citizens — essential for democratic functioning.',
-      },
-      {
-        term: 'Digital Divide',
-        definition:
-          'The gap between those with access to digital technology (internet, computers) and those without — creating new forms of inequality.',
-      },
-    ],
-    keyThinkers: [
-      {
-        name: 'Jawaharlal Nehru',
-        contribution:
-          'Called media the "watchdog of democracy" — its role is to inform citizens, expose corruption, and hold government accountable for a functioning democracy.',
-      },
-      {
-        name: 'Fardoonji Murzban',
-        contribution:
-          'Published the first Indian newspaper — Bombay Samachar (1822) in Gujarati, marking the beginning of print journalism in India.',
-      },
-      {
-        name: 'Ramoji Rao',
-        contribution:
-          'Founded Eenadu (1974) — the largest Telugu daily and media empire. Demonstrated how regional language media could be commercially successful and politically influential.',
-      },
-    ],
-    importantFacts: [
-      'Bombay Samachar (1822) was India\'s first newspaper, published by Fardoonji Murzban in Gujarati.',
-      'Gutenberg invented the printing press around 1440, revolutionizing information dissemination.',
-      'Alam Ara (1931) was India\'s first talkie film, directed by Ardeshir Irani.',
-      'The transistor revolution of the 1960s made radio portable and accessible to millions.',
-      'AIR (All India Radio) broadcasts in 24 languages and 146 dialects.',
-      'STAR Plus switched to Hindi programming in 1996, marking the beginning of Hindi TV dominance.',
-      'Post-1991, TV channels expanded from 1 to over 70, transforming media landscape.',
-    ],
-    examQuestions: [
-      {
-        question:
-          'What is the role of mass media in a democracy?',
-        answer:
-          'Mass media plays crucial democratic roles: (1) Watchdog — monitors government actions and exposes corruption (Nehru called it "watchdog of democracy"). (2) Informer — provides citizens with news and information for informed participation. (3) Forum — enables public debate on social and political issues. (4) Educator — raises awareness about rights, health, education. (5) Entertainer — provides cultural content. Without free media, democracy cannot function as citizens cannot make informed choices.',
-      },
-      {
-        question:
-          'How has technology changed mass media in India?',
-        answer:
-          'Technology transformed Indian media: (1) Printing press (1440) → newspapers reached masses. (2) Radio (1920s) → audio reach to rural areas. (3) Television (1959-Doordarshan) → visual medium. (4) Cable TV (1990s) → 70+ channels. (5) Internet/Social Media (2000s) → interactive, real-time. (6) Smartphones → mobile media. Digital divide persists — urban-rural, rich-poor gap in access. New challenges: fake news, privacy, algorithmic bias.',
-      },
-      {
-        question:
-          'What was censorship during colonial rule? How does it affect media freedom?',
-        answer:
-          'Colonial censorship: (1) Vernacular Press Act (1878) — controlled Indian language newspapers. (2) Official Secrets Act — restricted information. (3) Sedition laws — criminalized criticism of government. Post-independence: Constitutional freedom of press (Article 19(1)(a)) but with reasonable restrictions. Ongoing issues: government pressure on media, corporate ownership influencing content, sedition charges against journalists. Media freedom remains contested.',
-      },
-    ],
-    examTips: [
-      'Know the timeline: Bombay Samachar (1822), Alam Ara (1931), transistor revolution (1960s), post-1991 TV expansion.',
-      'Understand Nehru\'s "watchdog of democracy" concept with examples.',
-      'Be ready to discuss both benefits and challenges of digital media.',
-      'Know about colonial censorship laws and their impact on press freedom.',
-    ],
-  },
-
-  // ================================================================
-  // Ch12: Social Movements
-  // ================================================================
-  {
-    id: 12,
-    chapter: 12,
-    title: 'Social Movements in India',
-    summary:
-      'Social movements are sustained collective mobilization for or against social change. Major theories explain their emergence: relative deprivation (resentment at inequality), collective action (Mancur Olson — rational self-interest), and resource mobilization (McCarthy & Zald — organizational resources). Types include reformist (change within system), revolutionary (overthrow system), and redemptive (personal transformation). Indian movements span peasant (Champaran, Bardoli, AIKS), workers (AITUC, INTUC), Dalit (Satnami, Mahar, Dalit Panther), and environmental (Chipko).',
-    keyConcepts: [
-      {
-        term: 'Social Movement',
-        definition:
-          'Sustained collective mobilization of people for or against social change — organized, continuous, and aimed at transforming or preserving some aspect of society.',
-      },
-      {
-        term: 'Relative Deprivation',
-        definition:
-          'Theory that movements arise when people feel resentful about their disadvantaged position compared to others who are better off — the gap between expectations and reality.',
-      },
-      {
-        term: 'Collective Action',
-        definition:
-          'Mancur Olson\'s theory that individuals join movements based on rational calculation of self-interest — weighing costs against benefits of participation.',
-      },
-      {
-        term: 'Resource Mobilization',
-        definition:
-          'McCarthy & Zald\'s theory that movements depend on available resources — money, leadership, media access, organizational structure — not just grievances.',
-      },
-      {
-        term: 'Reformist Movement',
-        definition:
-          'A movement seeking change within the existing social system — through legislation, education, or persuasion, not overthrow of the system.',
-      },
-      {
-        term: 'Revolutionary Movement',
-        definition:
-          'A movement seeking fundamental transformation of the social order — overthrow of existing power structures and creation of new ones.',
-      },
-      {
-        term: 'Redemptive Movement',
-        definition:
-          'A movement focused on personal transformation rather than social change — spiritual, religious, or moral regeneration of individuals.',
-      },
-    ],
-    keyThinkers: [
-      {
-        name: 'Emile Durkheim',
-        contribution:
-          'Studied social disintegration and anomie (normlessness). His ideas explain how rapid social change creates conditions for social movements as old norms break down.',
-      },
-      {
-        name: 'Mancur Olson',
-        contribution:
-          'Proposed "Logic of Collective Action" — individuals join movements based on rational self-interest, weighing costs and benefits. Free-rider problem explains why movements struggle.',
-      },
-      {
-        name: 'McCarthy & Zald',
-        contribution:
-          'Resource mobilization theory — movements depend on organizational resources (money, leadership, media, networks) rather than just grievances. Success requires mobilizing resources.',
-      },
-      {
-        name: 'Shree Narayan Guru',
-        contribution:
-          'Led anti-Brahmin social reform movement in Kerala — challenged caste hierarchy through education, temple entry, and social equality. Founded SNDP Yogam.',
-      },
-    ],
-    importantFacts: [
-      'The French Revolution (1789) against monarchy is often considered the first modern social movement.',
-      'The Bengal Indigo Revolt (1917-20) was an early peasant movement against exploitative planters.',
-      'AITUC (All India Trade Union Congress) was founded by B.P. Wadia in 1920 — first major trade union.',
-      'Dalit literature played a crucial role in changing mindsets about caste discrimination.',
-      'The New Farmers\' Movement emerged in Tamil Nadu and Punjab in the 1980s against agricultural policies.',
-      'Movements can be classified as: reformist (within system), revolutionary (overthrow system), redemptive (personal transformation).',
-    ],
-    examQuestions: [
-      {
-        question:
-          'What are the different theories that explain the emergence of social movements?',
-        answer:
-          'Three major theories: (1) Relative Deprivation — movements arise from resentment at inequality (gap between expectations and reality). (2) Collective Action (Olson) — individuals join based on rational self-interest, weighing costs/benefits. Free-rider problem explains difficulty in mobilization. (3) Resource Mobilization (McCarthy & Zald) — movements depend on organizational resources (money, leadership, media, networks), not just grievances. Each theory highlights different aspects of why movements emerge and succeed.',
-      },
-      {
-        question:
-          'Classify social movements and give Indian examples.',
-        answer:
-          'Types: (1) Reformist — seeks change within system. Example: Brahmo Samaj (social reform). (2) Revolutionary — seeks fundamental transformation. Example: Naxalite movement. (3) Redemptive — personal transformation. Example: Bhakti movement. By sector: Peasant — Champaran (1917), Bardoli (1928), AIKS. Workers — AITUC (1920), INTUC. Dalit — Satnami, Mahar, Dalit Panther. Environmental — Chipko (1973).',
-      },
-      {
-        question:
-          'Explain the significance of the Champaran and Bardoli movements.',
-        answer:
-          'Champaran (1917): Gandhi\'s first Civil Disobedience in India — indigo farmers forced to grow indigo on 3/20th land. Forced government inquiry and abolition of tinkathia system. Significance: Gandhian method of satyagraha established. Bardoli (1928): Vallabhbhai Patel led peasant movement against 30% land revenue increase. Women participated actively. Victory forced government to reduce revenue. Significance: Established Sardar Patel\'s leadership, demonstrated organized peasant power.',
-      },
-      {
-        question:
-          'How did Dalit movements challenge caste discrimination?',
-        answer:
-          'Dalit movements challenged caste through: (1) Temple entry movements — accessing sacred spaces denied to untouchables. (2) Education — Ambedkar emphasized education as liberation. (3) Political mobilization — forming parties, contesting elections. (4) Literature — Dalit writing exposed discrimination. (5) Organizations — Dalit Panthers (1972), BAMCEF. (6) Constitutional rights — Article 17, reservation. Key figures: Ambedkar, Jyotirao Phule, Shree Narayan Guru.',
-      },
-    ],
-    examTips: [
-      'Know the three theories: relative deprivation, collective action (Olson), resource mobilization (McCarthy & Zald).',
-      'Be ready to classify movements: reformist, revolutionary, redemptive with Indian examples.',
-      'Understand the significance of Champaran (1917) and Bardoli (1928) in peasant movements.',
-      'Know about Dalit movements and their strategies: education, politics, literature, organizations.',
+      "When discussing modernisation vs westernisation, provide specific Indian examples of modern practices that are not Western—this demonstrates analytical clarity.",
+      "Reference T.N. Madan's partial reconstruction and D.P. Mukerji's living traditions together to show nuanced understanding of tradition-modernity dynamics.",
+      "For questions on social reform, cover both upper-caste-led reforms (Roy, Dayananda) and lower-caste/dalit reforms (Phule, Ambedkar, Periyar) for comprehensive coverage.",
+      "Link cultural change to structural change—cultural transformation cannot occur without addressing underlying economic and political structures.",
     ],
   },
 ];

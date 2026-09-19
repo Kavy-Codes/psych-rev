@@ -10,10 +10,9 @@ interface Props {
 }
 
 const UNITS = [
-  { name: 'Structure of Indian Society', marks: 15, chapters: [1, 2] },
-  { name: 'Social Institutions', marks: 20, chapters: [3, 4] },
-  { name: 'Social Inequality & Exclusion', marks: 15, chapters: [3, 4, 5] },
-  { name: 'Social Change', marks: 30, chapters: [5, 6, 7, 8, 9, 10, 11, 12] },
+  { name: 'Indian Society & Demography', marks: 15, chapters: [1, 2] },
+  { name: 'Social Institutions', marks: 20, chapters: [3] },
+  { name: 'Social Change & Development', marks: 45, chapters: [5, 6] },
 ];
 
 const TIPS = [
@@ -69,7 +68,7 @@ export function SocioDashboard({ onNavigate, chapters }: Props) {
             <div className="h-full bg-white/80 rounded-full transition-all duration-1000 ease-out" style={{ width: `${progressPct}%` }} />
           </div>
           <div className="flex items-center justify-between mt-2">
-            <p className="text-white/30 text-[10px]">Sociology • Code 039 • 12 Chapters</p>
+            <p className="text-white/30 text-[10px]">Sociology • Code 039 • 5 Chapters</p>
             {progressPct >= 80 && <p className="text-amber-300 text-[10px] font-bold animate-glow-pulse">🔥 Almost there!</p>}
           </div>
         </div>
@@ -94,10 +93,10 @@ export function SocioDashboard({ onNavigate, chapters }: Props) {
 
       {/* Quick Actions */}
       <div className="grid grid-cols-2 gap-2.5 animate-slide-up stagger-2">
-        <QuickCard icon={<Layers className="w-5 h-5 text-teal-400" strokeWidth={1.75} />} label="Flashcards" sub={`${totalCards} cards`} bg="bg-teal-500/[0.06] border-teal-500/12" onClick={() => onNavigate('cards')} />
-        <QuickCard icon={<Zap className="w-5 h-5 text-cyan-400" strokeWidth={1.75} />} label="Quiz" sub="48 questions" bg="bg-cyan-500/[0.06] border-cyan-500/12" onClick={() => onNavigate('quiz')} />
+        <QuickCard icon={<Layers className="w-5 h-5 text-teal-400" strokeWidth={1.75} />} label="Flashcards" sub="51 cards" bg="bg-teal-500/[0.06] border-teal-500/12" onClick={() => onNavigate('cards')} />
+        <QuickCard icon={<Zap className="w-5 h-5 text-cyan-400" strokeWidth={1.75} />} label="Quiz" sub="50 questions" bg="bg-cyan-500/[0.06] border-cyan-500/12" onClick={() => onNavigate('quiz')} />
         <QuickCard icon={<FileText className="w-5 h-5 text-emerald-400" strokeWidth={1.75} />} label="Revision Notes" sub="Quick revision" bg="bg-emerald-500/[0.06] border-emerald-500/12" onClick={() => onNavigate('notes')} />
-        <QuickCard icon={<BookOpen className="w-5 h-5 text-blue-400" strokeWidth={1.75} />} label="Glossary" sub="70+ definitions" bg="bg-blue-500/[0.06] border-blue-500/12" onClick={() => onNavigate('glossary')} />
+        <QuickCard icon={<BookOpen className="w-5 h-5 text-blue-400" strokeWidth={1.75} />} label="Glossary" sub="85+ definitions" bg="bg-blue-500/[0.06] border-blue-500/12" onClick={() => onNavigate('glossary')} />
       </div>
 
       {/* Exam Blueprint */}
