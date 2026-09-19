@@ -267,7 +267,7 @@ export const socioRevisionNotes: SocioRevisionNote[] = [
       },
       {
         name: "Louis Dumont",
-        explanation:
+        contribution:
           "In 'Homo Hierarchicus' (1966), Dumont argued that caste is fundamentally about the opposition between purity and pollution, with Brahmins at the apex of the ritual hierarchy. His structuralist approach has been both influential and widely critiqued for its essentialism.",
       },
     ],
