@@ -1,5 +1,6 @@
 export interface SocioGlossaryTerm {
   id: string;
+  chapter: number;
   term: string;
   definition: string;
   category:
@@ -17,6 +18,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   // Chapter 1: Introducing Indian Society
   {
     id: 'glos-1-1',
+    chapter: 1,
     term: 'Colonialism',
     definition:
       'A practice of domination involving the subjugation of one people to another through political, economic, and cultural control. British colonialism in India lasted nearly two centuries and fundamentally restructured Indian social, economic, and political life.',
@@ -26,6 +28,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-2',
+    chapter: 1,
     term: 'Orientalism',
     definition:
       'A Western construction of the "Orient" as inherently different, exotic, inferior, and static. Edward Said\'s seminal work argues that Orientalism served as a discursive justification for colonial domination by portraying Eastern societies as backward and needing Western guidance.',
@@ -35,6 +38,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-3',
+    chapter: 1,
     term: 'Occidentalism',
     definition:
       'The reverse of Orientalism — the construction of the West by non-Western societies, often through stereotyping, idealisation, or rejection. It represents how colonised peoples sometimes constructed narratives about Western civilisation.',
@@ -44,6 +48,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-4',
+    chapter: 1,
     term: 'Sociological Imagination',
     definition:
       'Concept introduced by C. Wright Mills — the ability to connect personal troubles with broader public issues and see how biography intersects with history and social structure.',
@@ -53,6 +58,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-5',
+    chapter: 1,
     term: 'Community Identity',
     definition:
       'A sense of belonging derived from membership in a larger collective — based on religion, caste, language, ethnicity, or region. It shapes social solidarity and collective action but can also produce exclusivist politics.',
@@ -62,6 +68,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-6',
+    chapter: 1,
     term: 'Individual Identity',
     definition:
       'A person\'s sense of self formed through personal experiences, socialisation, and unique life trajectory. In sociology, it is always understood as shaped by social structures and cultural contexts.',
@@ -71,6 +78,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-7',
+    chapter: 1,
     term: 'Ascribed Status',
     definition:
       'A social position assigned at birth or involuntarily later in life, based on characteristics like caste, race, gender, or family lineage. It carries fixed social expectations and limited mobility.',
@@ -80,6 +88,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-8',
+    chapter: 1,
     term: 'Achieved Status',
     definition:
       'A social position acquired through individual effort, choices, and merit. It contrasts with ascribed status and is central to modern, open societies.',
@@ -89,6 +98,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-9',
+    chapter: 1,
     term: 'Nationalism',
     definition:
       'An ideology and movement promoting loyalty to a nation-state. Indian nationalism was a composite force that united diverse communities against colonial rule, though it also harboured internal tensions.',
@@ -98,6 +108,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-10',
+    chapter: 1,
     term: 'Self-reflexivity',
     definition:
       'The capacity to examine one\'s own assumptions, biases, and social location. In sociology, it is essential for understanding how personal perspective shapes analysis of social phenomena.',
@@ -105,6 +116,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-11',
+    chapter: 1,
     term: 'Social Structure',
     definition:
       'The relatively enduring pattern of social relationships and institutions that constitute a society. It includes the family, caste, economy, polity, and religion as interconnected subsystems.',
@@ -114,6 +126,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-12',
+    chapter: 1,
     term: 'Social Stratification',
     definition:
       'The hierarchical arrangement of individuals into different layers or strata based on wealth, power, status, and access to resources. India\'s stratification is uniquely shaped by caste, class, gender, and region.',
@@ -123,6 +136,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-13',
+    chapter: 1,
     term: 'Pluralism',
     definition:
       'A condition where diverse groups — linguistic, religious, ethnic, and cultural — coexist within a single political framework with mutual recognition and respect for differences.',
@@ -132,6 +146,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-14',
+    chapter: 1,
     term: 'Secularism',
     definition:
       'In the Indian context, not the strict separation of religion and state, but equal respect and non-interference of the state in all religious practices (Sarva Dharma Sama Bhava). It is enshrined in the Preamble.',
@@ -141,6 +156,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-1-15',
+    chapter: 1,
     term: 'Communalism',
     definition:
       'The exploitation of religious identity for political mobilisation, leading to social conflict. It manifests as competitive majoritarianism and threatens the secular fabric of a plural society.',
@@ -152,6 +168,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   // Chapter 2: Demographic Structure
   {
     id: 'glos-2-1',
+    chapter: 2,
     term: 'Demography',
     definition:
       'The statistical study of human populations — their size, structure, distribution, density, and changes over time through birth, death, and migration. It provides the quantitative foundation for social policy.',
@@ -159,6 +176,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-2',
+    chapter: 2,
     term: 'Birth Rate',
     definition:
       'The number of live births per 1,000 people in a population during a given year. India\'s crude birth rate declined from 40.7 in 1951 to 17.5 in 2020.',
@@ -166,6 +184,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-3',
+    chapter: 2,
     term: 'Death Rate',
     definition:
       'The number of deaths per 1,000 people in a population during a given year. Declining death rates due to improved healthcare have been a key driver of population growth.',
@@ -173,6 +192,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-4',
+    chapter: 2,
     term: 'Total Fertility Rate',
     definition:
       'The average number of children a woman would bear during her reproductive years, assuming current age-specific fertility rates. A TFR of 2.1 indicates replacement level fertility.',
@@ -182,6 +202,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-5',
+    chapter: 2,
     term: 'Infant Mortality Rate',
     definition:
       'The number of deaths of children under one year of age per 1,000 live births. IMR is a key indicator of healthcare quality and socioeconomic conditions.',
@@ -191,6 +212,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-6',
+    chapter: 2,
     term: 'Maternal Mortality Rate',
     definition:
       'The number of maternal deaths per 100,000 live births, reflecting access to obstetric care, nutrition, and women\'s health services.',
@@ -200,6 +222,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-7',
+    chapter: 2,
     term: 'Sex Ratio',
     definition:
       'The number of females per 1,000 males in a population. India\'s sex ratio has historically been skewed, reflecting gender discrimination through son preference and neglect of girl children.',
@@ -209,6 +232,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-8',
+    chapter: 2,
     term: 'Age Structure',
     definition:
       'The distribution of a population across different age groups. India\'s age structure shows a large young population — a demographic feature with both opportunities and challenges.',
@@ -216,6 +240,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-9',
+    chapter: 2,
     term: 'Dependency Ratio',
     definition:
       'The ratio of dependents (population below 15 and above 65) to the working-age population (15–64). A low dependency ratio is favourable for economic growth.',
@@ -223,6 +248,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-10',
+    chapter: 2,
     term: 'Demographic Dividend',
     definition:
       'The economic growth potential resulting from a large working-age population relative to dependents. India is currently experiencing this window, expected to last until 2055.',
@@ -232,6 +258,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-11',
+    chapter: 2,
     term: 'Replacement Level',
     definition:
       'The total fertility rate at which a population exactly replaces itself from one generation to the next, typically 2.1 children per woman in low-mortality settings.',
@@ -239,6 +266,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-12',
+    chapter: 2,
     term: 'Population Explosion',
     definition:
       'The rapid and dramatic increase in population size, particularly after independence. India\'s population grew from 361 million (1951) to 1.4 billion (2023).',
@@ -248,6 +276,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-13',
+    chapter: 2,
     term: 'Malthusian Theory',
     definition:
       'Thomas Malthus argued that population grows geometrically while food supply increases arithmetically, leading to inevitable scarcity. Critics argue this ignores technological innovation and carrying capacity.',
@@ -257,6 +286,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-14',
+    chapter: 2,
     term: 'Demographic Transition Theory',
     definition:
       'A model describing how societies move from high birth and death rates to low ones through four stages of development. India is currently in Stage 3 — low death rates and declining birth rates.',
@@ -266,6 +296,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-15',
+    chapter: 2,
     term: 'Epidemiological Transition',
     definition:
       'A shift in the pattern of diseases from infectious and communicable diseases to chronic and lifestyle diseases as societies develop. Accompanies demographic transition.',
@@ -275,6 +306,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-16',
+    chapter: 2,
     term: 'Migration',
     definition:
       'The permanent or semi-permanent movement of people from one place to another. Internal migration in India is driven by employment, marriage, education, and environmental displacement.',
@@ -284,6 +316,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-17',
+    chapter: 2,
     term: 'Rural-Urban Migration',
     definition:
       'The movement of people from rural areas to cities, driven by agrarian distress, employment opportunities, and access to services. It is the largest component of internal migration in India.',
@@ -293,6 +326,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-18',
+    chapter: 2,
     term: 'Census',
     definition:
       'A systematic enumeration of the population, conducted every ten years in India since 1872 (first complete census in 1881). It provides data essential for policy planning and resource allocation.',
@@ -302,6 +336,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-19',
+    chapter: 2,
     term: 'NREGA',
     definition:
       'The National Rural Employment Guarantee Act (2005) guarantees 100 days of wage employment per year to every rural household willing to do unskilled manual work. It addresses rural unemployment and distress migration.',
@@ -311,6 +346,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-2-20',
+    chapter: 2,
     term: 'PNDT Act',
     definition:
       'The Pre-Conception and Pre-Natal Diagnostic Techniques (Prohibition of Sex Selection) Act, 1994, aims to prevent female foeticide by banning sex determination tests before birth.',
@@ -322,6 +358,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   // Chapter 3: Social Institutions
   {
     id: 'glos-3-1',
+    chapter: 3,
     term: 'Caste',
     definition:
       'A hereditary, endogamous social group with prescribed ritual status, occupation, and social hierarchy. The caste system organises Indian society into a graded hierarchy of purity and pollution.',
@@ -331,6 +368,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-2',
+    chapter: 3,
     term: 'Varna',
     definition:
       'The four-fold theoretical division of Hindu society — Brahmin, Kshatriya, Vaishya, and Shudra — described in ancient texts like the Rigveda. Varna is an idealised model, distinct from the lived reality of Jati.',
@@ -338,6 +376,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-3',
+    chapter: 3,
     term: 'Jati',
     definition:
       'The actual endogamous group that functions as the unit of caste in daily life. India has thousands of jatis, each with specific customary rules regarding occupation, marriage, and social interaction.',
@@ -347,6 +386,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-4',
+    chapter: 3,
     term: 'Sanskritisation',
     definition:
       'A concept by M.N. Srinivas describing how lower castes adopt upper-caste rituals, customs, and lifestyle to claim higher status within the caste hierarchy. It reflects mobility within the caste system.',
@@ -356,6 +396,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-5',
+    chapter: 3,
     term: 'Westernisation',
     definition:
       'The adoption of Western cultural traits — in dress, food, education, and values — particularly by the upper and middle classes during and after colonialism. Often associated with modernity and secular outlook.',
@@ -365,6 +406,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-6',
+    chapter: 3,
     term: 'Tribe',
     definition:
       'A community with a distinct language, culture, and territorial identity, typically outside the caste system, often with a subsistence economy and egalitarian social organisation. Tribes constitute 8.6% of India\'s population.',
@@ -374,6 +416,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-7',
+    chapter: 3,
     term: 'Scheduled Tribes',
     definition:
       'Constitutionally recognised tribal communities listed in the Fifth and Sixth Schedules of the Constitution, entitled to protective safeguards in education, employment, and land rights.',
@@ -383,6 +426,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-8',
+    chapter: 3,
     term: 'Family',
     definition:
       'A basic social institution formed through marriage, kinship, and cohabitation, responsible for reproduction, socialisation, and economic cooperation. Indian families vary widely across regions and communities.',
@@ -390,6 +434,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-9',
+    chapter: 3,
     term: 'Nuclear Family',
     definition:
       'A family unit consisting of a married couple and their dependent children. Urbanisation, industrialisation, and changing values have contributed to the increasing prevalence of nuclear families in India.',
@@ -399,6 +444,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-10',
+    chapter: 3,
     term: 'Joint Family',
     definition:
       'A multigenerational family structure where three or more generations live together under a common household head, sharing resources and decision-making. It is traditionally associated with Hindu undivided families.',
@@ -408,6 +454,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-11',
+    chapter: 3,
     term: 'Matrilineal',
     definition:
       'A kinship system where descent and inheritance are traced through the mother\'s line. Among Indian societies, the Khasi and Nair communities are notable examples of matrilineal descent.',
@@ -417,6 +464,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-12',
+    chapter: 3,
     term: 'Patrilineal',
     definition:
       'A kinship system where descent and inheritance are traced through the father\'s line. The majority of Indian societies follow patrilineal descent, linking property, name, and caste status to the male line.',
@@ -426,6 +474,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-13',
+    chapter: 3,
     term: 'Kinship',
     definition:
       'The system of social relationships based on blood ties (consanguineal) or marriage (affinal). Kinship determines roles, obligations, inheritance, and marriage rules in all societies.',
@@ -433,6 +482,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-14',
+    chapter: 3,
     term: 'Consanguineal',
     definition:
       'Kinship relations based on blood or biological descent — parents, siblings, grandparents, uncles, and aunts. These form the core of most Indian family and kinship systems.',
@@ -440,6 +490,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-15',
+    chapter: 3,
     term: 'Affinal',
     definition:
       'Kinship relations established through marriage — in-laws, spouse\'s relatives. In Indian society, affinal ties play a crucial role in expanding social networks and strategic alliances.',
@@ -447,6 +498,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-16',
+    chapter: 3,
     term: 'Exogamy',
     definition:
       'The rule that requires marriage outside one\'s own group — clan, gotra, or village. It prevents inbreeding and expands inter-group alliances.',
@@ -456,6 +508,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-17',
+    chapter: 3,
     term: 'Endogamy',
     definition:
       'The rule that requires marriage within one\'s own group — caste, sub-caste, or community. Caste endogamy is a fundamental feature of the Indian caste system.',
@@ -465,6 +518,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-18',
+    chapter: 3,
     term: 'Panchayati Raj',
     definition:
       'A three-tier system of local self-governance in rural India, comprising Gram Panchayat, Panchayat Samiti, and Zila Parishad. It decentralises power to grassroots democratic institutions.',
@@ -474,6 +528,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-19',
+    chapter: 3,
     term: '73rd Amendment',
     definition:
       'The 73rd Constitutional Amendment Act (1992) constitutionally mandated Panchayati Raj institutions, with provisions for reservation of seats for SC, ST, and women, and regular elections.',
@@ -483,6 +538,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-3-20',
+    chapter: 3,
     term: 'Dominant Caste',
     definition:
       'A concept by M.N. Srinivas referring to a caste that is numerically large, economically prosperous, and politically powerful in a local area, wielding influence over other castes.',
@@ -494,6 +550,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   // Chapter 5: Structural Change
   {
     id: 'glos-5-1',
+    chapter: 5,
     term: 'Structural Change',
     definition:
       'Fundamental alterations in the social, economic, and political structures of a society. In India, colonialism initiated structural changes that transformed land relations, industries, and class formation.',
@@ -501,6 +558,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-2',
+    chapter: 5,
     term: 'Colonialism',
     definition:
       'British colonial rule fundamentally restructured Indian society — transforming agrarian relations through new land revenue systems, deindustrialising the textile sector, and introducing modern administration and law.',
@@ -510,6 +568,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-3',
+    chapter: 5,
     term: 'Railway Network',
     definition:
       'The colonial railway system, the fourth largest in the world by 1947, served extractive economic purposes but also inadvertently facilitated national integration, labour mobility, and the spread of nationalist ideas.',
@@ -519,6 +578,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-4',
+    chapter: 5,
     term: 'Print Technology',
     definition:
       'The introduction of the printing press in India (1780, Hicky\'s Gazette) revolutionised the spread of ideas, enabling newspapers, pamphlets, and books to circulate nationalist, reformist, and subaltern voices.',
@@ -528,6 +588,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-5',
+    chapter: 5,
     term: 'Factory System',
     definition:
       'The capitalist mode of production involving wage labour, division of labour, and mechanised production in enclosed factories. Colonial policy promoted factories in port cities while stifling indigenous industry.',
@@ -537,6 +598,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-6',
+    chapter: 5,
     term: 'Cottage Industry',
     definition:
       'Small-scale, household-based production typically involving artisanal skills — weaving, spinning, pottery. Colonial policies devastated cottage industries by flooding markets with cheap British manufactured goods.',
@@ -546,6 +608,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-7',
+    chapter: 5,
     term: 'Commercial Agriculture',
     definition:
       'The shift from subsistence farming to cash crop cultivation for market sale. Colonial policies forced farmers to grow indigo, cotton, and jute for export, undermining food security.',
@@ -555,6 +618,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-8',
+    chapter: 5,
     term: 'Zamindari System',
     definition:
       'The Permanent Settlement (1793) in Bengal created hereditary landlords (zamindars) responsible for collecting revenue from peasants. It created a parasitic intermediary class and intensified peasant exploitation.',
@@ -564,6 +628,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-9',
+    chapter: 5,
     term: 'Ryotwari System',
     definition:
       'Introduced by Thomas Munro in Madras Presidency (1820), it placed the peasant (ryot) in direct contact with the state for revenue collection. Despite being fairer in theory, high revenue demands caused distress.',
@@ -573,6 +638,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-10',
+    chapter: 5,
     term: 'Mahalwari System',
     definition:
       'Introduced in the North-Western Provinces (1833), it collected revenue from the village community (mahal) as a collective unit. Administered by Henry Sleeman, it covered parts of present-day UP and Punjab.',
@@ -580,6 +646,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-11',
+    chapter: 5,
     term: 'Social Reform Movement',
     definition:
       'Nineteenth and early twentieth-century movements aimed at eliminating social evils like sati, child marriage, caste discrimination, and promoting education, especially for women and lower castes.',
@@ -589,6 +656,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-12',
+    chapter: 5,
     term: 'Brahmo Samaj',
     definition:
       'Founded by Raja Ram Mohan Roy in 1828 in Calcutta, it promoted monotheism, rationalism, and social reform — opposing idolatry, sati, and caste discrimination while synthesising Hindu and Western thought.',
@@ -598,6 +666,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-13',
+    chapter: 5,
     term: 'Prarthana Samaj',
     definition:
       'Founded in 1867 in Bombay by Atmaram Pandurang, influenced by the Brahmo Samaj. It focused on social reform in Maharashtra — opposing caste discrimination, promoting widow remarriage, and encouraging rational worship.',
@@ -607,6 +676,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-14',
+    chapter: 5,
     term: 'Arya Samaj',
     definition:
       'Founded by Swami Dayananda Saraswati in 1875 in Bombay, it rejected caste by birth, idolatry, and untouchability, advocating a return to Vedic authority. It ran educational institutions and initiated the Shuddhi reconversion movement.',
@@ -616,6 +686,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-5-15',
+    chapter: 5,
     term: 'Nationalism',
     definition:
       'Structural changes under colonialism — railways, print, and shared grievance — forged a composite Indian nationalism that united diverse castes, classes, and regions against a common colonial oppressor.',
@@ -627,6 +698,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   // Chapter 6: Cultural Change
   {
     id: 'glos-6-1',
+    chapter: 6,
     term: 'Cultural Change',
     definition:
       'Transformation in the cultural elements of a society — values, norms, beliefs, customs, and practices. In India, cultural change has been driven by colonialism, modernisation, and social reform movements.',
@@ -634,6 +706,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-2',
+    chapter: 6,
     term: 'Modernisation',
     definition:
       'A comprehensive process of social transformation involving industrialisation, urbanisation, rationalisation, and the spread of science and technology. It reshapes traditional values towards individualism, equality, and progress.',
@@ -643,6 +716,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-3',
+    chapter: 6,
     term: 'Westernisation',
     definition:
       'The adoption of Western cultural patterns — in dress, food, language, and social norms — associated with modernity. In India, it is often mediated through class, education, and urbanisation.',
@@ -652,6 +726,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-4',
+    chapter: 6,
     term: 'Secularisation',
     definition:
       'The decline of religious authority in social and political life, and the separation of religious institutions from the state. In India, it is a contested and incomplete process.',
@@ -661,6 +736,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-5',
+    chapter: 6,
     term: 'Rationalisation',
     definition:
       'A concept by Max Weber describing the process of replacing traditional customs and emotions with calculated, efficient, and rule-bound decision-making. It pervades modern bureaucracy, law, and education.',
@@ -670,6 +746,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-6',
+    chapter: 6,
     term: 'Sanskritisation',
     definition:
       'M.N. Srinivas\'s concept describing how lower castes adopt upper-caste practices to claim higher ritual status. It is a form of cultural mobility within — rather than against — the caste hierarchy.',
@@ -679,6 +756,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-7',
+    chapter: 6,
     term: 'Syncretism',
     definition:
       'The blending of different cultural, religious, or social traditions to create new hybrid forms. Indian civilisation is marked by centuries of syncretism between Hindu, Islamic, Buddhist, and local traditions.',
@@ -688,6 +766,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-8',
+    chapter: 6,
     term: 'Social Reform',
     definition:
       'Organised efforts to change social customs, institutions, and practices considered unjust or oppressive. Indian social reform has been driven by both indigenous thinkers and colonial-era legislation.',
@@ -695,6 +774,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-9',
+    chapter: 6,
     term: 'Sati Abolition',
     definition:
       'The practice of widow self-immolation on the husband\'s funeral pyre was abolished by Lord William Bentinck in 1829, following campaigns by Raja Ram Mohan Roy. It was one of the first major colonial interventions in Hindu social practice.',
@@ -704,6 +784,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-10',
+    chapter: 6,
     term: 'Self-Respect Movement',
     definition:
       'Founded by Periyar E.V. Ramasamy in 1925 in Tamil Nadu, it challenged Brahminical hegemony, caste hierarchy, and untouchability, promoting rationalism, social equality, and Dravidian identity.',
@@ -713,6 +794,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-11',
+    chapter: 6,
     term: 'Left Movement',
     definition:
       'Communist and socialist political movements in India, including trade unions, peasant struggles, and electoral politics. The Left has historically been influential in Kerala, West Bengal, and Tripura.',
@@ -722,6 +804,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-12',
+    chapter: 6,
     term: 'Naxalite',
     definition:
       'A radical Maoist movement originating from the 1967 Naxalbari uprising in West Bengal, advocating armed revolution and land redistribution for the landless. It continues in parts of central and eastern India.',
@@ -731,6 +814,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-13',
+    chapter: 6,
     term: 'Trade Union',
     definition:
       'An organised association of workers formed to protect and advance their economic and social interests through collective bargaining and political action.',
@@ -740,6 +824,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-14',
+    chapter: 6,
     term: 'Peasant Movement',
     definition:
       'Collective action by farmers and agricultural labourers against exploitation by landlords, moneylenders, and the state. Peasant movements have shaped Indian politics from colonial times to the present.',
@@ -749,6 +834,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
   },
   {
     id: 'glos-6-15',
+    chapter: 6,
     term: 'Kudumbam',
     definition:
       'A community-based organisation and network of neighbourhood groups in Kerala, originally formed for women\'s empowerment and poverty alleviation. It represents a grassroots model of collective self-governance and economic self-reliance.',

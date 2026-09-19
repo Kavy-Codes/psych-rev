@@ -35,10 +35,7 @@ export function SocioGlossary({ chapterRange }: Props) {
   const [start, end] = chapterRange;
 
   const filtered = useMemo(() => {
-    let terms = start === 0 ? socioGlossary : socioGlossary.filter(t => {
-      const term = t as SocioGlossaryTerm & { chapter?: number };
-      return term.chapter !== undefined ? term.chapter >= start && term.chapter <= end : true;
-    });
+    let terms = start === 0 ? socioGlossary : socioGlossary.filter(t => t.chapter >= start && t.chapter <= end);
     if (selectedCategory !== 'all') {
       terms = terms.filter(t => t.category === selectedCategory);
     }
