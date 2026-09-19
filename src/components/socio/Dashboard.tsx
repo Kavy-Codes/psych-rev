@@ -10,9 +10,9 @@ interface Props {
 }
 
 const UNITS = [
-  { name: 'Indian Society & Demography', marks: 15, chapters: [1, 2] },
-  { name: 'Social Institutions', marks: 20, chapters: [3] },
-  { name: 'Social Change & Development', marks: 45, chapters: [5, 6] },
+  { name: 'Indian Society: Demography & Institutions', marks: 20, chapters: [2, 3] },
+  { name: 'Indian Society: Inequality & Diversity', marks: 20, chapters: [5, 6] },
+  { name: 'Social Change & Development', marks: 40, chapters: [1] },
 ];
 
 const TIPS = [

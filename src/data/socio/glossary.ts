@@ -3,169 +3,164 @@ export interface SocioGlossaryTerm {
   chapter: number;
   term: string;
   definition: string;
-  category:
-    | 'demography'
-    | 'social-institution'
-    | 'inequality'
-    | 'social-change'
-    | 'media'
-    | 'economy'
-    | 'theory';
+  category: 'demography' | 'social-institution' | 'inequality' | 'social-change' | 'media' | 'economy' | 'theory';
   example?: string;
 }
 
 export const socioGlossary: SocioGlossaryTerm[] = [
-  // Chapter 1: Introducing Indian Society
+  // Chapter 1: SC Ch1 — Structural Change
   {
     id: 'glos-1-1',
     chapter: 1,
-    term: 'Colonialism',
+    term: 'Structural Change',
     definition:
-      'A practice of domination involving the subjugation of one people to another through political, economic, and cultural control. British colonialism in India lasted nearly two centuries and fundamentally restructured Indian social, economic, and political life.',
-    category: 'theory',
+      'Fundamental alterations in the social, economic, and political structures of a society. In India, colonialism initiated structural changes that transformed land relations, industries, and class formation.',
+    category: 'social-change',
     example:
-      'The British East India Company\'s transition from a trading entity to a ruling power after the Battle of Plassey (1757) exemplifies political colonialism.',
+      'The shift from a largely agrarian economy to one integrated into global capitalist markets under British rule.',
   },
   {
     id: 'glos-1-2',
     chapter: 1,
-    term: 'Orientalism',
+    term: 'Colonialism',
     definition:
-      'A Western construction of the "Orient" as inherently different, exotic, inferior, and static. Edward Said\'s seminal work argues that Orientalism served as a discursive justification for colonial domination by portraying Eastern societies as backward and needing Western guidance.',
-    category: 'theory',
+      'A practice of domination involving the subjugation of one people to another through political, economic, and cultural control. British colonialism in India lasted nearly two centuries and fundamentally restructured Indian social, economic, and political life.',
+    category: 'social-change',
     example:
-      'Colonial ethnographies that depicted Indian customs as "timeless" and "unchanged" reflected Orientalist frameworks.',
+      'The British East India Company\'s transition from a trading entity to a ruling power after the Battle of Plassey (1757).',
   },
   {
     id: 'glos-1-3',
     chapter: 1,
-    term: 'Occidentalism',
+    term: 'Railway Network',
     definition:
-      'The reverse of Orientalism — the construction of the West by non-Western societies, often through stereotyping, idealisation, or rejection. It represents how colonised peoples sometimes constructed narratives about Western civilisation.',
-    category: 'theory',
+      'The colonial railway system, the fourth largest in the world by 1947, served extractive economic purposes but also inadvertently facilitated national integration, labour mobility, and the spread of nationalist ideas.',
+    category: 'economy',
     example:
-      'Nineteenth-century Indian reformers sometimes idealised Western rationality while simultaneously critiquing indigenous social evils.',
+      'By 1857, railways connected major Indian cities, enabling rapid communication and movement of goods across regions.',
   },
   {
     id: 'glos-1-4',
     chapter: 1,
-    term: 'Sociological Imagination',
+    term: 'Print Technology',
     definition:
-      'Concept introduced by C. Wright Mills — the ability to connect personal troubles with broader public issues and see how biography intersects with history and social structure.',
-    category: 'theory',
+      'The introduction of the printing press in India (1780, Hicky\'s Gazette) revolutionised the spread of ideas, enabling newspapers, pamphlets, and books to circulate nationalist, reformist, and subaltern voices.',
+    category: 'media',
     example:
-      'Understanding that an individual\'s unemployment is linked to structural economic shifts rather than personal failure.',
+      'Kesari, edited by Tilak, and Maratha used print media to mobilise anti-colonial sentiment in Maharashtra.',
   },
   {
     id: 'glos-1-5',
     chapter: 1,
-    term: 'Community Identity',
+    term: 'Factory System',
     definition:
-      'A sense of belonging derived from membership in a larger collective — based on religion, caste, language, ethnicity, or region. It shapes social solidarity and collective action but can also produce exclusivist politics.',
-    category: 'social-institution',
+      'The capitalist mode of production involving wage labour, division of labour, and mechanised production in enclosed factories. Colonial policy promoted factories in port cities while stifling indigenous industry.',
+    category: 'economy',
     example:
-      'Linguistic identities formed around the demand for states on the basis of language after Independence.',
+      'Cotton textile mills in Bombay (1854) and Ahmedabad emerged as the factory system replaced artisanal production.',
   },
   {
     id: 'glos-1-6',
     chapter: 1,
-    term: 'Individual Identity',
+    term: 'Cottage Industry',
     definition:
-      'A person\'s sense of self formed through personal experiences, socialisation, and unique life trajectory. In sociology, it is always understood as shaped by social structures and cultural contexts.',
-    category: 'theory',
+      'Small-scale, household-based production typically involving artisanal skills — weaving, spinning, pottery. Colonial policies devastated cottage industries by flooding markets with cheap British manufactured goods.',
+    category: 'economy',
     example:
-      'A first-generation college graduate developing a professional identity distinct from their rural agricultural background.',
+      'Gandhi\'s charkha (spinning wheel) movement was a symbolic and practical resistance to the destruction of India\'s cottage textile industry.',
   },
   {
     id: 'glos-1-7',
     chapter: 1,
-    term: 'Ascribed Status',
+    term: 'Commercial Agriculture',
     definition:
-      'A social position assigned at birth or involuntarily later in life, based on characteristics like caste, race, gender, or family lineage. It carries fixed social expectations and limited mobility.',
-    category: 'inequality',
+      'The shift from subsistence farming to cash crop cultivation for market sale. Colonial policies forced farmers to grow indigo, cotton, and jute for export, undermining food security.',
+    category: 'economy',
     example:
-      'Being born into a Dalit family or as a woman in a patriarchal household assigns ascribed statuses that shape life chances.',
+      'The indigo revolt of 1859–60 in Bengal was a peasant uprising against forced indigo cultivation for European markets.',
   },
   {
     id: 'glos-1-8',
     chapter: 1,
-    term: 'Achieved Status',
+    term: 'Zamindari System',
     definition:
-      'A social position acquired through individual effort, choices, and merit. It contrasts with ascribed status and is central to modern, open societies.',
-    category: 'social-change',
+      'The Permanent Settlement (1793) in Bengal created hereditary landlords (zamindars) responsible for collecting revenue from peasants. It created a parasitic intermediary class and intensified peasant exploitation.',
+    category: 'economy',
     example:
-      'An IAS officer achieving a bureaucratic position through competitive examination rather than birthright.',
+      'The absentee landlordism of Bengal zamindars, who extracted rent without investing in land improvement.',
   },
   {
     id: 'glos-1-9',
+    chapter: 1,
+    term: 'Ryotwari System',
+    definition:
+      'Introduced by Thomas Munro in Madras Presidency (1820), it placed the peasant (ryot) in direct contact with the state for revenue collection. Despite being fairer in theory, high revenue demands caused distress.',
+    category: 'economy',
+    example:
+      'Ryots in Tamil Nadu faced devastating debt and land alienation due to inflexible revenue demands during crop failures.',
+  },
+  {
+    id: 'glos-1-10',
+    chapter: 1,
+    term: 'Mahalwari System',
+    definition:
+      'Introduced in the North-Western Provinces (1833), it collected revenue from the village community (mahal) as a collective unit. Administered by Henry Sleeman, it covered parts of present-day UP and Punjab.',
+    category: 'economy',
+    example:
+      'The collective responsibility of the village community under the Mahalwari System often led to communal debt and land alienation.',
+  },
+  {
+    id: 'glos-1-11',
+    chapter: 1,
+    term: 'Social Reform Movement',
+    definition:
+      'Nineteenth and early twentieth-century movements aimed at eliminating social evils like sati, child marriage, caste discrimination, and promoting education, especially for women and lower castes.',
+    category: 'social-change',
+    example:
+      'The campaigns against sati, led by Raja Ram Mohan Roy, resulted in the Bengal Sati Regulation of 1829.',
+  },
+  {
+    id: 'glos-1-12',
+    chapter: 1,
+    term: 'Brahmo Samaj',
+    definition:
+      'Founded by Raja Ram Mohan Roy in 1828 in Calcutta, it promoted monotheism, rationalism, and social reform — opposing idolatry, sati, and caste discrimination while synthesising Hindu and Western thought.',
+    category: 'social-change',
+    example:
+      'The Brahmo Samaj advocated for women\'s rights, including widow remarriage and female education.',
+  },
+  {
+    id: 'glos-1-13',
+    chapter: 1,
+    term: 'Prarthana Samaj',
+    definition:
+      'Founded in 1867 in Bombay by Atmaram Pandurang, influenced by the Brahmo Samaj. It focused on social reform in Maharashtra — opposing caste discrimination, promoting widow remarriage, and encouraging rational worship.',
+    category: 'social-change',
+    example:
+      'Justice M.G. Ranade, a prominent member, worked for legal reforms and the upliftment of lower castes.',
+  },
+  {
+    id: 'glos-1-14',
+    chapter: 1,
+    term: 'Arya Samaj',
+    definition:
+      'Founded by Swami Dayananda Saraswati in 1875 in Bombay, it rejected caste by birth, idolatry, and untouchability, advocating a return to Vedic authority. It ran educational institutions and initiated the Shuddhi reconversion movement.',
+    category: 'social-change',
+    example:
+      'The D.A.V. (Dayanand Anglo-Vedic) schools and colleges established across northern India reflected Arya Samaj\'s educational mission.',
+  },
+  {
+    id: 'glos-1-15',
     chapter: 1,
     term: 'Nationalism',
     definition:
       'An ideology and movement promoting loyalty to a nation-state. Indian nationalism was a composite force that united diverse communities against colonial rule, though it also harboured internal tensions.',
     category: 'social-change',
     example:
-      'The Indian National Congress evolved from an elite debating forum into a mass anti-colonial nationalist movement under Gandhi.',
-  },
-  {
-    id: 'glos-1-10',
-    chapter: 1,
-    term: 'Self-reflexivity',
-    definition:
-      'The capacity to examine one\'s own assumptions, biases, and social location. In sociology, it is essential for understanding how personal perspective shapes analysis of social phenomena.',
-    category: 'theory',
-  },
-  {
-    id: 'glos-1-11',
-    chapter: 1,
-    term: 'Social Structure',
-    definition:
-      'The relatively enduring pattern of social relationships and institutions that constitute a society. It includes the family, caste, economy, polity, and religion as interconnected subsystems.',
-    category: 'theory',
-    example:
-      'The caste system as a hierarchical social structure that organised labour, ritual, and marriage for centuries.',
-  },
-  {
-    id: 'glos-1-12',
-    chapter: 1,
-    term: 'Social Stratification',
-    definition:
-      'The hierarchical arrangement of individuals into different layers or strata based on wealth, power, status, and access to resources. India\'s stratification is uniquely shaped by caste, class, gender, and region.',
-    category: 'inequality',
-    example:
-      'The stark contrast between urban elites in gated communities and slum dwellers without basic sanitation.',
-  },
-  {
-    id: 'glos-1-13',
-    chapter: 1,
-    term: 'Pluralism',
-    definition:
-      'A condition where diverse groups — linguistic, religious, ethnic, and cultural — coexist within a single political framework with mutual recognition and respect for differences.',
-    category: 'social-institution',
-    example:
-      'India\'s linguistic pluralism reflected in the constitutional recognition of 22 scheduled languages.',
-  },
-  {
-    id: 'glos-1-14',
-    chapter: 1,
-    term: 'Secularism',
-    definition:
-      'In the Indian context, not the strict separation of religion and state, but equal respect and non-interference of the state in all religious practices (Sarva Dharma Sama Bhava). It is enshrined in the Preamble.',
-    category: 'social-institution',
-    example:
-      'The Indian state\'s refusal to adopt a national religion while maintaining personal law systems for different communities.',
-  },
-  {
-    id: 'glos-1-15',
-    chapter: 1,
-    term: 'Communalism',
-    definition:
-      'The exploitation of religious identity for political mobilisation, leading to social conflict. It manifests as competitive majoritarianism and threatens the secular fabric of a plural society.',
-    category: 'social-institution',
-    example:
-      'The Partition of 1947 and recurring communal riots in Indian cities reflect communal tensions.',
+      'The Swadeshi movement (1905) united students, workers, peasants, and elites in a common anti-colonial economic boycott.',
   },
 
-  // Chapter 2: Demographic Structure
+  // Chapter 2: IS Ch2 — Demographic Structure
   {
     id: 'glos-2-1',
     chapter: 2,
@@ -173,6 +168,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'The statistical study of human populations — their size, structure, distribution, density, and changes over time through birth, death, and migration. It provides the quantitative foundation for social policy.',
     category: 'demography',
+    example:
+      'Census data on population growth rates helps governments plan infrastructure, education, and healthcare.',
   },
   {
     id: 'glos-2-2',
@@ -181,14 +178,18 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'The number of live births per 1,000 people in a population during a given year. India\'s crude birth rate declined from 40.7 in 1951 to 17.5 in 2020.',
     category: 'demography',
+    example:
+      'Declining birth rates in southern states like Kerala and Tamil Nadu reflect higher female literacy and healthcare access.',
   },
   {
     id: 'glos-2-3',
     chapter: 2,
     term: 'Death Rate',
     definition:
-      'The number of deaths per 1,000 people in a population during a given year. Declining death rates due to improved healthcare have been a key driver of population growth.',
+      'The number of deaths per 1,000 people in a population during a given year. Declining death rates due to improved healthcare have been a key driver of population growth in India.',
     category: 'demography',
+    example:
+      'India\'s death rate fell from 27.4 in 1951 to 7.0 in 2020 due to vaccination, antibiotics, and public health measures.',
   },
   {
     id: 'glos-2-4',
@@ -237,6 +238,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'The distribution of a population across different age groups. India\'s age structure shows a large young population — a demographic feature with both opportunities and challenges.',
     category: 'demography',
+    example:
+      'Over 65% of India\'s population is below 35 years of age, creating a vast potential workforce.',
   },
   {
     id: 'glos-2-9',
@@ -245,6 +248,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'The ratio of dependents (population below 15 and above 65) to the working-age population (15–64). A low dependency ratio is favourable for economic growth.',
     category: 'demography',
+    example:
+      'India\'s dependency ratio is projected to decline to 0.4 by 2030, signalling a favourable window for economic expansion.',
   },
   {
     id: 'glos-2-10',
@@ -252,7 +257,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     term: 'Demographic Dividend',
     definition:
       'The economic growth potential resulting from a large working-age population relative to dependents. India is currently experiencing this window, expected to last until 2055.',
-    category: 'economy',
+    category: 'demography',
     example:
       'India\'s working-age population (15–64) is projected to reach 70% by 2030, offering a productivity dividend.',
   },
@@ -263,6 +268,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'The total fertility rate at which a population exactly replaces itself from one generation to the next, typically 2.1 children per woman in low-mortality settings.',
     category: 'demography',
+    example:
+      'When TFR falls below 2.1, the population eventually stabilises and may begin to decline without migration.',
   },
   {
     id: 'glos-2-12',
@@ -355,7 +362,7 @@ export const socioGlossary: SocioGlossaryTerm[] = [
       'Despite the PNDT Act, states like Haryana and Punjab continue to show highly skewed child sex ratios due to illegal sex selection.',
   },
 
-  // Chapter 3: Social Institutions
+  // Chapter 3: IS Ch3 — Social Institutions
   {
     id: 'glos-3-1',
     chapter: 3,
@@ -373,6 +380,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'The four-fold theoretical division of Hindu society — Brahmin, Kshatriya, Vaishya, and Shudra — described in ancient texts like the Rigveda. Varna is an idealised model, distinct from the lived reality of Jati.',
     category: 'social-institution',
+    example:
+      'The Purusha Sukta hymn in the Rigveda describes the origin of the four varnas from the cosmic being.',
   },
   {
     id: 'glos-3-3',
@@ -431,6 +440,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'A basic social institution formed through marriage, kinship, and cohabitation, responsible for reproduction, socialisation, and economic cooperation. Indian families vary widely across regions and communities.',
     category: 'social-institution',
+    example:
+      'The family acts as the primary agent of socialisation, transmitting cultural values and norms to children.',
   },
   {
     id: 'glos-3-9',
@@ -479,6 +490,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'The system of social relationships based on blood ties (consanguineal) or marriage (affinal). Kinship determines roles, obligations, inheritance, and marriage rules in all societies.',
     category: 'social-institution',
+    example:
+      'Kinship networks in rural India serve as informal insurance systems, providing support during crises.',
   },
   {
     id: 'glos-3-14',
@@ -487,6 +500,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'Kinship relations based on blood or biological descent — parents, siblings, grandparents, uncles, and aunts. These form the core of most Indian family and kinship systems.',
     category: 'social-institution',
+    example:
+      'Consanguineous marriages are preferred in South Indian communities to keep property and kinship ties intact.',
   },
   {
     id: 'glos-3-15',
@@ -495,6 +510,8 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     definition:
       'Kinship relations established through marriage — in-laws, spouse\'s relatives. In Indian society, affinal ties play a crucial role in expanding social networks and strategic alliances.',
     category: 'social-institution',
+    example:
+      'Arranged marriages in India are often strategic alliances between families, strengthening affinal networks.',
   },
   {
     id: 'glos-3-16',
@@ -542,220 +559,256 @@ export const socioGlossary: SocioGlossaryTerm[] = [
     term: 'Dominant Caste',
     definition:
       'A concept by M.N. Srinivas referring to a caste that is numerically large, economically prosperous, and politically powerful in a local area, wielding influence over other castes.',
-    category: 'inequality',
+    category: 'social-institution',
     example:
       'The Jats of western UP and Haryana, the Marathas of Maharashtra, and the Patidars of Gujarat function as dominant castes in their regions.',
   },
 
-  // Chapter 5: Structural Change
+  // Chapter 5: IS Ch5 — Social Inequality and Exclusion
   {
     id: 'glos-5-1',
     chapter: 5,
-    term: 'Structural Change',
+    term: 'Social Stratification',
     definition:
-      'Fundamental alterations in the social, economic, and political structures of a society. In India, colonialism initiated structural changes that transformed land relations, industries, and class formation.',
-    category: 'social-change',
+      'The hierarchical arrangement of individuals into different layers or strata based on wealth, power, status, and access to resources. India\'s stratification is uniquely shaped by caste, class, gender, and region.',
+    category: 'inequality',
+    example:
+      'The stark contrast between urban elites in gated communities and slum dwellers without basic sanitation.',
   },
   {
     id: 'glos-5-2',
     chapter: 5,
-    term: 'Colonialism',
+    term: 'Social Inequality',
     definition:
-      'British colonial rule fundamentally restructured Indian society — transforming agrarian relations through new land revenue systems, deindustrialising the textile sector, and introducing modern administration and law.',
-    category: 'social-change',
+      'The unequal distribution of resources, opportunities, and privileges among different groups in a society. In India, inequality is structured through caste, class, gender, and regional disparities.',
+    category: 'inequality',
     example:
-      'The systematic destruction of India\'s handloom industry through tariff policies to benefit British mill manufacturers.',
+      'The top 10% of India\'s population holds 77% of the national wealth, while the bottom 50% owns just 3%.',
   },
   {
     id: 'glos-5-3',
     chapter: 5,
-    term: 'Railway Network',
+    term: 'Economic Capital',
     definition:
-      'The colonial railway system, the fourth largest in the world by 1947, served extractive economic purposes but also inadvertently facilitated national integration, labour mobility, and the spread of nationalist ideas.',
-    category: 'social-change',
+      'Material and financial resources — income, property, wealth — that can be converted into economic advantage. Pierre Bourdieu identified it as one of the key forms of capital driving social inequality.',
+    category: 'inequality',
     example:
-      'Ram Mohan Roy travelled to England by ship, but by 1857, railways connected major Indian cities, enabling rapid communication.',
+      'Access to quality education and healthcare is heavily determined by a family\'s economic capital.',
   },
   {
     id: 'glos-5-4',
     chapter: 5,
-    term: 'Print Technology',
+    term: 'Social Capital',
     definition:
-      'The introduction of the printing press in India (1780, Hicky\'s Gazette) revolutionised the spread of ideas, enabling newspapers, pamphlets, and books to circulate nationalist, reformist, and subaltern voices.',
-    category: 'social-change',
+      'The networks of relationships, trust, and reciprocity that enable individuals to access resources and opportunities. It operates through community connections, family ties, and institutional memberships.',
+    category: 'inequality',
     example:
-      'Kesari, edited by Tilak, and Maratha, used print media to mobilise anti-colonial sentiment in Maharashtra.',
+      'Caste networks in urban markets help members of particular communities secure employment and business contracts.',
   },
   {
     id: 'glos-5-5',
     chapter: 5,
-    term: 'Factory System',
+    term: 'Cultural Capital',
     definition:
-      'The capitalist mode of production involving wage labour, division of labour, and mechanised production in enclosed factories. Colonial policy promoted factories in port cities while stifling indigenous industry.',
-    category: 'economy',
+      'Knowledge, skills, education, and cultural competencies that confer social advantage. Bourdieu argued that cultural capital reproduces class inequality through educational and social institutions.',
+    category: 'inequality',
     example:
-      'Cotton textile mills in Bombay (1854) and Ahmedabad emerged as the factory system replaced artisanal production.',
+      'Proficiency in English and familiarity with Western cultural norms function as cultural capital in India\'s job market.',
   },
   {
     id: 'glos-5-6',
     chapter: 5,
-    term: 'Cottage Industry',
+    term: 'Prejudice',
     definition:
-      'Small-scale, household-based production typically involving artisanal skills — weaving, spinning, pottery. Colonial policies devastated cottage industries by flooding markets with cheap British manufactured goods.',
-    category: 'economy',
+      'A preconceived opinion or attitude, usually negative, towards an individual or group based on perceived characteristics like caste, religion, gender, or ethnicity. It often operates below conscious awareness.',
+    category: 'inequality',
     example:
-      'Gandhi\'s charkha (spinning wheel) movement was a symbolic and practical resistance to the destruction of India\'s cottage textile industry.',
+      'Assuming that a person from a lower caste is less intelligent or capable reflects caste-based prejudice.',
   },
   {
     id: 'glos-5-7',
     chapter: 5,
-    term: 'Commercial Agriculture',
+    term: 'Stereotype',
     definition:
-      'The shift from subsistence farming to cash crop cultivation for market sale. Colonial policies forced farmers to grow indigo, cotton, and jute for export, undermining food security.',
-    category: 'economy',
+      'A fixed, oversimplified belief about a particular group of people. Stereotypes ignore individual variation and reinforce discriminatory attitudes and practices.',
+    category: 'inequality',
     example:
-      'The indigo revolt of 1859–60 in Bengal was a peasant uprising against forced indigo cultivation for European markets.',
+      'The stereotype that northeastern Indians are "foreign" or "Chinese" undermines their Indian identity and belonging.',
   },
   {
     id: 'glos-5-8',
     chapter: 5,
-    term: 'Zamindari System',
+    term: 'Discrimination',
     definition:
-      'The Permanent Settlement (1793) in Bengal created hereditary landlords (zamindars) responsible for collecting revenue from peasants. It created a parasitic intermediary class and intensified peasant exploitation.',
-    category: 'economy',
+      'Unjust or prejudicial treatment of individuals or groups based on characteristics like caste, religion, gender, or race. Discrimination translates prejudice into unequal outcomes in employment, education, and public life.',
+    category: 'inequality',
     example:
-      'The absentee landlordism of Bengal zamindars, who extracted rent without investing in land improvement.',
+      'Denying housing to Dalit families in urban neighbourhoods is a form of caste discrimination.',
   },
   {
     id: 'glos-5-9',
     chapter: 5,
-    term: 'Ryotwari System',
+    term: 'Social Exclusion',
     definition:
-      'Introduced by Thomas Munro in Madras Presidency (1820), it placed the peasant (ryot) in direct contact with the state for revenue collection. Despite being fairer in theory, high revenue demands caused distress.',
-    category: 'economy',
+      'The process by which certain groups are systematically denied access to resources, rights, and opportunities available to others. It operates through economic marginalisation, cultural stigmatisation, and political powerlessness.',
+    category: 'inequality',
     example:
-      'Ryots in Tamil Nadu faced devastating debt and land alienation due to inflexible revenue demands during crop failures.',
+      'Manual scavengers face social exclusion through occupation-based stigma, economic deprivation, and limited mobility.',
   },
   {
     id: 'glos-5-10',
     chapter: 5,
-    term: 'Mahalwari System',
+    term: 'Untouchability',
     definition:
-      'Introduced in the North-Western Provinces (1833), it collected revenue from the village community (mahal) as a collective unit. Administered by Henry Sleeman, it covered parts of present-day UP and Punjab.',
-    category: 'economy',
+      'The practice of social segregation and discrimination against Dalits (formerly called "untouchables") based on notions of ritual purity and pollution. Abolished by Article 17 of the Indian Constitution but persists in practice.',
+    category: 'inequality',
+    example:
+      'Dalits in some villages are still denied entry to temples, shared water sources, and upper-caste residential areas.',
   },
   {
     id: 'glos-5-11',
     chapter: 5,
-    term: 'Social Reform Movement',
+    term: 'OBC',
     definition:
-      'Nineteenth and early twentieth-century movements aimed at eliminating social evils like sati, child marriage, caste discrimination, and promoting education, especially for women and lower castes.',
-    category: 'social-change',
+      'Other Backward Classes — a constitutional category of socially and educationally disadvantaged castes that are not Scheduled Castes or Scheduled Tribes. They are entitled to reservation in education and government employment.',
+    category: 'inequality',
     example:
-      'The campaigns against sati, led by Raja Ram Mohan Roy, resulted in the Bengal Sati Regulation of 1829.',
+      'The Yadav, Kurmi, and Jatav communities are among the largest OBC groups in India.',
   },
   {
     id: 'glos-5-12',
     chapter: 5,
-    term: 'Brahmo Samaj',
+    term: 'Mandal Commission',
     definition:
-      'Founded by Raja Ram Mohan Roy in 1828 in Calcutta, it promoted monotheism, rationalism, and social reform — opposing idolatry, sati, and caste discrimination while synthesising Hindu and Western thought.',
-    category: 'social-change',
+      'The Second Backward Classes Commission (1979), chaired by B.P. Mandal, recommended 27% reservation for OBCs in government services and educational institutions. Its implementation in 1990 triggered massive political and social upheaval.',
+    category: 'inequality',
     example:
-      'The Brahmo Samaj advocated for women\'s rights, including widow remarriage and female education.',
+      'The Mandal Commission recommendations led to self-immolation protests by upper-caste students and transformed Indian coalition politics.',
   },
   {
     id: 'glos-5-13',
     chapter: 5,
-    term: 'Prarthana Samaj',
+    term: 'Adivasi',
     definition:
-      'Founded in 1867 in Bombay by Atmaram Pandurang, influenced by the Brahmo Samaj. It focused on social reform in Maharashtra — opposing caste discrimination, promoting widow remarriage, and encouraging rational worship.',
-    category: 'social-change',
+      'An indigenous or tribal community, literally "original inhabitant." Adivasis have distinct languages, cultures, and territorial identities, and have historically faced displacement, exploitation, and marginalisation.',
+    category: 'inequality',
     example:
-      'Justice M.G. Ranade, a prominent member, worked for legal reforms and the upliftment of lower castes.',
+      'The displacement of Adivasi communities for dam construction and mining projects in Jharkhand and Chhattisgarh.',
   },
   {
     id: 'glos-5-14',
     chapter: 5,
-    term: 'Arya Samaj',
+    term: 'Reservation',
     definition:
-      'Founded by Swami Dayananda Saraswati in 1875 in Bombay, it rejected caste by birth, idolatry, and untouchability, advocating a return to Vedic authority. It ran educational institutions and initiated the Shuddhi reconversion movement.',
-    category: 'social-change',
+      'The constitutional policy of affirmative action reserving seats in education, government employment, and legislatures for historically marginalised communities — SC, ST, and OBC — to ensure equality of opportunity.',
+    category: 'inequality',
     example:
-      'The D.A.V. (Dayanand Anglo-Vedic) schools and colleges established across northern India reflected Arya Samaj\'s educational mission.',
+      '15% reservation for SCs and 7.5% for STs in central educational institutions under the Indian Constitution.',
   },
   {
     id: 'glos-5-15',
     chapter: 5,
-    term: 'Nationalism',
+    term: 'Life Chances',
     definition:
-      'Structural changes under colonialism — railways, print, and shared grievance — forged a composite Indian nationalism that united diverse castes, classes, and regions against a common colonial oppressor.',
-    category: 'social-change',
+      'A concept by Max Weber referring to the opportunities available to individuals to improve their quality of life — including health, education, income, and social participation. Unequal life chances reflect structural inequality.',
+    category: 'inequality',
     example:
-      'The Swadeshi movement (1905) united students, workers, peasants, and elites in a common anti-colonial economic boycott.',
+      'A child born in a Dalit household in rural Bihar has drastically lower life chances than one born in an upper-caste urban family.',
+  },
+  {
+    id: 'glos-5-16',
+    chapter: 5,
+    term: 'Egalitarian',
+    definition:
+      'A society or system that believes in or strives for equality among all people, particularly in terms of rights, opportunities, and social status. Egalitarian ideals underpin constitutional democracy and social justice movements.',
+    category: 'inequality',
+    example:
+      'The Indian Constitution\'s Preamble declares India a sovereign, socialist, secular, democratic republic committed to justice and equality.',
   },
 
-  // Chapter 6: Cultural Change
+  // Chapter 6: IS Ch6 — Cultural Diversity
   {
     id: 'glos-6-1',
     chapter: 6,
-    term: 'Cultural Change',
+    term: 'Cultural Diversity',
     definition:
-      'Transformation in the cultural elements of a society — values, norms, beliefs, customs, and practices. In India, cultural change has been driven by colonialism, modernisation, and social reform movements.',
+      'The coexistence of distinct cultural groups — defined by language, religion, ethnicity, and traditions — within a society. India is one of the most culturally diverse nations in the world.',
     category: 'social-change',
+    example:
+      'India\'s 22 scheduled languages, hundreds of dialects, and multiple religious traditions reflect profound cultural diversity.',
   },
   {
     id: 'glos-6-2',
     chapter: 6,
-    term: 'Modernisation',
+    term: 'Communalism',
     definition:
-      'A comprehensive process of social transformation involving industrialisation, urbanisation, rationalisation, and the spread of science and technology. It reshapes traditional values towards individualism, equality, and progress.',
-    category: 'social-change',
+      'The exploitation of religious identity for political mobilisation, leading to social conflict. It manifests as competitive majoritarianism and threatens the secular fabric of a plural society.',
+    category: 'social-institution',
     example:
-      'The spread of English education and urban professional classes in post-Independence India accelerated modernisation.',
+      'The Partition of 1947 and recurring communal riots in Indian cities reflect communal tensions.',
   },
   {
     id: 'glos-6-3',
     chapter: 6,
-    term: 'Westernisation',
+    term: 'Regionalism',
     definition:
-      'The adoption of Western cultural patterns — in dress, food, language, and social norms — associated with modernity. In India, it is often mediated through class, education, and urbanisation.',
+      'The assertion of regional identity and interests, sometimes leading to demands for separate states or autonomy. It arises from linguistic, ethnic, and economic disparities between regions.',
     category: 'social-change',
     example:
-      'The growing popularity of Western-style education, corporate culture, and consumption patterns among India\'s urban middle class.',
+      'The demand for a separate Telangana state, carved out of Andhra Pradesh in 2014, was driven by regional economic grievances.',
   },
   {
     id: 'glos-6-4',
     chapter: 6,
-    term: 'Secularisation',
+    term: 'Linguistic Chauvinism',
     definition:
-      'The decline of religious authority in social and political life, and the separation of religious institutions from the state. In India, it is a contested and incomplete process.',
+      'An aggressive or优越感 towards one\'s own language, often accompanied by hostility towards other languages. It can lead to imposition of one language and suppression of linguistic minorities.',
     category: 'social-change',
     example:
-      'The Supreme Court\'s intervention in religious practices (e.g., Shah Bano case, Sabarimala verdict) reflects secularisation of law.',
+      'The anti-Hindi agitation in Tamil Nadu (1965) resisted the imposition of Hindi as the sole national language.',
   },
   {
     id: 'glos-6-5',
     chapter: 6,
-    term: 'Rationalisation',
+    term: 'Secularism',
     definition:
-      'A concept by Max Weber describing the process of replacing traditional customs and emotions with calculated, efficient, and rule-bound decision-making. It pervades modern bureaucracy, law, and education.',
-    category: 'theory',
+      'In the Indian context, not the strict separation of religion and state, but equal respect and non-interference of the state in all religious practices (Sarva Dharma Sama Bhava). It is enshrined in the Preamble.',
+    category: 'social-institution',
     example:
-      'The shift from caste-based occupation selection to merit-based recruitment in government services.',
+      'The Indian state\'s refusal to adopt a national religion while maintaining personal law systems for different communities.',
   },
   {
     id: 'glos-6-6',
     chapter: 6,
-    term: 'Sanskritisation',
+    term: 'Multilingualism',
     definition:
-      'M.N. Srinivas\'s concept describing how lower castes adopt upper-caste practices to claim higher ritual status. It is a form of cultural mobility within — rather than against — the caste hierarchy.',
+      'The coexistence of multiple languages in a society, where individuals and communities use more than one language for different purposes. India\'s linguistic landscape is inherently multilingual.',
     category: 'social-change',
     example:
-      'The forgotten Maratha sub-castes claiming Kshatriya status through the adoption of vegetarianism and Vedic rituals.',
+      'A typical urban Indian switches between a regional language at home, Hindi in the marketplace, and English in professional settings.',
   },
   {
     id: 'glos-6-7',
+    chapter: 6,
+    term: 'Federalism',
+    definition:
+      'A system of governance in which power is divided between a central authority and constituent political units (states). India follows a quasi-federal structure with a strong centre and constitutionally defined state powers.',
+    category: 'social-institution',
+    example:
+      'Education is on the Concurrent List, allowing both the Centre and states to legislate on it.',
+  },
+  {
+    id: 'glos-6-8',
+    chapter: 6,
+    term: 'National Integration',
+    definition:
+      'The process of fostering unity and solidarity among diverse communities within a nation, transcending regional, linguistic, religious, and caste identities to strengthen the national fabric.',
+    category: 'social-change',
+    example:
+      'The National Integration Council was established in 1961 to address communal tensions and promote national cohesion.',
+  },
+  {
+    id: 'glos-6-9',
     chapter: 6,
     term: 'Syncretism',
     definition:
@@ -765,81 +818,63 @@ export const socioGlossary: SocioGlossaryTerm[] = [
       'The architectural and culinary traditions of Lucknow, blending Mughal and Awadhi cultures.',
   },
   {
-    id: 'glos-6-8',
-    chapter: 6,
-    term: 'Social Reform',
-    definition:
-      'Organised efforts to change social customs, institutions, and practices considered unjust or oppressive. Indian social reform has been driven by both indigenous thinkers and colonial-era legislation.',
-    category: 'social-change',
-  },
-  {
-    id: 'glos-6-9',
-    chapter: 6,
-    term: 'Sati Abolition',
-    definition:
-      'The practice of widow self-immolation on the husband\'s funeral pyre was abolished by Lord William Bentinck in 1829, following campaigns by Raja Ram Mohan Roy. It was one of the first major colonial interventions in Hindu social practice.',
-    category: 'social-change',
-    example:
-      'Roop Kanwar\'s sati in 1987 in Rajasthan reignited debates about the persistence of this practice.',
-  },
-  {
     id: 'glos-6-10',
     chapter: 6,
-    term: 'Self-Respect Movement',
+    term: 'Uniform Civil Code',
     definition:
-      'Founded by Periyar E.V. Ramasamy in 1925 in Tamil Nadu, it challenged Brahminical hegemony, caste hierarchy, and untouchability, promoting rationalism, social equality, and Dravidian identity.',
-    category: 'social-change',
+      'A proposal to replace personal laws based on religious scriptures with a common civil code for all citizens, irrespective of religion. It is enshrined as a Directive Principle in Article 44 of the Constitution.',
+    category: 'social-institution',
     example:
-      'The movement organised inter-caste marriages and temple entry campaigns to challenge caste norms.',
+      'Goa is the only Indian state that follows a uniform civil code, inherited from Portuguese civil law.',
   },
   {
     id: 'glos-6-11',
     chapter: 6,
-    term: 'Left Movement',
+    term: 'Minority',
     definition:
-      'Communist and socialist political movements in India, including trade unions, peasant struggles, and electoral politics. The Left has historically been influential in Kerala, West Bengal, and Tripura.',
-    category: 'social-change',
+      'A group distinguished from the majority by religion, language, or ethnicity, often requiring constitutional protection. In India, minorities include Muslims, Christians, Sikhs, Buddhists, Jains, and Parsis.',
+    category: 'social-institution',
     example:
-      'The Telangana Rebellion (1946–51) was one of the largest armed peasant struggles led by communists.',
+      'The National Commission for Minorities safeguards the rights and interests of minority communities.',
   },
   {
     id: 'glos-6-12',
     chapter: 6,
-    term: 'Naxalite',
+    term: 'Nation',
     definition:
-      'A radical Maoist movement originating from the 1967 Naxalbari uprising in West Bengal, advocating armed revolution and land redistribution for the landless. It continues in parts of central and eastern India.',
+      'A large-scale community bound by shared history, culture, territory, and political aspirations. Unlike a state, a nation is a cultural and psychological entity — a sense of collective belonging.',
     category: 'social-change',
     example:
-      'The ongoing Maoist insurgency in the "Red Corridor" spanning parts of Chhattisgarh, Jharkhand, and Odisha.',
+      'India as a civilisational nation predates the modern nation-state, with a continuous cultural consciousness spanning millennia.',
   },
   {
     id: 'glos-6-13',
     chapter: 6,
-    term: 'Trade Union',
+    term: 'Nation-State',
     definition:
-      'An organised association of workers formed to protect and advance their economic and social interests through collective bargaining and political action.',
+      'A political entity where the boundaries of a state coincide with those of a nation. India is a multi-national nation-state, housing many linguistic and cultural nations within a single political framework.',
     category: 'social-change',
     example:
-      'The All India Trade Union Congress (AITUC), founded in 1920, was India\'s first national trade union federation.',
+      'The drawing of state boundaries along linguistic lines after independence attempted to align state and nation within India.',
   },
   {
     id: 'glos-6-14',
     chapter: 6,
-    term: 'Peasant Movement',
+    term: 'Identity Politics',
     definition:
-      'Collective action by farmers and agricultural labourers against exploitation by landlords, moneylenders, and the state. Peasant movements have shaped Indian politics from colonial times to the present.',
+      'Political mobilisation based on shared identity — caste, religion, language, or ethnicity — to advance the interests of a particular group. It can both empower marginalised communities and deepen social divisions.',
     category: 'social-change',
     example:
-      'The Mappila Rebellion (1921) in Malabar was a peasant uprising against colonial and landlord oppression.',
+      'The Dalit Panthers movement in Maharashtra mobilised urban Dalit youth around caste identity and social justice.',
   },
   {
     id: 'glos-6-15',
     chapter: 6,
-    term: 'Kudumbam',
+    term: 'Sanskritisation',
     definition:
-      'A community-based organisation and network of neighbourhood groups in Kerala, originally formed for women\'s empowerment and poverty alleviation. It represents a grassroots model of collective self-governance and economic self-reliance.',
+      'M.N. Srinivas\'s concept describing how lower castes adopt upper-caste practices to claim higher ritual status. It is a form of cultural mobility within — rather than against — the caste hierarchy.',
     category: 'social-change',
     example:
-      'Kudumbam runs community enterprises, manages affordable restaurants (Janakeeyas), and implements local development projects across Kerala.',
+      'The forgotten Maratha sub-castes claiming Kshatriya status through the adoption of vegetarianism and Vedic rituals.',
   },
 ];

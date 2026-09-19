@@ -10,62 +10,62 @@ interface SocioMindMap {
 }
 
 export const socioMindMapsData: SocioMindMap[] = [
-  // ── Chapter 1: Introducing Indian Society ────────────────
+  // ── SC Ch1: Structural Change ────────────────────────────
   {
     chapterId: 1,
-    title: 'Introducing Indian Society',
+    title: 'SC Ch1: Structural Change',
     tree: {
-      label: 'Introducing Indian Society',
+      label: 'Structural Change',
       children: [
         {
-          label: 'Sociology as a Discipline',
+          label: 'Colonial Economy',
           children: [
-            { label: 'Systematic study of society (not common sense)' },
-            { label: 'Self-reflexivity — questioning own assumptions' },
-            { label: 'Linking personal troubles to public issues' },
+            { label: 'Railway network — connected markets' },
+            { label: 'Factory system — replaced cottage industry' },
+            { label: 'Commercial agriculture — cash crops (indigo, cotton, jute)' },
+            { label: 'Decline of artisan crafts' },
           ],
         },
         {
-          label: 'Colonial Impact on India',
+          label: 'Land Revenue Systems',
           children: [
-            { label: 'Land revenue: Zamindari, Ryotwari, Mahalwari' },
-            { label: 'Census operations rigidified caste categories' },
-            { label: 'Railways unified markets across regions' },
-            { label: 'Administrative unification under British rule' },
+            { label: 'Zamindari — hereditary landlords (Bengal)' },
+            { label: 'Ryotwari — direct with peasants (Madras)' },
+            { label: 'Mahalwari — village community (NWP)' },
           ],
         },
         {
-          label: 'Community vs Individual Identity',
+          label: 'Administrative Changes',
           children: [
-            { label: 'Community: ascriptive (birth-based, inherited)' },
-            { label: 'Individual: achieved (education, career, choice)' },
-            { label: 'Multiple coexisting identities in Indian society' },
+            { label: 'Census — classified & rigidified caste' },
+            { label: 'Legal codes — uniform law' },
+            { label: 'Provincial reorganization' },
           ],
         },
         {
-          label: 'Key Thinkers',
+          label: 'Social Reform Movements',
           children: [
-            { label: 'C. Wright Mills — Sociological Imagination' },
-            { label: 'Edward Said — Orientalism' },
-            { label: 'Max Weber — Social Action theory' },
+            { label: 'Brahmo Samaj — Raja Ram Mohan Roy (1828)' },
+            { label: 'Prarthana Samaj — Atmaram Pandurang (1867)' },
+            { label: 'Arya Samaj — Dayanand Saraswati (1875)' },
           ],
         },
         {
-          label: 'Features of Indian Society',
+          label: 'Ideas & Technology',
           children: [
-            { label: 'Unity in diversity' },
-            { label: 'Pluralism, multi-religious, multi-lingual' },
-            { label: 'Social stratification (caste, class, gender)' },
+            { label: 'Print technology — newspapers, pamphlets' },
+            { label: 'Spread of literacy — educated middle class' },
+            { label: 'Nationalism — anti-colonial consciousness' },
           ],
         },
       ],
     },
   },
 
-  // ── Chapter 2: Demographic Structure ─────────────────────
+  // ── IS Ch2: Demographic Structure ────────────────────────
   {
     chapterId: 2,
-    title: 'Demographic Structure',
+    title: 'IS Ch2: Demographic Structure',
     tree: {
       label: 'Demographic Structure',
       children: [
@@ -97,9 +97,9 @@ export const socioMindMapsData: SocioMindMap[] = [
         {
           label: 'Population Policy',
           children: [
-            { label: 'NFPP 1952 — first family planning programme' },
+            { label: 'NFPP 1952 — first family planning' },
             { label: 'Emergency sterilization camps (1975-76)' },
-            { label: 'NFWP — voluntary sterilization with consent' },
+            { label: 'NFWP — voluntary sterilization' },
             { label: 'PNDT Act 1996/2003 — sex determination ban' },
             { label: 'NREGA — employment safety net' },
           ],
@@ -107,9 +107,9 @@ export const socioMindMapsData: SocioMindMap[] = [
         {
           label: 'Social Patterns',
           children: [
-            { label: 'Literacy: Kerala highest, gender gap exists' },
-            { label: 'Rural-Urban migration: push-pull factors' },
-            { label: 'Sex ratio decline: son preference, female foeticide' },
+            { label: 'Literacy: Kerala highest, gender gap' },
+            { label: 'Rural-Urban migration: push-pull' },
+            { label: 'Sex ratio decline: son preference' },
             { label: 'Kerala: low fertility; UP: high fertility' },
           ],
         },
@@ -117,17 +117,17 @@ export const socioMindMapsData: SocioMindMap[] = [
     },
   },
 
-  // ── Chapter 3: Social Institutions ───────────────────────
+  // ── IS Ch3: Social Institutions ──────────────────────────
   {
     chapterId: 3,
-    title: 'Social Institutions',
+    title: 'IS Ch3: Social Institutions',
     tree: {
       label: 'Social Institutions',
       children: [
         {
           label: 'Caste System',
           children: [
-            { label: 'Varna — 4-fold: Brahmins, Kshatriyas, Vaishyas, Shudras' },
+            { label: 'Varna — 4-fold: Brahmin, Kshatriya, Vaishya, Shudra' },
             { label: 'Jati — thousands of endogamous groups' },
             { label: 'Brahmanical ideology + untouchability' },
             { label: 'Sanskritisation (M.N. Srinivas)' },
@@ -139,7 +139,7 @@ export const socioMindMapsData: SocioMindMap[] = [
             { label: 'Scheduled Tribes — 8.6% of population' },
             { label: 'Isolation, forest-dwelling, self-sufficient' },
             { label: 'Reservation and protective provisions' },
-            { label: 'Particularly Vulnerable Tribal Groups (PVTGs)' },
+            { label: 'PVTGs — Particularly Vulnerable Tribal Groups' },
           ],
         },
         {
@@ -162,8 +162,8 @@ export const socioMindMapsData: SocioMindMap[] = [
         {
           label: 'Panchayati Raj',
           children: [
-            { label: '73rd Constitutional Amendment' },
-            { label: '3-tier: Gram Panchayat, Zila Parishad, Block Samiti' },
+            { label: '73rd Constitutional Amendment (1992)' },
+            { label: '3-tier: Gram Panchayat, Samiti, Zila Parishad' },
             { label: '1/3 reservation for women' },
             { label: 'SC/ST reservation in local bodies' },
           ],
@@ -172,104 +172,100 @@ export const socioMindMapsData: SocioMindMap[] = [
     },
   },
 
-  // ── Chapter 5: Structural Change ─────────────────────────
+  // ── IS Ch5: Social Inequality & Exclusion ────────────────
   {
     chapterId: 5,
-    title: 'Structural Change',
+    title: 'IS Ch5: Social Inequality & Exclusion',
     tree: {
-      label: 'Structural Change',
+      label: 'Social Inequality & Exclusion',
       children: [
         {
-          label: 'Colonial Economy',
+          label: 'Social Stratification',
           children: [
-            { label: 'Railway network — connected markets' },
-            { label: 'Factory system — replaced cottage industry' },
-            { label: 'Commercial agriculture — cash crops' },
-            { label: 'Decline of artisan crafts' },
+            { label: 'Group-based, inherited, life chances unequal' },
+            { label: 'Economic capital — property, income' },
+            { label: 'Social capital — networks, connections' },
+            { label: 'Cultural capital — qualifications, education' },
           ],
         },
         {
-          label: 'Land Revenue Systems',
+          label: 'Prejudice, Stereotype, Discrimination',
           children: [
-            { label: 'Zamindari — intermediary landlords' },
-            { label: 'Ryotwari — direct with peasants' },
-            { label: 'Mahalwari — village-level assessment' },
+            { label: 'Prejudice — preconceived notions' },
+            { label: 'Stereotype — fixed group characterisation' },
+            { label: 'Discrimination — acting on prejudice' },
+            { label: 'Social exclusion — systematic, involuntary' },
           ],
         },
         {
-          label: 'Administrative Changes',
+          label: 'Caste as Discriminatory System',
           children: [
-            { label: 'Census operations — classified population' },
-            { label: 'Legal codes — uniform law across regions' },
-            { label: 'Provincial reorganization under British' },
+            { label: 'Exclusion — untouchables denied water, festivals' },
+            { label: 'Exploitation — low wages, degrading jobs' },
+            { label: 'Humiliation — no bright clothes, heads bowed' },
+            { label: 'Subordination — below upper castes' },
           ],
         },
         {
-          label: 'Social Reform Movements',
+          label: 'Marginalised Groups',
           children: [
-            { label: 'Brahmo Samaj — Raja Ram Mohan Roy' },
-            { label: 'Prarthana Samaj — Atmaram Pandurang' },
-            { label: 'Arya Samaj — Dayanand Saraswati' },
+            { label: 'SC/ST: reservation, Art 17, Prevention of Atrocities Act' },
+            { label: 'OBC: Mandal Commission, Kaka Kalelkar Commission' },
+            { label: 'Adivasi: forest exploitation, displacement, state formation' },
+            { label: 'Women: patriarchal society, reform movements' },
+            { label: 'Differently-abled: 2.19 crore, integration needed' },
           ],
         },
         {
-          label: 'Ideas and Technology',
+          label: 'Social Reformers',
           children: [
-            { label: 'Print technology — newspapers, pamphlets' },
-            { label: 'Spread of literacy — educated middle class' },
-            { label: 'Nationalism — anti-colonial consciousness' },
+            { label: 'Jyotirao Phule — Satyashodhak Samaj' },
+            { label: 'B.R. Ambedkar — Annihilation of Caste' },
+            { label: 'Periyar — Self-Respect Movement' },
           ],
         },
       ],
     },
   },
 
-  // ── Chapter 6: Cultural Change ───────────────────────────
+  // ── IS Ch6: Cultural Diversity ───────────────────────────
   {
     chapterId: 6,
-    title: 'Cultural Change',
+    title: 'IS Ch6: Cultural Diversity',
     tree: {
-      label: 'Cultural Change',
+      label: 'Cultural Diversity',
       children: [
         {
-          label: 'Modernization',
+          label: 'Diversity & Identity',
           children: [
-            { label: 'Westernisation — English education, technology' },
-            { label: 'Secularisation — declining religious authority' },
-            { label: 'Rationalisation — scientific temper' },
+            { label: 'Language, religion, caste, ethnicity' },
+            { label: 'Nation vs Nation-State' },
+            { label: 'Identity politics' },
           ],
         },
         {
-          label: 'Sanskritisation',
+          label: 'Challenges to Unity',
           children: [
-            { label: 'Lower castes adopt upper caste rituals' },
-            { label: 'Claim higher status in caste hierarchy' },
-            { label: 'Example: Nadars of Tamil Nadu, Ezhavas of Kerala' },
+            { label: 'Communalism — religious mobilisation' },
+            { label: 'Regionalism — sub-national identity' },
+            { label: 'Linguistic chauvinism — Hindi imposition resistance' },
           ],
         },
         {
-          label: 'Social Reformers',
+          label: 'Secularism & Federalism',
           children: [
-            { label: 'Raja Ram Mohan Roy — abolition of Sati' },
-            { label: 'Jyotirao Phule — caste emancipation, education' },
-            { label: 'Pandita Ramabai — women and widows' },
-            { label: 'Periyar — Self-Respect Movement, rationalism' },
+            { label: 'Indian secularism — equal respect (Sarva Dharma Sama Bhava)' },
+            { label: 'Federalism — centre-state relations' },
+            { label: 'Multilingualism — 22 scheduled languages' },
           ],
         },
         {
-          label: 'Left Movement',
+          label: 'Integration & Syncretism',
           children: [
-            { label: 'Naxalite movement — armed revolution' },
-            { label: 'Trade unions — workers rights' },
-            { label: 'Peasant movements — land reform' },
-          ],
-        },
-        {
-          label: 'Other Movements',
-          children: [
-            { label: 'Kudumbam — women self-help, Kerala' },
+            { label: 'National integration — unity in diversity' },
             { label: 'Syncretism — blending of cultures' },
-            { label: 'Partial reconstruction of tradition (T.N. Madan)' },
+            { label: 'UCC debate — uniform personal laws' },
+            { label: 'Minority protections — constitutional safeguards' },
           ],
         },
       ],

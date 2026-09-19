@@ -111,11 +111,11 @@ const HINDI_CHAPTERS = [
 
 const SOCIO_CHAPTERS = [
   { num: 0, name: 'All Chapters' },
-  { num: 1, name: 'Ch1: Introducing Indian Society' },
-  { num: 2, name: 'Ch2: Demographic Structure' },
-  { num: 3, name: 'Ch3: Social Institutions' },
-  { num: 5, name: 'Ch5: Structural Change' },
-  { num: 6, name: 'Ch6: Cultural Change' },
+  { num: 1, name: 'SC Ch1: Structural Change' },
+  { num: 2, name: 'IS Ch2: Demographic Structure' },
+  { num: 3, name: 'IS Ch3: Social Institutions' },
+  { num: 5, name: 'IS Ch5: Social Inequality & Exclusion' },
+  { num: 6, name: 'IS Ch6: Cultural Diversity' },
 ];
 
 const PSYCH_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
