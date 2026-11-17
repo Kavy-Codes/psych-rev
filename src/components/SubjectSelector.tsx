@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Brain, BookOpen, Building2, ChevronRight } from 'lucide-react';
+import { Brain, BookOpen, Building2, ChevronRight, FileText } from 'lucide-react';
 
 interface Props {
-  onSelect: (subject: 'psych' | 'hindi' | 'socio') => void;
+  onSelect: (subject: 'psych' | 'hindi' | 'socio' | 'onepager') => void;
 }
 
 const GREETINGS = [
@@ -13,6 +13,21 @@ const GREETINGS = [
 ];
 
 const subjects = [
+  {
+    id: 'onepager' as const,
+    name: 'One Pager Notes',
+    code: 'CBSE',
+    icon: FileText,
+    gradient: 'from-amber-500 via-orange-500 to-amber-600',
+    glow: 'glow-amber',
+    border: 'border-amber-500/20',
+    bg: 'bg-amber-500/[0.04]',
+    chapters: 56,
+    marks: 0,
+    meta: 'English + Psychology + Sociology + Hindi',
+    tagline: 'Copy-ready notes for your register',
+    desc: 'All chapters · 1.5–2 pages each · 2025-26 syllabus',
+  },
   {
     id: 'psych' as const,
     name: 'Psychology',
@@ -96,7 +111,9 @@ export function SubjectSelector({ onSelect }: Props) {
                 </div>
                 <div className="flex-1 min-w-0">
                   <h2 className="text-white font-bold text-sm mb-0.5">{s.name}</h2>
-                  <p className="text-zinc-500 text-[10px] mb-1">Code {s.code} · {s.chapters} chapters · {s.marks} marks</p>
+                  <p className="text-zinc-500 text-[10px] mb-1">
+                    {'meta' in s && s.meta ? s.meta : `Code ${s.code} · ${s.chapters} chapters · ${s.marks} marks`}
+                  </p>
                   <p className="text-zinc-400 text-xs">{s.tagline}</p>
                 </div>
                 <ChevronRight className="w-4 h-4 text-zinc-600 group-active:text-zinc-400 transition-colors shrink-0" strokeWidth={2} />

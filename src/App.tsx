@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback, useMemo, useRef, type ReactNode } from 'react';
-import { Home, Layers, FileText, Zap, BookOpen, Puzzle, Map, GitCompare, PenTool, BookMarked, ArrowLeft, ChevronDown, Library } from 'lucide-react';
+import { Home, Layers, FileText, Zap, BookOpen, Puzzle, Map, GitCompare, PenTool, BookMarked, ArrowLeft, ChevronDown, Library, Brain, Building2, NotebookPen } from 'lucide-react';
 import { SubjectSelector } from './components/SubjectSelector';
 import { Dashboard as PsychDashboard } from './components/psych/Dashboard';
 import { Flashcards as PsychFlashcards } from './components/psych/Flashcards';
@@ -25,13 +25,16 @@ import { SocioQuiz } from './components/socio/Quiz';
 import { SocioGlossary } from './components/socio/Glossary';
 import { SocioMindMaps } from './components/socio/MindMaps';
 import { SocioRevisionNotes } from './components/socio/RevisionNotes';
+import { OnePagerDashboard } from './components/onepager/Dashboard';
+import { OnePagerNotes } from './components/onepager/OnePagerNotes';
+import type { OnePagerSubject } from './data/onepager';
 import { InstallBanner } from './components/InstallBanner';
 import { OfflineBanner } from './components/OfflineBanner';
 import { ChapterPickerSingle, ChapterPickerRange } from './components/ChapterPicker';
 import { MotivationalBanner } from './components/MotivationalBanner';
 
-type Subject = 'psych' | 'hindi' | 'socio' | null;
-type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing' | 'revisions' | 'books';
+type Subject = 'psych' | 'hindi' | 'socio' | 'onepager' | null;
+type Tab = 'home' | 'cards' | 'notes' | 'glossary' | 'quiz' | 'matcher' | 'maps' | 'distinctions' | 'writing' | 'revisions' | 'books' | 'op-home' | 'op-eng' | 'op-psy' | 'op-soc' | 'op-hin';
 
 const PSYCH_TIPS = [
   "Gardner's 8 intelligences — frequent 4/6 marker.",
@@ -64,6 +67,17 @@ const SOCIO_TIPS = [
   'Bombay Mill Strike 1982 — Datta Samant',
   'Resource Mobilisation — McCarthy & Zald',
   'Demographic dividend = temp benefit',
+];
+
+const ONEPAGER_TIPS = [
+  'English 2025-26: 8 Flamingo prose + 5 poems + 6 Vistas chapters.',
+  'Deleted this year: An Elementary School Classroom in a Slum.',
+  'Deleted from Vistas: Should Wizard Hit Mommy, Evans Tries an O-level.',
+  'Copy notes, then write them once — active recall beats re-reading.',
+  'Each one-pager is built for 1.5–2 register pages.',
+  '5-mark answers: point + example + link back to the question.',
+  'English long answers need textual evidence, not just summary.',
+  'Revise the exam tips section last — it is the scoring checklist.',
 ];
 
 const PSYCH_CHAPTERS = [
@@ -150,12 +164,29 @@ const SOCIO_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
   { id: 'maps', label: 'Maps', icon: <Map className="w-5 h-5" strokeWidth={1.75} /> },
 ];
 
+const ONEPAGER_NAV: { id: Tab; label: string; icon: ReactNode }[] = [
+  { id: 'op-home', label: 'Home', icon: <Home className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'op-eng', label: 'English', icon: <FileText className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'op-psy', label: 'Psych', icon: <Brain className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'op-soc', label: 'Socio', icon: <Building2 className="w-5 h-5" strokeWidth={1.75} /> },
+  { id: 'op-hin', label: 'Hindi', icon: <NotebookPen className="w-5 h-5" strokeWidth={1.75} /> },
+];
+
+const ONEPAGER_TAB: Record<OnePagerSubject, Tab> = {
+  english: 'op-eng',
+  psych: 'op-psy',
+  socio: 'op-soc',
+  hindi: 'op-hin',
+};
+
 export default function App() {
   const [subject, setSubject] = useState<Subject>(() => {
     const saved = localStorage.getItem('studyrev-subject');
-    return (saved === 'psych' || saved === 'hindi' || saved === 'socio') ? saved : null;
+    return (saved === 'psych' || saved === 'hindi' || saved === 'socio' || saved === 'onepager') ? saved : null;
   });
-  const [activeTab, setActiveTab] = useState<Tab>('home');
+  const [activeTab, setActiveTab] = useState<Tab>(() =>
+    localStorage.getItem('studyrev-subject') === 'onepager' ? 'op-home' : 'home'
+  );
   const [chapterFilter, setChapterFilter] = useState(0);
   const [chapterEnd, setChapterEnd] = useState(0);
   const [singleChapter, setSingleChapter] = useState(0);
@@ -164,7 +195,7 @@ export default function App() {
   const [tipIndex, setTipIndex] = useState(0);
   const [contentKey, setContentKey] = useState(0);
 
-  const tips = subject === 'hindi' ? HINDI_TIPS : subject === 'socio' ? SOCIO_TIPS : PSYCH_TIPS;
+  const tips = subject === 'hindi' ? HINDI_TIPS : subject === 'socio' ? SOCIO_TIPS : subject === 'onepager' ? ONEPAGER_TIPS : PSYCH_TIPS;
 
   useEffect(() => {
     const interval = setInterval(() => setTipIndex(i => (i + 1) % tips.length), 8000);
@@ -186,7 +217,11 @@ export default function App() {
     }
   }, [activeTab]);
 
-  const chapters = subject === 'hindi' ? HINDI_CHAPTERS : subject === 'socio' ? SOCIO_CHAPTERS : PSYCH_CHAPTERS;
+  const isHindi = subject === 'hindi';
+  const isSocio = subject === 'socio';
+  const isOnePager = subject === 'onepager';
+
+  const chapters = isHindi ? HINDI_CHAPTERS : isSocio ? SOCIO_CHAPTERS : PSYCH_CHAPTERS;
 
   const isRangeTab = activeTab === 'cards' || activeTab === 'quiz';
 
@@ -200,19 +235,19 @@ export default function App() {
     return chapters.find(c => c.num === singleChapter)?.name || chapters[0].name;
   }, [chapterFilter, chapterEnd, singleChapter, isRangeTab, chapters]);
 
-  const isPsych = subject === 'psych';
-  const isHindi = subject === 'hindi';
-  const isSocio = subject === 'socio';
-  const noChapterFilterTabs: Tab[] = isHindi
+  const noChapterFilterTabs: Tab[] = isOnePager
+    ? ONEPAGER_NAV.map(item => item.id)
+    : isHindi
     ? ['home', 'books', 'writing', 'glossary']
     : isSocio
     ? ['home', 'glossary']
     : ['home', 'distinctions', 'maps', 'notes'];
   const showChapterFilter = subject !== null && !noChapterFilterTabs.includes(activeTab);
-  const nav = isHindi ? HINDI_NAV : isSocio ? SOCIO_NAV : PSYCH_NAV;
+  const nav = isOnePager ? ONEPAGER_NAV : isHindi ? HINDI_NAV : isSocio ? SOCIO_NAV : PSYCH_NAV;
 
   const selectSubject = useCallback((s: Subject) => {
     setSubject(s);
+    setActiveTab(s === 'onepager' ? 'op-home' : 'home');
     if (s) localStorage.setItem('studyrev-subject', s);
   }, []);
 
@@ -223,6 +258,15 @@ export default function App() {
   }, []);
 
   const renderContent = () => {
+    if (isOnePager) {
+      if (activeTab === 'op-home') {
+        return <OnePagerDashboard onSelectSubject={(s) => navigate(ONEPAGER_TAB[s])} />;
+      }
+      const noteSubject = (Object.keys(ONEPAGER_TAB) as OnePagerSubject[]).find(
+        (key) => ONEPAGER_TAB[key] === activeTab
+      );
+      return <OnePagerNotes subject={noteSubject || 'english'} />;
+    }
     if (isHindi) {
       switch (activeTab) {
         case 'home': return <HindiDashboard onNavigate={(t) => navigate(t as Tab)} onSelectChapter={(ch) => { setChapterFilter(ch); setChapterEnd(ch); navigate('cards'); }} onOpenPdf={() => setPdfOpen(true)} />;
@@ -267,8 +311,8 @@ export default function App() {
     return <SubjectSelector onSelect={selectSubject} />;
   }
 
-  const subjectName = isHindi ? 'Hindi Elective' : isSocio ? 'Sociology' : 'Psychology';
-  const subjectCode = isHindi ? '322' : isSocio ? '039' : '337';
+  const subjectName = isOnePager ? 'One Pager Notes' : isHindi ? 'Hindi Elective' : isSocio ? 'Sociology' : 'Psychology';
+  const subjectCode = isOnePager ? '2025-26' : isHindi ? '322' : isSocio ? '039' : '337';
 
   return (
     <div className="h-[100dvh] flex flex-col bg-warm-gradient text-zinc-100 overflow-hidden select-none">
@@ -283,8 +327,8 @@ export default function App() {
               <ArrowLeft className="w-4 h-4" strokeWidth={2} />
             </button>
             <div>
-              <h1 className={`font-black text-lg tracking-tight leading-none ${isHindi ? 'text-gradient-rose' : isSocio ? 'text-gradient-teal' : 'text-gradient'}`}>{subjectName}</h1>
-              <p className="text-zinc-500 text-[10px] mt-0.5">{isHindi ? 'Hindi Elective' : isSocio ? 'Sociology' : 'Psychology'} — {subjectCode}</p>
+              <h1 className={`font-black text-lg tracking-tight leading-none ${isOnePager ? 'text-gradient-warm' : isHindi ? 'text-gradient-rose' : isSocio ? 'text-gradient-teal' : 'text-gradient'}`}>{subjectName}</h1>
+              <p className="text-zinc-500 text-[10px] mt-0.5">{isOnePager ? 'CBSE Class 12 · Humanities' : `${isHindi ? 'Hindi Elective' : isSocio ? 'Sociology' : 'Psychology'} — ${subjectCode}`}</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -374,16 +418,16 @@ export default function App() {
                 onClick={() => navigate(item.id)}
                 className={`flex flex-col items-center justify-center gap-1 py-2 px-3 min-w-[56px] shrink-0 transition-all duration-200 relative ${
                   isActive
-                    ? isHindi ? 'text-rose-400' : isSocio ? 'text-teal-400' : 'text-indigo-400'
+                    ? isOnePager ? 'text-amber-400' : isHindi ? 'text-rose-400' : isSocio ? 'text-teal-400' : 'text-indigo-400'
                     : 'text-zinc-500 active:text-zinc-300'
                 }`}
               >
                 {isActive && (
-                  <div className={`absolute inset-x-2 -top-px h-[2.5px] rounded-full ${isHindi ? 'bg-rose-400' : isSocio ? 'bg-teal-400' : 'bg-indigo-400'}`} />
+                  <div className={`absolute inset-x-2 -top-px h-[2.5px] rounded-full ${isOnePager ? 'bg-amber-400' : isHindi ? 'bg-rose-400' : isSocio ? 'bg-teal-400' : 'bg-indigo-400'}`} />
                 )}
                 <div className={`relative flex items-center justify-center w-9 h-9 rounded-xl transition-all duration-200 ${
                   isActive
-                    ? isHindi ? 'bg-rose-500/12' : isSocio ? 'bg-teal-500/12' : 'bg-indigo-500/12'
+                    ? isOnePager ? 'bg-amber-500/12' : isHindi ? 'bg-rose-500/12' : isSocio ? 'bg-teal-500/12' : 'bg-indigo-500/12'
                     : 'bg-transparent'
                 }`}>
                   <div className={`transition-transform duration-200 ${isActive ? 'scale-105' : 'scale-100'}`}>
