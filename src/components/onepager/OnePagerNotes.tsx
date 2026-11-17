@@ -1,23 +1,13 @@
 import { useEffect, useMemo, useState, type ReactNode } from 'react';
-import {
-  BookOpen,
-  Check,
-  Copy,
-  FileText,
-  HelpCircle,
-  Lightbulb,
-  Printer,
-  Quote,
-  Sparkles,
-  Target,
-  Users,
-} from 'lucide-react';
+import { Check, Copy, Download } from 'lucide-react';
 import type { OnePagerNote, OnePagerSubject } from '../../data/onepager';
 import { ONE_PAGER_SUBJECTS, getOnePagerNotes } from '../../data/onepager';
 
 interface Props {
   subject: OnePagerSubject;
 }
+
+type CopyMode = 'compact' | 'full';
 
 const SUBJECT_LABELS: Record<OnePagerSubject, string> = {
   english: 'English Core',
@@ -33,14 +23,16 @@ const SUBJECT_CODES: Record<OnePagerSubject, string> = {
   hindi: '322',
 };
 
-type CopyMode = 'compact' | 'full';
+function chapterHeading(note: OnePagerNote): string {
+  return note.subject === 'english' ? note.chapterLabel.toUpperCase() : 'CHAPTER ' + note.chapter;
+}
 
 function buildPlainText(note: OnePagerNote, mode: CopyMode = 'full'): string {
   const full = mode === 'full';
   const lines: string[] = [];
   lines.push('CBSE CLASS 12 — ' + SUBJECT_LABELS[note.subject] + ' (' + SUBJECT_CODES[note.subject] + ')');
   lines.push(note.book + (note.section ? ' — ' + note.section : ''));
-  lines.push((note.subject === 'english' ? note.chapterLabel.toUpperCase() : 'CHAPTER ' + note.chapter) + ': ' + note.title);
+  lines.push(chapterHeading(note) + ': ' + note.title);
   if (note.author) lines.push('Author: ' + note.author);
   lines.push('');
   lines.push('SUMMARY');
@@ -98,6 +90,12 @@ function buildPlainText(note: OnePagerNote, mode: CopyMode = 'full'): string {
   return lines.join('\n');
 }
 
+function estimatePages(text: string): string {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  const pages = Math.max(1, Math.round((words / 300) * 2) / 2);
+  return pages.toFixed(1).replace('.0', '');
+}
+
 function escapeHtml(value: string): string {
   return value
     .replace(/&/g, '&amp;')
@@ -106,34 +104,136 @@ function escapeHtml(value: string): string {
     .replace(/"/g, '&quot;');
 }
 
-const PRINT_HEADINGS = new Set([
-  'SUMMARY', 'KEY POINTS', 'KEY TERMS', 'LITERARY DEVICES',
-  'KEY PEOPLE / THINKERS', 'CHARACTER SKETCH', 'IMPORTANT QUOTES',
-  'EXAM QUESTIONS', 'WORD MEANINGS', 'EXAM TIPS',
-]);
+function buildPrintHtml(note: OnePagerNote, mode: CopyMode): string {
+  const full = mode === 'full';
+  const subject = SUBJECT_LABELS[note.subject];
+  const code = SUBJECT_CODES[note.subject];
+  const sections: string[] = [];
 
-function buildPrintHtml(note: OnePagerNote): string {
-  const body = buildPlainText(note, 'full')
-    .split('\n')
-    .map((line) => {
-      if (!line.trim()) return '<div style="height:8px"></div>';
-      const safe = escapeHtml(line);
-      if (PRINT_HEADINGS.has(line.trim())) {
-        return '<h2 style="font-size:14px;letter-spacing:.08em;margin:16px 0 6px;border-bottom:1px solid #ddd;padding-bottom:4px">' + safe + '</h2>';
-      }
-      if (line.startsWith('Q') && line.includes('.')) {
-        return '<p style="margin:10px 0 3px;font-weight:700">' + safe + '</p>';
-      }
-      return '<p style="margin:3px 0;line-height:1.55">' + safe + '</p>';
-    })
-    .join('');
-  return '<!doctype html><html><head><title>' + escapeHtml(note.title) + '</title>' +
-    '<style>body{font-family:Georgia,"Times New Roman",serif;max-width:760px;margin:32px auto;padding:0 24px;color:#111;font-size:13px}' +
-    'h1{font-size:22px;margin:0 0 4px}h2{font-family:Arial,sans-serif}p{margin:3px 0}' +
-    '@media print{body{margin:0;padding:14mm}}</style></head><body>' +
+  const addSection = (title: string, body: string) => {
+    if (!body) return;
+    sections.push(
+      '<section class="section"><h2><span class="num">' +
+        String(sections.length + 1).padStart(2, '0') +
+        '</span>' +
+        escapeHtml(title) +
+        '</h2>' +
+        body +
+        '</section>'
+    );
+  };
+
+  addSection('Summary', '<p>' + escapeHtml(note.summary) + '</p>');
+  addSection(
+    'Key Points',
+    '<ul>' + note.keyPoints.map((point) => '<li>' + escapeHtml(point) + '</li>').join('') + '</ul>'
+  );
+  if (note.keyTerms && note.keyTerms.length) {
+    addSection(
+      'Key Terms',
+      note.keyTerms
+        .map((term) => '<p><strong>' + escapeHtml(term.term) + ':</strong> ' + escapeHtml(term.definition) + '</p>')
+        .join('')
+    );
+  }
+  if (note.devices && note.devices.length) {
+    addSection('Literary Devices', '<p>' + note.devices.map(escapeHtml).join(' · ') + '</p>');
+  }
+  if (full && note.keyPeople && note.keyPeople.length) {
+    addSection(
+      note.subject === 'socio' ? 'Key Thinkers' : 'Key People / Characters',
+      note.keyPeople
+        .map((person) => '<p><strong>' + escapeHtml(person.name) + ':</strong> ' + escapeHtml(person.contribution) + '</p>')
+        .join('')
+    );
+  }
+  if (full && note.characterSketch) {
+    addSection('Character Sketch', '<p>' + escapeHtml(note.characterSketch) + '</p>');
+  }
+  if (note.quotes && note.quotes.length) {
+    addSection(
+      'Important Quotes',
+      note.quotes
+        .map(
+          (quote) =>
+            '<div class="quote"><p class="quote-text">“' +
+            escapeHtml(quote.text) +
+            '”</p>' +
+            (full ? '<p class="quote-exp">' + escapeHtml(quote.explanation) + '</p>' : '') +
+            '</div>'
+        )
+        .join('')
+    );
+  }
+  if (full && note.examQuestions && note.examQuestions.length) {
+    addSection(
+      'Exam Questions',
+      note.examQuestions
+        .map(
+          (qa, index) =>
+            '<div class="qa"><p class="q">Q' +
+            (index + 1) +
+            '. ' +
+            escapeHtml(qa.question) +
+            '</p><p class="a"><strong>Ans.</strong> ' +
+            escapeHtml(qa.answer) +
+            '</p></div>'
+        )
+        .join('')
+    );
+  }
+  if (note.wordMeanings && note.wordMeanings.length) {
+    addSection(
+      'Word Meanings',
+      note.wordMeanings
+        .map((word) => '<p><strong>' + escapeHtml(word.word) + '</strong> — ' + escapeHtml(word.meaning) + '</p>')
+        .join('')
+    );
+  }
+  if (note.examTips && note.examTips.length) {
+    addSection('Exam Tips', '<ol>' + note.examTips.map((tip) => '<li>' + escapeHtml(tip) + '</li>').join('') + '</ol>');
+  }
+
+  const meta = [
+    chapterHeading(note),
+    note.author ? 'Author: ' + note.author : '',
+    note.marks ? note.marks + ' marks' : '',
+  ].filter(Boolean).map(escapeHtml).join(' &nbsp;·&nbsp; ');
+
+  return '<!doctype html><html><head><meta charset="utf-8"><title>' + escapeHtml(note.title) + '</title>' +
+    '<style>' +
+    '@page{size:A4;margin:16mm 15mm}' +
+    'body{font-family:Georgia,"Times New Roman",serif;font-size:10.8pt;line-height:1.55;color:#111;margin:0}' +
+    '.doc-top{display:flex;justify-content:space-between;font-family:Arial,Helvetica,sans-serif;font-size:8pt;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:#555;border-bottom:1px solid #111;padding-bottom:3mm}' +
+    '.book{margin-top:6mm;font-family:Arial,Helvetica,sans-serif;font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.16em;color:#8a5a00}' +
+    'h1{font-size:23pt;line-height:1.15;margin:2mm 0 2mm;font-weight:700}' +
+    '.meta{font-family:Arial,Helvetica,sans-serif;font-size:8.5pt;color:#555}' +
+    '.rule{border-top:3px double #111;margin:4mm 0 6mm}' +
+    '.section{margin-top:5.5mm}' +
+    '.section h2{font-family:Arial,Helvetica,sans-serif;font-size:8.5pt;font-weight:700;text-transform:uppercase;letter-spacing:.14em;border-bottom:1px solid #bbb;padding-bottom:1.2mm;margin:0 0 2mm;color:#222;break-after:avoid}' +
+    '.num{color:#a16207;margin-right:3mm}' +
+    'p{margin:0 0 2mm}' +
+    'ul,ol{margin:0 0 2mm;padding-left:5mm}' +
+    'li{margin-bottom:1.4mm}' +
+    'strong{font-weight:700}' +
+    '.quote{margin:0 0 2.5mm;padding-left:3mm;border-left:2px solid #d6b25e}' +
+    '.quote-text{margin:0;font-style:italic}' +
+    '.quote-exp{margin:1mm 0 0;color:#555;font-size:9.5pt}' +
+    '.qa{margin-bottom:3mm;break-inside:avoid}' +
+    '.q{font-weight:700;margin-bottom:1mm}' +
+    '.a{margin:0}' +
+    '.footer{margin-top:8mm;padding-top:2mm;border-top:1px solid #ccc;font-family:Arial,Helvetica,sans-serif;font-size:8pt;color:#777;display:flex;justify-content:space-between}' +
+    '@media screen{body{padding:16mm 15mm;max-width:840px;margin:0 auto}}' +
+    '@media print{body{margin:0}}' +
+    '</style></head><body>' +
+    '<div class="doc-top"><span>CBSE Class 12 · ' + escapeHtml(subject) + ' (' + code + ')</span><span>Session 2025–26</span></div>' +
+    '<div class="book">' + escapeHtml(note.book) + (note.section ? ' · ' + escapeHtml(note.section) : '') + '</div>' +
     '<h1>' + escapeHtml(note.title) + '</h1>' +
-    '<p style="color:#555;margin-bottom:18px">' + escapeHtml(note.book) + (note.section ? ' — ' + escapeHtml(note.section) : '') + (note.author ? ' · ' + escapeHtml(note.author) : '') + '</p>' +
-    body + '</body></html>';
+    '<div class="meta">' + meta + '</div>' +
+    '<div class="rule"></div>' +
+    sections.join('') +
+    '<div class="footer"><span>One Pager Notes · StudyRev</span><span>' + (mode === 'compact' ? 'Compact · approx. 1.5–2 register pages' : 'Full notes') + '</span></div>' +
+    '</body></html>';
 }
 
 export function OnePagerNotes({ subject }: Props) {
@@ -152,16 +252,18 @@ export function OnePagerNotes({ subject }: Props) {
   const note = notes.find((item) => item.id === selectedId) || notes[0];
   if (!note) return null;
 
+  const full = copyMode === 'full';
   const subjectLabel = meta?.name || SUBJECT_LABELS[subject];
+  const copyText = buildPlainText(note, copyMode);
+  const pages = estimatePages(copyText);
 
   const copyNotes = async () => {
-    const text = buildPlainText(note, copyMode);
     try {
-      await navigator.clipboard.writeText(text);
+      await navigator.clipboard.writeText(copyText);
       setCopied(true);
     } catch {
       const textarea = document.createElement('textarea');
-      textarea.value = text;
+      textarea.value = copyText;
       textarea.style.position = 'fixed';
       textarea.style.opacity = '0';
       document.body.appendChild(textarea);
@@ -176,35 +278,148 @@ export function OnePagerNotes({ subject }: Props) {
     }
   };
 
-  const printNotes = () => {
+  const savePdf = () => {
     const win = window.open('', '_blank');
     if (!win) {
       copyNotes();
       return;
     }
-    win.document.write(buildPrintHtml(note));
+    win.document.write(buildPrintHtml(note, copyMode));
     win.document.close();
     win.focus();
-    setTimeout(() => win.print(), 250);
+    setTimeout(() => win.print(), 300);
   };
+
+  const sections: { title: string; content: ReactNode }[] = [];
+  sections.push({
+    title: note.subject === 'english' && note.section === 'Poetry' ? 'Central Idea & Summary' : 'Summary',
+    content: <p>{note.summary}</p>,
+  });
+  sections.push({
+    title: 'Key Points',
+    content: (
+      <ul className="list-disc pl-5 space-y-1.5 marker:text-zinc-400">
+        {note.keyPoints.map((point, index) => (
+          <li key={index}>{point}</li>
+        ))}
+      </ul>
+    ),
+  });
+  if (note.keyTerms && note.keyTerms.length) {
+    sections.push({
+      title: 'Key Terms',
+      content: (
+        <div className="space-y-1.5">
+          {note.keyTerms.map((term, index) => (
+            <p key={index}>
+              <strong className="font-semibold text-zinc-900">{term.term}:</strong> {term.definition}
+            </p>
+          ))}
+        </div>
+      ),
+    });
+  }
+  if (note.devices && note.devices.length) {
+    sections.push({
+      title: 'Literary Devices',
+      content: <p>{note.devices.join(' · ')}</p>,
+    });
+  }
+  if (full && note.keyPeople && note.keyPeople.length) {
+    sections.push({
+      title: note.subject === 'socio' ? 'Key Thinkers' : 'Key People / Characters',
+      content: (
+        <div className="space-y-2">
+          {note.keyPeople.map((person, index) => (
+            <p key={index}>
+              <strong className="font-semibold text-zinc-900">{person.name}:</strong> {person.contribution}
+            </p>
+          ))}
+        </div>
+      ),
+    });
+  }
+  if (full && note.characterSketch) {
+    sections.push({
+      title: 'Character Sketch',
+      content: <p>{note.characterSketch}</p>,
+    });
+  }
+  if (note.quotes && note.quotes.length) {
+    sections.push({
+      title: 'Important Quotes',
+      content: (
+        <div className="space-y-2.5">
+          {note.quotes.map((quote, index) => (
+            <div key={index} className="border-l-2 border-amber-500/60 pl-3">
+              <p className="italic">“{quote.text}”</p>
+              {full && <p className="text-[11px] text-zinc-500 mt-1">{quote.explanation}</p>}
+            </div>
+          ))}
+        </div>
+      ),
+    });
+  }
+  if (full && note.examQuestions && note.examQuestions.length) {
+    sections.push({
+      title: 'Exam Questions',
+      content: (
+        <div className="space-y-3">
+          {note.examQuestions.map((qa, index) => (
+            <div key={index}>
+              <p className="font-semibold text-zinc-900">Q{index + 1}. {qa.question}</p>
+              <p className="mt-1"><strong className="font-semibold text-zinc-900">Ans.</strong> {qa.answer}</p>
+            </div>
+          ))}
+        </div>
+      ),
+    });
+  }
+  if (note.wordMeanings && note.wordMeanings.length) {
+    sections.push({
+      title: 'Word Meanings',
+      content: (
+        <div className="space-y-1">
+          {note.wordMeanings.map((word, index) => (
+            <p key={index}>
+              <strong className="font-semibold text-zinc-900">{word.word}</strong> — {word.meaning}
+            </p>
+          ))}
+        </div>
+      ),
+    });
+  }
+  if (note.examTips && note.examTips.length) {
+    sections.push({
+      title: 'Exam Tips',
+      content: (
+        <ol className="list-decimal pl-5 space-y-1.5 marker:text-zinc-400">
+          {note.examTips.map((tip, index) => (
+            <li key={index}>{tip}</li>
+          ))}
+        </ol>
+      ),
+    });
+  }
 
   return (
     <div className="flex flex-col h-full">
-      {/* Chapter strip */}
+      {/* App toolbar */}
       <div className="shrink-0 px-4 pt-2 pb-2">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <span className={`pill border text-[9px] font-bold ${meta?.border || 'border-amber-500/20'} ${meta?.bg || 'bg-amber-500/[0.04]'} ${meta?.accent || 'text-amber-300'}`}>
               {subjectLabel}
             </span>
-            <span className="text-zinc-600 text-[10px] font-semibold">
-              {notes.length} chapters
+            <span className="pill bg-zinc-800/70 border border-zinc-700/50 text-zinc-400 text-[9px] font-bold">
+              PDF preview
             </span>
           </div>
           <span className="text-zinc-600 text-[10px]">
             {notes.findIndex((item) => item.id === note.id) + 1}/{notes.length}
           </span>
         </div>
+
         <div className="flex gap-1.5 overflow-x-auto no-scrollbar pb-1">
           {notes.map((item) => {
             const active = item.id === note.id;
@@ -223,244 +438,115 @@ export function OnePagerNotes({ subject }: Props) {
             );
           })}
         </div>
+
+        <div className="flex items-center justify-between gap-2 mt-2">
+          <div className="flex items-center gap-1.5">
+            <span className="text-[9px] text-zinc-500 uppercase font-bold tracking-wide">Copy</span>
+            <button
+              onClick={() => setCopyMode('compact')}
+              className={`px-2 py-1 rounded-full text-[9px] font-bold border transition-colors ${
+                copyMode === 'compact'
+                  ? 'bg-amber-500/15 text-amber-300 border-amber-500/25'
+                  : 'bg-zinc-800/50 text-zinc-500 border-zinc-700/40'
+              }`}
+            >
+              1.5–2 pages
+            </button>
+            <button
+              onClick={() => setCopyMode('full')}
+              className={`px-2 py-1 rounded-full text-[9px] font-bold border transition-colors ${
+                copyMode === 'full'
+                  ? 'bg-amber-500/15 text-amber-300 border-amber-500/25'
+                  : 'bg-zinc-800/50 text-zinc-500 border-zinc-700/40'
+              }`}
+            >
+              Full
+            </button>
+          </div>
+          <span className="text-zinc-600 text-[9px] font-semibold whitespace-nowrap">≈ {pages} {pages === '1' ? 'page' : 'pages'}</span>
+        </div>
+
+        <div className="flex gap-2 mt-2">
+          <button
+            onClick={copyNotes}
+            className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-[11px] font-bold transition-all ${
+              copied
+                ? 'bg-emerald-500 text-white'
+                : 'bg-amber-500 text-zinc-950 active:bg-amber-400'
+            }`}
+          >
+            {copied ? <Check className="w-3.5 h-3.5" strokeWidth={2.5} /> : <Copy className="w-3.5 h-3.5" strokeWidth={2.5} />}
+            {copied ? 'Copied for register' : 'Copy for register'}
+          </button>
+          <button
+            onClick={savePdf}
+            className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-zinc-800/70 border border-zinc-700/50 text-zinc-300 text-[11px] font-bold active:bg-zinc-700/70 transition-colors"
+          >
+            <Download className="w-3.5 h-3.5" strokeWidth={2} />
+            Save PDF
+          </button>
+        </div>
       </div>
 
-      {/* Scrollable note sheet */}
-      <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-4 pb-6">
-        <div key={note.id} className="animate-fade-in space-y-3">
-          {/* Header */}
-          <div className="rounded-2xl bg-gradient-to-br from-amber-500/15 via-zinc-900/40 to-orange-500/10 border border-amber-500/15 p-4">
-            <div className="flex items-center gap-1.5 flex-wrap mb-2">
-              <span className="pill bg-amber-500/15 text-amber-300 border border-amber-500/20 text-[9px] font-bold">
-                {note.book}
+      {/* Paper preview */}
+      <div className="flex-1 min-h-0 overflow-y-auto no-scrollbar px-3 pb-8">
+        <div className="mx-auto w-full max-w-[800px]">
+          <p className="text-center text-zinc-600 text-[9px] uppercase tracking-[0.18em] font-semibold mb-2">
+            Document preview — copy exactly this into your register
+          </p>
+          <article
+            key={note.id}
+            className="select-text bg-[#fffdf8] text-zinc-900 rounded-sm border border-zinc-300/60 shadow-[0_24px_70px_-24px_rgba(0,0,0,0.9)] px-5 py-6 sm:px-9 sm:py-9 animate-fade-in"
+          >
+            <div className="flex items-center justify-between gap-3 border-b border-zinc-900 pb-2">
+              <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-600">
+                CBSE Class 12 · {subjectLabel} ({SUBJECT_CODES[note.subject]})
               </span>
-              {note.section && (
-                <span className="pill bg-zinc-800/70 text-zinc-400 border border-zinc-700/50 text-[9px] font-semibold">
-                  {note.section}
-                </span>
-              )}
-              {note.marks ? (
-                <span className="pill bg-emerald-500/10 text-emerald-300 border border-emerald-500/20 text-[9px] font-bold">
-                  {note.marks} marks
-                </span>
-              ) : null}
+              <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.16em] text-zinc-600">2025–26</span>
             </div>
-            <h2 className="text-white font-black text-base leading-tight">{note.title}</h2>
-            <p className="text-zinc-400 text-[11px] mt-1">
-              {note.subject === 'english' ? note.chapterLabel : 'Chapter ' + note.chapter}
-              {note.author ? ' · ' + note.author : ''}
-            </p>
-            <div className="flex items-center gap-1.5 mt-3 mb-1">
-              <span className="text-[9px] text-zinc-500 uppercase font-bold tracking-wide">Copy size</span>
-              <button
-                onClick={() => setCopyMode('compact')}
-                className={`px-2 py-0.5 rounded-full text-[9px] font-bold border transition-colors ${
-                  copyMode === 'compact'
-                    ? 'bg-amber-500/15 text-amber-300 border-amber-500/25'
-                    : 'bg-zinc-800/50 text-zinc-500 border-zinc-700/40'
-                }`}
-              >
-                1.5–2 pages
-              </button>
-              <button
-                onClick={() => setCopyMode('full')}
-                className={`px-2 py-0.5 rounded-full text-[9px] font-bold border transition-colors ${
-                  copyMode === 'full'
-                    ? 'bg-amber-500/15 text-amber-300 border-amber-500/25'
-                    : 'bg-zinc-800/50 text-zinc-500 border-zinc-700/40'
-                }`}
-              >
-                Full
-              </button>
-            </div>
-            <div className="flex gap-2 mt-2">
-              <button
-                onClick={copyNotes}
-                className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl text-[11px] font-bold transition-all ${
-                  copied
-                    ? 'bg-emerald-500 text-white'
-                    : 'bg-amber-500 text-zinc-950 active:bg-amber-400'
-                }`}
-              >
-                {copied ? <Check className="w-3.5 h-3.5" strokeWidth={2.5} /> : <Copy className="w-3.5 h-3.5" strokeWidth={2.5} />}
-                {copied ? 'Copied for register' : 'Copy notes'}
-              </button>
-              <button
-                onClick={printNotes}
-                className="flex items-center justify-center gap-1.5 px-3 py-2 rounded-xl bg-zinc-800/70 border border-zinc-700/50 text-zinc-300 text-[11px] font-bold active:bg-zinc-700/70 transition-colors"
-              >
-                <Printer className="w-3.5 h-3.5" strokeWidth={2} />
-                Print
-              </button>
-            </div>
-          </div>
 
-          {/* Summary */}
-          <Section icon={<FileText className="w-3.5 h-3.5" />} title={note.subject === 'english' && note.section === 'Poetry' ? 'Central Idea & Summary' : 'Summary'}>
-            <p className="text-[12px] text-zinc-300 leading-relaxed">{note.summary}</p>
-          </Section>
+            <div className="mt-5">
+              <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-amber-700">
+                {note.book}{note.section ? ' · ' + note.section : ''}
+              </p>
+              <h1 className="font-serif text-[24px] sm:text-[30px] leading-[1.12] font-bold text-zinc-900 mt-1.5">
+                {note.title}
+              </h1>
+              <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] sm:text-[11px] text-zinc-500 mt-2 font-sans">
+                <span>{subject === 'english' ? note.chapterLabel : 'Chapter ' + note.chapter}</span>
+                {note.author && <span>Author: {note.author}</span>}
+                {note.marks ? <span>{note.marks} marks</span> : null}
+              </div>
+            </div>
 
-          {/* Key points */}
-          <Section icon={<Sparkles className="w-3.5 h-3.5" />} title="Key Points" badge={note.keyPoints.length}>
-            <ul className="space-y-1.5">
-              {note.keyPoints.map((point, index) => (
-                <li key={index} className="flex gap-2 text-[12px] text-zinc-400">
-                  <span className="text-amber-400 mt-0.5 shrink-0">•</span>
-                  <span className="leading-relaxed">{point}</span>
-                </li>
+            <div className="mt-4 border-t-[3px] border-double border-zinc-900" />
+
+            <div className="mt-5 space-y-5 font-serif text-[12px] sm:text-[12.5px] leading-[1.7] text-zinc-800">
+              {sections.map((section, index) => (
+                <section key={section.title}>
+                  <div className="flex items-baseline gap-3 border-b border-zinc-300 pb-1.5 mb-2.5">
+                    <span className="text-[9px] font-black text-amber-700 tabular-nums font-sans">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <h2 className="text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.16em] text-zinc-800 font-sans">
+                      {section.title}
+                    </h2>
+                  </div>
+                  {section.content}
+                </section>
               ))}
-            </ul>
-          </Section>
+            </div>
 
-          {/* Key terms */}
-          {note.keyTerms && note.keyTerms.length > 0 && (
-            <Section icon={<BookOpen className="w-3.5 h-3.5" />} title="Key Terms" badge={note.keyTerms.length}>
-              <div className="space-y-2">
-                {note.keyTerms.map((term, index) => (
-                  <div key={index} className="p-2.5 rounded-lg bg-zinc-800/40 border border-zinc-700/30">
-                    <p className="text-[11px] text-amber-300 font-bold mb-0.5">{term.term}</p>
-                    <p className="text-[11px] text-zinc-400 leading-relaxed">{term.definition}</p>
-                  </div>
-                ))}
-              </div>
-            </Section>
-          )}
-
-          {/* Literary devices */}
-          {note.devices && note.devices.length > 0 && (
-            <Section icon={<PenLineIcon />} title="Literary Devices">
-              <div className="flex flex-wrap gap-1.5">
-                {note.devices.map((device, index) => (
-                  <span key={index} className="px-2 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-[10px] text-rose-300 font-semibold">
-                    {device}
-                  </span>
-                ))}
-              </div>
-            </Section>
-          )}
-
-          {/* Key people */}
-          {note.keyPeople && note.keyPeople.length > 0 && (
-            <Section icon={<Users className="w-3.5 h-3.5" />} title={note.subject === 'socio' ? 'Key Thinkers' : 'Key People / Characters'} badge={note.keyPeople.length}>
-              <div className="space-y-2">
-                {note.keyPeople.map((person, index) => (
-                  <div key={index} className="p-2.5 rounded-lg bg-zinc-800/40 border border-zinc-700/30">
-                    <p className="text-[11px] text-amber-300 font-bold mb-0.5">{person.name}</p>
-                    <p className="text-[11px] text-zinc-400 leading-relaxed">{person.contribution}</p>
-                  </div>
-                ))}
-              </div>
-            </Section>
-          )}
-
-          {/* Character sketch */}
-          {note.characterSketch && (
-            <Section icon={<Users className="w-3.5 h-3.5" />} title="Character Sketch">
-              <p className="text-[12px] text-zinc-400 leading-relaxed">{note.characterSketch}</p>
-            </Section>
-          )}
-
-          {/* Quotes */}
-          {note.quotes && note.quotes.length > 0 && (
-            <Section icon={<Quote className="w-3.5 h-3.5" />} title="Important Quotes" badge={note.quotes.length}>
-              <div className="space-y-2">
-                {note.quotes.map((quote, index) => (
-                  <div key={index} className="p-2.5 rounded-lg bg-amber-500/5 border border-amber-500/10">
-                    <p className="text-[11px] text-amber-200 font-medium italic leading-relaxed">“{quote.text}”</p>
-                    <p className="text-[11px] text-zinc-500 leading-relaxed mt-1">{quote.explanation}</p>
-                  </div>
-                ))}
-              </div>
-            </Section>
-          )}
-
-          {/* Exam questions */}
-          {note.examQuestions && note.examQuestions.length > 0 && (
-            <Section icon={<HelpCircle className="w-3.5 h-3.5" />} title="Exam Questions" badge={note.examQuestions.length}>
-              <div className="space-y-2.5">
-                {note.examQuestions.map((qa, index) => (
-                  <div key={index} className="rounded-xl bg-zinc-800/40 border border-zinc-700/30 overflow-hidden">
-                    <div className="flex items-start gap-2 px-3 py-2.5 bg-zinc-800/30">
-                      <span className="pill bg-amber-500/15 text-amber-300 text-[9px] font-bold shrink-0 mt-0.5">Q{index + 1}</span>
-                      <p className="text-[11px] text-zinc-200 font-semibold leading-relaxed">{qa.question}</p>
-                    </div>
-                    <div className="px-3 py-2.5">
-                      <p className="text-[10px] text-amber-400/80 font-bold uppercase tracking-wide mb-1">Answer</p>
-                      <p className="text-[11px] text-zinc-400 leading-relaxed">{qa.answer}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Section>
-          )}
-
-          {/* Word meanings */}
-          {note.wordMeanings && note.wordMeanings.length > 0 && (
-            <Section icon={<BookOpen className="w-3.5 h-3.5" />} title="Word Meanings" badge={note.wordMeanings.length}>
-              <div className="grid grid-cols-1 gap-1.5">
-                {note.wordMeanings.map((word, index) => (
-                  <div key={index} className="flex items-start gap-2 text-[11px]">
-                    <span className="text-rose-300 font-bold shrink-0">{word.word}</span>
-                    <span className="text-zinc-500 leading-relaxed">— {word.meaning}</span>
-                  </div>
-                ))}
-              </div>
-            </Section>
-          )}
-
-          {/* Exam tips */}
-          {note.examTips && note.examTips.length > 0 && (
-            <Section icon={<Lightbulb className="w-3.5 h-3.5" />} title="Exam Tips">
-              <div className="space-y-1.5">
-                {note.examTips.map((tip, index) => (
-                  <div key={index} className="flex items-start gap-2">
-                    <Target className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" strokeWidth={2} />
-                    <span className="text-[11px] text-zinc-400 leading-relaxed">{tip}</span>
-                  </div>
-                ))}
-              </div>
-            </Section>
-          )}
-
-          <p className="text-center text-zinc-700 text-[9px] pt-2 pb-2">
-            CBSE 2025-26 · {subjectLabel} · One Pager Notes
+            <div className="mt-8 border-t border-zinc-300 pt-3 flex items-center justify-between gap-3 text-[8px] sm:text-[9px] uppercase tracking-[0.12em] text-zinc-500 font-sans">
+              <span>One Pager Notes · StudyRev</span>
+              <span>{copyMode === 'compact' ? 'Compact · approx. 1.5–2 register pages' : 'Full notes'}</span>
+            </div>
+          </article>
+          <p className="text-center text-zinc-600 text-[9px] mt-3 mb-2">
+            Save PDF respects the selected copy size.
           </p>
         </div>
       </div>
     </div>
-  );
-}
-
-function Section({
-  icon,
-  title,
-  badge,
-  children,
-}: {
-  icon: ReactNode;
-  title: string;
-  badge?: number;
-  children: ReactNode;
-}) {
-  return (
-    <div className="rounded-xl bg-zinc-900/40 border border-zinc-800/40 overflow-hidden">
-      <div className="flex items-center gap-2 px-3 py-2.5 border-b border-zinc-800/40">
-        <span className="text-amber-400">{icon}</span>
-        <span className="text-[11px] font-bold text-zinc-300">{title}</span>
-        {badge !== undefined && (
-          <span className="pill bg-zinc-800/60 text-zinc-500 text-[9px] font-bold px-1.5">{badge}</span>
-        )}
-      </div>
-      <div className="px-3 py-3">{children}</div>
-    </div>
-  );
-}
-
-function PenLineIcon() {
-  return (
-    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.75}>
-      <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L6.832 19.82a4.5 4.5 0 01-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 011.13-1.897L16.862 4.487z" />
-      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 7.125L16.862 4.487" />
-    </svg>
   );
 }

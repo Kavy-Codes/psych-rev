@@ -8,7 +8,7 @@ interface Props {
 
 const HOW_TO = [
   { icon: BookMarked, title: 'Pick a chapter', text: 'Choose your subject, then the chapter you are revising.' },
-  { icon: Copy, title: 'Copy the one-pager', text: 'Tap Copy notes — the full note is formatted for your register.' },
+  { icon: Copy, title: 'Copy or save PDF', text: 'Preview the paper, then copy the text or save a clean A4 PDF.' },
   { icon: Check, title: 'Write & revise', text: 'Each note fits 1.5–2 register pages and covers exam-ready points.' },
 ];
 
