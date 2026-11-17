@@ -26,7 +26,7 @@ const subjects = [
     marks: 0,
     meta: 'English + Psychology + Sociology + Hindi',
     tagline: 'Copy-ready notes for your register',
-    desc: 'All chapters · 1.5–2 pages each · 2025-26 syllabus',
+    desc: 'All chapters · full notes · 2025-26 syllabus',
   },
   {
     id: 'psych' as const,

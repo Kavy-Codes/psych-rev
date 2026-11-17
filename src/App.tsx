@@ -74,7 +74,7 @@ const ONEPAGER_TIPS = [
   'Deleted this year: An Elementary School Classroom in a Slum.',
   'Deleted from Vistas: Should Wizard Hit Mommy, Evans Tries an O-level.',
   'Copy notes, then write them once — active recall beats re-reading.',
-  'Each one-pager is built for 1.5–2 register pages.',
+  'Each note is the full chapter note — nothing cut down.',
   '5-mark answers: point + example + link back to the question.',
   'English long answers need textual evidence, not just summary.',
   'Revise the exam tips section last — it is the scoring checklist.',

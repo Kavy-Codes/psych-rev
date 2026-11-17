@@ -9,7 +9,7 @@ interface Props {
 const HOW_TO = [
   { icon: BookMarked, title: 'Pick a chapter', text: 'Choose your subject, then the chapter you are revising.' },
   { icon: Copy, title: 'Copy or save PDF', text: 'Preview the paper, then copy the text or save a clean A4 PDF.' },
-  { icon: Check, title: 'Write & revise', text: 'Each note fits 1.5–2 register pages and covers exam-ready points.' },
+  { icon: Check, title: 'Write & revise', text: 'Every note includes all sections — summary, key points, terms, quotes and exam questions.' },
 ];
 
 export function OnePagerDashboard({ onSelectSubject }: Props) {
@@ -44,8 +44,8 @@ export function OnePagerDashboard({ onSelectSubject }: Props) {
             </div>
             <div className="w-px h-8 bg-white/20" />
             <div>
-              <p className="text-white text-2xl font-black leading-none">1.5–2</p>
-              <p className="text-white/50 text-[10px] mt-0.5">register pages each</p>
+              <p className="text-white text-2xl font-black leading-none">Full</p>
+              <p className="text-white/50 text-[10px] mt-0.5">all sections</p>
             </div>
           </div>
         </div>
